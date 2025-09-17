@@ -2,33 +2,26 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="cars")
 public class Car {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int carId;
     
-    @Column(name = "owner_id")
     private int ownerId;
-    @Column(name = "vin_number")
     private String vinNumber;
-    @Column(name = "car_color")
     private String carColor;
-    @Column(name = "manufacturer")
     private String manufacturer;
-    @Column(name = "model")
     private String model;
-    @Column(name = "make_year")
     private int makeYear;
-    @Column(name = "inspection_exp")
     private LocalDate inspectionExp;
-    @Column(name = "mileage")
     private int mileage;
 
     public Car() {
