@@ -1,6 +1,5 @@
 package dev.sijaja.serviceheft.controller;
 
-
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,24 +11,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.sijaja.serviceheft.model.Cars;
-import dev.sijaja.serviceheft.service.CarService;
+import dev.sijaja.serviceheft.model.BeltHoseCheck;
+import dev.sijaja.serviceheft.service.BeltHoseCheckService;
 
 @RestController
-@RequestMapping("/api/cars")
+@RequestMapping("/api/BeltHoseCheck")
 @CrossOrigin
-public class CarController {
-    private final CarService service;
-    public CarController(CarService service) { this.service = service; }
+public class BeltHoseCheckController {
+    private final BeltHoseCheckService service;
+    public BeltHoseCheckController(BeltHoseCheckService service) { this.service = service; }
 
     @GetMapping
-    public List<Cars> getAll() { return service.getAll(); }
+    public List<BeltHoseCheck> getAll() { return service.getAll(); }
 
     @PostMapping
-    public Cars create(@RequestBody Cars c) { return service.save(c); }
+    public BeltHoseCheck create(@RequestBody BeltHoseCheck c) { return service.save(c); }
 
     @GetMapping("/{id}")
-    public Cars get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }
+    public BeltHoseCheck get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) { service.delete(id); }

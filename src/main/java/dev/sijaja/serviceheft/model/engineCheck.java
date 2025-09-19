@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class engineCheck {
+public class EngineCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int engineCheckId;
@@ -25,10 +25,10 @@ public class engineCheck {
     private Level washFluid;
     private Condition engineStatus;
 
-    public engineCheck() {
+    public EngineCheck() {
     }
 
-    public engineCheck(int engineCheckId, Level oilLevel, Condition oilCondition, boolean oilFilter,
+    public EngineCheck(int engineCheckId, Level oilLevel, Condition oilCondition, boolean oilFilter,
             boolean oilReplaced, Level coolantLevel, Condition coolantCondition, Level brakeFluidLevel,
             Condition brakeFluidColor, Level steeringFluid, Level gearFluid, Level washFluid, Condition engineStatus) {
         this.engineCheckId = engineCheckId;

@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="cars")
-public class Car {
+public class Cars {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int carId;
@@ -24,10 +24,10 @@ public class Car {
     private LocalDate inspectionExp;
     private int mileage;
 
-    public Car() {
+    public Cars() {
     }
 
-    public Car(int carId, int ownerId, String vinNumber, String carColor, String manufacturer, String model,
+    public Cars(int carId, int ownerId, String vinNumber, String carColor, String manufacturer, String model,
             int makeYear, LocalDate inspectionExp, int mileage) {
         this.carId = carId;
         this.ownerId = ownerId;
