@@ -1,0 +1,27 @@
+# Use Eclipse Temurin (OpenJDK) as base image
+FROM eclipse-temurin:17-jdk-alpine as builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy Maven wrapper and pom.xml first (for caching dependencies)
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+# Download dependencies
+RUN ./mvnw dependency:go-offline
+
+# Copy source code
+COPY src src
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
+
+# Run stage
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
+
+# Run the Spring Boot app
+ENTRYPOINT ["java","-jar","app.jar"]
