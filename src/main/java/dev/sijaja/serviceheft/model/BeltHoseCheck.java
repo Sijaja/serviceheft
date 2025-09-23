@@ -2,6 +2,8 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,9 +13,13 @@ public class BeltHoseCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int beltHoseCheckId;
+    @Enumerated(EnumType.STRING)
     private Condition serpentineBelt;
+    @Enumerated(EnumType.STRING)
     private Condition timingBelt;
+    @Enumerated(EnumType.STRING)
     private Condition radiatorHoses;
+    @Enumerated(EnumType.STRING)
     private Condition heaterHoses;
 
     public BeltHoseCheck(int beltHoseCheckId, Condition heaterHoses, Condition radiatorHoses, Condition serpentineBelt, Condition timingBelt) {

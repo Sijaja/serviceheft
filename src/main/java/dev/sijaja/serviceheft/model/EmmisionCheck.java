@@ -2,6 +2,8 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Check;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,8 +13,11 @@ public class EmmisionCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int emmisionCheckId;
+    @Enumerated(EnumType.STRING)
     private Check exhaust;
+    @Enumerated(EnumType.STRING)
     private Check catalytic;
+    @Enumerated(EnumType.STRING)
     private Check o2Sensors;
 
     public EmmisionCheck() {

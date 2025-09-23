@@ -2,6 +2,8 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,8 +15,11 @@ public class BrakeCheck {
     private int brakeCheckId;
     private double fPadThickness;
     private double rPadThickness;
+    @Enumerated(EnumType.STRING)
     private Condition frontRotorsCon;
+    @Enumerated(EnumType.STRING)
     private Condition rearRotorsCon;
+    @Enumerated(EnumType.STRING)
     private Condition brakeLines;
 
     public BrakeCheck() {

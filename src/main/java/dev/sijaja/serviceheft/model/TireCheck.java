@@ -3,6 +3,8 @@ package dev.sijaja.serviceheft.model;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Pattern;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +22,9 @@ public class TireCheck {
     private double pressureFR;
     private double pressureRL;
     private double pressureRR;
+    @Enumerated(EnumType.STRING)
     private Pattern wearPattern;
+    @Enumerated(EnumType.STRING)
     private Condition shockAbsorbers;
 
     public TireCheck() {

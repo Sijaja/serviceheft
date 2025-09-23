@@ -4,6 +4,8 @@ import dev.sijaja.serviceheft.model.enums.Age;
 import dev.sijaja.serviceheft.model.enums.Check;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,11 +16,16 @@ public class ElectricCheck {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int electricCheckId;
     private double voltage;
+    @Enumerated(EnumType.STRING)
     private Condition terminals;
+    @Enumerated(EnumType.STRING)
     private Age age;
     private double alternatorOutput;
+    @Enumerated(EnumType.STRING)
     private Check headLights;
+    @Enumerated(EnumType.STRING)
     private Check tailLight;
+    @Enumerated(EnumType.STRING)
     private Check turnSignals;
 
     public ElectricCheck() {

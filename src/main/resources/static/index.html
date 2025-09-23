@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test Frondend</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1 class="text-center">My Spring Boot Frontend</h1>
+            <button class="btn btn-primary" onclick="fetchData()">Load Data</button>
+            <pre id="output"></pre>
+        </div>
+        <div class="container-fluid">
+            <form>
+                <h1 class="text-center">Add a new user</h1>
+                <input type="text" id="firstName" placeholder="Enter first name">
+                <input type="text" id="lastName" placeholder="Enter last name">
+                <input type="date" id="dateOfBirth" placeholder="Enter first name">
+                <input type="text" id="street" placeholder="Enter street name">
+                <input type="text" id="houseNumber" placeholder="Enter house number">
+                <input type="text" id="city" placeholder="Enter city name">
+                <button class="btn btn-primary" onclick="addOwner()">add owner</button>
+                <pre id="output2"></pre>
+            </form>
+            
+        </div>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

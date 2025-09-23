@@ -3,6 +3,8 @@ package dev.sijaja.serviceheft.model;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Level;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,17 +14,27 @@ public class EngineCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int engineCheckId;
+    @Enumerated(EnumType.STRING)
     private Level oilLevel;
+    @Enumerated(EnumType.STRING)
     private Condition oilCondition;
     private boolean oilFilter;
     private boolean oilReplaced;
+    @Enumerated(EnumType.STRING)
     private Level coolantLevel;
+    @Enumerated(EnumType.STRING)
     private Condition coolantCondition;
+    @Enumerated(EnumType.STRING)
     private Level brakeFluidLevel;
+    @Enumerated(EnumType.STRING)
     private Condition brakeFluidColor;
+    @Enumerated(EnumType.STRING)
     private Level steeringFluid;
+    @Enumerated(EnumType.STRING)
     private Level gearFluid;
+    @Enumerated(EnumType.STRING)
     private Level washFluid;
+    @Enumerated(EnumType.STRING)
     private Condition engineStatus;
 
     public EngineCheck() {
