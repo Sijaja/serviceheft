@@ -10,7 +10,9 @@ import dev.sijaja.serviceheft.model.Maintenance;
 
 public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integer>{
     
-    @Query("SELECT m FROM Maintenance m WHERE m.carId = :carId AND YEAR(m.date) = :year")
+    @Query("SELECT m FROM Maintenance m WHERE m.carId = :carId AND YEAR(m.mtncDate) = :year")
     List<Maintenance> findByCarIdAndYear(@Param("carId") Integer carId, @Param("year") int year);
 
+    @Query("SELECT m FROM Maintenance m WHERE m.carId = :carId")
+    List<Maintenance> findByCarId(@Param("carId") Integer carId);
 }

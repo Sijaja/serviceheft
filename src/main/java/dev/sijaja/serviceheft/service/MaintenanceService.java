@@ -2,8 +2,10 @@ package dev.sijaja.serviceheft.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class MaintenanceService {
         repo.deleteById(id);
     }
 
-        public YearlyMaintenanceCostsDto getMaintenanceCostsByMonth(Integer carId, int year) {
+    public YearlyMaintenanceCostsDto getMaintenanceCostsByMonth(Integer carId, int year) {
         List<Maintenance> maintenances = repo.findByCarIdAndYear(carId, year);
 
         // Initialize month names
@@ -45,15 +47,27 @@ public class MaintenanceService {
         Map<String, List<Double>> typeBreakdown = new HashMap<>();
 
         for (Maintenance m : maintenances) {
-            int monthIndex = m.getDate().getMonthValue() - 1;
+            int monthIndex = m.getMtncDate().getMonthValue() - 1;
             monthlyTotals.set(monthIndex, monthlyTotals.get(monthIndex) + m.getCost());
 
             // breakdown by type
-            typeBreakdown.putIfAbsent(m.getType(), new ArrayList<>(Collections.nCopies(12, 0.0)));
-            List<Double> typeCosts = typeBreakdown.get(m.getType());
+            typeBreakdown.putIfAbsent(m.getMtncType().name(), new ArrayList<>(Collections.nCopies(12, 0.0)));
+            List<Double> typeCosts = typeBreakdown.get(m.getMtncType().name());
             typeCosts.set(monthIndex, typeCosts.get(monthIndex) + m.getCost());
         }
 
         return new YearlyMaintenanceCostsDto(months, monthlyTotals, typeBreakdown);
     }
+
+    public Map<Integer, Double> getYearlyTotals(int carId) {
+    List<Maintenance> maintenances = repo.findByCarId(carId);
+    Map<Integer, Double> yearlyTotals = new HashMap<>();
+
+    for (Maintenance m : maintenances) {
+        int year = m.getMtncDate().getYear();
+        yearlyTotals.merge(year, m.getCost(), Double::sum);
+    }
+    return yearlyTotals;
+}
+
 }

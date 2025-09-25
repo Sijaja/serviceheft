@@ -1,6 +1,7 @@
 package dev.sijaja.serviceheft.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,4 +42,10 @@ public class MaintenanceController {
     ) {
         return service.getMaintenanceCostsByMonth(carId, year);
     }
+
+    @GetMapping("/{carId}/years")
+    public Map<Integer, Double> getYearlyTotals(@PathVariable int carId) {
+    return service.getYearlyTotals(carId);
+}
+
 }

@@ -47,7 +47,7 @@ public class Maintenance {
         this.beltHoseCheckId = beltHoseCheckId;
         this.brakeCheckId = brakeCheckId;
         this.carId = carId;
-        this.condition = condition;
+        this.carCondition = condition;
         this.cost = cost;
         this.currentMileage = currentMileage;
         this.electricCheckID = electricCheckID;
@@ -153,13 +153,7 @@ public class Maintenance {
         this.hvacCheckId = hvacCheckId;
     }
 
-    public Condition getCondition() {
-        return condition;
-    }
 
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
 
     public String getInspectionNotes() {
         return inspectionNotes;
@@ -215,6 +209,14 @@ public class Maintenance {
 
     public void setMtncType(Type mtncType) {
         this.mtncType = mtncType;
+    }
+
+    public Condition getCarCondition() {
+        return carCondition;
+    }
+
+    public void setCarCondition(Condition carCondition) {
+        this.carCondition = carCondition;
     }
 
 
