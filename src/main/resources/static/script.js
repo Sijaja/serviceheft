@@ -1,7 +1,29 @@
-async function fetchData() {
-  const response = await fetch("https://your-service-name.onrender.com/api/endpoint");
-  const data = await response.json();
-  document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+async function getCar(carId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
+    }
+
+    const car = await response.json();
+
+    // Example: update DOM
+    document.getElementById("manufacturer").innerText = car.manufacturer;
+    document.getElementById("model").innerText = car.model;
+    document.getElementById("baujahr").innerText = car.makeYear;
+    document.getElementById("kilo").innerText = car.mileage;
+    document.getElementById("pickerl").innerText = car.inspectionExp;
+    document.getElementById("color").innerText = car.carColor;
+    document.getElementById("vin").innerText = car.vinNumber;
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 async function addOwner() {

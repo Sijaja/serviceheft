@@ -4,39 +4,32 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Keep container max width */
 .container {
     max-width: 1200px;
 }
 
-/* Row wrapper (we'll keep rows clean and style their children instead) */
 .row {
-    --bs-gutter-x: 1.5rem; /* horizontal gap */
-    --bs-gutter-y: 1.5rem; /* vertical gap */
+    --bs-gutter-x: 2rem; /* horizontal gap */
+    --bs-gutter-y: 2rem; /* vertical gap */
 }
 
-/* Card-like column look */
 .col-2,
 .col-10,
 .col {
     border-radius: 15px;
-    padding: 20px;
-
+    padding: 10px;
 }
 
-/* Title row (special styling for the top row) */
 .row:first-child .col {
     border-radius: 20px;
 }
 
-/* Headings */
 h1, h4 {
     margin-bottom: 15px;
     font-weight: bold;
     color: #333;
 }
 
-/* Form */
 form {
     display: flex;
     flex-direction: column;
@@ -54,8 +47,41 @@ button.btn {
 }
 
 .card-box {
-    background: rgba(153, 102, 26, 0.95);
+    background: rgba(158, 122, 68, 0.589);
     border-radius: 15px;
     padding: 20px;
-    height: 100%; /* stretch so both cols align nicely */
+    height: 100%;
+    padding-right: 40px;
+}
+
+#car {
+    border-radius: 20px;
+    padding: 0px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.myButton {
+	background-color:#b8a795;
+	border-radius:12px;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:20px 20px;
+	text-decoration:none;
+}
+.myButton:hover {
+	background-color:#998b7c;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+#rightBanner {
+    align-content: flex-end;
+    align-self: flex-end;
 }
