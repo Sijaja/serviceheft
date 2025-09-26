@@ -136,10 +136,10 @@ async function loadYearlyChart(carId) {
   window.costChartInstance = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: Object.keys(data),      // ["2023","2024","2025"]
+      labels: Object.keys(data),
       datasets: [{
         label: "Total Cost per Year",
-        data: Object.values(data),   // [400,650,120]
+        data: Object.values(data),
         backgroundColor: "orange"
       }]
     },
