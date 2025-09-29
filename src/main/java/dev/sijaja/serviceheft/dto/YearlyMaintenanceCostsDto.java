@@ -18,4 +18,3 @@ public class YearlyMaintenanceCostsDto {
     public List<Double> getCosts() { return costs; }
     public Map<String, List<Double>> getTypes() { return types; }
 }
-
