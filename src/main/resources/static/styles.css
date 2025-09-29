@@ -1,6 +1,6 @@
 body {
     padding: 5px;
-    background: #FFC url(img/coffee.jpg) repeat;
+    background: rgb(255, 255, 255);
     font-family: Arial, sans-serif;
 }
 
@@ -48,8 +48,11 @@ button.btn {
 }
 
 .card-box {
-    background: rgba(158, 122, 68, 0.589);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.589);
+    border-radius: 5px;
+    border-color: #000000;
+    border-style: outset;
+    border-width: 1px;
     padding: 20px;
     height: 100%;
     padding-right: 40px;
@@ -63,8 +66,8 @@ button.btn {
 }
 
 .myButton {
-	background-color:#b8a795;
-	border-radius:12px;
+	background-color:#ffffff;
+	border-radius:5px;
 	display:inline-block;
 	cursor:pointer;
 	color:#000000;
@@ -75,7 +78,7 @@ button.btn {
 	text-decoration:none;
 }
 .myButton:hover {
-	background-color:#998b7c;
+	background-color:#e0e0e0;
 }
 .myButton:active {
 	position:relative;
