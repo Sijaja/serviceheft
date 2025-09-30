@@ -2,6 +2,8 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Part;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,16 +15,27 @@ public class RustCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int rustCheckId;
+    @Enumerated(EnumType.STRING)
     private Part wheelArches;
+    @Enumerated(EnumType.STRING)
     private Part sideSkirts;
+    @Enumerated(EnumType.STRING)
     private Part doorBottom;
+    @Enumerated(EnumType.STRING)
     private Part trunkFloor;
+    @Enumerated(EnumType.STRING)
     private Part hoodEdges;
+    @Enumerated(EnumType.STRING)
     private Part roofEdges;
+    @Enumerated(EnumType.STRING)
     private Part fenders;
+    @Enumerated(EnumType.STRING)
     private Part exhaustArea;
+    @Enumerated(EnumType.STRING)
     private Part underbody;
+    @Enumerated(EnumType.STRING)
     private Part WindowSeals;
+    @Enumerated(EnumType.STRING)
     private Part suspension;
 
     public RustCheck() {

@@ -2,6 +2,8 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Part;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,28 +14,51 @@ public class BodyCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int bodyCheckId;
+    @Enumerated(EnumType.STRING)
     private Part hood;
+    @Enumerated(EnumType.STRING)
     private Part frontBumper;
+    @Enumerated(EnumType.STRING)
     private Part rearBumper;
+    @Enumerated(EnumType.STRING)
     private Part leftFrontDoor;
+    @Enumerated(EnumType.STRING)
     private Part leftRearDoor;
+    @Enumerated(EnumType.STRING)
     private Part rightFrontDoor;
+    @Enumerated(EnumType.STRING)
     private Part rightRearDoor;
+    @Enumerated(EnumType.STRING)
     private Part leftFrontFender;
+    @Enumerated(EnumType.STRING)
     private Part rightFrontFender;
+    @Enumerated(EnumType.STRING)
     private Part leftRearFender;
+    @Enumerated(EnumType.STRING)
     private Part rightRearFender;
+    @Enumerated(EnumType.STRING)
     private Part roof;
+    @Enumerated(EnumType.STRING)
     private Part leftMirror;
+    @Enumerated(EnumType.STRING)
     private Part rightMirror;
+    @Enumerated(EnumType.STRING)
     private Part leftSkirt;
+    @Enumerated(EnumType.STRING)
     private Part rightSkirt;
+    @Enumerated(EnumType.STRING)
     private Part trunk;
+    @Enumerated(EnumType.STRING)
     private Part windshield;
+    @Enumerated(EnumType.STRING)
     private Part rearWindow;
+    @Enumerated(EnumType.STRING)
     private Part leftFrontLight;
+    @Enumerated(EnumType.STRING)
     private Part rightFrontLight;
+    @Enumerated(EnumType.STRING)
     private Part leftRearLight;
+    @Enumerated(EnumType.STRING)
     private Part rightRearLight;
 
     public BodyCheck() {

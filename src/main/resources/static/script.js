@@ -9,6 +9,7 @@ async function getCar(carId) {
     if (!response.ok) throw new Error("HTTP error " + response.status);
 
     const car = await response.json();
+    loadNextMtncDate(carId);
     document.getElementById("manufacturer").innerText = car.manufacturer || "";
     document.getElementById("model").innerText = car.model || "";
     document.getElementById("baujahr").innerText = car.makeYear || "";
@@ -16,6 +17,8 @@ async function getCar(carId) {
     document.getElementById("pickerl").innerText = car.inspectionExp || "";
     document.getElementById("color").innerText = car.carColor || "";
     document.getElementById("vin").innerText = car.vinNumber || "";
+    loadTotalCost(carId);
+    loadMaintenanceTable(carId);
   } catch (error) {
     console.error("Error fetching car:", error);
   }
@@ -84,7 +87,7 @@ async function loadMaintenanceChart(carId, year) {
       datasets.push({
         label: typeKey,
         data: breakdown[typeKey] || [],
-        borderColor: getRandomColor(),
+        borderColor: Black,
         tension: 0.2,
         fill: false
       });
@@ -140,7 +143,7 @@ async function loadYearlyChart(carId) {
       datasets: [{
         label: "Total Cost per Year",
         data: Object.values(data),
-        backgroundColor: "orange"
+        backgroundColor: "#CDE7B0"
       }]
     },
     options: {
@@ -154,4 +157,64 @@ async function loadYearlyChart(carId) {
       }
     }
   });
+}
+
+async function loadTotalCost(carId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/maintenance/totals/${carId}`);
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+        const data = await response.json();
+
+        // Update the DOM
+        document.getElementById("totalCost").innerText = `€ ${data.totalCost.toFixed(2)}`;
+        document.getElementById("averageCost").innerText = `€ ${data.averageCost.toFixed(2)}`;
+
+    } catch (error) {
+        console.error("Error fetching total costs:", error);
+    }
+}
+
+async function loadNextMtncDate(carId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/maintenance/nextMTNC/${carId}`);
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+        const data = await response.json();
+
+        // Update the DOM
+        if (data) {
+          document.getElementById("nextMtnc").innerText = new Date(data.nextDate).toLocaleDateString();
+          document.getElementById("nextMileage").innerText = data.nextMileage;
+        } else {
+          document.getElementById("nextMtnc").innerText = "-";
+          document.getElementById("nextMileage").innerText = "-";
+}
+
+    } catch (error) {
+        console.error("Error fetching next:", error);
+    }
+}
+
+async function loadMaintenanceTable(carId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/maintenance/table/${carId}`);
+    const data = await response.json();
+
+    const tableBody = document.getElementById("maintenanceTableBody");
+    tableBody.innerHTML = "";
+
+    data.forEach(entry => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${entry.date}</td>
+        <td>${entry.description}</td>
+        <td>${entry.cost.toFixed(2)} €</td>
+        <td>${entry.mileage} km</td>
+        <td>${entry.workshop}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error("Error loading maintenance table:", error);
+  }
 }

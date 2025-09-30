@@ -14,7 +14,7 @@ public class Cars {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int carId;
-    
+    private int photoId;
     private int ownerId;
     private String vinNumber;
     private String carColor;
@@ -27,17 +27,17 @@ public class Cars {
     public Cars() {
     }
 
-    public Cars(int carId, int ownerId, String vinNumber, String carColor, String manufacturer, String model,
-            int makeYear, LocalDate inspectionExp, int mileage) {
-        this.carId = carId;
-        this.ownerId = ownerId;
-        this.vinNumber = vinNumber;
+    public Cars(String carColor, int carId, LocalDate inspectionExp, int makeYear, String manufacturer, int mileage, String model, int ownerId, int photoId, String vinNumber) {
         this.carColor = carColor;
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.makeYear = makeYear;
+        this.carId = carId;
         this.inspectionExp = inspectionExp;
+        this.makeYear = makeYear;
+        this.manufacturer = manufacturer;
         this.mileage = mileage;
+        this.model = model;
+        this.ownerId = ownerId;
+        this.photoId = photoId;
+        this.vinNumber = vinNumber;
     }
 
     public int getCarId() {
@@ -110,5 +110,13 @@ public class Cars {
 
     public void setMileage(int mileage) {
         this.mileage = mileage;
+    }
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 }

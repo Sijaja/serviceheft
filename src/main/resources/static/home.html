@@ -9,65 +9,116 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col">
+            <div class="row g-0">
+                <div class="col-8">
                     <div class="card-box">
                         <h1 class="text-left">MDSH</h1>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-2">
                     <div class="card-box" id="rightBanner">
-                        <a href="#" class="myButton">Einstellungen</a>
-                        <a href="#" class="myButton">Abmelden</a>
+                        <h1 class="text-left">MDSH</h1>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card-box" id="rightBanner">
+                        <h1 class="text-left">MDSH</h1>
                     </div>
                 </div>
             </div>
-            <div class="row g-3">
+            <div class="row g-0">
                 <div class="col-2">
                     <div class="card-box">
                         <h4 class="text-center">User</h4>
                     </div>
                 </div>
                 <div class="col-10">
-                    <div class="row">
+                    <div class="row g-0">
                         <div class="col-6">
                             <div class="card-box">
-                                <div class="row text-center"><h1>Auto Information</h1></div>
-                                    <div class="row">
-                                        <div class="col-6 text-end fw-bold">
-                                            <p></p>
-                                            <p>Manufacturer:</p>
-                                            <p>Model:</p>
-                                            <p>Baujahr:</p>
-                                            <p>Kilometerstand:</p>
-                                            <p>Pickerl gultig bis:</p>
-                                            <p>Farbe:</p>
-                                            <p>VIN Nummer:</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p></p>
-                                            <p><span id="manufacturer"></span></p>
-                                            <p><span id="model"></span></p>
-                                            <p><span id="baujahr"></span></p>
-                                            <p><span id="kilo"></span></p>
-                                            <p><span id="pickerl"></span></p>
-                                            <p><span id="color"></span></p>
-                                            <p><span id="vin"></span></p>
-                                        </div>
+                                <div class="row text-center g-0"><h1>Auto Information</h1></div>
+                                <div class="row g-0">
+                                    <div class="col-6 text-end fw-bold">
+                                        <p></p>
+                                        <p>Manufacturer: </p>
+                                        <p>Model: </p>
+                                        <p>Baujahr: </p>
+                                        <p>Kilometerstand: </p>
+                                        <p>Pickerl gultig bis: </p>
+                                        <p>Farbe: </p>
+                                        <p>VIN Nummer: </p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p></p>
+                                        <p><span id="manufacturer"></span></p>
+                                        <p><span id="model"></span></p>
+                                        <p><span id="baujahr"></span></p>
+                                        <p><span id="kilo"></span></p>
+                                        <p><span id="pickerl"></span></p>
+                                        <p><span id="color"></span></p>
+                                        <p><span id="vin"></span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6" id="car">
-                            <img src="img/Cars/fiesta2008.jpg" alt="Ford Fiesta 2008" height="380" class="img-fluid">
+                        <div class="col-6">
+                            <div class="card-box" id="car">
+                                <img src="img/Cars/fiesta2008.jpg" alt="Ford Fiesta 2008" height="380" class="img-fluid">
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <div class="row g-0">
+                                    <div class="col-6 text-center">
+                                        <h5>Total Maintenance Cost:</h5>
+                                        <p id="totalCost">€ 0.00</p>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <h5>Average Cost per Repair:</h5>
+                                        <p id="averageCost">€ 0.00</p>
+                                    </div>
+                                </div>
+                                <div class="row g-0">
+                                    <div class="col-6 text-center">
+                                        <h5>Next Maintenance Date:</h5>
+                                        <p id="nextMtnc">€ 0.00</p>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <h5>Next Maintenance Milage:</h5>
+                                        <p id="nextMileage">€ 0.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-box">
-                    <div class="row">
-                        <canvas id="costChart"></canvas>
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <canvas id="costChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Cost</th>
+                                            <th scope="col">Mileage</th>
+                                            <th scope="col">Workshop</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="maintenanceTableBody">
+                                        <!-- Maintenance records will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
