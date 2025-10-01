@@ -24,7 +24,7 @@ async function getCar(carId) {
   }
 }
 
-// addOwner - keep as a separate top-level function (not nesting other functions inside it)
+// addOwner
 async function addOwner() {
   try {
     const response = await fetch("http://localhost:8080/api/owners", {
@@ -114,10 +114,6 @@ async function loadMaintenanceChart(carId, year) {
     console.error("Error loading maintenance chart:", err);
     alert("Could not load chart — check console (F12) and network tab for the API request.");
   }
-}
-
-function getRandomColor() {
-  return `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
 }
 
 function showChart() {
@@ -216,5 +212,69 @@ async function loadMaintenanceTable(carId) {
 
   } catch (error) {
     console.error("Error loading maintenance table:", error);
+  }
+}
+
+async function loadCostComparison(carId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/maintenance/costComparison/${carId}`);
+    const data = await response.json();
+
+    const ctx = document.getElementById("costComparisonChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["This Car", "Other Cars (avg)"],
+        datasets: [{
+          label: "Total Costs (€)",
+          data: [data.myCarTotal, data.otherCarsAverage],
+          backgroundColor: ["#CDE7B0", "#CDE7B0"]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Total Maintenance Costs Comparison"
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error loading cost comparison:", error);
+  }
+}
+
+async function loadAverageCostComparison(carId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/maintenance/averageCostComparison/${carId}`);
+    const data = await response.json();
+
+    const ctx = document.getElementById("AverageCostComparisonChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["This Car", "Other Cars (avg)"],
+        datasets: [{
+          label: "Average Cost per Repair (€)",
+          data: [data.myCarAverage, data.otherCarsAverage],
+          backgroundColor: ["#CDE7B0", "#CDE7B0"]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Average Cost per Repair Comparison"
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error loading average cost comparison:", error);
   }
 }

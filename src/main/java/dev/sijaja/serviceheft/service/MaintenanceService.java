@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
+import dev.sijaja.serviceheft.dto.CostComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
@@ -121,4 +123,23 @@ public class MaintenanceService {
         return repo.getMaintenanceTable(carId);
     }
 
+    public CostComparisonDto getCostComparison(int carId) {
+        Double myCarTotal = repo.getTotalCostForCar(carId);
+        Double othersAvg = repo.getAverageCostOfOtherCars(carId);
+
+        return new CostComparisonDto(
+            myCarTotal != null ? myCarTotal : 0.0,
+            othersAvg != null ? othersAvg : 0.0
+        );
+    }
+
+    public AverageCostComparisonDto getAverageCostComparison(int carId) {
+        Double myCarTotal = repo.getAverageRepairCost(carId);
+        Double othersAvg = repo.getAverageRepairCostForAll(carId);
+
+        return new AverageCostComparisonDto(
+            myCarTotal != null ? myCarTotal : 0.0,
+            othersAvg != null ? othersAvg : 0.0
+        );
+    }
 }

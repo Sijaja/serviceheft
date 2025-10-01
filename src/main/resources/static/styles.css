@@ -1,10 +1,10 @@
 .row {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-bottom: 10px;
 }
 
 [class*="col-"] {
-  border: 1px dashed blue;
+  /* border: 1px dashed blue; */
 }
 
 .card-box {
@@ -13,17 +13,42 @@
   margin-right: 10px;
   margin-left: 10px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #FFFBF9;
+  color: #4e5e3b;
 }
 
 #car img {
-    width: 100%;             /* fill width */
-    height: 100%;            /* fill height */
-    object-fit: cover;       /* makes image cover the container without stretching */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #car {
     height: auto;
-    overflow: hidden;        /* hide overflow */
+    overflow: hidden;
     padding: 0px;
+}
+
+#topBanner {
+    margin-top: 20px;
+}
+
+#clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: #dfebd2;
+}
+
+#sidebanner > * {
+  margin-bottom: 10px;
+  margin-right: 0px;
+}
+
+#myTable {
+  --bs-table-striped-bg: #e2ecd6;
+}
+
+canvas {
+  max-width: 95%;
+  height: auto;
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
+import dev.sijaja.serviceheft.dto.CostComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
@@ -65,6 +67,16 @@ public class MaintenanceController {
     @GetMapping("/table/{carId}")
     public List<MaintenanceTableDto> getMaintenanceTable(@PathVariable Integer carId) {
         return service.getMaintenanceTable(carId);
+    }
+
+    @GetMapping("/costComparison/{carId}")
+    public CostComparisonDto getCostComparison(@PathVariable int carId) {
+        return service.getCostComparison(carId);
+    }
+
+    @GetMapping("/averageCostComparison/{carId}")
+    public AverageCostComparisonDto getAverageCostComparison(@PathVariable int carId) {
+        return service.getAverageCostComparison(carId);
     }
 
 }
