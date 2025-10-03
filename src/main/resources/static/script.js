@@ -278,3 +278,47 @@ async function loadAverageCostComparison(carId) {
     console.error("Error loading average cost comparison:", error);
   }
 }
+
+async function loadCarHealth(carId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/maintenance/critical/${carId}`);
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+        const data = await response.json();
+
+        // Count critical issues
+        const issueCount = data.length;  
+        const maxIssues = 6; // adjust depending on how many checks you have
+        const percentage = Math.max(0, Math.min(100, 100 - (issueCount / maxIssues) * 100));
+
+        const ctx = document.getElementById("carStatusGauge").getContext("2d");
+        new Chart(ctx, {
+            type: 'gauge',
+            data: {
+                datasets: [{
+                    value: issueCount,
+                    minValue: 0,
+                    data: [0, 1, 3, maxIssues],
+                    backgroundColor: ['#4caf50', '#ffeb3b', '#ffc107', '#f44336']
+                }]
+            },
+            options: {
+                responsive: true,
+                needle: {
+                    radiusPercentage: 2,
+                    widthPercentage: 3.2,
+                    lengthPercentage: 80,
+                    color: "black"
+                },
+                valueLabel: {
+                    display: true,
+                    formatter: (value) => `${value} issues`
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error("Error loading car health:", error);
+    }
+}
+
+loadCarHealth(1);

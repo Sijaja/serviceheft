@@ -11,13 +11,15 @@ import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.model.Maintenance;
 
 public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integer>{
-    
+       // Helper method to find maintenances by carId and year
        @Query("SELECT m FROM Maintenance m WHERE m.carId = :carId AND YEAR(m.mtncDate) = :year")
        List<Maintenance> findByCarIdAndYear(@Param("carId") Integer carId, @Param("year") int year);
 
+       // Helper method to find all maintenances for a car
        @Query("SELECT m FROM Maintenance m WHERE m.carId = :carId")
        List<Maintenance> findByCarId(@Param("carId") Integer carId);
 
+       // 1. Total cost of repairs
        @Query("SELECT SUM(m.cost) FROM Maintenance m WHERE m.carId = :carId")
        Double getTotalRepairCost(@Param("carId") Integer carId);
 
@@ -46,7 +48,6 @@ public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integ
        List<Object[]> getTotalCostPerYear(@Param("carId") Integer carId);
 
        // 8. Average interval between maintenance (in days)
-       // Note: some JPA implementations may not support DATEDIFF. Can calculate in Java if needed.
        @Query("SELECT AVG(DATEDIFF(m2.mtncDate, m1.mtncDate)) " +
               "FROM Maintenance m1, Maintenance m2 " +
               "WHERE m1.carId = :carId AND m2.carId = :carId AND m2.mtncDate > m1.mtncDate")
@@ -65,15 +66,18 @@ public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integ
        @Query("SELECT m.currentMileage FROM Maintenance m WHERE m.carId = :carId ORDER BY m.mtncDate DESC")
        List<Integer> getLastRecordedMileage(@Param("carId") Integer carId);
 
+       // 12. Maintenance history table
        @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto(" +
               "m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) " +
               "FROM Maintenance m JOIN Workshop w ON m.workshopId = w.workshopId " +
               "WHERE m.carId = :carId ORDER BY m.mtncDate DESC")
        List<MaintenanceTableDto> getMaintenanceTable(@Param("carId") Integer carId);
 
+       // 13. Total maintenance cost for the car
        @Query("SELECT SUM(m.cost) FROM Maintenance m WHERE m.carId = :carId")
        Double getTotalCostForCar(@Param("carId") int carId);
 
+       // 14. Average total maintenance cost for all other cars
        @Query(
        value = "SELECT AVG(c1.total) " +
               "FROM ( " +
@@ -86,6 +90,7 @@ public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integ
        )
        Double getAverageCostOfOtherCars(@Param("carId") int carId);
 
+       // 15. Average of average repair costs for all other cars
        @Query(value = "SELECT AVG(c1.average) " +
               "FROM ( " +
               "   SELECT AVG(m.cost) AS average " +
@@ -95,4 +100,14 @@ public interface  MaintenanceRepository extends JpaRepository<Maintenance, Integ
               ") c1",
        nativeQuery = true)
        Double getAverageRepairCostForAll(@Param("carId") Integer carId);
+
+
+       @Query("""
+       SELECT e FROM Maintenance e 
+       WHERE e.carId = :carId 
+       AND (
+           e.carCondition IN ('POOR','TO_BE_REPLACED')
+       )
+       """)
+       List<Maintenance> getCriticalCar(@Param("carId") Integer carId);
 }

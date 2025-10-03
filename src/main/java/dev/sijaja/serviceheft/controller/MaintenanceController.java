@@ -14,20 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
+import dev.sijaja.serviceheft.dto.CriticalIssuesDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
 import dev.sijaja.serviceheft.service.MaintenanceService;
-
+import dev.sijaja.serviceheft.service.CriticalIssuesService;
 
 @RestController
 @RequestMapping("/api/maintenance")
 @CrossOrigin
 public class MaintenanceController {
     private final MaintenanceService service;
-    public MaintenanceController(MaintenanceService service) { this.service = service; }
+    private final CriticalIssuesService issuesService;
+    public MaintenanceController(MaintenanceService service, CriticalIssuesService issuesService) { 
+        this.service = service;
+        this.issuesService = issuesService;
+    }
 
     @GetMapping
     public List<Maintenance> getAll() { return service.getAll(); }
@@ -79,4 +84,8 @@ public class MaintenanceController {
         return service.getAverageCostComparison(carId);
     }
 
+    @GetMapping("/critical/{carId}")
+    public List<CriticalIssuesDto> getCriticalIssues(@PathVariable int carId) {
+        return issuesService.getCriticalIssues(carId);
+    }
 }
