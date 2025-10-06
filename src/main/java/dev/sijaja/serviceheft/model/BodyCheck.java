@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "body_check")
@@ -14,6 +16,11 @@ public class BodyCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int bodyCheckId;
+
+    @OneToOne
+    @JoinColumn(name = "mtnc_id")
+    private Maintenance maintenance;
+
     @Enumerated(EnumType.STRING)
     private Part hood;
     @Enumerated(EnumType.STRING)
@@ -64,7 +71,7 @@ public class BodyCheck {
     public BodyCheck() {
     }
 
-    public BodyCheck(int bodyCheckId, Part frontBumper, Part hood, Part leftFrontDoor, Part leftFrontFender, Part leftFrontLight, Part leftMirror, Part leftRearDoor, Part leftRearFender, Part leftRearLight, Part leftSkirt, Part rearBumper, Part rearWindow, Part rightFrontDoor, Part rightFrontFender, Part rightFrontLight, Part rightMirror, Part rightRearDoor, Part rightRearFender, Part rightRearLight, Part rightSkirt, Part roof, Part trunk, Part windshield) {
+    public BodyCheck(int bodyCheckId, Part frontBumper, Part hood, Part leftFrontDoor, Part leftFrontFender, Part leftFrontLight, Part leftMirror, Part leftRearDoor, Part leftRearFender, Part leftRearLight, Part leftSkirt, Maintenance maintenance, Part rearBumper, Part rearWindow, Part rightFrontDoor, Part rightFrontFender, Part rightFrontLight, Part rightMirror, Part rightRearDoor, Part rightRearFender, Part rightRearLight, Part rightSkirt, Part roof, Part trunk, Part windshield) {
         this.bodyCheckId = bodyCheckId;
         this.frontBumper = frontBumper;
         this.hood = hood;
@@ -76,6 +83,7 @@ public class BodyCheck {
         this.leftRearFender = leftRearFender;
         this.leftRearLight = leftRearLight;
         this.leftSkirt = leftSkirt;
+        this.maintenance = maintenance;
         this.rearBumper = rearBumper;
         this.rearWindow = rearWindow;
         this.rightFrontDoor = rightFrontDoor;
@@ -90,6 +98,8 @@ public class BodyCheck {
         this.trunk = trunk;
         this.windshield = windshield;
     }
+
+
 
     public int getBodyCheckId() {
         return bodyCheckId;
@@ -281,6 +291,14 @@ public class BodyCheck {
 
     public void setRightRearLight(Part rightRearLight) {
         this.rightRearLight = rightRearLight;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
 

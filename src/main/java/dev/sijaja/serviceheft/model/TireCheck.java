@@ -8,12 +8,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class TireCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int tireCheckId;
+
+    @OneToOne
+    @JoinColumn(name = "mtnc_id")
+    private Maintenance maintenance;
+
     private double treadFrontLeft;
     private double treadFrontRight;
     private double treadRearLeft;
@@ -30,18 +37,19 @@ public class TireCheck {
     public TireCheck() {
     }
 
-    public TireCheck(double pressureFL, double pressureFR, double pressureRL, double pressureRR, Condition shockAbsorbers, int tireCheckId, double treadFrontLeft, double treadFrontRight, double treadRearLeft, double treadRearRight, Pattern wearPattern) {
+    public TireCheck(int tireCheckId, Condition shockAbsorbers, double pressureFL, double pressureFR, double pressureRL, double pressureRR, Maintenance maintenance, Pattern wearPattern, double treadFrontLeft, double treadFrontRight, double treadRearLeft, double treadRearRight) {
+        this.tireCheckId = tireCheckId;
+        this.shockAbsorbers = shockAbsorbers;
         this.pressureFL = pressureFL;
         this.pressureFR = pressureFR;
         this.pressureRL = pressureRL;
         this.pressureRR = pressureRR;
-        this.shockAbsorbers = shockAbsorbers;
-        this.tireCheckId = tireCheckId;
+        this.maintenance = maintenance;
+        this.wearPattern = wearPattern;
         this.treadFrontLeft = treadFrontLeft;
         this.treadFrontRight = treadFrontRight;
         this.treadRearLeft = treadRearLeft;
         this.treadRearRight = treadRearRight;
-        this.wearPattern = wearPattern;
     }
 
     public int getTireCheckId() {
@@ -130,6 +138,14 @@ public class TireCheck {
 
     public void setShockAbsorbers(Condition shockAbsorbers) {
         this.shockAbsorbers = shockAbsorbers;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
 

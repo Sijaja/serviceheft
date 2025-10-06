@@ -7,12 +7,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class FilterCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int filterCheckId;
+
+    @OneToOne
+    @JoinColumn(name = "mtnc_id")
+    private Maintenance maintenance;
+
     @Enumerated(EnumType.STRING)
     private Check airFilter;
     @Enumerated(EnumType.STRING)
@@ -23,10 +30,11 @@ public class FilterCheck {
     public FilterCheck() {
     }
 
-    public FilterCheck(Check airFilter, Check cabinFilter, int filterCheckId, Check fuelFilter) {
+    public FilterCheck(int filterCheckId, Check airFilter, Check cabinFilter, Maintenance maintenance, Check fuelFilter) {
+        this.filterCheckId = filterCheckId;
         this.airFilter = airFilter;
         this.cabinFilter = cabinFilter;
-        this.filterCheckId = filterCheckId;
+        this.maintenance = maintenance;
         this.fuelFilter = fuelFilter;
     }
 
@@ -60,6 +68,14 @@ public class FilterCheck {
 
     public void setFuelFilter(Check fuelFilter) {
         this.fuelFilter = fuelFilter;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
 

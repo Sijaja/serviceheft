@@ -7,12 +7,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class BeltHoseCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int beltHoseCheckId;
+
+    @OneToOne
+    @JoinColumn(name = "mtnc_id")
+    private Maintenance maintenance;
+
     @Enumerated(EnumType.STRING)
     private Condition serpentineBelt;
     @Enumerated(EnumType.STRING)
@@ -22,23 +29,20 @@ public class BeltHoseCheck {
     @Enumerated(EnumType.STRING)
     private Condition heaterHoses;
 
-    public BeltHoseCheck(int beltHoseCheckId, Condition heaterHoses, Condition radiatorHoses, Condition serpentineBelt, Condition timingBelt) {
-        this.beltHoseCheckId = beltHoseCheckId;
-        this.heaterHoses = heaterHoses;
-        this.radiatorHoses = radiatorHoses;
-        this.serpentineBelt = serpentineBelt;
-        this.timingBelt = timingBelt;
-    }
-
-    public BeltHoseCheck() {
-    }
-
     public int getBeltHoseCheckId() {
         return beltHoseCheckId;
     }
 
     public void setBeltHoseCheckId(int beltHoseCheckId) {
         this.beltHoseCheckId = beltHoseCheckId;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
     public Condition getSerpentineBelt() {
@@ -72,6 +76,4 @@ public class BeltHoseCheck {
     public void setHeaterHoses(Condition heaterHoses) {
         this.heaterHoses = heaterHoses;
     }
-
-
 }

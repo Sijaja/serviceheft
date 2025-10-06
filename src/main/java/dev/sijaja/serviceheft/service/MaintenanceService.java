@@ -20,15 +20,34 @@ import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
-import dev.sijaja.serviceheft.model.enums.Condition;
+import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
+import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
+import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
+import dev.sijaja.serviceheft.repository.EngineCheckRepository;
+import dev.sijaja.serviceheft.repository.HvacCheckRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
+import dev.sijaja.serviceheft.repository.TireCheckRepository;
 
 @Service
 public class MaintenanceService {
     private final MaintenanceRepository repo;
+    private final EngineCheckRepository engineRepo;
+    private final BeltHoseCheckRepository beltRepo;
+    private final BrakeCheckRepository brakeRepo;
+    private final TireCheckRepository tireRepo;
+    private final ElectricCheckRepository electricRepo;
+    private final HvacCheckRepository hvacRepo;
 
-    public MaintenanceService(MaintenanceRepository repo) {
+    public MaintenanceService(MaintenanceRepository repo, EngineCheckRepository engineRepo,
+            BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
+            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo) {
         this.repo = repo;
+        this.engineRepo = engineRepo;
+        this.beltRepo = beltRepo;
+        this.brakeRepo = brakeRepo;
+        this.tireRepo = tireRepo;
+        this.electricRepo = electricRepo;
+        this.hvacRepo = hvacRepo;
     }
 
     public List<Maintenance> getAll() {
@@ -96,27 +115,33 @@ public class MaintenanceService {
     }
 
     public List<ToBeReplacedDto> getToBeReplacedItems(int carId) {
-        List<Maintenance> maintenances = repo.findByCarId(carId);
+        
         List<ToBeReplacedDto> result = new ArrayList<>();
+        engineRepo.findCriticalByCarId(carId).forEach(e ->
+            result.add(new ToBeReplacedDto("Engine"))
+        );
 
-        for (Maintenance m : maintenances) {
-            checkField("Engine", m.getEngineCheckId(), m.getCarCondition(), result);
-            checkField("Belt & Hose", m.getBeltHoseCheckId(), m.getCarCondition(), result);
-            checkField("Brake", m.getBrakeCheckId(), m.getCarCondition(), result);
-            checkField("Tire", m.getTireCheckId(), m.getCarCondition(), result);
-            checkField("Electric", m.getElectricCheckID(), m.getCarCondition(), result);
-            checkField("Filter", m.getFilterCheckId(), m.getCarCondition(), result);
-            checkField("Emission", m.getEmmisionCheckId(), m.getCarCondition(), result);
-            checkField("HVAC", m.getHvacCheckId(), m.getCarCondition(), result);
-        }
+        beltRepo.findCriticalByCarId(carId).forEach(b ->
+            result.add(new ToBeReplacedDto("Belt & Hose"))
+        );
+
+        brakeRepo.findCriticalByCarId(carId).forEach(b ->
+            result.add(new ToBeReplacedDto("Brakes"))
+        );
+
+        tireRepo.findCriticalByCarId(carId).forEach(t ->
+            result.add(new ToBeReplacedDto("Tires"))
+        );
+
+        electricRepo.findCriticalByCarId(carId).forEach(e ->
+            result.add(new ToBeReplacedDto("Electric"))
+        );
+
+        hvacRepo.findCriticalByCarId(carId).forEach(h ->
+            result.add(new ToBeReplacedDto("HVAC"))
+        );
 
         return result;
-    }
-
-    private void checkField(String name, int value, Condition cond, List<ToBeReplacedDto> result) {
-        if (cond == Condition.POOR) {
-            result.add(new ToBeReplacedDto(name, cond.name()));
-        }
     }
 
     public List<MaintenanceTableDto> getMaintenanceTable(Integer carId) {

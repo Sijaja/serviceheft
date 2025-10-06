@@ -2,34 +2,59 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 @Entity
 @Table(name="owners")
 public class Owner {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int ownerId;
+    @NotBlank
+    private String userName;
+    private int photoId = 1;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
     private String street;
     private int houseNumber;
     private String city;
+    @NotBlank
+    @Column(nullable = false, unique = true)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(min = 8)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false)
+    private String password;
+
     public Owner() {
     }
-    public Owner(int ownerId, String firstName, String lastName, LocalDate dateOfBirth, String street, int houseNumber,
-            String city) {
-        this.ownerId = ownerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.street = street;
-        this.houseNumber = houseNumber;
+
+    public Owner(String city, LocalDate dateOfBirth, String email, String firstName, int houseNumber, String lastName, int ownerId, String password, int photoId, String street, String userName) {
         this.city = city;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.firstName = firstName;
+        this.houseNumber = houseNumber;
+        this.lastName = lastName;
+        this.ownerId = ownerId;
+        this.password = password;
+        this.photoId = photoId;
+        this.street = street;
+        this.userName = userName;
     }
 
     public int getOwnerId() {
@@ -38,6 +63,22 @@ public class Owner {
 
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 
     public String getFirstName() {
@@ -87,5 +128,22 @@ public class Owner {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
 }

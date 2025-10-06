@@ -24,7 +24,9 @@ public class OwnerController {
     public List<Owner> getAll() { return service.getAll(); }
 
     @PostMapping
-    public Owner create(@RequestBody Owner o) { return service.save(o); }
+    public Owner create(@RequestBody Owner owner) {
+        return service.save(owner);
+    }
 
     @GetMapping("/{id}")
     public Owner get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }

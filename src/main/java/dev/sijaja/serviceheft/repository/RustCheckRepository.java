@@ -9,11 +9,12 @@ import org.springframework.data.repository.query.Param;
 import dev.sijaja.serviceheft.model.RustCheck;
 
 public interface RustCheckRepository extends JpaRepository<RustCheck, Integer>{
+
     @Query("""
-       SELECT e FROM RustCheck e 
-       WHERE e.carId = :carId 
-       AND (
-           e.windowSeals IN ('POOR','TOREPLACE') OR
+        SELECT e FROM RustCheck e
+        WHERE e.maintenance.car.id = :carId
+        AND (
+            e.windowSeals IN ('POOR','TOREPLACE') OR
            e.doorBottom IN ('POOR','TOREPLACE') OR
            e.exhaustArea IN ('POOR','TOREPLACE') OR
            e.fenders IN ('POOR','TOREPLACE') OR
@@ -24,7 +25,7 @@ public interface RustCheckRepository extends JpaRepository<RustCheck, Integer>{
            e.trunkFloor IN ('POOR','TOREPLACE') OR
            e.underbody IN ('POOR','TOREPLACE') OR
            e.wheelArches IN ('POOR','TOREPLACE')
-       )
-       """)
-    List<RustCheck> getCriticalRust(@Param("carId") Integer carId);
+        )
+    """)
+    List<RustCheck> findCriticalByCarId(@Param("carId") Integer carId);
 }

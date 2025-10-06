@@ -9,12 +9,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class ElectricCheck {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int electricCheckId;
+
+    @OneToOne
+    @JoinColumn(name = "mtnc_id")
+    private Maintenance maintenance;
+
     private double voltage;
     @Enumerated(EnumType.STRING)
     private Condition terminals;
@@ -31,17 +38,18 @@ public class ElectricCheck {
     public ElectricCheck() {
     }
 
-    public ElectricCheck(Age age, double alternatorOutput, int electricCheckId, Check headLights, Check tailLight, Condition terminals, Check turnSignals, double voltage) {
-        this.age = age;
-        this.alternatorOutput = alternatorOutput;
+    public ElectricCheck(int electricCheckId, Age age, Check headLights, Condition terminals, double alternatorOutput, Maintenance maintenance, double voltage, Check tailLight, Check turnSignals) {
         this.electricCheckId = electricCheckId;
+        this.age = age;
         this.headLights = headLights;
-        this.tailLight = tailLight;
         this.terminals = terminals;
-        this.turnSignals = turnSignals;
+        this.alternatorOutput = alternatorOutput;
+        this.maintenance = maintenance;
         this.voltage = voltage;
+        this.tailLight = tailLight;
+        this.turnSignals = turnSignals;
     }
-
+    
     public int getElectricCheckId() {
         return electricCheckId;
     }
@@ -104,6 +112,14 @@ public class ElectricCheck {
 
     public void setTurnSignals(Check turnSignals) {
         this.turnSignals = turnSignals;
+    }
+
+    public Maintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(Maintenance maintenance) {
+        this.maintenance = maintenance;
     }
 
 

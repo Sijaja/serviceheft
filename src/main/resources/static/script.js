@@ -31,6 +31,9 @@ async function addOwner() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        userName: document.getElementById('userName').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         dateOfBirth: document.getElementById('dateOfBirth').value,
@@ -42,6 +45,8 @@ async function addOwner() {
 
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const result = await response.json();
+    document.querySelector("form").reset();
+    alert("Registration successful!");
     console.log("Server response:", result);
 
   } catch (error) {

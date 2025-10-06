@@ -46,7 +46,7 @@ public class CriticalIssuesService {
         
         List<CriticalIssuesDto> issues = new ArrayList<>();
 
-        beltRepo.getCriticalBelt(carId).forEach(b -> {
+        beltRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getHeaterHoses() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("Heater Hoses", b.getHeaterHoses().toString()));
             }
@@ -61,7 +61,7 @@ public class CriticalIssuesService {
             }
         });
 
-        brakeRepo.getCriticalBrake(carId).forEach(b -> {
+        brakeRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getBrakeLines() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("Brake Lines", b.getBrakeLines().toString()));
             }
@@ -73,7 +73,7 @@ public class CriticalIssuesService {
             }
         });
 
-        engineRepo.getCriticalEngine(carId).forEach(b -> {
+        engineRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getBrakeFluidColor() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("Brake FLuid", b.getBrakeFluidColor().toString()));
             }
@@ -88,20 +88,20 @@ public class CriticalIssuesService {
             }
         });
 
-        repo.getCriticalCar(carId).forEach(m ->
+        repo.findCriticalByCarId(carId).forEach(m ->
             issues.add(new CriticalIssuesDto(
                 "Maintenance",
                 m.getCarCondition().toString()
             ))
         );
 
-        electricRepo.getCriticalElectric(carId).forEach(b -> {
+        electricRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getTerminals() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("Terminals", b.getTerminals().toString()));
             }
         });
 
-        hvacRepo.getCriticalHvac(carId).forEach(b -> {
+        hvacRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getAcPerformance() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("AC Performance", b.getAcPerformance().toString()));
             }
@@ -113,7 +113,7 @@ public class CriticalIssuesService {
             }
         });
 
-        rustRepo.getCriticalRust(carId).forEach(b -> {
+        rustRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getWindowSeals() == Part.TOREPLACE) {
                 issues.add(new CriticalIssuesDto("Window Seals", b.getWindowSeals().toString()));
             }
@@ -149,7 +149,7 @@ public class CriticalIssuesService {
             }
         });
         
-        tireRepo.getCriticalTire(carId).forEach(b -> {
+        tireRepo.findCriticalByCarId(carId).forEach(b -> {
             if (b.getShockAbsorbers() == Condition.POOR) {
                 issues.add(new CriticalIssuesDto("Shock Absorbers", b.getShockAbsorbers().toString()));
             }

@@ -9,14 +9,15 @@ import org.springframework.data.repository.query.Param;
 import dev.sijaja.serviceheft.model.BrakeCheck;
 
 public interface BrakeCheckRepository extends JpaRepository<BrakeCheck, Integer> {
+
     @Query("""
-       SELECT e FROM BrakeCheck e 
-       WHERE e.carId = :carId 
-       AND (
-           e.brakeLines IN ('POOR','TO_BE_REPLACED') OR
+        SELECT e FROM BrakeCheck e
+        WHERE e.maintenance.car.id = :carId
+        AND (
+            e.brakeLines IN ('POOR','TO_BE_REPLACED') OR
            e.frontRotorsCon IN ('POOR','TO_BE_REPLACED') OR
            e.rearRotorsCon IN ('POOR','TO_BE_REPLACED')
-       )
-       """)
-    List<BrakeCheck> getCriticalBrake(@Param("carId") Integer carId);
+        )
+    """)
+    List<BrakeCheck> findCriticalByCarId(@Param("carId") Integer carId);
 }

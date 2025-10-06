@@ -52,3 +52,9 @@ canvas {
   max-width: 95%;
   height: auto;
 }
+
+#signupBox {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 20px;
+}

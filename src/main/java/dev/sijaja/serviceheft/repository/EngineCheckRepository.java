@@ -9,15 +9,16 @@ import org.springframework.data.repository.query.Param;
 import dev.sijaja.serviceheft.model.EngineCheck;
 
 public interface EngineCheckRepository extends JpaRepository<EngineCheck, Integer>{
+
     @Query("""
-       SELECT e FROM EngineCheck e 
-       WHERE e.carId = :carId 
-       AND (
-           e.brakeFluidColor IN ('POOR','TO_BE_REPLACED') OR
+        SELECT e FROM EngineCheck e
+        WHERE e.maintenance.car.id = :carId
+        AND (
+            e.brakeFluidColor IN ('POOR','TO_BE_REPLACED') OR
            e.coolantCondition IN ('POOR','TO_BE_REPLACED') OR
            e.engineStatus IN ('POOR','TO_BE_REPLACED') OR
            e.oilCondition IN ('POOR','TO_BE_REPLACED')
-       )
-       """)
-    List<EngineCheck> getCriticalEngine(@Param("carId") Integer carId);
+        )
+    """)
+    List<EngineCheck> findCriticalByCarId(@Param("carId") Integer carId);
 }
