@@ -1,11 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Delius+Unicase:wght@400;700&family=Noto+Sans+Arabic:wght@100..900&family=Readex+Pro:wght@160..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: Roboto;
+}
+
 .row {
-  /* border: 1px solid red; */
   margin-bottom: 10px;
 }
 
-[class*="col-"] {
-  /* border: 1px dashed blue; */
-}
 
 .card-box {
   border: 1px solid rgb(0, 0, 0);
@@ -57,4 +60,11 @@ canvas {
   max-width: 500px;
   margin: auto;
   margin-top: 20px;
+}
+
+#mainContainer {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
