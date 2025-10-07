@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Delius+Unicase:wght@400;700&family=Noto+Sans+Arabic:wght@100..900&family=Readex+Pro:wght@160..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
@@ -21,19 +20,19 @@ body {
 }
 
 #car img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #car {
-    height: auto;
-    overflow: hidden;
-    padding: 0px;
+  height: auto;
+  overflow: hidden;
+  padding: 0px;
 }
 
 #topBanner {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #clickable:hover {

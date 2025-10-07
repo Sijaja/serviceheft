@@ -54,7 +54,7 @@ async function addOwner() {
   }
 }
 
-// -------- Chart functions (top-level, not nested) --------
+// Chart functions (top-level, not nested) 
 
 async function loadMaintenanceChart(carId, year) {
   try {

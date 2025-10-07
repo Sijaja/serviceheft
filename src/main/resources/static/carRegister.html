@@ -13,17 +13,17 @@
                 <div class="row text-center g-0"><h1>Neues Auto registrieren</h1></div>
                 <div class="row g-0">
                     <form>
-                        <input type="text" id="userName" class="form-control mb-2" placeholder="Öffentlicher Benutzername">
-                        <input type="email" id="email" class="form-control mb-2" placeholder="Email eingeben">
+                        <input type="text" id="manufacturer" class="form-control mb-2" placeholder="Hersteller">
+                        <input type="text" id="model" class="form-control mb-2" placeholder="Model">
                         <input type="password" id="password" class="form-control mb-2" placeholder="Passwort eingeben">
                         <input type="password" id="passwordRepeat" class="form-control mb-2" placeholder="Passwort wiederholen">
                         <hr>
                         <div class="row g-2">
                             <div class="col-6">
-                                <input type="text" id="manufacturer" class="form-control" placeholder="Hersteller">
+                                <input type="text" id="kilometerstand" class="form-control" placeholder="Kilometerstand">
                             </div>
                             <div class="col-6">
-                                <input type="text" id="model" class="form-control" placeholder="Model">
+                                <input type="text" id="vin" class="form-control" placeholder="VIN (Fahrgestellnummer)">
                             </div>
                         </div>
 
@@ -37,15 +37,7 @@
                                 <input type="date" id="pickerl" class="form-control">
                             </div>
                         </div>
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <input type="text" id="houseNumber" class="form-control" placeholder="Hausnummer eingeben">
-                            </div>
-                            <div class="col-6">
-                                <input type="text" id="city" class="form-control" placeholder="Stadt eingeben">
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary mt-3" onclick="addOwner()">Besitzer hinzufügen</button>
+                        <button type="button" class="btn btn-primary mt-3" onclick="addOwner()">Auto hinzufügen</button>
                         <pre id="output2"></pre>
                     </form>
                 </div>
