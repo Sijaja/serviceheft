@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Delius+Unicase:wght@400;700&family=Noto+Sans+Arabic:wght@100..900&family=Readex+Pro:wght@160..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: Roboto;
+}
+
+.row {
+  margin-bottom: 10px;
+  border-color: aqua;
+}
+
+
+.card-box {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 8px;
+  background-color: #FFFBF9;
+  color: #4e5e3b;
+}
+
+#car img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#car {
+  height: auto;
+  overflow: hidden;
+  padding: 0px;
+}
+
+#topBanner {
+  margin-top: 20px;
+}
+
+#clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: #dfebd2;
+}
+
+#sidebanner > * {
+  margin-bottom: 10px;
+  margin-right: 0px;
+}
+
+#myTable {
+  --bs-table-striped-bg: #e2ecd6;
+}
+
+canvas {
+  max-width: 95%;
+  height: auto;
+}
+
+#signupBox {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#mainContainer {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

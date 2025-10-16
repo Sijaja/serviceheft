@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Analytics Dashboard</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      background: #f8f9fa;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .sidebar {
+      background-color: #fff;
+      min-height: 100%;
+      border-right: 1px solid #dee2e6;
+    }
+
+    .sidebar .nav-link {
+      color: #6c757d;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.3rem;
+      transition: 0.2s;
+    }
+
+    .sidebar .nav-link:hover, .sidebar .nav-link.active {
+      background-color: #f3f4f6;
+      color: #667eea;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      position: relative;
+    }
+
+    .profile-pic::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border: 2px solid white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: .75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card .icon {
+      font-size: 1.5rem;
+      color: #667eea;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: .5rem;
+    }
+
+    .stat-change {
+      color: #10b981;
+      font-size: .875rem;
+    }
+
+    .card-header {
+      background: none;
+      border-bottom: none;
+    }
+
+    .chart-placeholder {
+      height: 250px;
+      background: linear-gradient(to bottom, rgba(102,126,234,.1), rgba(102,126,234,.05));
+      border-radius: .75rem;
+    }
+
+    .vacancy-item {
+      background: #f9fafb;
+      padding: 1rem;
+      border-radius: .5rem;
+      margin-bottom: .5rem;
+    }
+
+    .employee-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center bg-white p-3 border-bottom">
+      <div class="d-flex align-items-center gap-3">
+        <div class="bg-gradient text-white d-flex justify-content-center align-items-center rounded-3" style="background: linear-gradient(135deg, #667eea, #764ba2); width:50px; height:50px;">⬡</div>
+        <div>
+          <h5 class="mb-0">Good morning, <strong>Mohamad</strong></h5>
+          <small class="text-muted">long time no see</small>
+        </div>
+      </div>
+      <nav class="nav gap-2">
+        <button class="btn btn-outline-secondary btn-sm">Schedule</button>
+        <button class="btn btn-primary btn-sm">Analytics</button>
+        <button class="btn btn-outline-secondary btn-sm">Candidates</button>
+        <button class="btn btn-outline-secondary btn-sm">KPI</button>
+        <button class="btn btn-outline-secondary btn-sm">Leads</button>
+      </nav>
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-light rounded-circle"><i class="bi bi-bell"></i></button>
+        <button class="btn btn-light rounded-circle"><i class="bi bi-envelope"></i></button>
+        <div class="profile-pic"></div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <div class="row g-2">
+      <!-- Sidebar -->
+      <aside class="col-1 sidebar d-flex flex-column align-items-center py-4">
+        <a href="#" class="nav-link active"><i class="bi bi-grid"></i></a>
+        <a href="#" class="nav-link"><i class="bi bi-credit-card"></i></a>
+        <a href="#" class="nav-link"><i class="bi bi-folder"></i></a>
+        <a href="#" class="nav-link"><i class="bi bi-clock"></i></a>
+        <a href="#" class="nav-link"><i class="bi bi-link-45deg"></i></a>
+        <a href="#" class="nav-link"><i class="bi bi-chat-dots"></i></a>
+        <div class="mt-auto">
+          <a href="#" class="nav-link"><i class="bi bi-gear"></i></a>
+          <a href="#" class="nav-link"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="col-11 bg-light p-4">
+        <!-- Stats -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+              <div class="icon"><i class="bi bi-people-fill"></i></div>
+              <div class="stat-value">418</div>
+              <small>Total employees</small><br>
+              <span class="stat-change">+7% last month</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+              <div class="icon"><i class="bi bi-person-plus-fill"></i></div>
+              <div class="stat-value">21</div>
+              <small>New employees</small><br>
+              <span class="stat-change">+7% last month</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+              <div class="icon"><i class="bi bi-person-dash-fill"></i></div>
+              <div class="stat-value">14</div>
+              <small>Resigned employees</small><br>
+              <span class="stat-change">+4% last month</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+              <div class="icon"><i class="bi bi-briefcase-fill"></i></div>
+              <div class="stat-value">261</div>
+              <small>Job applicants</small><br>
+              <span class="stat-change">+12% last month</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <!-- Upcoming Interview -->
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Upcoming interview</h5>
+                <button class="btn btn-light btn-sm"><i class="bi bi-three-dots-vertical"></i></button>
+              </div>
+              <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-circle" style="width:50px; height:50px; background:linear-gradient(135deg, #667eea, #764ba2);"></div>
+                <div>
+                  <h6 class="mb-0">Front-End Developer</h6>
+                  <small class="text-muted">Jordan Maccon</small>
+                </div>
+                <div class="ms-auto text-end">
+                  <small class="text-muted d-block">Time</small>
+                  <strong>11:30 AM - 12:45 AM</strong><br>
+                  <small class="text-muted">Company</small>
+                  <strong> PayPal</strong>
+                </div>
+                <button class="btn btn-success rounded-circle ms-3"><i class="bi bi-telephone-fill"></i></button>
+              </div>
+            </div>
+
+            <!-- Vacancy Trends -->
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h5 class="mb-0">Vacancy Trends</h5>
+                <div>
+                  <span class="badge bg-primary me-2">Vacancies</span>
+                  <span class="badge bg-danger">Candidates</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart-placeholder d-flex justify-content-center align-items-center text-muted">
+                  Chart Placeholder
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-4">
+            <!-- Vacancies List -->
+            <div class="card mb-4">
+              <div class="card-header">
+                <h5 class="mb-0">Top Vacancies</h5>
+              </div>
+              <div class="card-body">
+                <div class="vacancy-item">
+                  <strong>UI Designer</strong><br>
+                  <a href="#" class="text-decoration-none text-primary small">View details</a>
+                </div>
+                <div class="vacancy-item">
+                  <strong>Backend Engineer</strong><br>
+                  <a href="#" class="text-decoration-none text-primary small">View details</a>
+                </div>
+                <div class="vacancy-item">
+                  <strong>Product Manager</strong><br>
+                  <a href="#" class="text-decoration-none text-primary small">View details</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Employees Table -->
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Employees</h5>
+              </div>
+              <div class="card-body p-0">
+                <table class="table mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Office</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="d-flex align-items-center gap-2"><div class="employee-avatar"></div> Anna Keller</td>
+                      <td>HR Manager</td>
+                      <td>Berlin</td>
+                    </tr>
+                    <tr>
+                      <td class="d-flex align-items-center gap-2"><div class="employee-avatar"></div> John Lee</td>
+                      <td>Recruiter</td>
+                      <td>Paris</td>
+                    </tr>
+                    <tr>
+                      <td class="d-flex align-items-center gap-2"><div class="employee-avatar"></div> Sara Novak</td>
+                      <td>UI Designer</td>
+                      <td>Vienna</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

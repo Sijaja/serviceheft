@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Dashboard</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo">⬡</div>
+                <div class="greeting">
+                    <h1>Guten Morgen, <strong>Mohamad</strong></h1>
+                    <p>long time no see</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn">Meine Autos</button>
+                <button class="nav-btn active">Statistiks</button>
+                <button class="nav-btn">Kalender</button>
+                <button class="nav-btn">Wartungen</button>
+            </nav>
+            <div class="header-right">
+                <button class="icon-btn">🔔</button>
+                <button class="icon-btn">✉️</button>
+                <div class="profile-pic"></div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <button class="sidebar-icon">⊞</button>
+                <button class="sidebar-icon">💳</button>
+                <button class="sidebar-icon">🗂️</button>
+                <button class="sidebar-icon">🕐</button>
+                <button class="sidebar-icon">🔗</button>
+                <button class="sidebar-icon">💬</button>
+                <div style="margin-top: auto;">
+                    <button class="sidebar-icon">⚙️</button>
+                    <button class="sidebar-icon">↪️</button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span>👥</span>
+                            <span>Total employees</span>
+                        </div>
+                        <div class="stat-value">418</div>
+                        <div class="stat-change">+7% last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span>😊</span>
+                            <span>New employees</span>
+                        </div>
+                        <div class="stat-value">21</div>
+                        <div class="stat-change">+7% last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span>😔</span>
+                            <span>Resigned employees</span>
+                        </div>
+                        <div class="stat-value">14</div>
+                        <div class="stat-change">+4% last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <span>💼</span>
+                            <span>Job applicants</span>
+                        </div>
+                        <div class="stat-value">261</div>
+                        <div class="stat-change">+12% last month</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div>
+                        <div class="card" style="margin-bottom: 20px;">
+                            <div class="card-header">
+                                <h2 class="card-title">Upcoming interview</h2>
+                                <button class="more-btn">⋯</button>
+                            </div>
+                            <div class="interview-card">
+                                <div class="interview-avatar"></div>
+                                <div class="interview-info">
+                                    <h4>Front-End Developer</h4>
+                                    <h3>Jordan Maccon</h3>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-group">
+                                        <p>Time</p>
+                                        <h4>11:30 AM - 12:45 AM</h4>
+                                    </div>
+                                    <div class="detail-group">
+                                        <p>Company</p>
+                                        <h4>🅿️ PayPal</h4>
+                                    </div>
+                                </div>
+                                <button class="call-btn">📞</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Vacancy Trends</h2>
+                                <div class="chart-legend">
+                                    <div class="legend-item">
+                                        <span class="legend-dot vacancies"></span>
+                                        <span>vacancies</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-dot candidates"></span>
+                                        <span>candidates</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="costChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header">
+                                <h2 class="card-title">Employees</h2>
+                            </div>
+                            <table class="employees-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee name</th>
+                                        <th>Employee name</th>
+                                        <th>Employee name</th>
+                                        <th>Employee name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar"></div>
+                                                <span>Kevin Michel</span>
+                                            </div>
+                                        </td>
+                                        <td>#E421</td>
+                                        <td>kevinmichel@gmail.com</td>
+                                        <td>Sr / Developer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar"></div>
+                                                <span>Tanisha Combs</span>
+                                            </div>
+                                        </td>
+                                        <td>#E422</td>
+                                        <td>tanicam@gmail.com</td>
+                                        <td>Jn / UX Designer</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar"></div>
+                                                <span>Aron Armstrong</span>
+                                            </div>
+                                        </td>
+                                        <td>#E423</td>
+                                        <td>armsaron@gmail.com</td>
+                                        <td>Md / QA automation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="employee-name">
+                                                <div class="employee-avatar"></div>
+                                                <span>Josh Wiggins</span>
+                                            </div>
+                                        </td>
+                                        <td>#E424</td>
+                                        <td>wiggio@gmail.com</td>
+                                        <td>Sr / Analytics</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card" style="margin-bottom: 20px;">
+                            <div class="card-header">
+                                <h2 class="card-title">Countries Insight</h2>
+                                <button class="more-btn">⋯</button>
+                            </div>
+                            <div>
+                                <div class="country-item">
+                                    <div class="flag">🇺🇸</div>
+                                    <div class="country-info">
+                                        <div class="country-name">United States</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 74%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="percentage">74%</div>
+                                </div>
+                                <div class="country-item">
+                                    <div class="flag">🇫🇷</div>
+                                    <div class="country-info">
+                                        <div class="country-name">France</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 43%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="percentage">43%</div>
+                                </div>
+                                <div class="country-item">
+                                    <div class="flag">🇯🇵</div>
+                                    <div class="country-info">
+                                        <div class="country-name">Japan</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 38%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="percentage">38%</div>
+                                </div>
+                                <div class="country-item">
+                                    <div class="flag">🇸🇪</div>
+                                    <div class="country-info">
+                                        <div class="country-name">Sweden</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 24%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="percentage">24%</div>
+                                </div>
+                                <div class="country-item">
+                                    <div class="flag">🇪🇸</div>
+                                    <div class="country-info">
+                                        <div class="country-name">Spain</div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 16%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="percentage">16%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Current vacancies</h2>
+                                <button class="more-btn">⋯</button>
+                            </div>
+                            <div>
+                                <div class="vacancy-item">
+                                    <div class="company-logo" style="background: #ffe5e5; color: #ff0000;">H&M</div>
+                                    <div class="vacancy-info">
+                                        <h4>Financial Analyst</h4>
+                                        <a href="#" class="view-link">View Details</a>
+                                    </div>
+                                </div>
+                                <div class="vacancy-item">
+                                    <div class="company-logo" style="background: #e5e5ff; color: #4338ca;">W</div>
+                                    <div class="vacancy-info">
+                                        <h4>Software Developer</h4>
+                                        <a href="#" class="view-link">View Details</a>
+                                    </div>
+                                </div>
+                                <div class="vacancy-item">
+                                    <div class="company-logo" style="background: #f3e5ff; color: #9333ea;">T</div>
+                                    <div class="vacancy-info">
+                                        <h4>Project Manager</h4>
+                                        <a href="#" class="view-link">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-gauge@0.3.0/dist/chartjs-gauge.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+            document.addEventListener("DOMContentLoaded", () => {
+            getCar(1);
+            loadCostComparison(1);
+            loadAverageCostComparison(1);
+            loadYearlyChart(1);
+        });
+    </script>
+</body>
+</html>
