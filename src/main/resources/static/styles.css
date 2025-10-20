@@ -19,6 +19,11 @@ body {
   color: #4e5e3b;
 }
 
+#carStatusGauge {
+  max-width: 200px; /* adjust as needed */
+  height: auto;     /* maintain aspect ratio */
+}
+
 #car img {
   width: 100%;
   height: 100%;

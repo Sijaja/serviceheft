@@ -285,45 +285,54 @@ async function loadAverageCostComparison(carId) {
 }
 
 async function loadCarHealth(carId) {
-    try {
-        const response = await fetch(`http://localhost:8080/api/maintenance/critical/${carId}`);
-        if (!response.ok) throw new Error("HTTP error " + response.status);
-        const data = await response.json();
+  try {
+    const response = await fetch(`http://localhost:8080/api/maintenance/critical/${carId}`);
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+    const data = await response.json();
 
-        // Count critical issues
-        const issueCount = data.length;  
-        const maxIssues = 6; // adjust depending on how many checks you have
-        const percentage = Math.max(0, Math.min(100, 100 - (issueCount / maxIssues) * 100));
+    const issueCount = data.length;
+    const maxIssues = 6;
+    const Issues = Math.max(0, Math.min(100, (issueCount / maxIssues) * 100));
+    const Health = 100 - Issues;
+    const ctx = document.getElementById("carStatusGauge").getContext("2d");
 
-        const ctx = document.getElementById("carStatusGauge").getContext("2d");
-        new Chart(ctx, {
-            type: 'gauge',
-            data: {
-                datasets: [{
-                    value: issueCount,
-                    minValue: 0,
-                    data: [0, 1, 3, maxIssues],
-                    backgroundColor: ['#4caf50', '#ffeb3b', '#ffc107', '#f44336']
-                }]
-            },
-            options: {
-                responsive: true,
-                needle: {
-                    radiusPercentage: 2,
-                    widthPercentage: 3.2,
-                    lengthPercentage: 80,
-                    color: "black"
-                },
-                valueLabel: {
-                    display: true,
-                    formatter: (value) => `${value} issues`
-                }
-            }
-        });
+    // Destroy old chart if it exists
+    if (window.carGaugeChart) window.carGaugeChart.destroy();
 
-    } catch (error) {
-        console.error("Error loading car health:", error);
-    }
+    window.carGaugeChart = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Issues", "Health"],
+        datasets: [{
+          data: [Issues, Health],
+          backgroundColor: [
+            "#eeb8b8ff",
+            "#CDE7B0"
+          ],
+          borderWidth: 0,
+          cutout: "60%"
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          tooltip: { enabled: true },
+          title: {
+            display: true,
+            text: `${Health.toFixed(1)}% Healthy`,
+            position: "top",
+            font: { size: 16 },
+            padding: { top: 5, bottom: 5 }
+          }
+        },
+        rotation: -90,
+        circumference: 180
+      }
+    });
+
+  } catch (error) {
+    console.error("Error loading car health:", error);
+  }
 }
 
-loadCarHealth(1);
