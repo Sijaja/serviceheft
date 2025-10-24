@@ -29,6 +29,7 @@ public class OwnerService {
         return repo.save(owner);
     }
     public void delete(Integer id) { repo.deleteById(id); }
+    
     public Owner findByEmail(String email) {
         return repo.findByEmail(email);
     }
