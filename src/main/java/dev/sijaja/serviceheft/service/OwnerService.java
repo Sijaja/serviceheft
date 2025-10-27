@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +15,23 @@ import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 
 @Service
-public class OwnerService {
+public class OwnerService implements UserDetailsService{
     @Autowired
     private final OwnerRepository repo;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Owner owner = repo.findByEmail(email);
+        if (owner == null) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
+        }
+        return User.builder()
+            .username(owner.getEmail())
+            .password(owner.getPassword())
+            .roles("OWNER")
+            .build();
+    }
+    
     @Autowired
     private PasswordEncoder passwordEncoder;
     public Owner registerOwner(Owner owner) {
