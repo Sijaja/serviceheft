@@ -6,4 +6,5 @@ import dev.sijaja.serviceheft.model.Owner;
 
 public interface OwnerRepository extends JpaRepository<Owner, Integer>{
     Owner findByEmail(String email);
+    
 }

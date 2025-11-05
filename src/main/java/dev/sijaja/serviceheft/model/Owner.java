@@ -22,7 +22,7 @@ public class Owner {
     private int ownerId;
     @NotBlank
     private String userName;
-    private int photoId = 1;
+    private int photoId;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;

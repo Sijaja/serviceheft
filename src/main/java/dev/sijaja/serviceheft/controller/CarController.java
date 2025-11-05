@@ -1,8 +1,11 @@
 package dev.sijaja.serviceheft.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +22,28 @@ import dev.sijaja.serviceheft.service.CarService;
 @RequestMapping("/api/cars")
 @CrossOrigin
 public class CarController {
+
     private final CarService service;
-    public CarController(CarService service) { this.service = service; }
+
+    public CarController(CarService service) { 
+        this.service = service; 
+    }
 
     @GetMapping
-    public List<Cars> getAll() { return service.getAll(); }
+    public List<Cars> myCars(Principal principal) { 
+        return service.findCarsForOwner(principal.getName()); 
+    }
 
     @PostMapping
     public Cars create(@RequestBody Cars c) { return service.save(c); }
 
     @GetMapping("/{id}")
-    public Cars get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }
+    public ResponseEntity<Cars> getCarById(@PathVariable int id, Principal principal) { 
+        return service.findCarForOwner(id, principal.getName())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) { service.delete(id); }
+    public void delete(@PathVariable int id) { service.delete(id); }
 }

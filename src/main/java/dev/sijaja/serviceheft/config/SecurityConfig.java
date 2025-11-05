@@ -22,7 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/signup", "/css/**", "/js/**", "/images/**", "/signup").permitAll()
+                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/owners").permitAll()
                 .anyRequest().authenticated()
                 )
@@ -35,7 +35,12 @@ public class SecurityConfig {
                 .failureUrl("/login?error=true")
                 .permitAll()
                 )
-                .logout(logout -> logout.permitAll())
+                .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout=true")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .permitAll())
                 .csrf(csrf -> csrf.disable())
                 .build();
     }

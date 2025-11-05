@@ -41,12 +41,12 @@ public class OwnerService implements UserDetailsService{
     }
     public OwnerService(OwnerRepository repo) { this.repo = repo; }
     public List<Owner> getAll() { return repo.findAll(); }
-    public Optional<Owner> get(Integer id) { return repo.findById(id); }
+    public Optional<Owner> get(int id) { return repo.findById(id); }
     public Owner save(Owner owner) {
         owner.setPassword(passwordEncoder.encode(owner.getPassword()));
         return repo.save(owner);
     }
-    public void delete(Integer id) { repo.deleteById(id); }
+    public void delete(int id) { repo.deleteById(id); }
     
     public Owner findByEmail(String email) {
         return repo.findByEmail(email);
