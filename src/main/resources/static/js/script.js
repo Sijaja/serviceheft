@@ -9,6 +9,14 @@ async function getCar(carId) {
     if (!response.ok) throw new Error("HTTP error " + response.status);
 
     const car = await response.json();
+    const carImage = document.getElementById("carImage");
+
+    if (car.photoId) {
+      carImage.src = "img/Cars/" + car.photoId + ".jpg";
+      carImage.alt = car.manufacturer + " " + car.model;
+    } else {
+      carImage.src = "img/Cars/default.jpg";
+    }
     loadNextMtncDate(carId);
     document.getElementById("manufacturer").innerText = car.manufacturer || "";
     document.getElementById("model").innerText = car.model || "";
@@ -21,36 +29,6 @@ async function getCar(carId) {
     loadMaintenanceTable(carId);
   } catch (error) {
     console.error("Error fetching car:", error);
-  }
-}
-
-// addOwner
-async function addOwner() {
-  try {
-    const response = await fetch("http://localhost:8080/api/owners", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName: document.getElementById('userName').value,
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        dateOfBirth: document.getElementById('dateOfBirth').value,
-        street: document.getElementById('street').value,
-        houseNumber: document.getElementById('houseNumber').value,
-        city: document.getElementById('city').value
-      })
-    });
-
-    if (!response.ok) throw new Error("HTTP error " + response.status);
-    const result = await response.json();
-    document.querySelector("form").reset();
-    alert("Registration successful!");
-    console.log("Server response:", result);
-
-  } catch (error) {
-    console.error("Error adding owner:", error);
   }
 }
 
@@ -336,3 +314,22 @@ async function loadCarHealth(carId) {
   }
 }
 
+// Initial load for car with dynamic ID
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("/api/cars/default");
+    if (!res.ok) throw new Error("No default car set");
+    const defaultCar = await res.json();
+    const defaultCarId = defaultCar.carId;
+    console.log("Default car ID:", defaultCarId);
+    console.log(defaultCar);
+      getCar(defaultCarId);
+      loadCostComparison(defaultCarId);
+      loadAverageCostComparison(defaultCarId);
+      loadYearlyChart(defaultCarId);
+      loadCarHealth(defaultCarId);
+  } catch (error) {
+    console.error("Error loading default car:", error);
+    alert("Could not load default car data. Please select a car.");
+  }
+  });

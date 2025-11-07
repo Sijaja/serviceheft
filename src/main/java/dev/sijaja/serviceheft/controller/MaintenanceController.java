@@ -1,8 +1,11 @@
 package dev.sijaja.serviceheft.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,22 +29,42 @@ import dev.sijaja.serviceheft.service.MaintenanceService;
 @RequestMapping("/api/maintenance")
 @CrossOrigin
 public class MaintenanceController {
+
     private final MaintenanceService service;
-    public MaintenanceController(MaintenanceService service) { 
+
+    public MaintenanceController(MaintenanceService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Maintenance> getAll() { return service.getAll(); }
+    public List<Maintenance> myMaintenances(Principal principal) {
+        return service.findMaintenancesForOwner(principal.getName());
+    }
 
-    @PostMapping
-    public Maintenance create(@RequestBody Maintenance o) { return service.save(o); }
+    @GetMapping("/owner/{id}")
+    public ResponseEntity<List<Maintenance>> getAllMaintenanceByOwnerId(@PathVariable int id, Principal principal) {
+        return service.findMaintenanceForOwner(id, principal.getName())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
 
     @GetMapping("/{id}")
-    public Maintenance get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }
+    public ResponseEntity<Maintenance> getMaintenanceById(@PathVariable int id, Principal principal) {
+        return service.findMaintenanceForOwnerbyMtncId(id, principal.getName())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
+
+    @PostMapping
+    public Maintenance create(@RequestBody Maintenance o) {
+        return service.save(o);
+    }
+
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) { service.delete(id); }
+    public void delete(@PathVariable Integer id) {
+        service.delete(id);
+    }
 
     @GetMapping("/{carId}/year/{year}")
     public YearlyMaintenanceCostsDto getYearlyCosts(
@@ -53,7 +76,7 @@ public class MaintenanceController {
 
     @GetMapping("/{carId}/years")
     public Map<Integer, Double> getYearlyTotals(@PathVariable int carId) {
-    return service.getYearlyTotals(carId);
+        return service.getYearlyTotals(carId);
     }
 
     @GetMapping("/totals/{carId}")
@@ -65,7 +88,7 @@ public class MaintenanceController {
     public NextMaintenanceDto getNextMaintenance(@PathVariable int carId) {
         return service.getNextMaintenance(carId);
     }
-    
+
     @GetMapping("/table/{carId}")
     public List<MaintenanceTableDto> getMaintenanceTable(@PathVariable Integer carId) {
         return service.getMaintenanceTable(carId);

@@ -1,8 +1,8 @@
 package dev.sijaja.serviceheft.controller;
 
-
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,25 +25,40 @@ public class CarController {
 
     private final CarService service;
 
-    public CarController(CarService service) { 
-        this.service = service; 
+    public CarController(CarService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public List<Cars> myCars(Principal principal) { 
-        return service.findCarsForOwner(principal.getName()); 
+    public List<Cars> myCars(Principal principal) {
+        return service.findCarsForOwner(principal.getName());
     }
 
     @PostMapping
-    public Cars create(@RequestBody Cars c) { return service.save(c); }
+    public Cars create(@RequestBody Cars c) {
+        return service.save(c);
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cars> getCarById(@PathVariable int id, Principal principal) { 
+    public ResponseEntity<Cars> getCarById(@PathVariable int id, Principal principal) {
         return service.findCarForOwner(id, principal.getName())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
-     }
+    }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) { service.delete(id); }
+    public void delete(@PathVariable int id) {
+        service.delete(id);
+    }
+
+    @GetMapping("/default")
+    public ResponseEntity<Cars> getDefaultCar(Principal principal) {
+        return ResponseEntity.ok(service.getDefaultCarForOwner(principal.getName()));
+    }
+
+    @PostMapping("/default/{carId}")
+    public ResponseEntity<?> setDefaultCar(@PathVariable int carId, Principal principal) {
+        service.setDefaultCar(principal.getName(), carId);
+        return ResponseEntity.ok(Map.of("message", "Default car updated successfully"));
+    }
 }

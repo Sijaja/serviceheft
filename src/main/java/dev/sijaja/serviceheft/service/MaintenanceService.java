@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
@@ -20,17 +22,20 @@ import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
+import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
 import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
 import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
 import dev.sijaja.serviceheft.repository.EngineCheckRepository;
 import dev.sijaja.serviceheft.repository.HvacCheckRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
+import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.TireCheckRepository;
 
 @Service
 public class MaintenanceService {
     private final MaintenanceRepository repo;
+    private final OwnerRepository ownerRepo;
     private final EngineCheckRepository engineRepo;
     private final BeltHoseCheckRepository beltRepo;
     private final BrakeCheckRepository brakeRepo;
@@ -38,10 +43,11 @@ public class MaintenanceService {
     private final ElectricCheckRepository electricRepo;
     private final HvacCheckRepository hvacRepo;
 
-    public MaintenanceService(MaintenanceRepository repo, EngineCheckRepository engineRepo,
+    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, EngineCheckRepository engineRepo,
             BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
             ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo) {
         this.repo = repo;
+        this.ownerRepo = ownerRepo;
         this.engineRepo = engineRepo;
         this.beltRepo = beltRepo;
         this.brakeRepo = brakeRepo;
@@ -64,6 +70,31 @@ public class MaintenanceService {
 
     public void delete(Integer id) {
         repo.deleteById(id);
+    }
+
+    public List<Maintenance> findMaintenancesForOwner(String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        return repo.findAllByOwnerId(owner.getOwnerId());
+    }
+
+    public Optional<List<Maintenance>> findMaintenanceForOwner(int carId, String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        List<Maintenance> list =  repo.findByCarIdAndOwnerId(carId, owner.getOwnerId());
+        return list.isEmpty() ? Optional.empty() : Optional.of(list);
+    }
+
+    public Optional<Maintenance> findMaintenanceForOwnerbyMtncId(int mtncId, String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        return repo.findByMtncIdAndOwnerId(mtncId, owner.getOwnerId());
     }
 
     public YearlyMaintenanceCostsDto getMaintenanceCostsByMonth(Integer carId, int year) {

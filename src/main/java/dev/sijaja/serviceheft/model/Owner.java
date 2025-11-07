@@ -39,22 +39,26 @@ public class Owner {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
     private String password;
+    private int defaultCarId;
 
     public Owner() {
     }
 
-    public Owner(String city, LocalDate dateOfBirth, String email, String firstName, int houseNumber, String lastName, int ownerId, String password, int photoId, String street, String userName) {
-        this.city = city;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.firstName = firstName;
-        this.houseNumber = houseNumber;
-        this.lastName = lastName;
+    public Owner(int ownerId, @NotBlank String userName, int photoId, String firstName, String lastName,
+            LocalDate dateOfBirth, String street, int houseNumber, String city, @NotBlank @Email String email,
+            @NotBlank @Size(min = 8) String password, int defaultCarId) {
         this.ownerId = ownerId;
-        this.password = password;
-        this.photoId = photoId;
-        this.street = street;
         this.userName = userName;
+        this.photoId = photoId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.city = city;
+        this.email = email;
+        this.password = password;
+        this.defaultCarId = defaultCarId;
     }
 
     public int getOwnerId() {
@@ -143,6 +147,14 @@ public class Owner {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getDefaultCarId() {
+        return defaultCarId;
+    }
+
+    public void setDefaultCarId(int defaultCarId) {
+        this.defaultCarId = defaultCarId;
     }
 
 

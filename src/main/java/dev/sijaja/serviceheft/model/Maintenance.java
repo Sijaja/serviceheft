@@ -24,6 +24,9 @@ public class Maintenance {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Cars car;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
     private int workshopId;
     @Enumerated(EnumType.STRING)
     private Condition carCondition;
@@ -39,18 +42,21 @@ public class Maintenance {
     public Maintenance() {
     }
 
-    public Maintenance(Cars car, Condition carCondition, double cost, int currentMileage, String inspectionNotes, LocalDate mtncDate, int mtncId, Type mtncType, LocalDate nextDate, int nextMileage, int workshopId) {
+    public Maintenance(int mtncId, Cars car, Owner owner, int workshopId, Condition carCondition,
+            String inspectionNotes, LocalDate mtncDate, int currentMileage, int nextMileage, LocalDate nextDate,
+            double cost, Type mtncType) {
+        this.mtncId = mtncId;
         this.car = car;
+        this.owner = owner;
+        this.workshopId = workshopId;
         this.carCondition = carCondition;
-        this.cost = cost;
-        this.currentMileage = currentMileage;
         this.inspectionNotes = inspectionNotes;
         this.mtncDate = mtncDate;
-        this.mtncId = mtncId;
-        this.mtncType = mtncType;
-        this.nextDate = nextDate;
+        this.currentMileage = currentMileage;
         this.nextMileage = nextMileage;
-        this.workshopId = workshopId;
+        this.nextDate = nextDate;
+        this.cost = cost;
+        this.mtncType = mtncType;
     }
 
     public int getMtncId() {
@@ -139,6 +145,14 @@ public class Maintenance {
 
     public void setMtncType(Type mtncType) {
         this.mtncType = mtncType;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
 

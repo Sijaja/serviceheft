@@ -9,7 +9,7 @@ import dev.sijaja.serviceheft.model.Cars;
 
 public interface CarRepository extends JpaRepository<Cars, Integer> {
 
-    List<Cars> findAllByOwnerId(int ownerId);
+    List<Cars> findAllByOwnerOwnerId(int ownerId);
 
-    Optional<Cars> findByCarIdAndOwnerId(int carId, int ownerId);
+    Optional<Cars> findByCarIdAndOwnerOwnerId(int carId, int ownerId);
 }
