@@ -13,7 +13,6 @@ import dev.sijaja.serviceheft.model.Maintenance;
 
 public interface MaintenanceRepository extends JpaRepository<Maintenance, Integer> {
     // Helper method to find maintenances by carId and year
-
     @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND YEAR(m.mtncDate) = :year")
     List<Maintenance> findByCarIdAndYear(@Param("carId") Integer carId, @Param("year") int year);
 
