@@ -90,8 +90,10 @@ public class MaintenanceController {
     }
 
     @GetMapping("/table/{carId}")
-    public List<MaintenanceTableDto> getMaintenanceTable(@PathVariable Integer carId) {
-        return service.getMaintenanceTable(carId);
+    public ResponseEntity<List<MaintenanceTableDto>> getMaintenanceTable(@PathVariable Integer carId, Principal principal) {
+        return service.getMaintenanceTable(carId, principal.getName())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
     }
 
     @GetMapping("/costComparison/{carId}")

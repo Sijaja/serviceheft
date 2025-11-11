@@ -12,6 +12,7 @@ import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.model.Maintenance;
 
 public interface MaintenanceRepository extends JpaRepository<Maintenance, Integer> {
+
     // Helper method to find maintenances by carId and year
     @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND YEAR(m.mtncDate) = :year")
     List<Maintenance> findByCarIdAndYear(@Param("carId") Integer carId, @Param("year") int year);
@@ -69,7 +70,7 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
 
     // 12. Maintenance history table
     @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("
-            + "m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
+            + "m.mtncId, m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
             + "FROM Maintenance m JOIN Workshop w ON m.workshopId = w.workshopId "
             + "WHERE m.car.id = :carId ORDER BY m.mtncDate DESC")
     List<MaintenanceTableDto> getMaintenanceTable(@Param("carId") Integer carId);
