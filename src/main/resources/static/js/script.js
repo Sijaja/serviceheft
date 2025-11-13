@@ -9,24 +9,25 @@ async function getCar(carId) {
     if (!response.ok) throw new Error("HTTP error " + response.status);
 
     const car = await response.json();
-    const carImage = document.getElementById("carImage");
 
-    if (car.photoId) {
-      carImage.src = "img/Cars/" + car.photoId + ".jpg";
-      carImage.alt = car.manufacturer + " " + car.model;
-    } else {
-      carImage.src = "img/Cars/default.jpg";
-    }
     loadNextMtncDate(carId);
-    document.getElementById("manufacturer").innerText = car.manufacturer || "";
-    document.getElementById("model").innerText = car.model || "";
-    document.getElementById("baujahr").innerText = car.makeYear || "";
-    document.getElementById("kilo").innerText = car.mileage || "";
-    document.getElementById("pickerl").innerText = car.inspectionExp || "";
-    document.getElementById("color").innerText = car.carColor || "";
-    document.getElementById("vin").innerText = car.vinNumber || "";
     loadTotalCost(carId);
     loadMaintenanceTable(carId);
+    document.getElementById("makeYear").innerText = car.makeYear || "----";
+    document.getElementById("kilometer").innerText = car.mileage || "----";
+    document.getElementById("inspection").innerText =
+      car.inspectionExp || "----";
+    document.getElementById("carInfos").innerText =
+      "Dein " +
+        car.manufacturer +
+        car.model +
+        " (Baujahr" +
+        car.makeYear +
+        ") ist aktuell bei " +
+        car.mileage +
+        "km. Farbe: " +
+        car.carColor +
+        "." || "ERROR LOADING CAR INFO";
   } catch (error) {
     console.error("Error fetching car:", error);
   }
@@ -507,8 +508,87 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadCarHealth(defaultCarId);
     loadYearlyApexChart(defaultCarId);
     loadMaintenanceTable(defaultCarId);
+    loadCarSelection();
   } catch (error) {
     console.error("Error loading default car:", error);
     alert("Could not load default car data. Please select a car.");
   }
 });
+//load car selection cards for owner page dynamically
+async function loadCarSelection() {
+  try {
+    const response = await fetch("http://localhost:8080/api/cars");
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+    const cars = await response.json();
+    const container = document.getElementById("carCardsContainer");
+    cars.forEach((car) => {
+      const cardHtml = `
+        <div class="col-12" id="clickable" onclick="setDefaultCar(${
+          car.carId
+        }); window.location.href='/mydashboard.html'" style="cursor: pointer">
+        <div
+            class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
+            style="
+                background: linear-gradient(
+                101deg,
+                #5040f4 55.73%,
+                #796df6 99.52%
+                );
+                padding: 30.5px 40px;
+            ">
+            <div class="row align-items-center">
+                <div class="col-sm-6 col-lg-7">
+                    <h2 class="fs-26 fw-normal text-white mb-3">
+                        <span class="fw-900">${car.manufacturer} ${
+        car.model
+      }</span>
+                    </h2>
+                    <p
+                        class="fs-16 lh-1-8 hospital-content"
+                        style="color: #cbc7ff; margin-bottom: 40px">
+                        Dein ${car.manufacturer} ${car.model} (Baujahr ${
+        car.makeYear
+      }) ist aktuell bei ${car.mileage.toLocaleString()} km. Farbe: ${
+        car.carColor
+      }.
+                    </p>
+                </div>
+                <div class="col-sm-6 col-lg-5">
+                    <div
+                        class="text-center text-sm-end mt-4 mt-sm-0"
+                        style="margin-right: 30px">
+                        <img
+                            src="assets/images/carph.png"
+                            alt="Car Placeholder"
+                            class="img-fluid"
+                            style="max-width: 150px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+      container.insertAdjacentHTML("beforeend", cardHtml);
+    });
+  } catch (error) {
+    console.error("Error fetching cars:", error);
+  }
+}
+// Set default car
+async function setDefaultCar(carId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/api/cars/default/${carId}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+
+    console.log("Default car set successfully!");
+  } catch (error) {
+    console.error("Error setting default car:", error);
+    alert("Failed to set default car.");
+  }
+}

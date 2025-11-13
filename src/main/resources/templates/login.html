@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Links Of CSS File -->
-    <link rel="stylesheet" href="/assets/css/sidebar-menu.css" />
-    <link rel="stylesheet" href="/assets/css/simplebar.css" />
-    <link rel="stylesheet" href="/assets/css/prism.css" />
-    <link rel="stylesheet" href="/assets/css/quill.snow.css" />
-    <link rel="stylesheet" href="/assets/css/remixicon.css" />
-    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/assets/css/jsvectormap.min.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
 
-    <!-- Title -->
-    <title>Mein digitaler Serviceheft | Anmelden</title>
+    <title>AutoMate | Mein Digitales Serviceheft</title>
   </head>
   <body class="bg-body-bg">
     <!-- Start Preloader Area -->
     <div class="preloader" id="preloader">
       <div class="preloader">
         <div class="waviy position-relative">
+          <span class="d-inline-block">A</span>
+          <span class="d-inline-block">u</span>
+          <span class="d-inline-block">t</span>
+          <span class="d-inline-block">o</span>
           <span class="d-inline-block">M</span>
-          <span class="d-inline-block">D</span>
-          <span class="d-inline-block">S</span>
-          <span class="d-inline-block">H</span>
+          <span class="d-inline-block">a</span>
+          <span class="d-inline-block">t</span>
+          <span class="d-inline-block">e</span>
         </div>
       </div>
     </div>
     <!-- End Preloader Area -->
 
+    <!-- Start Login Area -->
     <div class="container-fluid">
       <div class="main-content d-flex flex-column p-0">
         <div class="m-lg-auto my-auto w-930 py-4">
@@ -50,9 +44,9 @@
                   Anmelden
                 </h3>
                 <p class="fs-16 text-secondary lh-1-8">
-                  Noch kein Konto?
+                  Noch keinen Account?
                   <a href="signup" class="text-primary text-decoration-none"
-                    >Registrieren</a
+                    >Jetzt registrieren</a
                   >
                 </p>
               </div>
@@ -137,135 +131,16 @@
                     Anmelden
                   </button>
                 </div>
-
-                <div class="position-relative text-center z-1 mb-12">
-                  <span
-                    class="fs-16 bg-white px-4 text-secondary card d-inline-block border-0"
-                    >or sign in with</span
-                  >
-                  <span
-                    class="d-block border-bottom border-2 position-absolute w-100 z-n1"
-                    style="top: 13px"
-                  ></span>
-                </div>
-
-                <ul
-                  class="p-0 mb-0 list-unstyled d-flex justify-content-center"
-                  style="gap: 10px"
-                >
-                  <li>
-                    <a
-                      href="https://www.facebook.com/"
-                      target="_blank"
-                      class="d-inline-block rounded-circle text-decoration-none text-center text-white transition-y fs-16"
-                      style="
-                        width: 30px;
-                        height: 30px;
-                        line-height: 30px;
-                        background-color: #3a559f;
-                      "
-                    >
-                      <i class="ri-facebook-fill"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.twitter.com/"
-                      target="_blank"
-                      class="d-inline-block rounded-circle text-decoration-none text-center text-white transition-y fs-16"
-                      style="
-                        width: 30px;
-                        height: 30px;
-                        line-height: 30px;
-                        background-color: #0f1419;
-                      "
-                    >
-                      <i class="ri-twitter-x-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.google.com/"
-                      target="_blank"
-                      class="d-inline-block rounded-circle text-decoration-none text-center text-white transition-y fs-16"
-                      style="
-                        width: 30px;
-                        height: 30px;
-                        line-height: 30px;
-                        background-color: #e02f2f;
-                      "
-                    >
-                      <i class="ri-google-fill"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.linkedin.com/"
-                      target="_blank"
-                      class="d-inline-block rounded-circle text-decoration-none text-center text-white transition-y fs-16"
-                      style="
-                        width: 30px;
-                        height: 30px;
-                        line-height: 30px;
-                        background-color: #007ab9;
-                      "
-                    >
-                      <i class="ri-linkedin-fill"></i>
-                    </a>
-                  </li>
-                </ul>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <button
-      class="switch-toggle dark-btn p-0 bg-transparent lh-0 border-0"
-      id="switch-toggle"
-    ></button>
-
-    <!-- Start Theme Setting Area -->
-    <button
-      class="btn btn-primary theme-settings-btn p-0 position-fixed z-2 text-center rounded-circle"
-      style="
-        bottom: 24px;
-        right: 24px;
-        width: 56px;
-        height: 56px;
-        line-height: 54px;
-      "
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasScrolling"
-      aria-controls="offcanvasScrolling"
-    >
-      <i
-        class="text-white ri-settings-3-fill fs-28"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        data-bs-title="Click On Theme Settings"
-      ></i>
-    </button>
+    <!-- End Login Area -->
 
     <!-- Link Of JS File -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/sidebar-menu.js"></script>
-    <script src="assets/js/quill.min.js"></script>
-    <script src="assets/js/data-table.js"></script>
-    <script src="assets/js/prism.js"></script>
-    <script src="assets/js/clipboard.min.js"></script>
-    <script src="assets/js/simplebar.min.js"></script>
-    <script src="assets/js/apexcharts.min.js"></script>
-    <script src="assets/js/echarts.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/fullcalendar.main.js"></script>
-    <script src="assets/js/jsvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/custom/apexcharts.js"></script>
-    <script src="assets/js/custom/echarts.js"></script>
-    <script src="assets/js/custom/maps.js"></script>
     <script src="assets/js/custom/custom.js"></script>
   </body>
 </html>

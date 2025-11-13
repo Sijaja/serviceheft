@@ -49,7 +49,7 @@ public class Owner {
             @NotBlank @Size(min = 8) String password, int defaultCarId) {
         this.ownerId = ownerId;
         this.userName = userName;
-        this.photoId = photoId;
+        this.photoId = ownerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;

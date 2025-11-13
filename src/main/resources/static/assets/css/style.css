@@ -6338,6 +6338,10 @@ textarea.form-control-lg {
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
 }
+#clickable:hover {
+  transform: translateY(-1px);
+  transition: all 0.3s ease;
+}
 .card > hr {
   margin-right: 0;
   margin-left: 0;
