@@ -49,9 +49,10 @@
                 <a
                     href="index.html"
                     class="d-block text-decoration-none position-relative">
-                    <img src="assets/images/logo-icon.png" alt="logo-icon" />
+                    <img src="assets/images/logo-icon.png" alt="logo-icon"
+                        style="max-width: 40px" />
                     <span
-                        class="logo-text text-secondary fw-semibold">MDSH</span>
+                        class="logo-text text-secondary fw-semibold">AutoMate</span>
                 </a>
             </div>
 
@@ -64,10 +65,19 @@
                         <span class="menu-title-text">MAIN</span>
                     </li>
                     <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link">
+                        <a href="/mydashboard.html"
+                            class="menu-link">
                             <span
                                 class="material-symbols-outlined menu-icon">dashboard</span>
                             <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/car-selection.html"
+                            class="menu-link">
+                            <span
+                                class="material-symbols-outlined menu-icon">directions_car</span>
+                            <span class="title">Mein Autos</span>
                         </a>
                     </li>
                     <li class="menu-item">
@@ -97,7 +107,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="logout.html" class="menu-link">
+                        <a href="/logout" class="menu-link">
                             <span
                                 class="material-symbols-outlined menu-icon">logout</span>
                             <span class="title">Abmelden</span>
@@ -246,6 +256,33 @@
                     <!-- 1st row -->
                     <div id="carCardsContainer" class="row">
                         <!-- Car cards will be dynamically inserted here -->
+                        <div class="col-12" id="clickable"
+                            onclick="window.location.href='/add-car.html'"
+                            style="cursor: pointer">
+                            <div
+                                class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
+                                style="
+                                    background: linear-gradient(
+                                    101deg,
+                                    #1D546C 55.73%,
+                                    #0C2B4E 99.52%
+                                    );
+                                    padding: 30.5px 40px;
+                                ">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div
+                                            class="d-flex justify-content-center">
+                                            <img
+                                                src="assets/images/plus.png"
+                                                alt="Car Placeholder"
+                                                class="img-fluid"
+                                                style="max-width: 50px; align-self: center;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -255,9 +292,9 @@
                 <footer
                     class="footer-area bg-white text-center rounded-10 rounded-bottom-0">
                     <p class="fs-16 text-body">
-                        © <span class="text-secondary">MDSH</span> Mein
+                        © <span class="text-secondary">AutoMateAustria</span> Mein
                         digitaler
-                        Serviceheft proudly made by
+                        Serviceheft made by
                         <a
                             href="https://sijaja.dev/"
                             target="_blank"

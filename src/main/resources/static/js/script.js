@@ -511,7 +511,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadCarSelection();
   } catch (error) {
     console.error("Error loading default car:", error);
-    alert("Could not load default car data. Please select a car.");
   }
 });
 //load car selection cards for owner page dynamically
@@ -531,8 +530,8 @@ async function loadCarSelection() {
             style="
                 background: linear-gradient(
                 101deg,
-                #5040f4 55.73%,
-                #796df6 99.52%
+                #1D546C 55.73%,
+                #0C2B4E 99.52%
                 );
                 padding: 30.5px 40px;
             ">
@@ -568,7 +567,7 @@ async function loadCarSelection() {
         </div>
     </div>
     `;
-      container.insertAdjacentHTML("beforeend", cardHtml);
+      container.insertAdjacentHTML("afterbegin", cardHtml);
     });
   } catch (error) {
     console.error("Error fetching cars:", error);

@@ -21,8 +21,9 @@
         <link rel="icon" type="image/png" href="assets/images/favicon.png" />
 
         <!-- Title -->
-        <title>AutoMate | Dashboard</title>
+        <title>AutoMate | Mein Autos</title>
     </head>
+
     <body class="bg-body-bg">
         <!-- Start Preloader Area -->
         <div class="preloader" id="preloader">
@@ -249,252 +250,202 @@
                     </div>
                 </header>
                 <!-- End Header Area -->
-                <!-- Start Main Area -->
-                <div class="main-content-container overflow-hidden">
-                    <div class="row">
+
+                <!-- Start Main body Area -->
+                <div class="main-content-container rounded-10 overflow-hidden">
+                    <!-- 1st row -->
+                    <div id="addNewCar" class="row rounded-10">
                         <div class="col-12">
                             <div
-                                class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
-                                style="
-                                    background: linear-gradient(
-                                    101deg,
-                                    #1D546C 55.73%,
-                                    #0C2B4E 99.52%
-                                    );
-                                    padding: 30.5px 40px;
-                                ">
-                                <div class="row align-items-center">
-                                    <div class="col-sm-6 col-lg-7">
-                                        <h2
-                                            class="fs-26 fw-normal text-white mb-3">Welcome
-                                            <span class="fw-900"
-                                                id="ownerFirstName"></span></h2>
-                                        <p
-                                            class="fs-16 lh-1-8 hospital-content"
-                                            style="color: #cbc7ff; margin-bottom: 40px"
-                                            id="carInfos">
-                                        </p>
-                                        <div class="d-flex flex-wrap gap-3">
-                                            <!-- Erstzulassung -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-roadster-fill fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                            background-color: #c5cbff;
-                                                            color: #382c83;
-                                                            width: 36px;
-                                                            height: 36px;
-                                                            line-height: 36px;
-                                                        ">
-                                                    </i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Erstzulassung</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="makeYear">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Kilometerstand -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-dashboard-2-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Kilometerstand</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="kilometer">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Pickerl -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-calendar-close-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Pickerl
-                                                        bis</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="inspection">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-5">
-                                        <div
-                                            class="text-center text-sm-end mt-4 mt-sm-0"
-                                            style="margin-right: 30px">
-                                            <img
-                                                src="assets/images/carph.png"
-                                                alt="Car Placeholder"
-                                                class="img-fluid"
-                                                style="max-width: 250px" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 6th row -->
-                    <div class="row">
-                        <div class="col-xxl-12">
-                            <div
-                                class="card bg-white rounded-10 border border-white p-20 mb-0 rounded-bottom-0">
-                                <div
-                                    class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-20">
-                                    <h3>Yearly maintenance costs</h3>
-
-                                    <div
-                                        class="dropdown action-opt text-center">
-                                        <button
-                                            class="btn bg-transparent p-0"
-                                            type="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i
-                                                class="material-symbols-outlined fs-20">more_vert</i>
-                                        </button>
-                                        <ul
-                                            class="dropdown-menu dropdown-menu-end bg-white border-0 box-shadow">
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Day
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Week
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Month
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Year
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div style="margin: -29px -15px -26px -21px">
-                                    <div
-                                        id="top_browsing_pages_per_minute_chart"></div>
-                                </div>
+                                class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4 mt-1">
+                                <h3 class="mb-0">Auto hinzufügen</h3>
                             </div>
 
                             <div
-                                class="card bg-white rounded-10 border border-white p-0 mb-4 rounded-top">
-                                <div
-                                    class="default-table-area mx-minus-1 style-two table-browser-used for-width for-border-color1">
-                                    <div class="table-responsive">
-                                        <table class="table align-middle w-100">
-                                            <thead>
-                                                <tr>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Datum
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Beschreibung
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Kosten
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Kilometerstand
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Werkstatt
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="maintenanceTableBody">
-                                                <!-- Table rows will be dynamically added here -->
-                                            </tbody>
-                                        </table>
+                                class="card bg-white p-20 rounded-10 border border-white mb-4">
+                                <h3 class="mb-20">Fahrzeugdaten</h3>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Hersteller</label>
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="floatingInput1"
+                                                        placeholder="Hersteller">
+                                                    <label
+                                                        for="floatingInput1">Hersteller</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Model</label>
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="floatingInput2"
+                                                        placeholder="Model">
+                                                    <label
+                                                        for="floatingInput2">Model</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Erstzulassung</label>
+                                                <div class="form-floating">
+                                                    <input type="date"
+                                                        class="form-control"
+                                                        id="floatingInput3"
+                                                        placeholder="Erstzulassung">
+                                                    <label
+                                                        for="floatingInput3">Erstzulassung</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Fahrzeugtyp</label>
+                                                <div class="form-floating">
+                                                    <select
+                                                        class="form-select form-control"
+                                                        id="floatingSelect6"
+                                                        aria-label="Floating label select example">
+                                                        <option
+                                                            selected>Fahrzeugtyp</option>
+                                                        <option
+                                                            value="1">Cabrio/Roadster</option>
+                                                        <option
+                                                            value="2">Coupé</option>
+                                                        <option
+                                                            value="3">Kleinwagen</option>
+                                                        <option
+                                                            value="4">Kombi</option>
+                                                        <option
+                                                            value="5">SUV/Geländewagen</option>
+                                                        <option
+                                                            value="6">Van/Kleinbus</option>
+                                                    </select>
+                                                    <label
+                                                        for="floatingSelect6">Select</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Kilometerstand</label>
+                                                <div class="form-floating">
+                                                    <input type="email"
+                                                        class="form-control"
+                                                        id="floatingInput4"
+                                                        placeholder="Enter instructor name">
+                                                    <label
+                                                        for="floatingInput4">Kilometerstand</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Antrieb</label>
+                                                <div class="form-floating">
+                                                    <select
+                                                        class="form-select form-control"
+                                                        id="floatingSelect7"
+                                                        aria-label="Floating label select example">
+                                                        <option
+                                                            selected>Antrieb</option>
+                                                        <option
+                                                            value="1">Hinterradantrieb</option>
+                                                        <option
+                                                            value="2">Vorderradantrieb</option>
+                                                    </select>
+                                                    <label
+                                                        for="floatingSelect7">Select</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Treibstoff</label>
+                                                <div class="form-floating">
+                                                    <select
+                                                        class="form-select form-control"
+                                                        id="floatingSelect8"
+                                                        aria-label="Floating label select example">
+                                                        <option
+                                                            selected>Treibstoff</option>
+                                                        <option
+                                                            value="1">Benzin</option>
+                                                        <option
+                                                            value="2">Diesel</option>
+                                                        <option
+                                                            value="3">Hybrid</option>
+                                                        <option
+                                                            value="4">Electro</option>
+                                                    </select>
+                                                    <label
+                                                        for="floatingSelect8">Select</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Leistung
+                                                    (ps)</label>
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="floatingInput8"
+                                                        placeholder="Leistung (ps)">
+                                                    <label
+                                                        for="floatingInput8">Leistung
+                                                        (ps)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">VIN</label>
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="floatingInput5"
+                                                        placeholder="Fahrzeug-Identifizierungsnummer">
+                                                    <label
+                                                        for="floatingInput5">Fahrzeug-Identifizierungsnummer</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="d-flex gap-2">
+                                                <button type="button"
+                                                    class="btn btn-primary fw-normal text-white">+
+                                                    Auto hinzufügen</button>
+                                                <button type="button"
+                                                    class="btn btn-danger fw-normal text-white"
+                                                    data-bs-dismiss="modal">Abbrechen</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- End Main Area -->
+
                 <div class="flex-grow-1"></div>
 
                 <!-- Start Footer Area -->
