@@ -28,6 +28,7 @@ public class Cars {
     private int makeYear;
     private LocalDate inspectionExp;
     private int mileage;
+    
 
     public Cars() {
     }
