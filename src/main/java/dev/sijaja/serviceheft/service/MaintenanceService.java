@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
@@ -20,17 +22,21 @@ import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
+import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
 import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
 import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
 import dev.sijaja.serviceheft.repository.EngineCheckRepository;
 import dev.sijaja.serviceheft.repository.HvacCheckRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
+import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.TireCheckRepository;
 
 @Service
 public class MaintenanceService {
+
     private final MaintenanceRepository repo;
+    private final OwnerRepository ownerRepo;
     private final EngineCheckRepository engineRepo;
     private final BeltHoseCheckRepository beltRepo;
     private final BrakeCheckRepository brakeRepo;
@@ -38,10 +44,11 @@ public class MaintenanceService {
     private final ElectricCheckRepository electricRepo;
     private final HvacCheckRepository hvacRepo;
 
-    public MaintenanceService(MaintenanceRepository repo, EngineCheckRepository engineRepo,
+    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, EngineCheckRepository engineRepo,
             BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
             ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo) {
         this.repo = repo;
+        this.ownerRepo = ownerRepo;
         this.engineRepo = engineRepo;
         this.beltRepo = beltRepo;
         this.brakeRepo = brakeRepo;
@@ -66,11 +73,36 @@ public class MaintenanceService {
         repo.deleteById(id);
     }
 
+    public List<Maintenance> findMaintenancesForOwner(String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        return repo.findAllByOwnerId(owner.getOwnerId());
+    }
+
+    public Optional<List<Maintenance>> findMaintenanceForOwner(int carId, String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        List<Maintenance> list = repo.findByCarIdAndOwnerId(carId, owner.getOwnerId());
+        return list.isEmpty() ? Optional.empty() : Optional.of(list);
+    }
+
+    public Optional<Maintenance> findMaintenanceForOwnerbyMtncId(int mtncId, String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        return repo.findByMtncIdAndOwnerId(mtncId, owner.getOwnerId());
+    }
+
     public YearlyMaintenanceCostsDto getMaintenanceCostsByMonth(Integer carId, int year) {
         List<Maintenance> maintenances = repo.findByCarIdAndYear(carId, year);
 
         // Initialize month names
-        List<String> months = Arrays.asList("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+        List<String> months = Arrays.asList("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
         List<Double> monthlyTotals = new ArrayList<>(Collections.nCopies(12, 0.0));
         Map<String, List<Double>> typeBreakdown = new HashMap<>();
 
@@ -88,14 +120,14 @@ public class MaintenanceService {
     }
 
     public Map<Integer, Double> getYearlyTotals(int carId) {
-    List<Maintenance> maintenances = repo.findByCarId(carId);
-    Map<Integer, Double> yearlyTotals = new HashMap<>();
+        List<Maintenance> maintenances = repo.findByCarId(carId);
+        Map<Integer, Double> yearlyTotals = new HashMap<>();
 
-    for (Maintenance m : maintenances) {
-        int year = m.getMtncDate().getYear();
-        yearlyTotals.merge(year, m.getCost(), Double::sum);
-    }
-    return yearlyTotals;
+        for (Maintenance m : maintenances) {
+            int year = m.getMtncDate().getYear();
+            yearlyTotals.merge(year, m.getCost(), Double::sum);
+        }
+        return yearlyTotals;
     }
 
     public TotalCostDto getTotalAndAverageCost(int carId) {
@@ -108,44 +140,49 @@ public class MaintenanceService {
     public NextMaintenanceDto getNextMaintenance(int carId) {
         LocalDate today = LocalDate.now();
         return repo.findByCarId(carId).stream()
-            .filter(m -> m.getNextDate() != null && !m.getNextDate().isBefore(today)) // only future dates
-            .min(Comparator.comparing(Maintenance::getNextDate))
-            .map(m -> new NextMaintenanceDto(m.getNextDate(), m.getNextMileage()))
-            .orElse(new NextMaintenanceDto(null, null)); // nothing upcoming
+                .filter(m -> m.getNextDate() != null && !m.getNextDate().isBefore(today)) // only future dates
+                .min(Comparator.comparing(Maintenance::getNextDate))
+                .map(m -> new NextMaintenanceDto(m.getNextDate(), m.getNextMileage()))
+                .orElse(new NextMaintenanceDto(null, null)); // nothing upcoming
     }
 
     public List<ToBeReplacedDto> getToBeReplacedItems(int carId) {
-        
+
         List<ToBeReplacedDto> result = new ArrayList<>();
-        engineRepo.findCriticalByCarId(carId).forEach(e ->
-            result.add(new ToBeReplacedDto("Engine"))
+        engineRepo.findCriticalByCarId(carId).forEach(e
+                -> result.add(new ToBeReplacedDto("Engine"))
         );
 
-        beltRepo.findCriticalByCarId(carId).forEach(b ->
-            result.add(new ToBeReplacedDto("Belt & Hose"))
+        beltRepo.findCriticalByCarId(carId).forEach(b
+                -> result.add(new ToBeReplacedDto("Belt & Hose"))
         );
 
-        brakeRepo.findCriticalByCarId(carId).forEach(b ->
-            result.add(new ToBeReplacedDto("Brakes"))
+        brakeRepo.findCriticalByCarId(carId).forEach(b
+                -> result.add(new ToBeReplacedDto("Brakes"))
         );
 
-        tireRepo.findCriticalByCarId(carId).forEach(t ->
-            result.add(new ToBeReplacedDto("Tires"))
+        tireRepo.findCriticalByCarId(carId).forEach(t
+                -> result.add(new ToBeReplacedDto("Tires"))
         );
 
-        electricRepo.findCriticalByCarId(carId).forEach(e ->
-            result.add(new ToBeReplacedDto("Electric"))
+        electricRepo.findCriticalByCarId(carId).forEach(e
+                -> result.add(new ToBeReplacedDto("Electric"))
         );
 
-        hvacRepo.findCriticalByCarId(carId).forEach(h ->
-            result.add(new ToBeReplacedDto("HVAC"))
+        hvacRepo.findCriticalByCarId(carId).forEach(h
+                -> result.add(new ToBeReplacedDto("HVAC"))
         );
 
         return result;
     }
 
-    public List<MaintenanceTableDto> getMaintenanceTable(Integer carId) {
-        return repo.getMaintenanceTable(carId);
+    public Optional<List<MaintenanceTableDto>> getMaintenanceTable(Integer carId, String email) {
+        Owner owner = ownerRepo.findByEmail(email);
+        if (owner.getOwnerId() != ownerRepo.findOwnerIdByCarId(carId)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
+        }
+        List<MaintenanceTableDto> maintenanceTable = repo.getMaintenanceTable(carId);
+        return maintenanceTable.isEmpty() ? Optional.empty() : Optional.of(maintenanceTable);
     }
 
     public CostComparisonDto getCostComparison(int carId) {
@@ -153,8 +190,8 @@ public class MaintenanceService {
         Double othersAvg = repo.getAverageCostOfOtherCars(carId);
 
         return new CostComparisonDto(
-            myCarTotal != null ? myCarTotal : 0.0,
-            othersAvg != null ? othersAvg : 0.0
+                myCarTotal != null ? myCarTotal : 0.0,
+                othersAvg != null ? othersAvg : 0.0
         );
     }
 
@@ -163,8 +200,8 @@ public class MaintenanceService {
         Double othersAvg = repo.getAverageRepairCostForAll(carId);
 
         return new AverageCostComparisonDto(
-            myCarTotal != null ? myCarTotal : 0.0,
-            othersAvg != null ? othersAvg : 0.0
+                myCarTotal != null ? myCarTotal : 0.0,
+                othersAvg != null ? othersAvg : 0.0
         );
     }
 }

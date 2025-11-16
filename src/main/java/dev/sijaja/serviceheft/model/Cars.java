@@ -6,16 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="cars")
+@Table(name = "cars")
 public class Cars {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carId;
     private int photoId;
-    private int ownerId;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
     private String vinNumber;
     private String carColor;
     private String manufacturer;
@@ -27,17 +32,18 @@ public class Cars {
     public Cars() {
     }
 
-    public Cars(String carColor, int carId, LocalDate inspectionExp, int makeYear, String manufacturer, int mileage, String model, int ownerId, int photoId, String vinNumber) {
-        this.carColor = carColor;
+    public Cars(int carId, int photoId, Owner owner, String vinNumber, String carColor, String manufacturer,
+            String model, int makeYear, LocalDate inspectionExp, int mileage) {
         this.carId = carId;
-        this.inspectionExp = inspectionExp;
-        this.makeYear = makeYear;
-        this.manufacturer = manufacturer;
-        this.mileage = mileage;
-        this.model = model;
-        this.ownerId = ownerId;
         this.photoId = photoId;
+        this.owner = owner;
         this.vinNumber = vinNumber;
+        this.carColor = carColor;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.makeYear = makeYear;
+        this.inspectionExp = inspectionExp;
+        this.mileage = mileage;
     }
 
     public int getCarId() {
@@ -48,12 +54,12 @@ public class Cars {
         this.carId = carId;
     }
 
-    public int getOwnerId() {
-        return ownerId;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public String getVinNumber() {
