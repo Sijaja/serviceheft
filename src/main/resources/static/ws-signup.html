@@ -36,10 +36,19 @@
           <div
             class="card bg-white border rounded-10 border-white py-100 px-130"
           >
-            <div class="p-md-5 p-4 p-lg-0">
-              <div class="text-center mb-4">
-                <h3 class="fs-26 fw-medium" style="margin-bottom: 6px">
-                  Registrieren
+            <div class="row p-md-5 p-4 p-lg-0">
+              <div
+                  class="col-4 d-flex justify-content-center">
+                  <img
+                    src="assets/images/workshop.png"
+                    alt="Car Placeholder"
+                    class="img-fluid"
+                    style="max-width: 200px; align-self: center;" />
+                </div>
+              <div class="col-8 text-center mb-4"
+                    style="align-content: center;">
+                <h3 class="fs-26 fw-medium" style="margin-bottom: 2px">
+                  Werkstatt Registrieren
                 </h3>
                 <p class="fs-16 text-secondary lh-1-8">
                   Du hast schon ein AutoMate-Profil?
@@ -50,46 +59,22 @@
               </div>
 
               <form>
+                <!--name-->
                 <div class="mb-20">
-                  <label class="label fs-16 mb-2">Benutzername</label>
+                  <label class="label fs-16 mb-2">Werkstattname</label>
                   <div class="form-floating">
                     <input
                       type="text"
                       class="form-control"
-                      id="userName"
-                      placeholder="Benutzername eingeben *"
+                      id="workshopName"
+                      placeholder="Werkstattname eingeben *"
                     />
-                    <label for="floatingInput1"
-                      >Öffentlicher Benutzername *</label
+                    <label for="workshopName"
+                      >Werkstattname *</label
                     >
                   </div>
                 </div>
-                <div class="mb-20">
-                  <div class="row">
-                    <div class="col-6">
-                      <label class="label fs-16 mb-2">Vorname</label>
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          id="firstName"
-                          class="form-control text-secondary password"
-                          placeholder="Vorname"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <label class="label fs-16 mb-2">Nachname</label>
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          id="lastName"
-                          class="form-control text-secondary password"
-                          placeholder="Nachname"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <!--email-->
                 <div class="mb-20">
                   <label class="label fs-16 mb-2">Email Addresse</label>
                   <div class="form-floating">
@@ -99,11 +84,12 @@
                       id="email"
                       placeholder="Enter email address *"
                     />
-                    <label for="floatingInput2"
+                    <label for="email"
                       >Email Addresse eingeben *</label
                     >
                   </div>
                 </div>
+                <!--password-->
                 <div class="mb-20">
                   <label class="label fs-16 mb-2">Your Password</label>
                   <div class="form-group">
@@ -124,20 +110,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="mb-20">
-                  <label class="label fs-16 mb-2">Geburtsdatum</label>
-                  <div class="form-group">
-                    <div
-                      class="password-wrapper position-relative password-container"
-                    >
-                      <input
-                        type="date"
-                        id="dateOfBirth"
-                        class="form-control text-secondary password"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <!--Address-->
                 <div class="mb-20">
                   <label class="label fs-16 mb-2">Addresse</label>
                   <div class="row">
@@ -196,6 +169,33 @@
                     </div>
                   </div>
                 </div>
+                <!--website + telephon-->
+                <div class="mb-20">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          id="website"
+                          class="form-control text-secondary password"
+                          placeholder="Webseite"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          id="phoneNumber"
+                          class="form-control text-secondary password"
+                          placeholder="Telephone"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <!--AGB-->
                 <div class="mb-20">
                   <div class="form-check">
                     <input
@@ -216,13 +216,13 @@
                     </label>
                   </div>
                 </div>
-
+                <!--submit button-->
                 <div class="mb-4">
                   <button
                     type="submit"
                     class="btn btn-primary fw-normal text-white w-100"
                     style="padding-top: 18px; padding-bottom: 18px"
-                    onclick="addOwner()"
+                    onclick="addWorkshop()"
                   >
                     Sign Up
                   </button>

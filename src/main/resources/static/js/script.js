@@ -236,6 +236,7 @@ async function loadYearlyApexChart(carId) {
       },
       fill: {
         opacity: 1,
+        colors: "#1D546C",
       },
 
       grid: {

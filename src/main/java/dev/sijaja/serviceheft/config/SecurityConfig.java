@@ -20,9 +20,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         return http
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/presignup.html", "/signup", "/css/**", "/assets/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/login", "/presignup.html", "/signup", "/ws-signup.html", "/css/**", "/assets/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/owners").permitAll()
                 .anyRequest().authenticated()
                 )

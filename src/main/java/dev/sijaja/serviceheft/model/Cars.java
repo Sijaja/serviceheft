@@ -2,7 +2,10 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
+import dev.sijaja.serviceheft.model.enums.CarType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,13 +31,14 @@ public class Cars {
     private int makeYear;
     private LocalDate inspectionExp;
     private int mileage;
-    
+    @Enumerated(EnumType.STRING)
+    private CarType carType;
 
     public Cars() {
     }
 
     public Cars(int carId, int photoId, Owner owner, String vinNumber, String carColor, String manufacturer,
-            String model, int makeYear, LocalDate inspectionExp, int mileage) {
+            String model, int makeYear, LocalDate inspectionExp, int mileage, CarType carType) {
         this.carId = carId;
         this.photoId = photoId;
         this.owner = owner;
@@ -45,6 +49,7 @@ public class Cars {
         this.makeYear = makeYear;
         this.inspectionExp = inspectionExp;
         this.mileage = mileage;
+        this.carType = carType;
     }
 
     public int getCarId() {
@@ -125,5 +130,13 @@ public class Cars {
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 }

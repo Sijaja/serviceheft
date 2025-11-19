@@ -40,7 +40,7 @@ public class CarService {
     }
 
     public List<Cars> findCarsForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -48,7 +48,7 @@ public class CarService {
     }
 
     public Optional<Cars> findCarForOwner(int carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -56,7 +56,7 @@ public class CarService {
     }
 
     public Cars getDefaultCarForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -66,7 +66,7 @@ public class CarService {
     }
 
     public void setDefaultCar(String email, int carId) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }

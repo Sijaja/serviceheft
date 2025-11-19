@@ -74,7 +74,7 @@ public class MaintenanceService {
     }
 
     public List<Maintenance> findMaintenancesForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -82,7 +82,7 @@ public class MaintenanceService {
     }
 
     public Optional<List<Maintenance>> findMaintenanceForOwner(int carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -91,7 +91,7 @@ public class MaintenanceService {
     }
 
     public Optional<Maintenance> findMaintenanceForOwnerbyMtncId(int mtncId, String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -177,7 +177,7 @@ public class MaintenanceService {
     }
 
     public Optional<List<MaintenanceTableDto>> getMaintenanceTable(Integer carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email);
+        Owner owner = ownerRepo.findByEmail(email).orElse(null);
         if (owner.getOwnerId() != ownerRepo.findOwnerIdByCarId(carId)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
