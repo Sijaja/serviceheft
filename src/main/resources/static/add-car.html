@@ -273,10 +273,10 @@
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput1"
+                                                        id="manufacturer"
                                                         placeholder="Hersteller">
                                                     <label
-                                                        for="floatingInput1">Hersteller</label>
+                                                        for="manufacturer">Hersteller</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,10 +287,10 @@
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput2"
+                                                        id="model"
                                                         placeholder="Model">
                                                     <label
-                                                        for="floatingInput2">Model</label>
+                                                        for="model">Model</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -299,12 +299,14 @@
                                                 <label
                                                     class="label fs-16 mb-2">Erstzulassung</label>
                                                 <div class="form-floating">
-                                                    <input type="date"
+                                                    <input type="number"
+                                                        min="1950" max="2026"
+                                                        step="1" value="2025"
                                                         class="form-control"
-                                                        id="floatingInput3"
-                                                        placeholder="Erstzulassung">
+                                                        id="makeYear"
+                                                        placeholder="Erstzulassung" />
                                                     <label
-                                                        for="floatingInput3">Erstzulassung</label>
+                                                        for="makeYear">Erstzulassung</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +317,7 @@
                                                 <div class="form-floating">
                                                     <select
                                                         class="form-select form-control"
-                                                        id="floatingSelect6"
+                                                        id="carType"
                                                         aria-label="Floating label select example">
                                                         <option
                                                             selected>Fahrzeugtyp</option>
@@ -337,7 +339,7 @@
                                                             value="OTHER">anderes</option>
                                                     </select>
                                                     <label
-                                                        for="floatingSelect6">Select</label>
+                                                        for="carType">Select</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,10 +350,10 @@
                                                 <div class="form-floating">
                                                     <input type="email"
                                                         class="form-control"
-                                                        id="floatingInput4"
+                                                        id="mileage"
                                                         placeholder="Enter instructor name">
                                                     <label
-                                                        for="floatingInput4">Kilometerstand</label>
+                                                        for="mileage">Kilometerstand</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -425,10 +427,10 @@
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput5"
+                                                        id="vinNumber"
                                                         placeholder="Fahrzeug-Identifizierungsnummer">
                                                     <label
-                                                        for="floatingInput5">Fahrzeug-Identifizierungsnummer</label>
+                                                        for="vinNumber">Fahrzeug-Identifizierungsnummer</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -436,7 +438,8 @@
                                         <div class="col-lg-12">
                                             <div class="d-flex gap-2">
                                                 <button type="button"
-                                                    class="btn btn-primary fw-normal text-white">+
+                                                    class="btn btn-primary fw-normal text-white"
+                                                    onclick="addCar()">+
                                                     Auto hinzufügen</button>
                                                 <button type="button"
                                                     class="btn btn-danger fw-normal text-white"
@@ -492,6 +495,6 @@
         <script src="assets/js/custom/custom.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="/js/script.js"></script>
+        <script src="/js/addCar.js"></script>
     </body>
 </html>

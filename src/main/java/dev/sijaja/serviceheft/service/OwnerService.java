@@ -4,46 +4,28 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.sijaja.serviceheft.dto.OwnerSignupDto;
 import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
+import dev.sijaja.serviceheft.model.enums.UserRole;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
+import dev.sijaja.serviceheft.repository.UserRepository;
 
 @Service
-public class OwnerService implements UserDetailsService {
+public class OwnerService {
 
     @Autowired
     private final OwnerRepository repo;
+    private final UserRepository userRepo;
+    private final PasswordEncoder encoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Owner owner = repo.findByEmail(email).orElse(null);
-        if (owner == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-        return User.builder()
-                .username(owner.getEmail())
-                .password(owner.getPassword())
-                .roles("OWNER")
-                .build();
-    }
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public Owner registerOwner(Owner owner) {
-        String encodedPassword = passwordEncoder.encode(owner.getPassword());
-        owner.setPassword(encodedPassword);
-        return repo.save(owner);
-    }
-
-    public OwnerService(OwnerRepository repo) {
+    public OwnerService(OwnerRepository repo, UserRepository userRepo, PasswordEncoder encoder) {
         this.repo = repo;
+        this.userRepo = userRepo;
+        this.encoder = encoder;
     }
 
     public List<Owner> getAll() {
@@ -55,7 +37,6 @@ public class OwnerService implements UserDetailsService {
     }
 
     public Owner save(Owner owner) {
-        owner.setPassword(passwordEncoder.encode(owner.getPassword()));
         return repo.save(owner);
     }
 
@@ -63,7 +44,29 @@ public class OwnerService implements UserDetailsService {
         repo.deleteById(id);
     }
 
-    public Owner findByEmail(String email) {
-        return repo.findByEmail(email).orElse(null);
+    public Owner findByUserId(int id) {
+        return repo.findByUserUserId(id).orElse(null);
+    }
+
+    public Owner registerOwner(OwnerSignupDto dto) {
+
+        User user = new User();
+        user.setEmail(dto.getEmail());
+        user.setPassword(encoder.encode(dto.getPassword()));
+        user.setRole(UserRole.OWNER);
+
+        user = userRepo.save(user);
+
+        Owner owner = new Owner();
+        owner.setUser(user);
+        owner.setUserName(dto.getUserName());
+        owner.setFirstName(dto.getFirstName());
+        owner.setLastName(dto.getLastName());
+        owner.setStreet(dto.getStreet());
+        owner.setHouseNumber(dto.getHouseNumber());
+        owner.setCity(dto.getCity());
+        owner.setDateOfBirth(dto.getDateOfBirth());
+
+        return repo.save(owner);
     }
 }

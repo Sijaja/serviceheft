@@ -2,17 +2,14 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="owners")
@@ -29,35 +26,25 @@ public class Owner {
     private String street;
     private int houseNumber;
     private String city;
-    @NotBlank
-    @Column(nullable = false, unique = true)
-    @Email
-    private String email;
-
-    @NotBlank
-    @Size(min = 8)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(nullable = false)
-    private String password;
     private int defaultCarId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Owner() {
     }
 
-    public Owner(int ownerId, @NotBlank String userName, int photoId, String firstName, String lastName,
-            LocalDate dateOfBirth, String street, int houseNumber, String city, @NotBlank @Email String email,
-            @NotBlank @Size(min = 8) String password, int defaultCarId) {
+    public Owner(int ownerId, String userName, int photoId, String firstName, String lastName, LocalDate dateOfBirth,
+            String street, int houseNumber, String city, String email, String password, int defaultCarId) {
         this.ownerId = ownerId;
         this.userName = userName;
-        this.photoId = ownerId;
+        this.photoId = photoId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.street = street;
         this.houseNumber = houseNumber;
         this.city = city;
-        this.email = email;
-        this.password = password;
         this.defaultCarId = defaultCarId;
     }
 
@@ -133,22 +120,6 @@ public class Owner {
         this.city = city;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getDefaultCarId() {
         return defaultCarId;
     }
@@ -157,5 +128,12 @@ public class Owner {
         this.defaultCarId = defaultCarId;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

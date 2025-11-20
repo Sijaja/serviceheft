@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.service.CarService;
+import dev.sijaja.serviceheft.service.OwnerService;
+import dev.sijaja.serviceheft.service.UserService;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -24,9 +28,13 @@ import dev.sijaja.serviceheft.service.CarService;
 public class CarController {
 
     private final CarService service;
+    private final UserService userService;
+    private final OwnerService ownerService;
 
-    public CarController(CarService service) {
+    public CarController(CarService service, UserService userAccountRepo, OwnerService ownerRepo) {
         this.service = service;
+        this.userService = userAccountRepo;
+        this.ownerService = ownerRepo;
     }
 
     @GetMapping
@@ -35,8 +43,13 @@ public class CarController {
     }
 
     @PostMapping
-    public Cars create(@RequestBody Cars c) {
-        return service.save(c);
+    public ResponseEntity<?> create(@RequestBody Cars c, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        c.setOwner(owner);
+        Cars saved = service.save(c);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")

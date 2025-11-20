@@ -9,18 +9,22 @@ import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.repository.CarRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
+import dev.sijaja.serviceheft.repository.UserRepository;
 
 @Service
 public class CarService {
 
     private final CarRepository repo;
     private final OwnerRepository ownerRepo;
+    private final UserRepository userRepo;
 
-    public CarService(CarRepository repo, OwnerRepository ownerRepo) {
+    public CarService(CarRepository repo, OwnerRepository ownerRepo, UserRepository userRepo) {
         this.repo = repo;
         this.ownerRepo = ownerRepo;
+        this.userRepo = userRepo;
     }
 
     public List<Cars> getAll() {
@@ -40,7 +44,11 @@ public class CarService {
     }
 
     public List<Cars> findCarsForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -48,7 +56,11 @@ public class CarService {
     }
 
     public Optional<Cars> findCarForOwner(int carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -56,7 +68,11 @@ public class CarService {
     }
 
     public Cars getDefaultCarForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -66,7 +82,11 @@ public class CarService {
     }
 
     public void setDefaultCar(String email, int carId) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }

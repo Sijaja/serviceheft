@@ -13,6 +13,8 @@ async function getCar(carId) {
     loadNextMtncDate(carId);
     loadTotalCost(carId);
     loadMaintenanceTable(carId);
+    document.getElementById("myImage").src =
+      "assets/images/" + car.carType + ".png" || "assets/images/other.png";
     document.getElementById("makeYear").innerText = car.makeYear || "----";
     document.getElementById("kilometer").innerText = car.mileage || "----";
     document.getElementById("inspection").innerText =
@@ -493,16 +495,18 @@ async function loadCarHealth(carId) {
 // Initial load for car and owner with dynamic ID
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("/api/cars/default");
-    if (!res.ok) throw new Error("No default car set");
-    const defaultCar = await res.json();
-    const defaultCarId = defaultCar.carId;
-    const ownerId = defaultCar.owner.ownerId;
+    const user = await fetch("/api/user");
+    if (!user.ok) throw new Error("No user logged in yet");
+    const loggedUser = await user.json();
+    const owner = await fetch(`/api/owners/${loggedUser.id}`);
+    if (!owner.ok) throw new Error("No owner found");
+    const ownerData = await owner.json();
+    const defaultCarId = ownerData.defaultCarId;
     console.log("Default car ID:", defaultCarId);
-    console.log("Owner ID:", ownerId);
-    console.log(defaultCar);
+    console.log("Owner ID:", loggedUser.id);
+    console.log(defaultCarId);
     getCar(defaultCarId);
-    getOwner(ownerId);
+    getOwner(loggedUser.id);
     loadCostComparison(defaultCarId);
     loadAverageCostComparison(defaultCarId);
     loadYearlyChart(defaultCarId);
@@ -558,7 +562,7 @@ async function loadCarSelection() {
                         class="text-center text-sm-end mt-4 mt-sm-0"
                         style="margin-right: 30px">
                         <img
-                            src="assets/images/carph.png"
+                            src="assets/images/${car.carType}.png"
                             alt="Car Placeholder"
                             class="img-fluid"
                             style="max-width: 150px" />

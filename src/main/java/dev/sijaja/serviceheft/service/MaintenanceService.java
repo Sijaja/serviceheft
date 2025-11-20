@@ -23,6 +23,7 @@ import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
 import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
 import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
 import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
@@ -31,6 +32,7 @@ import dev.sijaja.serviceheft.repository.HvacCheckRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.TireCheckRepository;
+import dev.sijaja.serviceheft.repository.UserRepository;
 
 @Service
 public class MaintenanceService {
@@ -43,10 +45,11 @@ public class MaintenanceService {
     private final TireCheckRepository tireRepo;
     private final ElectricCheckRepository electricRepo;
     private final HvacCheckRepository hvacRepo;
+    private final UserRepository userRepo;
 
     public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, EngineCheckRepository engineRepo,
             BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
-            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo) {
+            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo, UserRepository userRepo) {
         this.repo = repo;
         this.ownerRepo = ownerRepo;
         this.engineRepo = engineRepo;
@@ -55,6 +58,7 @@ public class MaintenanceService {
         this.tireRepo = tireRepo;
         this.electricRepo = electricRepo;
         this.hvacRepo = hvacRepo;
+        this.userRepo = userRepo;
     }
 
     public List<Maintenance> getAll() {
@@ -74,7 +78,11 @@ public class MaintenanceService {
     }
 
     public List<Maintenance> findMaintenancesForOwner(String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -82,7 +90,11 @@ public class MaintenanceService {
     }
 
     public Optional<List<Maintenance>> findMaintenanceForOwner(int carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -91,7 +103,11 @@ public class MaintenanceService {
     }
 
     public Optional<Maintenance> findMaintenanceForOwnerbyMtncId(int mtncId, String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }
@@ -177,7 +193,11 @@ public class MaintenanceService {
     }
 
     public Optional<List<MaintenanceTableDto>> getMaintenanceTable(Integer carId, String email) {
-        Owner owner = ownerRepo.findByEmail(email).orElse(null);
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Owner owner = ownerRepo.findByUserUserId(user.getUserId()).orElse(null);
         if (owner.getOwnerId() != ownerRepo.findOwnerIdByCarId(carId)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Owner not found");
         }

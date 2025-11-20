@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,7 +25,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/presignup.html", "/signup", "/ws-signup.html", "/css/**", "/assets/**", "/js/**", "/images/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/owners").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/owners", "/api/workshops").permitAll()
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -32,7 +33,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/car-selection.html", true)
+                .defaultSuccessUrl("/default", true)
                 .failureUrl("/login?error=true")
                 .permitAll()
                 )
@@ -41,8 +42,10 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login?logout=true")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .permitAll())
+                .permitAll()
+                )
                 .csrf(csrf -> csrf.disable())
+                .httpBasic(withDefaults()) // <—— das ist korrekt
                 .build();
     }
 

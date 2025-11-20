@@ -1,51 +1,31 @@
-package dev.sijaja.serviceheft.model;
+package dev.sijaja.serviceheft.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import dev.sijaja.serviceheft.model.enums.UserRole;
 
-@Entity
-@Table(name = "workshops")
-public class Workshop {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int workshopId;
+public class WorkshopSignupDto {
     private String workshopName;
+    private String email;
+    private String password;
     private String street;
     private int houseNumber;
     private String city;
     private String phoneNumber;
     private String website;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private UserRole role;
 
-    public Workshop() {
+    public WorkshopSignupDto() {
     }
 
-    public Workshop(int workshopId, String workshopName, String street, int houseNumber, String city,
-            String phoneNumber, String website, User user) {
-        this.workshopId = workshopId;
-        this.workshopName = workshopName;
-        this.street = street;
-        this.houseNumber = houseNumber;
+    public WorkshopSignupDto(String city, String email, int houseNumber, String password, String phoneNumber, UserRole role, String street, String website, String workshopName) {
         this.city = city;
+        this.email = email;
+        this.houseNumber = houseNumber;
+        this.password = password;
         this.phoneNumber = phoneNumber;
+        this.role = UserRole.WORKSHOP;
+        this.street = street;
         this.website = website;
-        this.user = user;
-    }
-
-    public int getWorkshopId() {
-        return workshopId;
-    }
-
-    public void setWorkshopId(int workshopId) {
-        this.workshopId = workshopId;
+        this.workshopName = workshopName;
     }
 
     public String getWorkshopName() {
@@ -54,6 +34,22 @@ public class Workshop {
 
     public void setWorkshopName(String workshopName) {
         this.workshopName = workshopName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getStreet() {
@@ -96,12 +92,14 @@ public class Workshop {
         this.website = website;
     }
 
-    public User getUser() {
-        return user;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
+
+    
 
 }
