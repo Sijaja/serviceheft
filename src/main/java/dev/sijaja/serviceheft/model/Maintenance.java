@@ -3,6 +3,7 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
+import ch.qos.logback.core.status.Status;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Type;
 import jakarta.persistence.Entity;
@@ -27,36 +28,43 @@ public class Maintenance {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
-    private int workshopId;
+    @ManyToOne
+    @JoinColumn(name = "workshop_id")
+    private Workshop workshop;
     @Enumerated(EnumType.STRING)
     private Condition carCondition;
     private String inspectionNotes;
-    private LocalDate mtncDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int currentMileage;
     private int nextMileage;
     private LocalDate nextDate;
     private double cost;
     @Enumerated(EnumType.STRING)
     private Type mtncType;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Maintenance() {
     }
 
-    public Maintenance(int mtncId, Cars car, Owner owner, int workshopId, Condition carCondition,
-            String inspectionNotes, LocalDate mtncDate, int currentMileage, int nextMileage, LocalDate nextDate,
-            double cost, Type mtncType) {
+    public Maintenance(int mtncId, Cars car, Owner owner, Workshop workshop, Condition carCondition,
+            String inspectionNotes, LocalDate startDate, LocalDate endDate, int currentMileage, int nextMileage,
+            LocalDate nextDate, double cost, Type mtncType, Status status) {
         this.mtncId = mtncId;
         this.car = car;
         this.owner = owner;
-        this.workshopId = workshopId;
+        this.workshop = workshop;
         this.carCondition = carCondition;
         this.inspectionNotes = inspectionNotes;
-        this.mtncDate = mtncDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.currentMileage = currentMileage;
         this.nextMileage = nextMileage;
         this.nextDate = nextDate;
         this.cost = cost;
         this.mtncType = mtncType;
+        this.status = status;
     }
 
     public int getMtncId() {
@@ -75,14 +83,6 @@ public class Maintenance {
         this.car = car;
     }
 
-    public int getWorkshopId() {
-        return workshopId;
-    }
-
-    public void setWorkshopId(int workshopId) {
-        this.workshopId = workshopId;
-    }
-
     public Condition getCarCondition() {
         return carCondition;
     }
@@ -97,14 +97,6 @@ public class Maintenance {
 
     public void setInspectionNotes(String inspectionNotes) {
         this.inspectionNotes = inspectionNotes;
-    }
-
-    public LocalDate getMtncDate() {
-        return mtncDate;
-    }
-
-    public void setMtncDate(LocalDate mtncDate) {
-        this.mtncDate = mtncDate;
     }
 
     public int getCurrentMileage() {
@@ -155,5 +147,36 @@ public class Maintenance {
         this.owner = owner;
     }
 
+    public Workshop getWorkshop() {
+        return workshop;
+    }
+
+    public void setWorkshop(Workshop workshop) {
+        this.workshop = workshop;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 
 }

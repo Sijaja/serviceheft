@@ -123,7 +123,7 @@ public class MaintenanceService {
         Map<String, List<Double>> typeBreakdown = new HashMap<>();
 
         for (Maintenance m : maintenances) {
-            int monthIndex = m.getMtncDate().getMonthValue() - 1;
+            int monthIndex = m.getEndDate().getMonthValue() - 1;
             monthlyTotals.set(monthIndex, monthlyTotals.get(monthIndex) + m.getCost());
 
             // breakdown by type
@@ -140,7 +140,7 @@ public class MaintenanceService {
         Map<Integer, Double> yearlyTotals = new HashMap<>();
 
         for (Maintenance m : maintenances) {
-            int year = m.getMtncDate().getYear();
+            int year = m.getEndDate().getYear();
             yearlyTotals.merge(year, m.getCost(), Double::sum);
         }
         return yearlyTotals;

@@ -25,7 +25,7 @@ public class AuthViewController {
         if (request.isUserInRole("OWNER")) {
             return "redirect:/car-selection.html";
         } else if (request.isUserInRole("WORKSHOP")) {
-            return "redirect:/workshop-dashboard.html";
+            return "redirect:/workshop/wsdashboard.html";
         }
         return new String();
     }
