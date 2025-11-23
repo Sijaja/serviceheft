@@ -8,21 +8,22 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Links Of CSS File -->
-        <link rel="stylesheet" href="assets/css/sidebar-menu.css" />
-        <link rel="stylesheet" href="assets/css/simplebar.css" />
-        <link rel="stylesheet" href="assets/css/prism.css" />
-        <link rel="stylesheet" href="assets/css/quill.snow.css" />
-        <link rel="stylesheet" href="assets/css/remixicon.css" />
-        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="assets/css/jsvectormap.min.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/sidebar-menu.css" />
+        <link rel="stylesheet" href="../assets/css/simplebar.css" />
+        <link rel="stylesheet" href="../assets/css/prism.css" />
+        <link rel="stylesheet" href="../assets/css/quill.snow.css" />
+        <link rel="stylesheet" href="../assets/css/remixicon.css" />
+        <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="../assets/css/jsvectormap.min.css" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+        <link rel="icon" type="image/png" href="../assets/images/logo-icon.png" />
 
         <!-- Title -->
-        <title>AutoMate | Dashboard</title>
+        <title>AutoMate | Auftrag hinzufügen</title>
     </head>
+
     <body class="bg-body-bg">
         <!-- Start Preloader Area -->
         <div class="preloader" id="preloader">
@@ -48,7 +49,7 @@
                 <a
                     href="index.html"
                     class="d-block text-decoration-none position-relative">
-                    <img src="assets/images/logo-icon.png" alt="logo-icon"
+                    <img src="../assets/images/logo-icon.png" alt="logo-icon"
                         style="max-width: 40px" />
                     <span
                         class="logo-text text-secondary fw-semibold">AutoMate</span>
@@ -167,7 +168,7 @@
                                                     <img
                                                         class="rounded-circle admin-img-width-for-mobile"
                                                         style="width: 40px; height: 40px"
-                                                        src="assets/images/admin.png"
+                                                        src="../assets/images/admin.png"
                                                         alt="admin" />
                                                     <span
                                                         class="d-block bg-success-60 border border-2 border-white rounded-circle position-absolute end-0 bottom-0"
@@ -183,7 +184,7 @@
                                                         <img
                                                             class="rounded-circle admin-img-width-for-mobile"
                                                             style="width: 40px; height: 40px"
-                                                            src="assets/images/admin.png"
+                                                            src="../assets/images/admin.png"
                                                             alt="profilbild" />
                                                     </div>
                                                     <div
@@ -249,214 +250,85 @@
                     </div>
                 </header>
                 <!-- End Header Area -->
-                <!-- Start Main Area -->
-                <div class="main-content-container overflow-hidden">
-                    <div class="row">
-                        <div class="col-12">
-                            <div
-                                class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
-                                style="
-                                    background: linear-gradient(
-                                    101deg,
-                                    #1D546C 55.73%,
-                                    #0C2B4E 99.52%
-                                    );
-                                    padding: 30.5px 40px;
-                                ">
-                                <div class="row align-items-center">
-                                    <div class="col-sm-6 col-lg-7">
-                                        <h2
-                                            class="fs-26 fw-normal text-white mb-3">Welcome
-                                            <span class="fw-900"
-                                                id="ownerFirstName"></span></h2>
-                                        <p
-                                            class="fs-16 lh-1-8 hospital-content"
-                                            style="color: #cbc7ff; margin-bottom: 40px"
-                                            id="carInfos">
-                                        </p>
-                                        <div class="d-flex flex-wrap gap-3">
-                                            <!-- Erstzulassung -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-roadster-fill fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                            background-color: #c5cbff;
-                                                            color: #382c83;
-                                                            width: 36px;
-                                                            height: 36px;
-                                                            line-height: 36px;
-                                                        ">
-                                                    </i>
+
+                <!-- Start Main body Area -->
+                <div class="main-content-container rounded-10 overflow-hidden">
+                    <!-- 1st row -->
+                    <div class="col-12">
+                        <div class="card bg-white border border-white rounded-10 mb-4">
+                            <div class="card-body p-20">
+                                <h4 class="fs-18 fw-medium mb-20">Wartungsarbeit hinzufügen</h4>
+                                <form>
+                                    <ul class="nav nav-tabs mb-4" id="myTab4" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="Riemen-tab" data-bs-toggle="tab" data-bs-target="#Riemen-pane" type="button" role="tab" aria-controls="Riemen-pane" aria-selected="true">Riemen- und Schlauchkontrolle</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Karosseriekontrolle-tab" data-bs-toggle="tab" data-bs-target="#Karosseriekontrolle-pane" type="button" role="tab" aria-controls="Karosseriekontrolle-pane" aria-selected="false">Karosseriekontrolle</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Bremsenkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Bremsenkontrolle-pane" type="button" role="tab" aria-controls="Bremsenkontrolle-pane" aria-selected="false">Bremsenkontrolle</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Elektrikdiagnose-tab" data-bs-toggle="tab" data-bs-target="#Elektrikdiagnose-pane" type="button" role="tab" aria-controls="Elektrikdiagnose-pane" aria-selected="false">Elektrikdiagnose</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Abgasdiagnose-tab" data-bs-toggle="tab" data-bs-target="#Abgasdiagnose-pane" type="button" role="tab" aria-controls="Abgasdiagnose-pane" aria-selected="false">Abgasdiagnose</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Motordiagnose-tab" data-bs-toggle="tab" data-bs-target="#Motordiagnose-pane" type="button" role="tab" aria-controls="Motordiagnose-pane" aria-selected="false">Motordiagnose</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Filterkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Filterkontrolle-pane" type="button" role="tab" aria-controls="Filterkontrolle-pane" aria-selected="false">Filterkontrolle</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Klima-tab" data-bs-toggle="tab" data-bs-target="#Klima-pane" type="button" role="tab" aria-controls="Klima-pane" aria-selected="false">Klima-/Lüftungsservice</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Rostkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Rostkontrolle-pane" type="button" role="tab" aria-controls="Rostkontrolle-pane" aria-selected="false">Rostkontrolle</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="Reifenkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Reifenkontrolle-pane" type="button" role="tab" aria-controls="Reifenkontrolle-pane" aria-selected="false">Reifenkontrolle</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTab4Content">
+                                        <div class="tab-pane fade show active" id="Riemen-pane" role="tabpanel" aria-labelledby="Riemen-tab" tabindex="0">
+                                            <div class="mb-20">
+                                                <label class="label fs-16 mb-2">Riemen</label>
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="Riemen-input" placeholder="Riemen eingeben">
+                                                    <label for="floatingInput12">Riemen</label>
                                                 </div>
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Erstzulassung</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="makeYear">
-                                                        </h2>
+                                            </div>
+                                            <div class="mb-20">
+                                                <label class="label fs-16 mb-2">Password</label>
+                                                <div class="form-group" id="password-show-hide">
+                                                    <div class="password-wrapper position-relative password-container">
+                                                        <input type="password" class="form-control text-secondary password" placeholder="Enter password *">
+                                                        <i style="color: #A9A9C8; font-size: 22px; right: 15px;" class="ri-eye-off-line password-toggle-icon translate-middle-y top-50 position-absolute cursor text-secondary" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Kilometerstand -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-dashboard-2-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Kilometerstand</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="kilometer">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Pickerl -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-calendar-close-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Pickerl
-                                                        bis</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="inspection">
-                                                        </h2>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-20">
+                                                <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">Sign In</button>
                                             </div>
                                         </div>
+                                        <div class="tab-pane fade" id="Karosseriekontrolle-pane" role="tabpanel" aria-labelledby="Karosseriekontrolle-tab" tabindex="0">Karosseriekontrolle</div>
+                                        <div class="tab-pane fade" id="Bremsenkontrolle-pane" role="tabpanel" aria-labelledby="Bremsenkontrolle-tab" tabindex="0">Bremsenkontrolle</div>
+                                        <div class="tab-pane fade" id="Elektrikdiagnose-pane" role="tabpanel" aria-labelledby="Elektrikdiagnose-tab" tabindex="0">Elektrikdiagnose</div>
+                                        <div class="tab-pane fade" id="Abgasdiagnose-pane" role="tabpanel" aria-labelledby="Abgasdiagnose-tab" tabindex="0">Abgasdiagnose</div>
+                                        <div class="tab-pane fade" id="Motordiagnose-pane" role="tabpanel" aria-labelledby="Motordiagnose-tab" tabindex="0">Motordiagnose</div>
+                                        <div class="tab-pane fade" id="Filterkontrolle-pane" role="tabpanel" aria-labelledby="Filterkontrolle-tab" tabindex="0">Filterkontrolle</div>
+                                        <div class="tab-pane fade" id="Klima-pane" role="tabpanel" aria-labelledby="Klima-tab" tabindex="0">Klima</div>
+                                        <div class="tab-pane fade" id="Rostkontrolle-pane" role="tabpanel" aria-labelledby="Rostkontrolle-tab" tabindex="0">Rostkontrolle</div>
+                                        <div class="tab-pane fade" id="Reifenkontrolle-pane" role="tabpanel" aria-labelledby="Reifenkontrolle-tab" tabindex="0">Reifenkontrolle</div>
                                     </div>
-                                    <div class="col-sm-6 col-lg-5">
-                                        <div
-                                            class="text-center text-sm-end mt-4 mt-sm-0"
-                                            style="margin-right: 30px">
-                                            <img
-                                                id="myImage"
-                                                src="assets/images/other.png"
-                                                alt="Car Placeholder"
-                                                class="img-fluid"
-                                                style="max-width: 250px" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 6th row -->
-                    <div class="row">
-                        <div class="col-xxl-12">
-                            <div
-                                class="card bg-white rounded-10 border border-white p-20 mb-0 rounded-bottom-0">
-                                <div
-                                    class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-20">
-                                    <h3>Jährliche Wartungskosten</h3>
-                                </div>
-
-                                <div style="margin: -29px -15px -26px -21px">
-                                    <div
-                                        id="yearly_apex_chart"></div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="card bg-white rounded-10 border border-white p-0 mb-4 rounded-top">
-                                <div
-                                    class="default-table-area mx-minus-1 style-two table-browser-used for-width for-border-color1">
-                                    <div class="table-responsive">
-                                        <table class="table align-middle w-100">
-                                            <thead>
-                                                <tr>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Datum
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Beschreibung
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Kosten
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Kilometerstand
-                                                    </th>
-                                                    <th
-                                                        scope="col"
-                                                        class="fw-normal text-body-color-40 fs-14">
-                                                        Werkstatt
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="maintenanceTableBody">
-                                                <!-- Table rows will be dynamically added here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- End Main Area -->
+
                 <div class="flex-grow-1"></div>
 
                 <!-- Start Footer Area -->
@@ -480,25 +352,12 @@
         <!-- End Main Content Area -->
 
         <!-- Link Of JS File -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/sidebar-menu.js"></script>
-        <script src="assets/js/quill.min.js"></script>
-        <script src="assets/js/data-table.js"></script>
-        <script src="assets/js/prism.js"></script>
-        <script src="assets/js/clipboard.min.js"></script>
-        <script src="assets/js/simplebar.min.js"></script>
-        <script src="assets/js/apexcharts.min.js"></script>
-        <script src="assets/js/echarts.min.js"></script>
-        <script src="assets/js/swiper-bundle.min.js"></script>
-        <script src="assets/js/fullcalendar.main.js"></script>
-        <script src="assets/js/jsvectormap.min.js"></script>
-        <script src="assets/js/world-merc.js"></script>
-        <script src="assets/js/custom/apexcharts.js"></script>
-        <script src="assets/js/custom/echarts.js"></script>
-        <script src="assets/js/custom/maps.js"></script>
-        <script src="assets/js/custom/custom.js"></script>
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/js/sidebar-menu.js"></script>
+        <script src="../assets/js/simplebar.min.js"></script>
+        <script src="../assets/js/custom/custom.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="/js/script.js"></script>
+        <script src="/addMaintenance.js"></script>
     </body>
 </html>

@@ -3,7 +3,7 @@ package dev.sijaja.serviceheft.model;
 
 import java.time.LocalDate;
 
-import ch.qos.logback.core.status.Status;
+import dev.sijaja.serviceheft.model.enums.Status;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Type;
 import jakarta.persistence.Entity;
@@ -35,7 +35,7 @@ public class Maintenance {
     private Condition carCondition;
     private String inspectionNotes;
     private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate mtncDate;
     private int currentMileage;
     private int nextMileage;
     private LocalDate nextDate;
@@ -49,7 +49,7 @@ public class Maintenance {
     }
 
     public Maintenance(int mtncId, Cars car, Owner owner, Workshop workshop, Condition carCondition,
-            String inspectionNotes, LocalDate startDate, LocalDate endDate, int currentMileage, int nextMileage,
+            String inspectionNotes, LocalDate startDate, LocalDate mtncDate, int currentMileage, int nextMileage,
             LocalDate nextDate, double cost, Type mtncType, Status status) {
         this.mtncId = mtncId;
         this.car = car;
@@ -58,7 +58,7 @@ public class Maintenance {
         this.carCondition = carCondition;
         this.inspectionNotes = inspectionNotes;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.mtncDate = mtncDate;
         this.currentMileage = currentMileage;
         this.nextMileage = nextMileage;
         this.nextDate = nextDate;
@@ -171,12 +171,12 @@ public class Maintenance {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getMtncDate() {
+        return mtncDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setMtncDate(LocalDate mtncDate) {
+        this.mtncDate = mtncDate;
     }
 
 }

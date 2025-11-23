@@ -71,7 +71,7 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     // 12. Maintenance history table
     @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("
             + "m.mtncId, m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
-            + "FROM Maintenance m JOIN Workshop w ON m.workshopId = w.workshopId "
+            + "FROM Maintenance m JOIN Workshop w ON m.workshop.workshopId = w.workshopId "
             + "WHERE m.car.id = :carId ORDER BY m.mtncDate DESC")
     List<MaintenanceTableDto> getMaintenanceTable(@Param("carId") Integer carId);
 
@@ -123,5 +123,12 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     // Helper method to find maintenances by carId and ownerId
     @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND m.owner.ownerId = :ownerId")
     Optional<Maintenance> findByMtncIdAndOwnerId(@Param("mtncId") int mtncId, @Param("ownerId") int ownerId);
+
+    // Helper method to find maintenances by workshopId
+    @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("
+        + "m.mtncId, m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
+        + "FROM Maintenance m JOIN Workshop w ON m.workshop.workshopId = w.workshopId "
+        + "WHERE m.workshop.id = :workshopId ORDER BY m.mtncDate DESC")
+    List<MaintenanceTableDto> findAllByWorkshopId(@Param("workshopId") int workshopId);
 
 }

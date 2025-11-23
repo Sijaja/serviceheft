@@ -139,19 +139,21 @@ function showChart() {
 }
 
 async function loadYearlyApexChart(carId) {
-  const getTopBrowsingPagesPerMinuteId = document.getElementById(
-    "top_browsing_pages_per_minute_chart"
+  const yearlyApexChartId = document.getElementById(
+    "yearly_apex_chart"
   );
   const resp = await fetch(
     `http://localhost:8080/api/maintenance/${carId}/years`
   );
   const data = await resp.json();
-  if (getTopBrowsingPagesPerMinuteId) {
+  const roundedValues = Object.values(data).map(v =>
+  Math.round(v));
+  if (yearlyApexChartId) {
     var options = {
       series: [
         {
-          name: "Yearly Maintenance Costs",
-          data: Object.values(data),
+          name: "Jährliche Wartungskosten",
+          data: roundedValues,
         },
       ],
       colors: ["#2ED47E"],
@@ -253,7 +255,7 @@ async function loadYearlyApexChart(carId) {
     };
 
     var chart = new ApexCharts(
-      document.querySelector("#top_browsing_pages_per_minute_chart"),
+      document.querySelector("#yearly_apex_chart"),
       options
     );
     chart.render();

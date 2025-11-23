@@ -3,6 +3,7 @@ package dev.sijaja.serviceheft.controller;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -110,4 +111,10 @@ public class MaintenanceController {
     public List<ToBeReplacedDto> getCriticalIssues(@PathVariable int carId) {
         return service.getToBeReplacedItems(carId);
     }
+
+    @GetMapping("/workshop/{workshopId}")
+    public Optional<List<MaintenanceTableDto>> getMaintenanceTableForWorkshop(@PathVariable int workshopId, Principal principal) {
+        return service.getMaintenanceTableForWorkshop(workshopId, principal.getName());
+    }
+
 }

@@ -22,7 +22,7 @@
             href="../assets/images/logo-icon.png" />
 
         <!-- Title -->
-        <title>AutoMate | Dashboard</title>
+        <title>AutoMate | Werkstatt Dashboard</title>
     </head>
     <body class="bg-body-bg">
         <!-- Start Preloader Area -->
@@ -211,10 +211,10 @@
                                                         class="flex-grow-1 ms-10">
                                                         <h3
                                                             class="fw-medium fs-17 mb-0"
-                                                            id="userName"></h3>
+                                                            id="workshopName"></h3>
                                                         <span
                                                             class="fs-15 fw-medium"
-                                                            id="ownerName"></span>
+                                                            id="city"></span>
                                                     </div>
                                                 </div>
                                                 <ul
@@ -275,6 +275,18 @@
                     <div class="row">
                         <div class="col-12">
                             <div
+                                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                                <h2 class="fs-22 fw-semibold">Werkstatt
+                                    Dashboard</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Vehicle Card -->
+
+                    <div class="col-12" id="clickable"
+                            onclick="window.location.href='./add-maintenance.html'"
+                            style="cursor: pointer">
+                            <div
                                 class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
                                 style="
                                     background: linear-gradient(
@@ -285,191 +297,30 @@
                                     padding: 30.5px 40px;
                                 ">
                                 <div class="row align-items-center">
-                                    <div class="col-sm-6 col-lg-7">
-                                        <h2
-                                            class="fs-26 fw-normal text-white mb-3">Welcome
-                                            <span class="fw-900"
-                                                id="ownerFirstName"></span></h2>
-                                        <p
-                                            class="fs-16 lh-1-8 hospital-content"
-                                            style="color: #cbc7ff; margin-bottom: 40px"
-                                            id="carInfos">
-                                        </p>
-                                        <div class="d-flex flex-wrap gap-3">
-                                            <!-- Erstzulassung -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-roadster-fill fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                            background-color: #c5cbff;
-                                                            color: #382c83;
-                                                            width: 36px;
-                                                            height: 36px;
-                                                            line-height: 36px;
-                                                        ">
-                                                    </i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Erstzulassung</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="makeYear">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Kilometerstand -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-dashboard-2-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Kilometerstand</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="kilometer">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Pickerl -->
-                                            <div
-                                                class="d-flex rounded-1"
-                                                style="
-                                                    padding: 9px 12px;
-                                                    background: rgba(255, 255, 255, 0.16);
-                                                ">
-                                                <div class="flex-shrink-0">
-                                                    <i
-                                                        class="ri-calendar-close-line fs-18 text-center rounded-circle d-inline-block"
-                                                        style="
-                                                        background-color: #c5cbff;
-                                                        color: #382c83;
-                                                        width: 36px;
-                                                        height: 36px;
-                                                        line-height: 36px;
-                                                    ">
-                                                    </i>
-                                                </div>
-
-                                                <div class="flex-grow-1 ms-10">
-                                                    <span class="fs-15"
-                                                        style="color: #cbc7ff">Pickerl
-                                                        bis</span>
-                                                    <div
-                                                        class="d-flex align-items-center">
-                                                        <h2
-                                                            class="fs-16 mb-0 lh-1"
-                                                            style="color: #fff"
-                                                            id="inspection">
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-5">
+                                    <div class="col-12">
                                         <div
-                                            class="text-center text-sm-end mt-4 mt-sm-0"
-                                            style="margin-right: 30px">
-                                            <img
-                                                id="myImage"
-                                                src="../assets/images/other.png"
-                                                alt="Car Placeholder"
-                                                class="img-fluid"
-                                                style="max-width: 250px" />
+                                            class="d-flex justify-content-center">
+                                            <h3
+                                                class="fs-26 fw-normal text-white mb-1">
+                                                Auftrag
+                                                hinzufügen</h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-
-                    <!-- 6th row -->
+                    <!-- Completed Maintenance work -->
                     <div class="row">
                         <div class="col-xxl-12">
                             <div
                                 class="card bg-white rounded-10 border border-white p-20 mb-0 rounded-bottom-0">
                                 <div
                                     class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-20">
-                                    <h3>Yearly maintenance costs</h3>
-
-                                    <div
-                                        class="dropdown action-opt text-center">
-                                        <button
-                                            class="btn bg-transparent p-0"
-                                            type="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i
-                                                class="material-symbols-outlined fs-20">more_vert</i>
-                                        </button>
-                                        <ul
-                                            class="dropdown-menu dropdown-menu-end bg-white border-0 box-shadow">
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Day
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Week
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Month
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:;">
-                                                    Last Year
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div style="margin: -29px -15px -26px -21px">
-                                    <div
-                                        id="top_browsing_pages_per_minute_chart"></div>
+                                    <h3>Abgeschlossene Aufträge</h3>
                                 </div>
                             </div>
-
+                            <!-- Table Start -->
                             <div
                                 class="card bg-white rounded-10 border border-white p-0 mb-4 rounded-top">
                                 <div
@@ -505,13 +356,14 @@
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="maintenanceTableBody">
+                                            <tbody id="wsmaintenanceTableBody">
                                                 <!-- Table rows will be dynamically added here -->
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Table End -->
                         </div>
                     </div>
 
@@ -559,6 +411,6 @@
         <script src="../assets/js/custom/custom.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="../js/script.js"></script>
+        <script src="wsdashboard.js"></script>
     </body>
 </html>

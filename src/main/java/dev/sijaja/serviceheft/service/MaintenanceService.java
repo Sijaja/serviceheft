@@ -24,6 +24,7 @@ import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.model.Maintenance;
 import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.model.User;
+import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
 import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
 import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
@@ -33,6 +34,7 @@ import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.TireCheckRepository;
 import dev.sijaja.serviceheft.repository.UserRepository;
+import dev.sijaja.serviceheft.repository.WorkshopRepository;
 
 @Service
 public class MaintenanceService {
@@ -46,10 +48,11 @@ public class MaintenanceService {
     private final ElectricCheckRepository electricRepo;
     private final HvacCheckRepository hvacRepo;
     private final UserRepository userRepo;
+    private final WorkshopRepository workshopRepo;
 
     public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, EngineCheckRepository engineRepo,
             BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
-            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo, UserRepository userRepo) {
+            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo, UserRepository userRepo, WorkshopRepository workshopRepo) {
         this.repo = repo;
         this.ownerRepo = ownerRepo;
         this.engineRepo = engineRepo;
@@ -59,6 +62,7 @@ public class MaintenanceService {
         this.electricRepo = electricRepo;
         this.hvacRepo = hvacRepo;
         this.userRepo = userRepo;
+        this.workshopRepo = workshopRepo;
     }
 
     public List<Maintenance> getAll() {
@@ -123,7 +127,7 @@ public class MaintenanceService {
         Map<String, List<Double>> typeBreakdown = new HashMap<>();
 
         for (Maintenance m : maintenances) {
-            int monthIndex = m.getEndDate().getMonthValue() - 1;
+            int monthIndex = m.getMtncDate().getMonthValue() - 1;
             monthlyTotals.set(monthIndex, monthlyTotals.get(monthIndex) + m.getCost());
 
             // breakdown by type
@@ -140,7 +144,7 @@ public class MaintenanceService {
         Map<Integer, Double> yearlyTotals = new HashMap<>();
 
         for (Maintenance m : maintenances) {
-            int year = m.getEndDate().getYear();
+            int year = m.getMtncDate().getYear();
             yearlyTotals.merge(year, m.getCost(), Double::sum);
         }
         return yearlyTotals;
@@ -223,5 +227,18 @@ public class MaintenanceService {
                 myCarTotal != null ? myCarTotal : 0.0,
                 othersAvg != null ? othersAvg : 0.0
         );
+    }
+
+    public Optional<List<MaintenanceTableDto>> getMaintenanceTableForWorkshop(Integer workshopId, String email) {
+        User user = userRepo.findByEmail(email).orElse(null);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
+        }
+        Workshop ws = workshopRepo.findByUserUserId(user.getUserId()).orElse(null);
+        if (ws == null || ws.getWorkshopId() != workshopId) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Workshop not found");
+        }
+        List<MaintenanceTableDto> maintenanceTable = repo.findAllByWorkshopId(workshopId);
+        return maintenanceTable.isEmpty() ? Optional.empty() : Optional.of(maintenanceTable);
     }
 }
