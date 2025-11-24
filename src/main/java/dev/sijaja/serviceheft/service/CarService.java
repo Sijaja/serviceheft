@@ -98,4 +98,8 @@ public class CarService {
         owner.setDefaultCarId(carId);
         ownerRepo.save(owner);
     }
+
+    public Optional<Cars> findCarIdByVinNumber(String vinNumber) {
+        return repo.findByVinNumber(vinNumber);
+    }
 }

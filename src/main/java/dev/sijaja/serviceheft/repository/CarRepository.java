@@ -12,4 +12,6 @@ public interface CarRepository extends JpaRepository<Cars, Integer> {
     List<Cars> findAllByOwnerOwnerId(int ownerId);
 
     Optional<Cars> findByCarIdAndOwnerOwnerId(int carId, int ownerId);
+
+    Optional<Cars> findByVinNumber(String vinNumber);
 }

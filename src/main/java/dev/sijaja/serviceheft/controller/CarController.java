@@ -74,4 +74,11 @@ public class CarController {
         service.setDefaultCar(principal.getName(), carId);
         return ResponseEntity.ok(Map.of("message", "Default car updated successfully"));
     }
+
+    @GetMapping("/vin/{vin}")
+    public ResponseEntity<Cars> getCarById(@PathVariable String vin) {
+        return service.findCarIdByVinNumber(vin)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
 }

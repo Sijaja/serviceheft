@@ -239,6 +239,20 @@
                     <li class="nav-item" role="presentation">
                       <button
                         class="nav-link active"
+                        id="auto-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#auto-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="auto-pane"
+                        aria-selected="true"
+                      >
+                        Auto info
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
                         id="Riemen-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#Riemen-pane"
@@ -246,6 +260,7 @@
                         role="tab"
                         aria-controls="Riemen-pane"
                         aria-selected="true"
+                        disabled
                       >
                         Riemen- und Schlauchkontrolle
                       </button>
@@ -260,6 +275,7 @@
                         role="tab"
                         aria-controls="Karosseriekontrolle-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Karosseriekontrolle
                       </button>
@@ -274,6 +290,7 @@
                         role="tab"
                         aria-controls="Bremsenkontrolle-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Bremsenkontrolle
                       </button>
@@ -288,6 +305,7 @@
                         role="tab"
                         aria-controls="Elektrikdiagnose-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Elektrikdiagnose
                       </button>
@@ -302,6 +320,7 @@
                         role="tab"
                         aria-controls="Abgasdiagnose-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Abgasdiagnose
                       </button>
@@ -316,6 +335,7 @@
                         role="tab"
                         aria-controls="Motordiagnose-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Motordiagnose
                       </button>
@@ -330,6 +350,7 @@
                         role="tab"
                         aria-controls="Filterkontrolle-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Filterkontrolle
                       </button>
@@ -344,6 +365,7 @@
                         role="tab"
                         aria-controls="Klima-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Klima-/Lüftungsservice
                       </button>
@@ -358,6 +380,7 @@
                         role="tab"
                         aria-controls="Rostkontrolle-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Rostkontrolle
                       </button>
@@ -372,6 +395,7 @@
                         role="tab"
                         aria-controls="Reifenkontrolle-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Reifenkontrolle
                       </button>
@@ -386,15 +410,43 @@
                         role="tab"
                         aria-controls="wartung-pane"
                         aria-selected="false"
+                        disabled
                       >
                         Wartungsarbeiten
                       </button>
                     </li>
                   </ul>
                   <div class="tab-content" id="myTab4Content">
-                    <!--Riemen-->
+                    <!--Auto-->
                     <div
                       class="tab-pane fade show active"
+                      id="auto-pane"
+                      role="tabpanel"
+                      aria-labelledby="auto-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Fahrzeugidentifikationsnummer-->
+                          <div class="col-9 mb-20">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="vin-input" />
+                              <label for="vin-input">Fahrzeugidentifikationsnummer (FIN/VIN)</label>
+                            </div>
+                          </div>
+                          <!--Prüftaste-->
+                          <div class="col-3 mb-20">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3" onclick="validateVin()">Prüfen</button>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Riemen-->
+                    <div
+                      class="tab-pane fade"
                       id="Riemen-pane"
                       role="tabpanel"
                       aria-labelledby="Riemen-tab"
@@ -1587,7 +1639,7 @@
                             </div>
                           </div>
                           <div class="col-2 mb-20 ms-auto">
-                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">
+                            <button type="submit" class="btn btn-primary fw-normal text-white w-100 py-3">
                               Submit
                             </button>
                           </div>
@@ -1622,6 +1674,6 @@
     <script src="../assets/js/simplebar.min.js"></script>
     <script src="../assets/js/custom/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script src="/addMaintenance.js"></script>
+    <script src="./addMaintenance.js"></script>
   </body>
 </html>

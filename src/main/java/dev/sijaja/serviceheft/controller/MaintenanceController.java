@@ -23,7 +23,12 @@ import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
+import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Maintenance;
+import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
+import dev.sijaja.serviceheft.service.BeltHoseCheckService;
+import dev.sijaja.serviceheft.service.BodyCheckService;
 import dev.sijaja.serviceheft.service.MaintenanceService;
 
 @RestController
@@ -32,6 +37,7 @@ import dev.sijaja.serviceheft.service.MaintenanceService;
 public class MaintenanceController {
 
     private final MaintenanceService service;
+
 
     public MaintenanceController(MaintenanceService service) {
         this.service = service;
@@ -61,7 +67,18 @@ public class MaintenanceController {
         return service.save(o);
     }
 
-
+    /* 
+    @PostMapping("/add")
+    public ResponseEntity<?> create(@RequestBody Maintenance m, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        c.setOwner(owner);
+        Cars saved = service.save(c);
+        return ResponseEntity.ok(saved);
+    }
+    */
+   
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
