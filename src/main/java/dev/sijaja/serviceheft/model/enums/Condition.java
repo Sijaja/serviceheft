@@ -3,5 +3,7 @@ package dev.sijaja.serviceheft.model.enums;
 public enum Condition {
     POOR,
     FAIR,
-    OPTIMAL
+    OPTIMAL,
+    REPLACED,
+    NOT_CHECKED
 }

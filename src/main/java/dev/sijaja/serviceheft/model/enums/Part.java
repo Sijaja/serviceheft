@@ -4,5 +4,6 @@ public enum Part {
     GOOD,
     OKAY,
     TOREPLACE,
-    REPLACED
+    REPLACED,
+    NOT_CHECKED
 }

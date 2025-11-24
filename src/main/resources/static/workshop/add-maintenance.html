@@ -1,363 +1,1627 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <!-- Links Of CSS File -->
-        <link rel="stylesheet" href="../assets/css/sidebar-menu.css" />
-        <link rel="stylesheet" href="../assets/css/simplebar.css" />
-        <link rel="stylesheet" href="../assets/css/prism.css" />
-        <link rel="stylesheet" href="../assets/css/quill.snow.css" />
-        <link rel="stylesheet" href="../assets/css/remixicon.css" />
-        <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="../assets/css/jsvectormap.min.css" />
-        <link rel="stylesheet" href="../assets/css/style.css" />
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="../assets/css/sidebar-menu.css" />
+    <link rel="stylesheet" href="../assets/css/simplebar.css" />
+    <link rel="stylesheet" href="../assets/css/prism.css" />
+    <link rel="stylesheet" href="../assets/css/quill.snow.css" />
+    <link rel="stylesheet" href="../assets/css/remixicon.css" />
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../assets/css/jsvectormap.min.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="../assets/images/logo-icon.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo-icon.png" />
 
-        <!-- Title -->
-        <title>AutoMate | Auftrag hinzufügen</title>
-    </head>
+    <!-- Title -->
+    <title>AutoMate | Auftrag hinzufügen</title>
+  </head>
 
-    <body class="bg-body-bg">
-        <!-- Start Preloader Area -->
-        <div class="preloader" id="preloader">
-            <div class="preloader">
-                <div class="waviy position-relative">
-                    <span class="d-inline-block">A</span>
-                    <span class="d-inline-block">u</span>
-                    <span class="d-inline-block">t</span>
-                    <span class="d-inline-block">o</span>
-                    <span class="d-inline-block">M</span>
-                    <span class="d-inline-block">a</span>
-                    <span class="d-inline-block">t</span>
-                    <span class="d-inline-block">e</span>
-                </div>
-            </div>
+  <body class="bg-body-bg">
+    <!-- Start Preloader Area -->
+    <div class="preloader" id="preloader">
+      <div class="preloader">
+        <div class="waviy position-relative">
+          <span class="d-inline-block">A</span>
+          <span class="d-inline-block">u</span>
+          <span class="d-inline-block">t</span>
+          <span class="d-inline-block">o</span>
+          <span class="d-inline-block">M</span>
+          <span class="d-inline-block">a</span>
+          <span class="d-inline-block">t</span>
+          <span class="d-inline-block">e</span>
         </div>
-        <!-- End Preloader Area -->
+      </div>
+    </div>
+    <!-- End Preloader Area -->
 
-        <!-- Start Sidebar Area -->
-        <div class="sidebar-area" id="sidebar-area">
-            <div
-                class="logo position-relative d-flex align-items-center justify-content-between">
-                <a
-                    href="index.html"
-                    class="d-block text-decoration-none position-relative">
-                    <img src="../assets/images/logo-icon.png" alt="logo-icon"
-                        style="max-width: 40px" />
-                    <span
-                        class="logo-text text-secondary fw-semibold">AutoMate</span>
-                </a>
+    <!-- Start Sidebar Area -->
+    <div class="sidebar-area" id="sidebar-area">
+      <div class="logo position-relative d-flex align-items-center justify-content-between">
+        <a href="../index.html" class="d-block text-decoration-none position-relative">
+          <img src="../assets/images/logo-icon.png" alt="logo-icon" style="max-width: 40px" />
+          <span class="logo-text text-secondary fw-semibold">AutoMate</span>
+        </a>
+      </div>
+
+      <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+        <ul class="menu-inner">
+          <li class="menu-title small text-uppercase">
+            <span class="menu-title-text">MAIN</span>
+          </li>
+          <li class="menu-item">
+            <a href="../mydashboard.html" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">construction</span>
+              <span class="title">Aktuelle Aufträge</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="../car-selection.html" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">done_all</span>
+              <span class="title">Abgeschl. Aufträge</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">directions_car</span>
+              <span class="title">Fahrzeuge</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">bolt</span>
+              <span class="title">Schnellaktionen</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">calendar_clock</span>
+              <span class="title">Termine</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">euro</span>
+              <span class="title">Umsatz</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">person</span>
+              <span class="title">Kunden</span>
+            </a>
+          </li>
+          <li class="menu-title small text-uppercase">
+            <span class="menu-title-text">APPS</span>
+          </li>
+
+          <li class="menu-item">
+            <a href="to-do-list.html" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">ballot</span>
+              <span class="title">To-Do Liste</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="/logout" class="menu-link">
+              <span class="material-symbols-outlined menu-icon">logout</span>
+              <span class="title">Abmelden</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <!-- End Sidebar Area -->
+
+    <!-- Start Main Content Area -->
+    <div class="container-fluid">
+      <div class="main-content d-flex flex-column">
+        <!-- Start Header Area -->
+        <header class="header-area bg-white mb-4 rounded-10 border border-white" id="header-area">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <!-- empty for now -->
             </div>
 
-            <aside
-                id="layout-menu"
-                class="layout-menu menu-vertical menu active"
-                data-simplebar>
-                <ul class="menu-inner">
-                    <li class="menu-title small text-uppercase">
-                        <span class="menu-title-text">MAIN</span>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/mydashboard.html"
-                            class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">dashboard</span>
-                            <span class="title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/car-selection.html"
-                            class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">directions_car</span>
-                            <span class="title">Mein Autos</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">analytics</span>
-                            <span class="title">Statistiken</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">history</span>
-                            <span class="title">Statistiken</span>
-                        </a>
-                    </li>
+            <div class="col-md-6">
+              <div class="right-header-content mt-3 mt-md-0">
+                <ul
+                  class="d-flex align-items-center justify-content-center justify-content-md-end ps-0 mb-0 list-unstyled"
+                >
+                  <li class="header-right-item light-dark-item">
+                    <div class="light-dark">
+                      <button class="switch-toggle dark-btn p-0 bg-transparent lh-0 border-0" id="switch-toggle">
+                        <span class="dark"><i class="material-symbols-outlined">dark_mode</i></span>
+                        <span class="light"><i class="material-symbols-outlined">light_mode</i></span>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="header-right-item calendar-item">
+                    <div class="dropdown notifications">
+                      <a href class="btn btn-secondary border-0 p-0 position-relative">
+                        <span class="material-symbols-outlined" style="font-size: 19px">calendar_today</span>
+                      </a>
+                    </div>
+                  </li>
+                  <li class="header-right-item">
+                    <div class="dropdown admin-profile">
+                      <div
+                        class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                      >
+                        <div class="flex-shrink-0 position-relative">
+                          <img
+                            class="rounded-circle admin-img-width-for-mobile"
+                            style="width: 40px; height: 40px"
+                            src="../assets/images/admin.png"
+                            alt="admin"
+                          />
+                          <span
+                            class="d-block bg-success-60 border border-2 border-white rounded-circle position-absolute end-0 bottom-0"
+                            style="width: 11px; height: 11px"
+                          ></span>
+                        </div>
+                      </div>
 
-                    <li class="menu-title small text-uppercase">
-                        <span class="menu-title-text">APPS</span>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="to-do-list.html" class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">ballot</span>
-                            <span class="title">To-Do Liste</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/logout" class="menu-link">
-                            <span
-                                class="material-symbols-outlined menu-icon">logout</span>
-                            <span class="title">Abmelden</span>
-                        </a>
-                    </li>
+                      <div class="dropdown-menu border-0 bg-white dropdown-menu-end">
+                        <div class="d-flex align-items-center info">
+                          <div class="flex-shrink-0">
+                            <img
+                              class="rounded-circle admin-img-width-for-mobile"
+                              style="width: 40px; height: 40px"
+                              src="../assets/images/admin.png"
+                              alt="profilbild"
+                            />
+                          </div>
+                          <div class="flex-grow-1 ms-10">
+                            <h3 class="fw-medium fs-17 mb-0" id="userName"></h3>
+                            <span class="fs-15 fw-medium" id="ownerName"></span>
+                          </div>
+                        </div>
+                        <ul class="admin-link mb-0 list-unstyled">
+                          <li>
+                            <a
+                              class="dropdown-item admin-item-link d-flex align-items-center text-body"
+                              href="my-profile.html"
+                            >
+                              <i class="material-symbols-outlined">person</i>
+                              <span class="ms-2">Mein Profil</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item admin-item-link d-flex align-items-center text-body"
+                              href="settings.html"
+                            >
+                              <i class="material-symbols-outlined">settings</i>
+                              <span class="ms-2">Einstellungen</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item admin-item-link d-flex align-items-center text-body"
+                              href="tickets.html"
+                            >
+                              <i class="material-symbols-outlined">info</i>
+                              <span class="ms-2">Support</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item admin-item-link d-flex align-items-center text-body" href="/logout">
+                              <i class="material-symbols-outlined">logout</i>
+                              <span class="ms-2">Abmelden</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
-            </aside>
-        </div>
-        <!-- End Sidebar Area -->
-
-        <!-- Start Main Content Area -->
-        <div class="container-fluid">
-            <div class="main-content d-flex flex-column">
-                <!-- Start Header Area -->
-                <header
-                    class="header-area bg-white mb-4 rounded-10 border border-white"
-                    id="header-area">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <!-- empty for now -->
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="right-header-content mt-3 mt-md-0">
-                                <ul
-                                    class="d-flex align-items-center justify-content-center justify-content-md-end ps-0 mb-0 list-unstyled">
-                                    <li
-                                        class="header-right-item light-dark-item">
-                                        <div class="light-dark">
-                                            <button
-                                                class="switch-toggle dark-btn p-0 bg-transparent lh-0 border-0"
-                                                id="switch-toggle">
-                                                <span class="dark"><i
-                                                        class="material-symbols-outlined">dark_mode</i></span>
-                                                <span class="light"><i
-                                                        class="material-symbols-outlined">light_mode</i></span>
-                                            </button>
-                                        </div>
-                                    </li>
-                                    <li class="header-right-item calendar-item">
-                                        <div class="dropdown notifications">
-                                            <a
-                                                href
-                                                class="btn btn-secondary border-0 p-0 position-relative">
-                                                <span
-                                                    class="material-symbols-outlined"
-                                                    style="font-size: 19px">calendar_today</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="header-right-item">
-                                        <div class="dropdown admin-profile">
-                                            <div
-                                                class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor dropdown-toggle"
-                                                data-bs-toggle="dropdown">
-                                                <div
-                                                    class="flex-shrink-0 position-relative">
-                                                    <img
-                                                        class="rounded-circle admin-img-width-for-mobile"
-                                                        style="width: 40px; height: 40px"
-                                                        src="../assets/images/admin.png"
-                                                        alt="admin" />
-                                                    <span
-                                                        class="d-block bg-success-60 border border-2 border-white rounded-circle position-absolute end-0 bottom-0"
-                                                        style="width: 11px; height: 11px"></span>
-                                                </div>
-                                            </div>
-
-                                            <div
-                                                class="dropdown-menu border-0 bg-white dropdown-menu-end">
-                                                <div
-                                                    class="d-flex align-items-center info">
-                                                    <div class="flex-shrink-0">
-                                                        <img
-                                                            class="rounded-circle admin-img-width-for-mobile"
-                                                            style="width: 40px; height: 40px"
-                                                            src="../assets/images/admin.png"
-                                                            alt="profilbild" />
-                                                    </div>
-                                                    <div
-                                                        class="flex-grow-1 ms-10">
-                                                        <h3
-                                                            class="fw-medium fs-17 mb-0"
-                                                            id="userName"></h3>
-                                                        <span
-                                                            class="fs-15 fw-medium"
-                                                            id="ownerName"></span>
-                                                    </div>
-                                                </div>
-                                                <ul
-                                                    class="admin-link mb-0 list-unstyled">
-                                                    <li>
-                                                        <a
-                                                            class="dropdown-item admin-item-link d-flex align-items-center text-body"
-                                                            href="my-profile.html">
-                                                            <i
-                                                                class="material-symbols-outlined">person</i>
-                                                            <span
-                                                                class="ms-2">Mein
-                                                                Profil</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            class="dropdown-item admin-item-link d-flex align-items-center text-body"
-                                                            href="settings.html">
-                                                            <i
-                                                                class="material-symbols-outlined">settings</i>
-                                                            <span
-                                                                class="ms-2">Einstellungen</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            class="dropdown-item admin-item-link d-flex align-items-center text-body"
-                                                            href="tickets.html">
-                                                            <i
-                                                                class="material-symbols-outlined">info</i>
-                                                            <span
-                                                                class="ms-2">Support</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            class="dropdown-item admin-item-link d-flex align-items-center text-body"
-                                                            href="/logout">
-                                                            <i
-                                                                class="material-symbols-outlined">logout</i>
-                                                            <span
-                                                                class="ms-2">Abmelden</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-                <!-- End Header Area -->
-
-                <!-- Start Main body Area -->
-                <div class="main-content-container rounded-10 overflow-hidden">
-                    <!-- 1st row -->
-                    <div class="col-12">
-                        <div class="card bg-white border border-white rounded-10 mb-4">
-                            <div class="card-body p-20">
-                                <h4 class="fs-18 fw-medium mb-20">Wartungsarbeit hinzufügen</h4>
-                                <form>
-                                    <ul class="nav nav-tabs mb-4" id="myTab4" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="Riemen-tab" data-bs-toggle="tab" data-bs-target="#Riemen-pane" type="button" role="tab" aria-controls="Riemen-pane" aria-selected="true">Riemen- und Schlauchkontrolle</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Karosseriekontrolle-tab" data-bs-toggle="tab" data-bs-target="#Karosseriekontrolle-pane" type="button" role="tab" aria-controls="Karosseriekontrolle-pane" aria-selected="false">Karosseriekontrolle</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Bremsenkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Bremsenkontrolle-pane" type="button" role="tab" aria-controls="Bremsenkontrolle-pane" aria-selected="false">Bremsenkontrolle</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Elektrikdiagnose-tab" data-bs-toggle="tab" data-bs-target="#Elektrikdiagnose-pane" type="button" role="tab" aria-controls="Elektrikdiagnose-pane" aria-selected="false">Elektrikdiagnose</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Abgasdiagnose-tab" data-bs-toggle="tab" data-bs-target="#Abgasdiagnose-pane" type="button" role="tab" aria-controls="Abgasdiagnose-pane" aria-selected="false">Abgasdiagnose</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Motordiagnose-tab" data-bs-toggle="tab" data-bs-target="#Motordiagnose-pane" type="button" role="tab" aria-controls="Motordiagnose-pane" aria-selected="false">Motordiagnose</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Filterkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Filterkontrolle-pane" type="button" role="tab" aria-controls="Filterkontrolle-pane" aria-selected="false">Filterkontrolle</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Klima-tab" data-bs-toggle="tab" data-bs-target="#Klima-pane" type="button" role="tab" aria-controls="Klima-pane" aria-selected="false">Klima-/Lüftungsservice</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Rostkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Rostkontrolle-pane" type="button" role="tab" aria-controls="Rostkontrolle-pane" aria-selected="false">Rostkontrolle</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="Reifenkontrolle-tab" data-bs-toggle="tab" data-bs-target="#Reifenkontrolle-pane" type="button" role="tab" aria-controls="Reifenkontrolle-pane" aria-selected="false">Reifenkontrolle</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTab4Content">
-                                        <div class="tab-pane fade show active" id="Riemen-pane" role="tabpanel" aria-labelledby="Riemen-tab" tabindex="0">
-                                            <div class="mb-20">
-                                                <label class="label fs-16 mb-2">Riemen</label>
-                                                <div class="form-floating">
-                                                    <input type="text" class="form-control" id="Riemen-input" placeholder="Riemen eingeben">
-                                                    <label for="floatingInput12">Riemen</label>
-                                                </div>
-                                            </div>
-                                            <div class="mb-20">
-                                                <label class="label fs-16 mb-2">Password</label>
-                                                <div class="form-group" id="password-show-hide">
-                                                    <div class="password-wrapper position-relative password-container">
-                                                        <input type="password" class="form-control text-secondary password" placeholder="Enter password *">
-                                                        <i style="color: #A9A9C8; font-size: 22px; right: 15px;" class="ri-eye-off-line password-toggle-icon translate-middle-y top-50 position-absolute cursor text-secondary" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-20">
-                                                <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">Sign In</button>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Karosseriekontrolle-pane" role="tabpanel" aria-labelledby="Karosseriekontrolle-tab" tabindex="0">Karosseriekontrolle</div>
-                                        <div class="tab-pane fade" id="Bremsenkontrolle-pane" role="tabpanel" aria-labelledby="Bremsenkontrolle-tab" tabindex="0">Bremsenkontrolle</div>
-                                        <div class="tab-pane fade" id="Elektrikdiagnose-pane" role="tabpanel" aria-labelledby="Elektrikdiagnose-tab" tabindex="0">Elektrikdiagnose</div>
-                                        <div class="tab-pane fade" id="Abgasdiagnose-pane" role="tabpanel" aria-labelledby="Abgasdiagnose-tab" tabindex="0">Abgasdiagnose</div>
-                                        <div class="tab-pane fade" id="Motordiagnose-pane" role="tabpanel" aria-labelledby="Motordiagnose-tab" tabindex="0">Motordiagnose</div>
-                                        <div class="tab-pane fade" id="Filterkontrolle-pane" role="tabpanel" aria-labelledby="Filterkontrolle-tab" tabindex="0">Filterkontrolle</div>
-                                        <div class="tab-pane fade" id="Klima-pane" role="tabpanel" aria-labelledby="Klima-tab" tabindex="0">Klima</div>
-                                        <div class="tab-pane fade" id="Rostkontrolle-pane" role="tabpanel" aria-labelledby="Rostkontrolle-tab" tabindex="0">Rostkontrolle</div>
-                                        <div class="tab-pane fade" id="Reifenkontrolle-pane" role="tabpanel" aria-labelledby="Reifenkontrolle-tab" tabindex="0">Reifenkontrolle</div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex-grow-1"></div>
-
-                <!-- Start Footer Area -->
-                <footer
-                    class="footer-area bg-white text-center rounded-10 rounded-bottom-0">
-                    <p class="fs-16 text-body">
-                        © <span class="text-secondary">AutoMateAustria</span>
-                        Mein
-                        digitaler
-                        Serviceheft made by
-                        <a
-                            href="https://sijaja.dev/"
-                            target="_blank"
-                            class="text-decoration-none text-primary">Mohamad
-                            Sijaja</a>
-                    </p>
-                </footer>
-                <!-- End Footer Area -->
+              </div>
             </div>
-        </div>
-        <!-- End Main Content Area -->
+          </div>
+        </header>
+        <!-- End Header Area -->
 
-        <!-- Link Of JS File -->
-        <script src="../assets/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/sidebar-menu.js"></script>
-        <script src="../assets/js/simplebar.min.js"></script>
-        <script src="../assets/js/custom/custom.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="/addMaintenance.js"></script>
-    </body>
+        <!-- Start Main body Area -->
+        <div class="main-content-container rounded-10 overflow-hidden">
+          <!-- 1st row -->
+          <div class="col-12">
+            <div class="card bg-white border border-white rounded-10 mb-4">
+              <div class="card-body p-20">
+                <h4 class="fs-18 fw-medium mb-20">Wartungsarbeit hinzufügen</h4>
+                <form>
+                  <ul class="nav nav-tabs mb-4" id="myTab4" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="Riemen-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Riemen-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Riemen-pane"
+                        aria-selected="true"
+                      >
+                        Riemen- und Schlauchkontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Karosseriekontrolle-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Karosseriekontrolle-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Karosseriekontrolle-pane"
+                        aria-selected="false"
+                      >
+                        Karosseriekontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Bremsenkontrolle-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Bremsenkontrolle-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Bremsenkontrolle-pane"
+                        aria-selected="false"
+                      >
+                        Bremsenkontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Elektrikdiagnose-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Elektrikdiagnose-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Elektrikdiagnose-pane"
+                        aria-selected="false"
+                      >
+                        Elektrikdiagnose
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Abgasdiagnose-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Abgasdiagnose-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Abgasdiagnose-pane"
+                        aria-selected="false"
+                      >
+                        Abgasdiagnose
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Motordiagnose-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Motordiagnose-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Motordiagnose-pane"
+                        aria-selected="false"
+                      >
+                        Motordiagnose
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Filterkontrolle-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Filterkontrolle-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Filterkontrolle-pane"
+                        aria-selected="false"
+                      >
+                        Filterkontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Klima-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Klima-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Klima-pane"
+                        aria-selected="false"
+                      >
+                        Klima-/Lüftungsservice
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Rostkontrolle-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Rostkontrolle-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Rostkontrolle-pane"
+                        aria-selected="false"
+                      >
+                        Rostkontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="Reifenkontrolle-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#Reifenkontrolle-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="Reifenkontrolle-pane"
+                        aria-selected="false"
+                      >
+                        Reifenkontrolle
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="wartung-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#wartung-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="wartung-pane"
+                        aria-selected="false"
+                      >
+                        Wartungsarbeiten
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTab4Content">
+                    <!--Riemen-->
+                    <div
+                      class="tab-pane fade show active"
+                      id="Riemen-pane"
+                      role="tabpanel"
+                      aria-labelledby="Riemen-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Serpentinengürtel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="serpentineBelt-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="serpentineBelt-input">Serpentinengürtel</label>
+                            </div>
+                          </div>
+                          <!--Zahnriemen-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="Zahnriemen-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="Zahnriemen-input">Zahnriemen</label>
+                            </div>
+                          </div>
+                          <!--Kühlerschläuche-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="radiatorHoses-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="radiatorHoses-input">Kühlerschläuche</label>
+                            </div>
+                          </div>
+                          <!--Heizungsschläuche-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="heaterHoses-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="heaterHoses-input">Heizungsschläuche</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Karosseriekontrolle-->
+                    <div
+                      class="tab-pane fade"
+                      id="Karosseriekontrolle-pane"
+                      role="tabpanel"
+                      aria-labelledby="Karosseriekontrolle-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Haube-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="hood-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="hood-input">Haube</label>
+                            </div>
+                          </div>
+                          <!--Frontstoßstange-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="frontBumper-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="frontBumper-input">Frontstoßstange</label>
+                            </div>
+                          </div>
+                          <!--hintere Stoßstange-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rearBumper-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rearBumper-input">hintere Stoßstange</label>
+                            </div>
+                          </div>
+                          <!--linke Vordertür-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftFrontDoor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftFrontDoor-input">linke Vordertür</label>
+                            </div>
+                          </div>
+                          <!--linke Hintertür-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftRearDoor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftRearDoor-input">linke Hintertür</label>
+                            </div>
+                          </div>
+                          <!--rechte Vordertür-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightFrontDoor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightFrontDoor-input">rechte Vordertür</label>
+                            </div>
+                          </div>
+                          <!--rechte Hintertür-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightRearDoor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightRearDoor-input">rechte Hintertür</label>
+                            </div>
+                          </div>
+                          <!--linker vorderer Kotflügel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftFrontFender-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftFrontFender-input">linker vorderer Kotflügel</label>
+                            </div>
+                          </div>
+                          <!--rechter vorderer Kotflügel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightFrontFender-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightFrontFender-input">rechter vorderer Kotflügel</label>
+                            </div>
+                          </div>
+                          <!--linker hinterer Kotflügel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftRearFender-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftRearFender-input">linker hinterer Kotflügel</label>
+                            </div>
+                          </div>
+                          <!--rechter hinterer Kotflügel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightRearFender-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightRearFender-input">rechter hinterer Kotflügel</label>
+                            </div>
+                          </div>
+                          <!--Dach-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="roof-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="roof-input">Dach</label>
+                            </div>
+                          </div>
+                          <!--linker Spiegel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftMirror-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftMirror-input">linker Spiegel</label>
+                            </div>
+                          </div>
+                          <!--rechter Spiegel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightMirror-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightMirror-input">rechter Spiegel</label>
+                            </div>
+                          </div>
+                          <!--linker Rock-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftSkirt-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftSkirt-input">linker Rock</label>
+                            </div>
+                          </div>
+                          <!--rechter Rock-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightSkirt-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightSkirt-input">rechter Rock</label>
+                            </div>
+                          </div>
+                          <!--Kofferraum-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="trunk-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="trunk-input">Kofferraum</label>
+                            </div>
+                          </div>
+                          <!--Windschutzscheibe-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="windshield-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="windshield-input">Windschutzscheibe</label>
+                            </div>
+                          </div>
+                          <!--Heckscheibe-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rearWindow-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rearWindow-input">Heckscheibe</label>
+                            </div>
+                          </div>
+                          <!--linke Frontleuchte-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftFrontLight-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftFrontLight-input">linke Frontleuchte</label>
+                            </div>
+                          </div>
+                          <!--rechte Frontleuchte-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightFrontLight-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightFrontLight-input">rechte Frontleuchte</label>
+                            </div>
+                          </div>
+                          <!--linke Rückleuchte-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="leftRearLight-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="leftRearLight-input">linke Rückleuchte</label>
+                            </div>
+                          </div>
+                          <!--rechte Rückleuchte-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rightRearLight-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="rightRearLight-input">rechte Rückleuchte</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Bremsenkontrolle-->
+                    <div
+                      class="tab-pane fade"
+                      id="Bremsenkontrolle-pane"
+                      role="tabpanel"
+                      aria-labelledby="Bremsenkontrolle-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Dicke der vorderen Bremsbeläge-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="fPadThickness-input" max="12" step="0.1" />
+                              <label for="fPadThickness-input">Dicke der vorderen Bremsbeläge (mm)</label>
+                            </div>
+                          </div>
+                          <!--Dicke der hinteren Bremsbeläge-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="rPadThickness-input" max="12" step="0.1" />
+                              <label for="rPadThickness-input">Dicke der hinteren Bremsbeläge (mm)</label>
+                            </div>
+                          </div>
+                          <!--vordere Bremsscheiben-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="frontRotorsCon-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="frontRotorsCon-input">vordere Bremsscheiben</label>
+                            </div>
+                          </div>
+                          <!--hintere Bremsscheiben-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="rearRotorsCon-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="rearRotorsCon-input">hintere Bremsscheiben</label>
+                            </div>
+                          </div>
+                          <!--Bremsleitungen-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="brakeLines-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="brakeLines-input">Bremsleitungen</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Elektrikdiagnose-->
+                    <div
+                      class="tab-pane fade"
+                      id="Elektrikdiagnose-pane"
+                      role="tabpanel"
+                      aria-labelledby="Elektrikdiagnose-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Stromspannung-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="voltage-input" max="15" step="0.1" />
+                              <label for="voltage-input">Stromspannung</label>
+                            </div>
+                          </div>
+                          <!--Lichtmaschinenausgang-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="alternator -input" max="15" step="0.1" />
+                              <label for="alternator -input">Lichtmaschinenausgang</label>
+                            </div>
+                          </div>
+                          <!--Anschlüsse-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="terminals-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="terminals-input">Anschlüsse</label>
+                            </div>
+                          </div>
+                          <!--Batteriealter-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="age-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="NEW">NEU</option>
+                                <option value="OLD">ALT</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="age-input">Batteriealter</label>
+                            </div>
+                          </div>
+                          <!--Scheinwerfer-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="headLights-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="headLights-input">Scheinwerfer</label>
+                            </div>
+                          </div>
+                          <!--Rücklicht-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="tailLight-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="tailLight-input">Rücklicht</label>
+                            </div>
+                          </div>
+                          <!--Blinker-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="turnSignals-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="turnSignals-input">Blinker</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Abgasdiagnose-->
+                    <div
+                      class="tab-pane fade"
+                      id="Abgasdiagnose-pane"
+                      role="tabpanel"
+                      aria-labelledby="Abgasdiagnose-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Auspuff-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="exhaust-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="exhaust-input">Auspuff</label>
+                            </div>
+                          </div>
+                          <!--Fahrzeugkatalysator-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="catalytic-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="catalytic-input">Fahrzeugkatalysator</label>
+                            </div>
+                          </div>
+                          <!--Sauerstoffsensoren-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="o2Sensors-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="o2Sensors-input">Sauerstoffsensoren</label>
+                            </div>
+                          </div>
+
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Motordiagnose-->
+                    <div
+                      class="tab-pane fade"
+                      id="Motordiagnose-pane"
+                      role="tabpanel"
+                      aria-labelledby="Motordiagnose-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Ölstand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="oilLevel-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="oilLevel-input">Ölstand</label>
+                            </div>
+                          </div>
+                          <!--Ölzustand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="oilCondition-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="oilCondition-input">Ölzustand</label>
+                            </div>
+                          </div>
+                          <!--Ölfilter-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="oilFilter-input">
+                                <option value="0" selected>nicht ersetzt</option>
+                                <option value="1">ersetzt</option>
+                              </select>
+                              <label for="oilFilter-input">Ölfilter</label>
+                            </div>
+                          </div>
+                          <!--Ölwechsel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="oilReplaced-input">
+                                <option value="0" selected>nicht gewechselt</option>
+                                <option value="1">gewechselt</option>
+                              </select>
+                              <label for="oilReplaced-input">Ölwechsel</label>
+                            </div>
+                          </div>
+                          <!--Kühlmittelstand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="coolantLevel-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="coolantLevel-input">Kühlmittelstand</label>
+                            </div>
+                          </div>
+                          <!--Kühlmittelzustand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="coolantCondition-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="coolantCondition-input">Kühlmittelzustand</label>
+                            </div>
+                          </div>
+                          <!--Bremsflüssigkeitsstand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="brakeFluidLevel-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="brakeFluidLevel-input">Bremsflüssigkeitsstand</label>
+                            </div>
+                          </div>
+                          <!--Bremsflüssigkeitszustand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="brakeFluidColor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="brakeFluidColor-input">Bremsflüssigkeitszustand</label>
+                            </div>
+                          </div>
+                          <!--Lenkflüssigkeit-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="steeringFluid-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="steeringFluid-input">Lenkflüssigkeit</label>
+                            </div>
+                          </div>
+                          <!--Getriebeöl-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="gearFluid-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="gearFluid-input">Getriebeöl</label>
+                            </div>
+                          </div>
+                          <!--Waschflüssigkeit-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="washFluid-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="HIGH">HOCH</option>
+                                <option value="LOW">NIEDRIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="washFluid-input">Waschflüssigkeit</label>
+                            </div>
+                          </div>
+                          <!--Motorstatus-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="engineStatus-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="engineStatus-input">Motorstatus</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Filterkontrolle-->
+                    <div
+                      class="tab-pane fade"
+                      id="Filterkontrolle-pane"
+                      role="tabpanel"
+                      aria-labelledby="Filterkontrolle-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Luftfilter-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="airFilter-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="airFilter-input">Luftfilter</label>
+                            </div>
+                          </div>
+                          <!--Kabinenfilter-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="cabinFilter-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="cabinFilter-input">Kabinenfilter</label>
+                            </div>
+                          </div>
+                          <!--Kraftstofffilter-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="fuelFilter-input">
+                                <option value="UNCHECKED" selected>nicht geprüft</option>
+                                <option value="CHECKED">geprüft</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="fuelFilter-input">Kraftstofffilter</label>
+                            </div>
+                          </div>
+
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Klima-/Lüftungsservice-->
+                    <div class="tab-pane fade" id="Klima-pane" role="tabpanel" aria-labelledby="Klima-tab" tabindex="0">
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Klimaanlagenleistung-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="acPerformance-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="acPerformance-input">Klimaanlagenleistung</label>
+                            </div>
+                          </div>
+                          <!--Wärmeleistung-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="heatPerformance-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="heatPerformance-input">Wärmeleistung</label>
+                            </div>
+                          </div>
+                          <!--Gebläsemotor-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="blowerMotor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="blowerMotor-input">Gebläsemotor</label>
+                            </div>
+                          </div>
+
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Rostkontrolle-->
+                    <div
+                      class="tab-pane fade"
+                      id="Rostkontrolle-pane"
+                      role="tabpanel"
+                      aria-labelledby="Rostkontrolle-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Radkästen-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="wheelArches-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="wheelArches-input">Radkästen</label>
+                            </div>
+                          </div>
+                          <!--Seitenschürzen-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="sideSkirts-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="sideSkirts-input">Seitenschürzen</label>
+                            </div>
+                          </div>
+                          <!--Türboden-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="doorBottom-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="doorBottom-input">Türboden</label>
+                            </div>
+                          </div>
+                          <!--Kofferraumboden-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="trunkFloor-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="trunkFloor-input">Kofferraumboden</label>
+                            </div>
+                          </div>
+                          <!--Motorhaubenkanten-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="hoodEdges-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="hoodEdges-input">Motorhaubenkanten</label>
+                            </div>
+                          </div>
+                          <!--Dachkanten-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="roofEdges-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="roofEdges-input">Dachkanten</label>
+                            </div>
+                          </div>
+                          <!--Kotflügel-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="fenders-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="fenders-input">Kotflügel</label>
+                            </div>
+                          </div>
+                          <!--Abgasbereich-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="exhaustArea-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="exhaustArea-input">Abgasbereich</label>
+                            </div>
+                          </div>
+                          <!--Unterboden-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="underbody-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="underbody-input">Unterboden</label>
+                            </div>
+                          </div>
+                          <!--Fensterdichtungen-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="windowSeals-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="windowSeals-input">Fensterdichtungen</label>
+                            </div>
+                          </div>
+                          <!--Suspension-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="suspension-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="GOOD">GUT</option>
+                                <option value="OKAY">OKAY</option>
+                                <option value="TOREPLACE">ZUM ERSETZEN</option>
+                                <option value="REPLACED">ERSETZT</option>
+                              </select>
+                              <label for="suspension-input">Suspension</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Reifenkontrolle-->
+                    <div
+                      class="tab-pane fade"
+                      id="Reifenkontrolle-pane"
+                      role="tabpanel"
+                      aria-labelledby="Reifenkontrolle-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Lauffläche vorne links-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="treadFrontLeft-input" max="12" step="0.1" />
+                              <label for="treadFrontLeft-input">Lauffläche vorne links (mm)</label>
+                            </div>
+                          </div>
+                          <!--Lauffläche vorne rechts-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="treadFrontRight-input"
+                                max="12"
+                                step="0.1"
+                              />
+                              <label for="treadFrontRight-input">Lauffläche vorne rechts (mm)</label>
+                            </div>
+                          </div>
+                          <!--Lauffläche hinten links-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="treadRearLeft-input" max="12" step="0.1" />
+                              <label for="treadRearLeft-input">Lauffläche hinten links (mm)</label>
+                            </div>
+                          </div>
+                          <!--Lauffläche hinten rechts-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="treadRearRight-input" max="12" step="0.1" />
+                              <label for="treadRearRight-input">Lauffläche hinten rechts (mm)</label>
+                            </div>
+                          </div>
+                          <!--Druck vorne links-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="pressureFL-input" max="12" step="0.1" />
+                              <label for="pressureFL-input">Druck vorne links (bar)</label>
+                            </div>
+                          </div>
+                          <!--Druck vorne rechts-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="pressureFR-input" max="12" step="0.1" />
+                              <label for="pressureFR-input">Druck vorne rechts (bar)</label>
+                            </div>
+                          </div>
+                          <!--Druck hinten links-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="pressureRL-input" max="12" step="0.1" />
+                              <label for="pressureRL-input">Druck hinten links (bar)</label>
+                            </div>
+                          </div>
+                          <!--Druck hinten rechts-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="pressureRR-input" max="12" step="0.1" />
+                              <label for="pressureRR-input">Druck hinten rechts (bar)</label>
+                            </div>
+                          </div>
+                          <!--Profilabnutzungsmuster-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="wearPattern-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="SIDE_WEAR">SEITLICHER PROFILVERSCHLEISS</option>
+                                <option value="MID_WEAR">MITTLERER PROFILVERSCHLEISS</option>
+                                <option value="NORMAL_WEAR">NORMALER PROFILVERSCHLEISS</option>
+                              </select>
+                              <label for="wearPattern-input">Profilabnutzungsmuster</label>
+                            </div>
+                          </div>
+                          <!--Stoßdämpfer-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="shockAbsorbers-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                                <option value="REPLACED">ERSATZT</option>
+                              </select>
+                              <label for="shockAbsorbers-input">Stoßdämpfer</label>
+                            </div>
+                          </div>
+
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Wartungsarbeiten-->
+                    <div
+                      class="tab-pane fade"
+                      id="wartung-pane"
+                      role="tabpanel"
+                      aria-labelledby="wartung-tab"
+                      tabindex="0"
+                    >
+                      <div class="col-12">
+                        <div class="row">
+                          <!--Fahrzeugzustand-->
+                          <div class="col-12 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="carCondition-input">
+                                <option value="NOT_CHECKED" selected>nicht geprüft</option>
+                                <option value="POOR">MANGELHAFT</option>
+                                <option value="FAIR">MITTELMÄSSIG</option>
+                                <option value="OPTIMAL">OPTIMAL</option>
+                              </select>
+                              <label for="carCondition-input">Fahrzeugzustand</label>
+                            </div>
+                          </div>
+                          <!--Datum-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" id="mtncDate-input" />
+                              <label for="mtncDate-input">Datum</label>
+                            </div>
+                          </div>
+                          <!--nächstes Datum-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" id="nextDate-input" />
+                              <label for="nextDate-input">Datum der nächsten Überprüfung</label>
+                            </div>
+                          </div>
+                          <!--aktueller Kilometerstand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="currentMileage-input" />
+                              <label for="currentMileage-input">aktueller Kilometerstand</label>
+                            </div>
+                          </div>
+                          <!--nächster Kilometerstand-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="nextMileage-input" />
+                              <label for="nextMileage-input">nächster Kilometerstand</label>
+                            </div>
+                          </div>
+                          <!--Kosten-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="cost-input" />
+                              <label for="cost-input">Gesamt Kosten</label>
+                            </div>
+                          </div>
+                          <!--Wartungsart-->
+                          <div class="col-6 mb-20">
+                            <div class="form-floating">
+                              <select class="form-select form-control" id="mtncType-input">
+                                <option value="ROUTINE" selected>ROUTINE</option>
+                                <option value="PROBLEM">PROBLEM</option>
+                                <option value="ACCIDENT">UNFALL</option>
+                              </select>
+                              <label for="mtncType-input">Wartungsart</label>
+                            </div>
+                          </div>
+                          <!--Inspektionsnotizen-->
+                          <div class="col-12 mb-20">
+                            <div class="form-floating">
+                              <textarea
+                                class="form-control"
+                                placeholder=" "
+                                id="inspectionNotes-input"
+                                style="height: 120px"
+                              ></textarea>
+                              <label for="inspectionNotes-input">Inspektionsnotizen</label>
+                            </div>
+                          </div>
+                          <div class="col-2 mb-20 ms-auto">
+                            <button type="button" class="btn btn-primary fw-normal text-white w-100 py-3">
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-grow-1"></div>
+
+        <!-- Start Footer Area -->
+        <footer class="footer-area bg-white text-center rounded-10 rounded-bottom-0">
+          <p class="fs-16 text-body">
+            © <span class="text-secondary">AutoMateAustria</span>
+            Mein digitaler Serviceheft made by
+            <a href="https://sijaja.dev/" target="_blank" class="text-decoration-none text-primary">Mohamad Sijaja</a>
+          </p>
+        </footer>
+        <!-- End Footer Area -->
+      </div>
+    </div>
+    <!-- End Main Content Area -->
+
+    <!-- Link Of JS File -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/simplebar.min.js"></script>
+    <script src="../assets/js/custom/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="/addMaintenance.js"></script>
+  </body>
 </html>

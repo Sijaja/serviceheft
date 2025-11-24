@@ -33,6 +33,16 @@ public class BeltHoseCheck {
         return beltHoseCheckId;
     }
 
+    public BeltHoseCheck(int beltHoseCheckId, Maintenance maintenance, Condition serpentineBelt, Condition timingBelt,
+            Condition radiatorHoses, Condition heaterHoses) {
+        this.beltHoseCheckId = beltHoseCheckId;
+        this.maintenance = maintenance;
+        this.serpentineBelt = serpentineBelt;
+        this.timingBelt = timingBelt;
+        this.radiatorHoses = radiatorHoses;
+        this.heaterHoses = heaterHoses;
+    }
+
     public void setBeltHoseCheckId(int beltHoseCheckId) {
         this.beltHoseCheckId = beltHoseCheckId;
     }

@@ -4,5 +4,6 @@ public enum Age {
     NEW,
     OLD,
     OPTIMAL,
-    REPLACED
+    REPLACED,
+    NOT_CHECKED
 }
