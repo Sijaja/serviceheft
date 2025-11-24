@@ -1,25 +1,12 @@
 package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Check;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class EmmisionCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int emmisionCheckId;
-
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
-
     @Enumerated(EnumType.STRING)
     private Check exhaust;
     @Enumerated(EnumType.STRING)
@@ -30,20 +17,10 @@ public class EmmisionCheck {
     public EmmisionCheck() {
     }
 
-    public EmmisionCheck(int emmisionCheckId, Check catalytic, Check exhaust, Maintenance maintenance, Check o2Sensors) {
-        this.emmisionCheckId = emmisionCheckId;
+    public EmmisionCheck(Check catalytic, Check exhaust, Check o2Sensors) {
         this.catalytic = catalytic;
         this.exhaust = exhaust;
-        this.maintenance = maintenance;
         this.o2Sensors = o2Sensors;
-    }
-    
-    public int getEmmisionCheckId() {
-        return emmisionCheckId;
-    }
-
-    public void setEmmisionCheckId(int emmisionCheckId) {
-        this.emmisionCheckId = emmisionCheckId;
     }
 
     public Check getExhaust() {
@@ -69,14 +46,5 @@ public class EmmisionCheck {
     public void setO2Sensors(Check o2Sensors) {
         this.o2Sensors = o2Sensors;
     }
-
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
 
 }

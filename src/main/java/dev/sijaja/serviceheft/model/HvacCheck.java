@@ -1,25 +1,12 @@
 package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class HvacCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int hvacCheckId;
-
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
-
     @Enumerated(EnumType.STRING)
     private Condition acPerformance;
     @Enumerated(EnumType.STRING)
@@ -30,20 +17,10 @@ public class HvacCheck {
     public HvacCheck() {
     }
 
-    public HvacCheck(int hvacCheckId, Condition acPerformance, Condition blowerMotor, Maintenance maintenance, Condition heatPerformance) {
-        this.hvacCheckId = hvacCheckId;
+    public HvacCheck(Condition acPerformance, Condition blowerMotor, Condition heatPerformance) {
         this.acPerformance = acPerformance;
         this.blowerMotor = blowerMotor;
-        this.maintenance = maintenance;
         this.heatPerformance = heatPerformance;
-    }
-
-    public int getHvacCheckId() {
-        return hvacCheckId;
-    }
-
-    public void setHvacCheckId(int hvacCheckId) {
-        this.hvacCheckId = hvacCheckId;
     }
 
     public Condition getAcPerformance() {
@@ -69,14 +46,5 @@ public class HvacCheck {
     public void setBlowerMotor(Condition blowerMotor) {
         this.blowerMotor = blowerMotor;
     }
-
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
 
 }

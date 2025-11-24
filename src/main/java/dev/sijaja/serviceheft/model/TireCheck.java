@@ -2,24 +2,12 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Pattern;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class TireCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int tireCheckId;
-
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
 
     private double treadFrontLeft;
     private double treadFrontRight;
@@ -37,27 +25,17 @@ public class TireCheck {
     public TireCheck() {
     }
 
-    public TireCheck(int tireCheckId, Condition shockAbsorbers, double pressureFL, double pressureFR, double pressureRL, double pressureRR, Maintenance maintenance, Pattern wearPattern, double treadFrontLeft, double treadFrontRight, double treadRearLeft, double treadRearRight) {
-        this.tireCheckId = tireCheckId;
+    public TireCheck(Condition shockAbsorbers, double pressureFL, double pressureFR, double pressureRL, double pressureRR, Pattern wearPattern, double treadFrontLeft, double treadFrontRight, double treadRearLeft, double treadRearRight) {
         this.shockAbsorbers = shockAbsorbers;
         this.pressureFL = pressureFL;
         this.pressureFR = pressureFR;
         this.pressureRL = pressureRL;
         this.pressureRR = pressureRR;
-        this.maintenance = maintenance;
         this.wearPattern = wearPattern;
         this.treadFrontLeft = treadFrontLeft;
         this.treadFrontRight = treadFrontRight;
         this.treadRearLeft = treadRearLeft;
         this.treadRearRight = treadRearRight;
-    }
-
-    public int getTireCheckId() {
-        return tireCheckId;
-    }
-
-    public void setTireCheckId(int tireCheckId) {
-        this.tireCheckId = tireCheckId;
     }
 
     public double getTreadFrontLeft() {
@@ -139,14 +117,5 @@ public class TireCheck {
     public void setShockAbsorbers(Condition shockAbsorbers) {
         this.shockAbsorbers = shockAbsorbers;
     }
-
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
 
 }
