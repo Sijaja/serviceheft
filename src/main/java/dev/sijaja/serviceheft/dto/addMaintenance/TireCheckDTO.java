@@ -1,13 +1,9 @@
-package dev.sijaja.serviceheft.model;
+package dev.sijaja.serviceheft.dto.addMaintenance;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Pattern;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
-@Embeddable
-public class TireCheck {
+public class TireCheckDTO {
 
     private Double treadFrontLeft;
     private Double treadFrontRight;
@@ -17,25 +13,25 @@ public class TireCheck {
     private Double pressureFR;
     private Double pressureRL;
     private Double pressureRR;
-    @Enumerated(EnumType.STRING)
     private Pattern wearPattern;
-    @Enumerated(EnumType.STRING)
     private Condition shockAbsorbers;
 
-    public TireCheck() {
+    public TireCheckDTO() {
     }
 
-    public TireCheck(Condition shockAbsorbers, Double pressureFL, Double pressureFR, Double pressureRL, Double pressureRR, Pattern wearPattern, Double treadFrontLeft, Double treadFrontRight, Double treadRearLeft, Double treadRearRight) {
-        this.shockAbsorbers = shockAbsorbers;
+    public TireCheckDTO(Double treadFrontLeft, Double treadFrontRight, Double treadRearLeft, Double treadRearRight,
+            Double pressureFL, Double pressureFR, Double pressureRL, Double pressureRR, Pattern wearPattern,
+            Condition shockAbsorbers) {
+        this.treadFrontLeft = treadFrontLeft;
+        this.treadFrontRight = treadFrontRight;
+        this.treadRearLeft = treadRearLeft;
+        this.treadRearRight = treadRearRight;
         this.pressureFL = pressureFL;
         this.pressureFR = pressureFR;
         this.pressureRL = pressureRL;
         this.pressureRR = pressureRR;
         this.wearPattern = wearPattern;
-        this.treadFrontLeft = treadFrontLeft;
-        this.treadFrontRight = treadFrontRight;
-        this.treadRearLeft = treadRearLeft;
-        this.treadRearRight = treadRearRight;
+        this.shockAbsorbers = shockAbsorbers;
     }
 
     public Double getTreadFrontLeft() {

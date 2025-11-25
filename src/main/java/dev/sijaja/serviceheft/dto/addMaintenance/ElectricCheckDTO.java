@@ -1,32 +1,20 @@
-package dev.sijaja.serviceheft.model;
+package dev.sijaja.serviceheft.dto.addMaintenance;
 
 import dev.sijaja.serviceheft.model.enums.Age;
 import dev.sijaja.serviceheft.model.enums.Check;
 import dev.sijaja.serviceheft.model.enums.Condition;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
-@Embeddable
-public class ElectricCheck {
-
+public class ElectricCheckDTO {
     private Double voltage;
-    @Enumerated(EnumType.STRING)
     private Condition terminals;
-    @Enumerated(EnumType.STRING)
     private Age age;
     private Double alternatorOutput;
-    @Enumerated(EnumType.STRING)
     private Check headLights;
-    @Enumerated(EnumType.STRING)
     private Check tailLight;
-    @Enumerated(EnumType.STRING)
     private Check turnSignals;
-
-    public ElectricCheck() {
+    public ElectricCheckDTO() {
     }
-
-    public ElectricCheck(Age age, Check headLights, Condition terminals, Double alternatorOutput, Double voltage, Check tailLight, Check turnSignals) {
+    public ElectricCheckDTO(Age age, Check headLights, Condition terminals, Double alternatorOutput, double voltage, Check tailLight, Check turnSignals) {
         this.age = age;
         this.headLights = headLights;
         this.terminals = terminals;
@@ -35,61 +23,47 @@ public class ElectricCheck {
         this.tailLight = tailLight;
         this.turnSignals = turnSignals;
     }
-
     public Double getVoltage() {
         return voltage;
     }
-
     public void setVoltage(Double voltage) {
         this.voltage = voltage;
     }
-
     public Condition getTerminals() {
         return terminals;
     }
-
     public void setTerminals(Condition terminals) {
         this.terminals = terminals;
     }
-
     public Age getAge() {
         return age;
     }
-
     public void setAge(Age age) {
         this.age = age;
     }
-
     public Double getAlternatorOutput() {
         return alternatorOutput;
     }
-
     public void setAlternatorOutput(Double alternatorOutput) {
         this.alternatorOutput = alternatorOutput;
     }
-
     public Check getHeadLights() {
         return headLights;
     }
-
     public void setHeadLights(Check headLights) {
         this.headLights = headLights;
     }
-
     public Check getTailLight() {
         return tailLight;
     }
-
     public void setTailLight(Check tailLight) {
         this.tailLight = tailLight;
     }
-
     public Check getTurnSignals() {
         return turnSignals;
     }
-
     public void setTurnSignals(Check turnSignals) {
         this.turnSignals = turnSignals;
     }
-
+    
 }

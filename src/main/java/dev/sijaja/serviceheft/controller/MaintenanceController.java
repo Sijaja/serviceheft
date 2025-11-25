@@ -20,16 +20,17 @@ import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
-import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
-import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.dto.addMaintenance.MaintenanceDTO;
 import dev.sijaja.serviceheft.model.Maintenance;
-import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.model.User;
-import dev.sijaja.serviceheft.service.BeltHoseCheckService;
-import dev.sijaja.serviceheft.service.BodyCheckService;
+import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.model.Workshop;
+import dev.sijaja.serviceheft.service.CarService;
 import dev.sijaja.serviceheft.service.MaintenanceService;
+import dev.sijaja.serviceheft.service.UserService;
+import dev.sijaja.serviceheft.service.WorkshopService;
 
 @RestController
 @RequestMapping("/api/maintenance")
@@ -37,10 +38,16 @@ import dev.sijaja.serviceheft.service.MaintenanceService;
 public class MaintenanceController {
 
     private final MaintenanceService service;
+    private final UserService userService;
+    private final WorkshopService workshopService;
+    private final CarService carService;
 
 
-    public MaintenanceController(MaintenanceService service) {
+    public MaintenanceController(MaintenanceService service, UserService userService, WorkshopService workshopService, CarService carService) {
         this.service = service;
+        this.userService = userService;
+        this.workshopService = workshopService;
+        this.carService = carService;
     }
 
     @GetMapping
@@ -67,17 +74,17 @@ public class MaintenanceController {
         return service.save(o);
     }
 
-    /* 
     @PostMapping("/add")
-    public ResponseEntity<?> create(@RequestBody Maintenance m, Principal principal) {
+    public ResponseEntity<?> create(@RequestBody MaintenanceDTO m, Principal principal) {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
-        Owner owner = ownerService.findByUserId(user.getUserId());
-        c.setOwner(owner);
-        Cars saved = service.save(c);
-        return ResponseEntity.ok(saved);
+        Workshop workshop = workshopService.findByUserId(user.getUserId());
+        Cars car = carService.get(m.getCarId()).orElseThrow(() -> new RuntimeException("Car not found"));
+        Maintenance maintenance = service.fromDto(m, car, workshop);
+        maintenance.setWorkshop(workshop);
+        Maintenance savedMtnc = service.save(maintenance);
+        return ResponseEntity.ok(savedMtnc);
     }
-    */
    
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
@@ -122,11 +129,6 @@ public class MaintenanceController {
     @GetMapping("/averageCostComparison/{carId}")
     public AverageCostComparisonDto getAverageCostComparison(@PathVariable int carId) {
         return service.getAverageCostComparison(carId);
-    }
-
-    @GetMapping("/critical/{carId}")
-    public List<ToBeReplacedDto> getCriticalIssues(@PathVariable int carId) {
-        return service.getToBeReplacedItems(carId);
     }
 
     @GetMapping("/workshop/{workshopId}")

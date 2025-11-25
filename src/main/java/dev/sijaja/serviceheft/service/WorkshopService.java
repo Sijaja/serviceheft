@@ -49,4 +49,8 @@ public class WorkshopService {
         return repo.save(ws);
      }
     public void delete(Integer id) { repo.deleteById(id); }
+
+    public Workshop findByUserId(int id) {
+        return repo.findByUserUserId(id).orElse(null);
+    }
 }

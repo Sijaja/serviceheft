@@ -18,21 +18,36 @@ import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
-import dev.sijaja.serviceheft.dto.ToBeReplacedDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
+import dev.sijaja.serviceheft.dto.addMaintenance.BeltHoseCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.BodyCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.BrakeCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.ElectricCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.EmmisionCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.EngineCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.FilterCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.HvacCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.MaintenanceDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.RustCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.TireCheckDTO;
+import dev.sijaja.serviceheft.model.BeltHoseCheck;
+import dev.sijaja.serviceheft.model.BodyCheck;
+import dev.sijaja.serviceheft.model.BrakeCheck;
+import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.model.ElectricCheck;
+import dev.sijaja.serviceheft.model.EmmisionCheck;
+import dev.sijaja.serviceheft.model.EngineCheck;
+import dev.sijaja.serviceheft.model.FilterCheck;
+import dev.sijaja.serviceheft.model.HvacCheck;
 import dev.sijaja.serviceheft.model.Maintenance;
 import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.RustCheck;
+import dev.sijaja.serviceheft.model.TireCheck;
 import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.model.Workshop;
-import dev.sijaja.serviceheft.repository.BeltHoseCheckRepository;
-import dev.sijaja.serviceheft.repository.BrakeCheckRepository;
-import dev.sijaja.serviceheft.repository.ElectricCheckRepository;
-import dev.sijaja.serviceheft.repository.EngineCheckRepository;
-import dev.sijaja.serviceheft.repository.HvacCheckRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
-import dev.sijaja.serviceheft.repository.TireCheckRepository;
 import dev.sijaja.serviceheft.repository.UserRepository;
 import dev.sijaja.serviceheft.repository.WorkshopRepository;
 
@@ -41,26 +56,12 @@ public class MaintenanceService {
 
     private final MaintenanceRepository repo;
     private final OwnerRepository ownerRepo;
-    private final EngineCheckRepository engineRepo;
-    private final BeltHoseCheckRepository beltRepo;
-    private final BrakeCheckRepository brakeRepo;
-    private final TireCheckRepository tireRepo;
-    private final ElectricCheckRepository electricRepo;
-    private final HvacCheckRepository hvacRepo;
     private final UserRepository userRepo;
     private final WorkshopRepository workshopRepo;
 
-    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, EngineCheckRepository engineRepo,
-            BeltHoseCheckRepository beltRepo, BrakeCheckRepository brakeRepo, TireCheckRepository tireRepo,
-            ElectricCheckRepository electricRepo, HvacCheckRepository hvacRepo, UserRepository userRepo, WorkshopRepository workshopRepo) {
+    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, UserRepository userRepo, WorkshopRepository workshopRepo) {
         this.repo = repo;
         this.ownerRepo = ownerRepo;
-        this.engineRepo = engineRepo;
-        this.beltRepo = beltRepo;
-        this.brakeRepo = brakeRepo;
-        this.tireRepo = tireRepo;
-        this.electricRepo = electricRepo;
-        this.hvacRepo = hvacRepo;
         this.userRepo = userRepo;
         this.workshopRepo = workshopRepo;
     }
@@ -166,36 +167,6 @@ public class MaintenanceService {
                 .orElse(new NextMaintenanceDto(null, null)); // nothing upcoming
     }
 
-    public List<ToBeReplacedDto> getToBeReplacedItems(int carId) {
-
-        List<ToBeReplacedDto> result = new ArrayList<>();
-        engineRepo.findCriticalByCarId(carId).forEach(e
-                -> result.add(new ToBeReplacedDto("Engine"))
-        );
-
-        beltRepo.findCriticalByCarId(carId).forEach(b
-                -> result.add(new ToBeReplacedDto("Belt & Hose"))
-        );
-
-        brakeRepo.findCriticalByCarId(carId).forEach(b
-                -> result.add(new ToBeReplacedDto("Brakes"))
-        );
-
-        tireRepo.findCriticalByCarId(carId).forEach(t
-                -> result.add(new ToBeReplacedDto("Tires"))
-        );
-
-        electricRepo.findCriticalByCarId(carId).forEach(e
-                -> result.add(new ToBeReplacedDto("Electric"))
-        );
-
-        hvacRepo.findCriticalByCarId(carId).forEach(h
-                -> result.add(new ToBeReplacedDto("HVAC"))
-        );
-
-        return result;
-    }
-
     public Optional<List<MaintenanceTableDto>> getMaintenanceTable(Integer carId, String email) {
         User user = userRepo.findByEmail(email).orElse(null);
         if (user == null) {
@@ -240,5 +211,153 @@ public class MaintenanceService {
         }
         List<MaintenanceTableDto> maintenanceTable = repo.findAllByWorkshopId(workshopId);
         return maintenanceTable.isEmpty() ? Optional.empty() : Optional.of(maintenanceTable);
+    }
+
+    public Maintenance fromDto(MaintenanceDTO dto, Cars car, Workshop workshop) {
+        Maintenance mtnc = new Maintenance();
+        mtnc.setCar(car);
+        mtnc.setWorkshop(workshop);
+        mtnc.setCarCondition(dto.getCarCondition());
+        mtnc.setMtncDate(dto.getMtncDate());
+        mtnc.setNextDate(dto.getNextDate());
+        mtnc.setCurrentMileage(dto.getCurrentMileage());
+        mtnc.setNextMileage(dto.getNextMileage());
+        mtnc.setCost(dto.getCost());
+        mtnc.setMtncType(dto.getMtncType());
+        mtnc.setInspectionNotes(dto.getInspectionNotes());
+        mtnc.setBeltHoseCheck(toBeltHoseCheck(dto.getBeltHoseCheck()));
+        mtnc.setBodyCheck(toBodyCheck(dto.getBodyCheck()));
+        mtnc.setBrakeCheck(toBrakeCheck(dto.getBrakeCheck()));
+        mtnc.setElectricCheck(toElectricCheck(dto.getElectricCheck()));
+        mtnc.setEmmisionCheck(toEmmisionCheck(dto.getEmmisionCheck()));
+        mtnc.setEngineCheck(toEngineCheck(dto.getEngineCheck()));
+        mtnc.setFilterCheck(toFilterCheck(dto.getFilterCheck()));
+        mtnc.setHvacCheck(toHvacCheck(dto.getHvacCheck()));
+        mtnc.setRustCheck(toRustCheck(dto.getRustCheck()));
+        mtnc.setTireCheck(toTireCheck(dto.getTireCheck()));
+        return mtnc;
+    }
+
+    private BeltHoseCheck toBeltHoseCheck(BeltHoseCheckDTO dto) {
+        BeltHoseCheck check = new BeltHoseCheck();
+        check.setSerpentineBelt(dto.getSerpentineBelt());
+        check.setTimingBelt(dto.getTimingBelt());
+        check.setRadiatorHoses(dto.getRadiatorHoses());
+        check.setHeaterHoses(dto.getHeaterHoses());
+        return check;
+    }
+
+    private BodyCheck toBodyCheck(BodyCheckDTO dto) {
+        BodyCheck check = new BodyCheck();
+        check.setHood(dto.getHood());
+        check.setFrontBumper(dto.getFrontBumper());
+        check.setRearBumper(dto.getRearBumper());
+        check.setLeftFrontDoor(dto.getLeftFrontDoor());
+        check.setRightFrontDoor(dto.getRightFrontDoor());
+        check.setLeftRearDoor(dto.getLeftRearDoor());
+        check.setRightRearDoor(dto.getRightRearDoor());
+        check.setTrunk(dto.getTrunk());
+        check.setRoof(dto.getRoof());
+        check.setLeftFrontFender(dto.getLeftFrontFender());
+        check.setRightFrontFender(dto.getRightFrontFender());
+        check.setLeftRearFender(dto.getLeftRearFender());
+        check.setRightRearFender(dto.getRightRearFender());
+        check.setWindshield(dto.getWindshield());
+        check.setRearWindow(dto.getRearWindow());
+        return check;
+    }
+
+    private BrakeCheck toBrakeCheck(BrakeCheckDTO dto) {
+        BrakeCheck check = new BrakeCheck();
+        check.setfPadThickness(dto.getfPadThickness());
+        check.setrPadThickness(dto.getrPadThickness());
+        check.setFrontRotorsCon(dto.getFrontRotorsCon());
+        check.setRearRotorsCon(dto.getRearRotorsCon());
+        check.setBrakeLines(dto.getBrakeLines());
+        return check;
+    }
+
+    private ElectricCheck toElectricCheck(ElectricCheckDTO dto) {
+        ElectricCheck check = new ElectricCheck();
+        check.setVoltage(dto.getVoltage());
+        check.setAlternatorOutput(dto.getAlternatorOutput());
+        check.setTerminals(dto.getTerminals());
+        check.setAge(dto.getAge());
+        check.setHeadLights(dto.getHeadLights());
+        check.setTailLight(dto.getTailLight());
+        check.setTurnSignals(dto.getTurnSignals());
+        return check;
+    }
+
+    private EmmisionCheck toEmmisionCheck(EmmisionCheckDTO dto) {
+        EmmisionCheck check = new EmmisionCheck();
+        check.setExhaust(dto.getExhaust());
+        check.setCatalytic(dto.getCatalytic());
+        check.setO2Sensors(dto.getO2Sensors());
+        return check;
+    }
+
+    private EngineCheck toEngineCheck(EngineCheckDTO dto) {
+        EngineCheck check = new EngineCheck();
+        check.setEngineStatus(dto.getEngineStatus());
+        check.setOilLevel(dto.getOilLevel());
+        check.setOilCondition(dto.getOilCondition());
+        check.setOilFilter(dto.isOilFilter());
+        check.setOilReplaced(dto.isOilReplaced());
+        check.setSteeringFluid(dto.getSteeringFluid());
+        check.setCoolantLevel(dto.getCoolantLevel());
+        check.setCoolantCondition(dto.getCoolantCondition());
+        check.setBrakeFluidLevel(dto.getBrakeFluidLevel());
+        check.setBrakeFluidColor(dto.getBrakeFluidColor());
+        check.setGearFluid(dto.getGearFluid());
+        check.setWashFluid(dto.getWashFluid());
+        return check;
+    }
+
+    private FilterCheck toFilterCheck(FilterCheckDTO dto) {
+        FilterCheck check = new FilterCheck();
+        check.setAirFilter(dto.getAirFilter());
+        check.setFuelFilter(dto.getFuelFilter());
+        check.setCabinFilter(dto.getCabinFilter());
+        return check;
+    }
+
+    private HvacCheck toHvacCheck(HvacCheckDTO dto) {
+        HvacCheck check = new HvacCheck();
+        check.setAcPerformance(dto.getAcPerformance());
+        check.setHeatPerformance(dto.getHeatPerformance());
+        check.setBlowerMotor(dto.getBlowerMotor());
+        return check;
+    }
+
+    private RustCheck toRustCheck(RustCheckDTO dto) {
+        RustCheck check = new RustCheck();
+        check.setWheelArches(dto.getWheelArches());
+        check.setSideSkirts(dto.getSideSkirts());
+        check.setDoorBottom(dto.getDoorBottom());
+        check.setTrunkFloor(dto.getTrunkFloor());
+        check.setHoodEdges(dto.getHoodEdges());
+        check.setRoofEdges(dto.getRoofEdges());
+        check.setFenders(dto.getFenders());
+        check.setExhaustArea(dto.getExhaustArea());
+        check.setUnderbody(dto.getUnderbody());
+        check.setWindowSeals(dto.getWindowSeals());
+        check.setSuspension(dto.getSuspension());
+        return check;
+    }
+
+    private TireCheck toTireCheck(TireCheckDTO dto) {
+        TireCheck check = new TireCheck();
+        check.setTreadFrontLeft(dto.getTreadFrontLeft());
+        check.setTreadFrontRight(dto.getTreadFrontRight());
+        check.setTreadRearLeft(dto.getTreadRearLeft());
+        check.setTreadRearRight(dto.getTreadRearRight());
+        check.setPressureFL(dto.getPressureFL());
+        check.setPressureFR(dto.getPressureFR());
+        check.setPressureRL(dto.getPressureRL());
+        check.setPressureRR(dto.getPressureRR());
+        check.setWearPattern(dto.getWearPattern());
+        check.setShockAbsorbers(dto.getShockAbsorbers());
+        return check;
     }
 }

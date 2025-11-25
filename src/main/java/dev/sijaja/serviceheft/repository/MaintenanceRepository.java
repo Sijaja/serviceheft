@@ -113,16 +113,16 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     List<Maintenance> findCriticalByCarId(@Param("carId") Integer carId);
 
     // Helper method to find maintenances by carId and ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND m.owner.ownerId = :ownerId")
+    @Query("SELECT m FROM Maintenance m WHERE m.car.carId = :carId AND m.car.owner.ownerId = :ownerId")
     List<Maintenance> findByCarIdAndOwnerId(@Param("carId") int carId, @Param("ownerId") int ownerId);
 
     // Helper method to find maintenances by ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.owner.id = :ownerId")
+    @Query("SELECT m FROM Maintenance m WHERE m.car.owner.ownerId = :ownerId")
     List<Maintenance> findAllByOwnerId(@Param("ownerId") int ownerId);
 
     // Helper method to find maintenances by carId and ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND m.owner.ownerId = :ownerId")
-    Optional<Maintenance> findByMtncIdAndOwnerId(@Param("mtncId") int mtncId, @Param("ownerId") int ownerId);
+    @Query("SELECT m FROM Maintenance m WHERE m.car.carId = :carId AND m.car.owner.ownerId = :ownerId")
+    Optional<Maintenance> findByMtncIdAndOwnerId(@Param("carId") int mtncId, @Param("ownerId") int ownerId);
 
     // Helper method to find maintenances by workshopId
     @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("

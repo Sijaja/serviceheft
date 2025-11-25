@@ -19,12 +19,12 @@ public class Owner {
     private int ownerId;
     @NotBlank
     private String userName;
-    private int photoId;
+    private Integer photoId;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
     private String street;
-    private int houseNumber;
+    private Integer houseNumber;
     private String city;
     private int defaultCarId;
     @OneToOne
@@ -34,8 +34,8 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(int ownerId, String userName, int photoId, String firstName, String lastName, LocalDate dateOfBirth,
-            String street, int houseNumber, String city, String email, String password, int defaultCarId) {
+    public Owner(int ownerId, String userName, Integer photoId, String firstName, String lastName, LocalDate dateOfBirth,
+            String street, Integer houseNumber, String city, String email, String password, int defaultCarId) {
         this.ownerId = ownerId;
         this.userName = userName;
         this.photoId = photoId;
@@ -64,11 +64,11 @@ public class Owner {
         this.userName = userName;
     }
 
-    public int getPhotoId() {
+    public Integer getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(int photoId) {
+    public void setPhotoId(Integer photoId) {
         this.photoId = photoId;
     }
 
@@ -104,11 +104,11 @@ public class Owner {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 

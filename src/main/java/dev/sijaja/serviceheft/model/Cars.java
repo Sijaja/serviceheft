@@ -20,7 +20,7 @@ public class Cars {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carId;
-    private int photoId;
+    private Integer photoId;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
@@ -28,17 +28,17 @@ public class Cars {
     private String carColor;
     private String manufacturer;
     private String model;
-    private int makeYear;
+    private Integer makeYear;
     private LocalDate inspectionExp;
-    private int mileage;
+    private Integer mileage;
     @Enumerated(EnumType.STRING)
     private CarType carType;
 
     public Cars() {
     }
 
-    public Cars(int carId, int photoId, Owner owner, String vinNumber, String carColor, String manufacturer,
-            String model, int makeYear, LocalDate inspectionExp, int mileage, CarType carType) {
+    public Cars(int carId, Integer photoId, Owner owner, String vinNumber, String carColor, String manufacturer,
+            String model, Integer makeYear, LocalDate inspectionExp, Integer mileage, CarType carType) {
         this.carId = carId;
         this.photoId = photoId;
         this.owner = owner;
@@ -100,11 +100,11 @@ public class Cars {
         this.model = model;
     }
 
-    public int getMakeYear() {
+    public Integer getMakeYear() {
         return makeYear;
     }
 
-    public void setMakeYear(int makeYear) {
+    public void setMakeYear(Integer makeYear) {
         this.makeYear = makeYear;
     }
 
@@ -116,19 +116,19 @@ public class Cars {
         this.inspectionExp = inspectionExp;
     }
 
-    public int getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
-    public int getPhotoId() {
+    public Integer getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(int photoId) {
+    public void setPhotoId(Integer photoId) {
         this.photoId = photoId;
     }
 

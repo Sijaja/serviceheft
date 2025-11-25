@@ -1,32 +1,58 @@
 //selected car Id
 let selectedCarId = null;
 
+//Next button functionality
+function nextTab() {
+  const activeTab = document.querySelector(".nav-tabs .nav-link.active");
+  const nextLi = activeTab.closest("li").nextElementSibling;
+
+  if (nextLi) {
+    nextLi.querySelector(".nav-link").click();
+  }
+}
+
+function prevTab() {
+  const activeTab = document.querySelector(".nav-tabs .nav-link.active");
+  const prevLi = activeTab.closest("li").previousElementSibling;
+
+  if (prevLi) {
+    prevLi.querySelector(".nav-link").click();
+  }
+}
+document.querySelectorAll(".btn-next").forEach((btn) => {
+  btn.addEventListener("click", nextTab);
+});
+
+document.querySelectorAll(".btn-prev").forEach((btn) => {
+  btn.addEventListener("click", prevTab);
+});
+
 //First we validate the Vin number to unlock the rest of the Tabs:
 async function validateVin() {
-    try {
-        const vin = document.getElementById('vin-input').value;
-        const res = await fetch(`/api/cars/vin/${vin}`);
-        const data = await res.json();
-        selectedCarId = data.carId;
-        if (res.ok) {
-            document.getElementById('vin-input').style.borderColor = "green";
-            document.getElementById('vin-input').setAttribute('readonly', true);
-            document.getElementById('Riemen-tab').removeAttribute('disabled');
-            document.getElementById('Karosseriekontrolle-tab').removeAttribute('disabled');
-            document.getElementById('Bremsenkontrolle-tab').removeAttribute('disabled');
-            document.getElementById('Elektrikdiagnose-tab').removeAttribute('disabled');
-            document.getElementById('Abgasdiagnose-tab').removeAttribute('disabled');
-            document.getElementById('Motordiagnose-tab').removeAttribute('disabled');
-            document.getElementById('Filterkontrolle-tab').removeAttribute('disabled');
-            document.getElementById('Klima-tab').removeAttribute('disabled');
-            document.getElementById('Rostkontrolle-tab').removeAttribute('disabled');
-            document.getElementById('Reifenkontrolle-tab').removeAttribute('disabled');
-            document.getElementById('wartung-tab').removeAttribute('disabled');
-        } 
-    } catch (error) {
-        document.getElementById('vin-input').style.borderColor = "red";
-        console.error(error);
+  try {
+    const vin = document.getElementById("vin-input").value;
+    const res = await fetch(`/api/cars/vin/${vin}`);
+    const data = await res.json();
+    selectedCarId = data.carId;
+    if (res.ok) {
+      document.getElementById("vin-input").style.borderColor = "green";
+      document.getElementById("vin-input").setAttribute("readonly", true);
+      document.getElementById("Riemen-tab").removeAttribute("disabled");
+      document.getElementById("Karosseriekontrolle-tab").removeAttribute("disabled");
+      document.getElementById("Bremsenkontrolle-tab").removeAttribute("disabled");
+      document.getElementById("Elektrikdiagnose-tab").removeAttribute("disabled");
+      document.getElementById("Abgasdiagnose-tab").removeAttribute("disabled");
+      document.getElementById("Motordiagnose-tab").removeAttribute("disabled");
+      document.getElementById("Filterkontrolle-tab").removeAttribute("disabled");
+      document.getElementById("Klima-tab").removeAttribute("disabled");
+      document.getElementById("Rostkontrolle-tab").removeAttribute("disabled");
+      document.getElementById("Reifenkontrolle-tab").removeAttribute("disabled");
+      document.getElementById("wartung-tab").removeAttribute("disabled");
     }
+  } catch (error) {
+    document.getElementById("vin-input").style.borderColor = "red";
+    console.error(error);
+  }
 }
 
 //a function to get the value of the fields
@@ -37,7 +63,7 @@ function val(id) {
 //a function to cellect the info and warp it in one json file
 function gatherMaintenanceData() {
   return {
-    carId: selectedCarId,  
+    carId: selectedCarId,
     carCondition: val("carCondition-input"),
     mtncDate: val("mtncDate-input"),
     nextDate: val("nextDate-input"),
@@ -47,14 +73,14 @@ function gatherMaintenanceData() {
     mtncType: val("mtncType-input"),
     inspectionNotes: val("inspectionNotes-input"),
 
-    BeltHoseCheck: {
+    beltHoseCheck: {
       serpentineBelt: val("serpentineBelt-input"),
       timingBelt: val("Zahnriemen-input"),
       radiatorHoses: val("radiatorHoses-input"),
       heaterHoses: val("heaterHoses-input"),
     },
 
-    BodyCheck: {
+    bodyCheck: {
       hood: val("hood-input"),
       frontBumper: val("frontBumper-input"),
       rearBumper: val("rearBumper-input"),
@@ -69,34 +95,34 @@ function gatherMaintenanceData() {
       roof: val("roof-input"),
       trunk: val("trunk-input"),
       windshield: val("windshield-input"),
-      rearWindow: val("rearWindow-input")
+      rearWindow: val("rearWindow-input"),
     },
 
-    BrakeCheck: {
-      frontPadThickness: val("fPadThickness-input"),
-      rearPadThickness: val("rPadThickness-input"),
-      frontRotors: val("frontRotorsCon-input"),
-      rearRotors: val("rearRotorsCon-input"),
-      brakeLines: val("brakeLines-input")
+    brakeCheck: {
+      fPadThickness: val("fPadThickness-input"),
+      rPadThickness: val("rPadThickness-input"),
+      frontRotorsCon: val("frontRotorsCon-input"),
+      rearRotorsCon: val("rearRotorsCon-input"),
+      brakeLines: val("brakeLines-input"),
     },
 
-    ElectricCheck: {
+    electricCheck: {
       voltage: val("voltage-input"),
-      alternator: val("alternator-input"),
+      alternatorOutput: val("alternator-input"),
       terminals: val("terminals-input"),
       age: val("age-input"),
       headLights: val("headLights-input"),
       tailLight: val("tailLight-input"),
-      turnSignals: val("turnSignals-input")
+      turnSignals: val("turnSignals-input"),
     },
 
-    EmmisionCheck: {
+    emmisionCheck: {
       exhaust: val("exhaust-input"),
       catalytic: val("catalytic-input"),
-      o2Sensors: val("o2Sensors-input")
+      o2Sensors: val("o2Sensors-input"),
     },
 
-    EngineCheck: {
+    engineCheck: {
       oilLevel: val("oilLevel-input"),
       oilCondition: val("oilCondition-input"),
       oilFilter: val("oilFilter-input"),
@@ -108,22 +134,22 @@ function gatherMaintenanceData() {
       steeringFluid: val("steeringFluid-input"),
       gearFluid: val("gearFluid-input"),
       washFluid: val("washFluid-input"),
-      engineStatus: val("engineStatus-input")
+      engineStatus: val("engineStatus-input"),
     },
 
-    FilterCheck: {
+    filterCheck: {
       airFilter: val("airFilter-input"),
       cabinFilter: val("cabinFilter-input"),
-      fuelFilter: val("fuelFilter-input")
+      fuelFilter: val("fuelFilter-input"),
     },
 
-    HvacCheck: {
+    hvacCheck: {
       acPerformance: val("acPerformance-input"),
       heatPerformance: val("heatPerformance-input"),
-      blowerMotor: val("blowerMotor-input")
+      blowerMotor: val("blowerMotor-input"),
     },
 
-    RustCheck: {
+    rustCheck: {
       wheelArches: val("wheelArches-input"),
       sideSkirts: val("sideSkirts-input"),
       doorBottom: val("doorBottom-input"),
@@ -134,10 +160,10 @@ function gatherMaintenanceData() {
       exhaustArea: val("exhaustArea-input"),
       underbody: val("underbody-input"),
       windowSeals: val("windowSeals-input"),
-      suspension: val("suspension-input")
+      suspension: val("suspension-input"),
     },
 
-    TireCheck: {
+    tireCheck: {
       treadFrontLeft: val("treadFrontLeft-input"),
       treadFrontRight: val("treadFrontRight-input"),
       treadRearLeft: val("treadRearLeft-input"),
@@ -147,7 +173,7 @@ function gatherMaintenanceData() {
       pressureRL: val("pressureRL-input"),
       pressureRR: val("pressureRR-input"),
       wearPattern: val("wearPattern-input"),
-      shockAbsorbers: val("shockAbsorbers-input")
+      shockAbsorbers: val("shockAbsorbers-input"),
     },
   };
 }
@@ -159,12 +185,20 @@ async function submitMaintenance() {
   const res = await fetch("/api/maintenance/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (res.ok) {
-    alert("Maintenance saved!");
+    Swal.fire({
+      title: "Geschaft!",
+      text: "Wartung erfolgreich hinzugefügt!",
+      icon: "success",
+    });
   } else {
-    alert("Error saving maintenance");
+    Swal.fire({
+      title: "Fehler!",
+      text: "beim Hinzufügen der Wartung",
+      icon: "error",
+    });
   }
 }
