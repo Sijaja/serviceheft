@@ -24,8 +24,9 @@ public class SecurityConfig {
 
         return http
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/presignup.html", "/signup", "/ws-signup.html", "/css/**", "/assets/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/css/**", "/assets/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/owners", "/api/workshops").permitAll()
+                .requestMatchers("/login", "/presignup.html", "/signup", "/ws-signup.html").not().authenticated()
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
