@@ -23,9 +23,9 @@ import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.dto.addMaintenance.MaintenanceDTO;
+import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Maintenance;
 import dev.sijaja.serviceheft.model.User;
-import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.service.CarService;
 import dev.sijaja.serviceheft.service.MaintenanceService;
@@ -56,8 +56,8 @@ public class MaintenanceController {
     }
 
     @GetMapping("/owner/{id}")
-    public ResponseEntity<List<Maintenance>> getAllMaintenanceByOwnerId(@PathVariable int id, Principal principal) {
-        return service.findMaintenanceForOwner(id, principal.getName())
+    public ResponseEntity<List<Maintenance>> getAllMaintenanceByCarId(@PathVariable("id") int carId, Principal principal) {
+        return service.findMaintenanceByCarIdForOwner(carId, principal.getName())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
     }

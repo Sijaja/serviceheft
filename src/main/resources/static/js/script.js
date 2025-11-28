@@ -13,12 +13,10 @@ async function getCar(carId) {
     loadNextMtncDate(carId);
     loadTotalCost(carId);
     loadMaintenanceTable(carId);
-    document.getElementById("myImage").src =
-      "assets/images/" + car.carType + ".png" || "assets/images/other.png";
+    document.getElementById("myImage").src = "assets/images/" + car.carType + ".png" || "assets/images/other.png";
     document.getElementById("makeYear").innerText = car.makeYear || "----";
     document.getElementById("kilometer").innerText = car.mileage || "----";
-    document.getElementById("inspection").innerText =
-      car.inspectionExp || "----";
+    document.getElementById("inspection").innerText = car.inspectionExp || "----";
     document.getElementById("carInfos").innerText =
       "Dein " +
         car.manufacturer +
@@ -38,22 +36,17 @@ async function getCar(carId) {
 // getOwner - only name right now
 async function getOwner(ownerId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/owners/${ownerId}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch(`http://localhost:8080/api/owners/${ownerId}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
 
     if (!response.ok) throw new Error("HTTP error " + response.status);
 
     const owner = await response.json();
 
-    document.getElementById("ownerName").innerText =
-      owner.firstName + " " + owner.lastName || "Benutzer";
-    document.getElementById("ownerFirstName").innerText =
-      owner.firstName + "!" || "Benutzer";
+    document.getElementById("ownerName").innerText = owner.firstName + " " + owner.lastName || "Benutzer";
+    document.getElementById("ownerFirstName").innerText = owner.firstName + "!" || "Benutzer";
   } catch (error) {
     console.error("Error fetching owner:", error);
   }
@@ -63,9 +56,7 @@ async function getOwner(ownerId) {
 
 async function loadMaintenanceChart(carId, year) {
   try {
-    const resp = await fetch(
-      `http://localhost:8080/api/maintenance/${carId}/year/${year}`
-    );
+    const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/year/${year}`);
     if (!resp.ok) throw new Error(`HTTP ${resp.status} ${resp.statusText}`);
 
     const data = await resp.json();
@@ -126,9 +117,7 @@ async function loadMaintenanceChart(carId, year) {
     });
   } catch (err) {
     console.error("Error loading maintenance chart:", err);
-    alert(
-      "Could not load chart — check console (F12) and network tab for the API request."
-    );
+    alert("Could not load chart — check console (F12) and network tab for the API request.");
   }
 }
 
@@ -139,15 +128,10 @@ function showChart() {
 }
 
 async function loadYearlyApexChart(carId) {
-  const yearlyApexChartId = document.getElementById(
-    "yearly_apex_chart"
-  );
-  const resp = await fetch(
-    `http://localhost:8080/api/maintenance/${carId}/years`
-  );
+  const yearlyApexChartId = document.getElementById("yearly_apex_chart");
+  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map(v =>
-  Math.round(v));
+  const roundedValues = Object.values(data).map((v) => Math.round(v));
   if (yearlyApexChartId) {
     var options = {
       series: [
@@ -254,18 +238,13 @@ async function loadYearlyApexChart(carId) {
       },
     };
 
-    var chart = new ApexCharts(
-      document.querySelector("#yearly_apex_chart"),
-      options
-    );
+    var chart = new ApexCharts(document.querySelector("#yearly_apex_chart"), options);
     chart.render();
   }
 }
 
 async function loadYearlyChart(carId) {
-  const resp = await fetch(
-    `http://localhost:8080/api/maintenance/${carId}/years`
-  );
+  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
   const data = await resp.json();
 
   const ctx = document.getElementById("costChart").getContext("2d");
@@ -301,19 +280,13 @@ async function loadYearlyChart(carId) {
 
 async function loadTotalCost(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/totals/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/totals/${carId}`);
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const data = await response.json();
 
     // Update the DOM
-    document.getElementById(
-      "totalCost"
-    ).innerText = `€ ${data.totalCost.toFixed(2)}`;
-    document.getElementById(
-      "averageCost"
-    ).innerText = `€ ${data.averageCost.toFixed(2)}`;
+    document.getElementById("totalCost").innerText = `€ ${data.totalCost.toFixed(2)}`;
+    document.getElementById("averageCost").innerText = `€ ${data.averageCost.toFixed(2)}`;
   } catch (error) {
     console.error("Error fetching total costs:", error);
   }
@@ -321,17 +294,13 @@ async function loadTotalCost(carId) {
 
 async function loadNextMtncDate(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/nextMTNC/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/nextMTNC/${carId}`);
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const data = await response.json();
 
     // Update the DOM
     if (data) {
-      document.getElementById("nextMtnc").innerText = new Date(
-        data.nextDate
-      ).toLocaleDateString();
+      document.getElementById("nextMtnc").innerText = new Date(data.nextDate).toLocaleDateString();
       document.getElementById("nextMileage").innerText = data.nextMileage;
     } else {
       document.getElementById("nextMtnc").innerText = "-";
@@ -344,9 +313,7 @@ async function loadNextMtncDate(carId) {
 
 async function loadMaintenanceTable(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/table/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/table/${carId}`);
     const data = await response.json();
 
     const tableBody = document.getElementById("maintenanceTableBody");
@@ -370,9 +337,7 @@ async function loadMaintenanceTable(carId) {
 
 async function loadCostComparison(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/costComparison/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/costComparison/${carId}`);
     const data = await response.json();
 
     const ctx = document.getElementById("visit_by_day_chart").getContext("2d");
@@ -406,14 +371,10 @@ async function loadCostComparison(carId) {
 
 async function loadAverageCostComparison(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/averageCostComparison/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/averageCostComparison/${carId}`);
     const data = await response.json();
 
-    const ctx = document
-      .getElementById("AverageCostComparisonChart")
-      .getContext("2d");
+    const ctx = document.getElementById("AverageCostComparisonChart").getContext("2d");
     new Chart(ctx, {
       type: "bar",
       data: {
@@ -444,9 +405,7 @@ async function loadAverageCostComparison(carId) {
 
 async function loadCarHealth(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/maintenance/critical/${carId}`
-    );
+    const response = await fetch(`http://localhost:8080/api/maintenance/critical/${carId}`);
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const data = await response.json();
 
@@ -516,6 +475,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadYearlyApexChart(defaultCarId);
     loadMaintenanceTable(defaultCarId);
     loadCarSelection();
+    tireDetails(defaultCarId);
+    oilDetails(defaultCarId);
+    batteryDetails(defaultCarId);
   } catch (error) {
     console.error("Error loading default car:", error);
   }
@@ -529,11 +491,9 @@ async function loadCarSelection() {
     const container = document.getElementById("carCardsContainer");
     cars.forEach((car) => {
       const cardHtml = `
-        <div class="col-12" id="clickable" onclick="setDefaultCar(${
-          car.carId
-        }); window.location.href='/mydashboard.html'" style="cursor: pointer">
+        <div class="col-12" id="clickable" onclick="handleCarClick(${car.carId})" style="cursor: pointer">
         <div
-            class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
+            class="card rounded-10 border-0 mb-4 bg-img zinnia-card position-relative"
             style="
                 background: linear-gradient(
                 101deg,
@@ -542,21 +502,39 @@ async function loadCarSelection() {
                 );
                 padding: 30.5px 40px;
             ">
+            <button 
+            onclick="event.stopPropagation(); deleteCard(${car.carId})" 
+            class="btn position-absolute"
+            style="
+                top: 15px;
+                right: 15px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: white;
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'">
+            <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+        </button>
             <div class="row align-items-center">
                 <div class="col-sm-6 col-lg-7">
                     <h2 class="fs-26 fw-normal text-white mb-3">
-                        <span class="fw-900">${car.manufacturer} ${
-        car.model
-      }</span>
+                        <span class="fw-900">${car.manufacturer} ${car.model}</span>
                     </h2>
                     <p
                         class="fs-16 lh-1-8 hospital-content"
                         style="color: #cbc7ff; margin-bottom: 40px">
                         Dein ${car.manufacturer} ${car.model} (Baujahr ${
         car.makeYear
-      }) ist aktuell bei ${car.mileage.toLocaleString()} km. Farbe: ${
-        car.carColor
-      }.
+      }) ist aktuell bei ${car.mileage.toLocaleString()} km. Farbe: ${car.carColor}.
                     </p>
                 </div>
                 <div class="col-sm-6 col-lg-5">
@@ -583,18 +561,74 @@ async function loadCarSelection() {
 // Set default car
 async function setDefaultCar(carId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/cars/default/${carId}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch(`http://localhost:8080/api/cars/default/${carId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
     if (!response.ok) throw new Error("HTTP error " + response.status);
 
     console.log("Default car set successfully!");
   } catch (error) {
     console.error("Error setting default car:", error);
     alert("Failed to set default car.");
+  }
+}
+
+async function handleCarClick(carId) {
+  // Optional: Show loading indicator
+  const card = event.currentTarget;
+  card.style.opacity = "0.6";
+  card.style.pointerEvents = "none";
+
+  try {
+    await setDefaultCar(carId);
+    window.location.href = "/mydashboard.html";
+  } catch (error) {
+    // Re-enable card if error occurs
+    card.style.opacity = "1";
+    card.style.pointerEvents = "auto";
+  }
+}
+
+async function deleteCard(carId) {
+  // Show confirmation dialog using SweetAlert2 (already included in your HTML)
+  const result = await Swal.fire({
+    title: "Fahrzeug löschen?",
+    text: "Diese Aktion kann nicht rückgängig gemacht werden!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Ja, löschen!",
+    cancelButtonText: "Abbrechen",
+  });
+
+  if (result.isConfirmed) {
+    try {
+      const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {
+        method: "DELETE",
+        credentials: "include", // Important for authentication
+      });
+
+      if (!response.ok) {
+        throw new Error("Fehler beim Löschen");
+      }
+
+      // Remove the card from DOM with animation
+      const cardElement = document.getElementById(`car-${carId}`);
+      if (cardElement) {
+        cardElement.style.transition = "opacity 0.3s ease";
+        cardElement.style.opacity = "0";
+        setTimeout(() => cardElement.remove(), 300);
+      }
+
+      // Show success message
+      Swal.fire("Gelöscht!", "Das Fahrzeug wurde erfolgreich gelöscht.", "success");
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting car:", error);
+      Swal.fire("Fehler!", "Das Fahrzeug konnte nicht gelöscht werden.", "error");
+    }
   }
 }

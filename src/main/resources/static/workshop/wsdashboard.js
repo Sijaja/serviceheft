@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// Load maintenance table for the workshop
 async function loadWorkshopMaintenanceTable(workshopId) {
   try {
     const response = await fetch(
@@ -37,6 +38,7 @@ async function loadWorkshopMaintenanceTable(workshopId) {
   }
 }
 
+// Fetch and display workshop details
 async function getWs(wsId) {
   try {
     const response = await fetch(
@@ -59,3 +61,4 @@ async function getWs(wsId) {
     console.error("Error fetching workshop:", error);
   }
 }
+

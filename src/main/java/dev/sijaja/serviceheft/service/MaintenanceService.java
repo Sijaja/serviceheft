@@ -94,7 +94,7 @@ public class MaintenanceService {
         return repo.findAllByOwnerId(owner.getOwnerId());
     }
 
-    public Optional<List<Maintenance>> findMaintenanceForOwner(int carId, String email) {
+    public Optional<List<Maintenance>> findMaintenanceByCarIdForOwner(int carId, String email) {
         User user = userRepo.findByEmail(email).orElse(null);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");

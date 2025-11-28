@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Owner;
@@ -60,7 +61,16 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable int id, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        Cars car = service.get(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found"));
+
+        if (car.getOwner().getOwnerId() != owner.getOwnerId()) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You don't have permission to delete this car");
+        }
+        
         service.delete(id);
     }
 

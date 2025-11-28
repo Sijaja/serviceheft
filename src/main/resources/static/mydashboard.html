@@ -217,6 +217,30 @@
                 class="card rounded-10 border-0 mb-4 bg-img zinnia-card"
                 style="background: linear-gradient(101deg, #1d546c 55.73%, #0c2b4e 99.52%); padding: 30.5px 40px"
               >
+                <!-- Edit -->
+                <button
+                  onclick="event.stopPropagation()"
+                  class="btn position-absolute"
+                  style="
+                    top: 15px;
+                    right: 15px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: white;
+                    width: 32px;
+                    height: 32px;
+                    padding: 0;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                  "
+                  onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'"
+                  onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'"
+                >
+                  <span class="material-symbols-outlined" style="font-size: 18px">edit</span>
+                </button>
                 <div class="row align-items-center">
                   <!-- Car info-->
                   <div class="col-sm-6 col-lg-7">
@@ -297,21 +321,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- Edit -->
-                      <a href="edit-car.html">
-                        <i
-                          class="ri-pencil-line fs-18 text-center rounded-circle d-inline-block"
-                          style="
-                            background-color: #c5cbff;
-                            color: #382c83;
-                            width: 36px;
-                            height: 36px;
-                            line-height: 36px;
-                            margin-top: 10px;
-                          "
-                        >
-                        </i>
-                      </a>
                     </div>
                   </div>
                   <!-- Car image / currently dynamic based on car type -->
@@ -341,9 +350,11 @@
                     <div class="flex-grow-1 ms-10">
                       <span class="fs-18 mb-0 lh-1" style="color: #cbc7ff">Reifenstatus</span>
                       <div class="d-flex align-items-center">
-                        <br />
-                        <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Profiltiefe:</h2>
-                        <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="tires"></h2>
+                        <div>
+                          <h4></h4>
+                          <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Profiltiefe:</h2>
+                          <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="tires"></h2>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -376,6 +387,7 @@
                       <div>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Wechseldatum:</h2>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="oilDate"></h2>
+                        <h6></h6>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Wechsel/Km:</h2>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="oilKm"></h2>
                       </div>
@@ -410,6 +422,7 @@
                       <div>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Alter:</h2>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="batteryAge"></h2>
+                        <h6></h6>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff">Spannung:</h2>
                         <h2 class="fs-16 mb-0 lh-1" style="color: #fff" id="batteryCurrent"></h2>
                       </div>
@@ -503,6 +516,7 @@
     <script src="assets/js/custom/maps.js"></script>
     <script src="assets/js/custom/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/car-selection.js"></script>
   </body>
 </html>
