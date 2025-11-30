@@ -257,7 +257,7 @@ async function tireDetails(carId) {
     }
   } catch (error) {
     console.error("Error fetching tire details:", error);
-    document.getElementById("tires").innerText = "Error loading data";
+    document.getElementById("tires").innerText = "---";
   }
 }
 async function oilDetails(carId) {
@@ -278,8 +278,8 @@ async function oilDetails(carId) {
     }
   } catch (error) {
     console.error("Error fetching Oil details:", error);
-    document.getElementById("oilDate").innerText = "Error loading data";
-    document.getElementById("oilKm").innerText = "Error loading data";
+    document.getElementById("oilDate").innerText = "---";
+    document.getElementById("oilKm").innerText = "---";
   }
 }
 async function batteryDetails(carId) {
@@ -300,7 +300,25 @@ async function batteryDetails(carId) {
     }
   } catch (error) {
     console.error("Error fetching Battery details:", error);
-    document.getElementById("batteryAge").innerText = "Error loading data";
-    document.getElementById("batteryCurrent").innerText = "Error loading data";
+    document.getElementById("batteryAge").innerText = "---";
+    document.getElementById("batteryCurrent").innerText = "---";
+  }
+}
+
+async function editCar(carId, year) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        makeYear: year,
+      }),
+    });
+    if (!response.ok) throw new Error("HTTP error " + response.status);
+    const result = await response.json();
+    console.log("Server response:", result);
+  } catch (error) {
+    console.error("Error editing car:", error);
   }
 }

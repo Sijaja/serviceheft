@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-async function addCar() {
+async function addCar(event) {
+  event.preventDefault();
   try {
     const response = await fetch("http://localhost:8080/api/cars", {
       method: "POST",
@@ -18,9 +19,10 @@ async function addCar() {
       body: JSON.stringify({
         photoId: 0,
         vinNumber: document.getElementById("vinNumber").value,
-        carColor: "genericColor",
+        carColor: document.getElementById("color").value,
         manufacturer: document.getElementById("manufacturer").value,
         model: document.getElementById("model").value,
+        inspectionExp: document.getElementById("inspection").value,
         makeYear: document.getElementById("makeYear").value,
         mileage: document.getElementById("mileage").value,
         carType: document.getElementById("carType").value,
@@ -30,9 +32,9 @@ async function addCar() {
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const result = await response.json();
     document.querySelector("form").reset();
-    alert("Car added successfully!");
+    Swal.fire("Geschaft!", "Das Fahrzeug wurde erfolgreich hinzugefügt!", "success");
     console.log("Server response:", result);
   } catch (error) {
-    console.error("Error adding car:", error);
+    Swal.fire("Fehler!", "Fehler beim Hinzufügen des Fahrzeugs!", "success");
   }
 }

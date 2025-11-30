@@ -21,7 +21,7 @@
         <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
 
         <!-- Title -->
-        <title>AutoMate | Auto hinzufügen</title>
+        <title>AutoMate | Auto Aktualisieren</title>
     </head>
 
     <body class="bg-body-bg">
@@ -258,7 +258,7 @@
                         <div class="col-12">
                             <div
                                 class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4 mt-1">
-                                <h3 class="mb-0">Auto hinzufügen</h3>
+                                <h3 class="mb-0">Auto Aktualisieren</h3>
                             </div>
 
                             <div
@@ -276,7 +276,7 @@
                                                         class="form-control"
                                                         id="manufacturer"
                                                         placeholder="Hersteller"
-                                                        required>
+                                                        disabled>
                                                     <label
                                                         for="manufacturer">Hersteller</label>
                                                 </div>
@@ -292,7 +292,7 @@
                                                         class="form-control"
                                                         id="model"
                                                         placeholder="Model"
-                                                        required>
+                                                        disabled>
                                                     <label
                                                         for="model">Model</label>
                                                 </div>
@@ -342,7 +342,7 @@
                                                         class="form-control"
                                                         id="makeYear"
                                                         placeholder="Erstzulassung"
-                                                        required/>
+                                                        disabled/>
                                                     <label
                                                         for="makeYear">Erstzulassung*</label>
                                                 </div>
@@ -358,7 +358,7 @@
                                                         class="form-select form-control"
                                                         id="carType"
                                                         aria-label="Floating label select example"
-                                                        required>
+                                                        disabled>
                                                         <option
                                                             value="" selected>Fahrzeugtyp</option>
                                                         <option
@@ -389,7 +389,7 @@
                                                 <label
                                                     class="label fs-16 mb-2">Kilometerstand</label>
                                                 <div class="form-floating">
-                                                    <input type="number"
+                                                    <input type="email"
                                                         class="form-control"
                                                         id="mileage"
                                                         placeholder="Enter instructor name"
@@ -408,7 +408,8 @@
                                                     <select
                                                         class="form-select form-control"
                                                         id="floatingSelect7"
-                                                        aria-label="Floating label select example">
+                                                        aria-label="Floating label select example"
+                                                        disabled>
                                                         <option
                                                             selected>Antrieb</option>
                                                         <option
@@ -432,7 +433,8 @@
                                                     <select
                                                         class="form-select form-control"
                                                         id="floatingSelect8"
-                                                        aria-label="Floating label select example">
+                                                        aria-label="Floating label select example"
+                                                        disabled>
                                                         <option
                                                             selected>Treibstoff</option>
                                                         <option
@@ -459,7 +461,8 @@
                                                     <input type="text"
                                                         class="form-control"
                                                         id="floatingInput8"
-                                                        placeholder="Leistung (ps)">
+                                                        placeholder="Leistung (ps)"
+                                                        disabled>
                                                     <label
                                                         for="floatingInput8">Leistung
                                                         (ps)</label>
@@ -476,7 +479,7 @@
                                                         class="form-control"
                                                         id="vinNumber"
                                                         placeholder="Fahrzeug-Identifizierungsnummer"
-                                                        required>
+                                                        disabled>
                                                     <label
                                                         for="vinNumber">Fahrzeug-Identifizierungsnummer*</label>
                                                 </div>
@@ -491,7 +494,8 @@
                                                     <select
                                                         class="form-select form-control"
                                                         id="floatingSelect7"
-                                                        aria-label="Floating label select example">
+                                                        aria-label="Floating label select example"
+                                                        disabled>
                                                         <option
                                                             selected>Getriebeart</option>
                                                         <option
@@ -512,7 +516,7 @@
                                                     data-bs-dismiss="modal">Abbrechen</button>
                                                 <button type="submit"
                                                     class="btn btn-primary fw-normal text-white ms-auto">+
-                                                    Auto hinzufügen</button>
+                                                    Auto Aktualisieren</button>
                                             </div>
                                         </div>
                                     </div>
@@ -549,7 +553,8 @@
         <script src="assets/js/sidebar-menu.js"></script>
         <script src="assets/js/simplebar.min.js"></script>
         <script src="assets/js/custom/custom.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script src="/js/addCar.js"></script>
     </body>
 </html>
