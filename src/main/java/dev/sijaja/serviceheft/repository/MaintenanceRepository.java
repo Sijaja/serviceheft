@@ -111,13 +111,13 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
        )
        """)
     List<Maintenance> findCriticalByCarId(@Param("carId") Integer carId);
-
+        /* 
     @Query("""
        SELECT tread_front_left, tread_front_right, FROM Maintenance e 
        WHERE e.car.id = :carId
        """)
     Integer brakeAndTireRatingByCarId(@Param("carId") Integer carId);
-
+       */
     // Helper method to find maintenances by carId and ownerId
     @Query("SELECT m FROM Maintenance m WHERE m.car.carId = :carId AND m.car.owner.ownerId = :ownerId")
     List<Maintenance> findByCarIdAndOwnerId(@Param("carId") int carId, @Param("ownerId") int ownerId);

@@ -47,6 +47,7 @@ import dev.sijaja.serviceheft.model.RustCheck;
 import dev.sijaja.serviceheft.model.TireCheck;
 import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.model.Workshop;
+import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.UserRepository;
@@ -362,56 +363,127 @@ public class MaintenanceService {
         return check;
     }
 
-    public BrakeTireRatingDTO getBrakesAndTiresScore(Integer carId, Integer ownerId) {
-    List<Maintenance> maintenanceHistory = repo
-        .findByCarIdAndOwnerId(carId, ownerId);
-    
-    BrakeTireRatingDTO dto = new BrakeTireRatingDTO();
-
-    int fieldsFilled = 0;
-    
-    // For each field, find the most recent non-null value
-    for (Maintenance entry : maintenanceHistory) {
-        if (dto.getTreadFrontLeft() == null && entry.getTireCheck().getTreadFrontLeft() != null) {
-            dto.setTreadFrontLeft(entry.getTireCheck().getTreadFrontLeft());
-            fieldsFilled++;
-        }
-        if (dto.getTreadFrontRight() == null && entry.getTireCheck().getTreadFrontRight() != null) {
-            dto.setTreadFrontRight(entry.getTireCheck().getTreadFrontRight());
-            fieldsFilled++;
-        }
-        if (dto.getTreadRearLeft() == null && entry.getTireCheck().getTreadRearLeft() != null) {
-            dto.setTreadRearLeft(entry.getTireCheck().getTreadRearLeft());
-            fieldsFilled++;
-        }
-        if (dto.getTreadRearRight() == null && entry.getTireCheck().getTreadRearRight() != null) {
-            dto.setTreadRearRight(entry.getTireCheck().getTreadRearRight());
-            fieldsFilled++;
-        }
-        if (dto.getfPadThickness() == null && entry.getBrakeCheck().getfPadThickness() != null) {
-            dto.setfPadThickness(entry.getBrakeCheck().getfPadThickness());
-            fieldsFilled++;
-        }
-        if (dto.getrPadThickness() == null && entry.getBrakeCheck().getrPadThickness() != null) {
-            dto.setrPadThickness(entry.getBrakeCheck().getrPadThickness());
-            fieldsFilled++;
-        }
-        if (dto.getFrontRotorsCon() == null && entry.getBrakeCheck().getFrontRotorsCon() != null) {
-            dto.setFrontRotorsCon(entry.getBrakeCheck().getFrontRotorsCon());
-            fieldsFilled++;
-        }
-        if (dto.getRearRotorsCon() == null && entry.getBrakeCheck().getRearRotorsCon() != null) {
-            dto.setRearRotorsCon(entry.getBrakeCheck().getRearRotorsCon());
-            fieldsFilled++;
-        }
-        if (dto.getBrakeLines() == null && entry.getBrakeCheck().getBrakeLines() != null) {
-            dto.setBrakeLines(entry.getBrakeCheck().getBrakeLines());
-            fieldsFilled++;
-        }
-        // Early exit if all fields are populated
-        if (fieldsFilled == 9) break;
+    // Calculate tread score based on depth
+    public int treadPenalty(Double treadDepth) {
+        if (treadDepth == null) return 40;
+        if (treadDepth >= 6) return 0;
+        if (treadDepth >= 4) return 5;
+        if (treadDepth >= 3) return 15;
+        if (treadDepth >= 1.6) return 25;
+        if (treadDepth < 1.6) return 40;
+        return 40;
     }
-    
-    return dto;
-}
+
+    public int conditionPenalty(Condition condition) {
+        if (condition.equals(Condition.REPLACED) || condition.equals(Condition.OPTIMAL)) return 0;
+        if (condition.equals(Condition.FAIR)) return 6;
+        if (condition.equals(Condition.POOR)) return 12;
+        return 0;
+    }
+
+    public Optional<Integer> getBrakesAndTiresScore(Integer carId, Integer ownerId) {
+        List<Maintenance> maintenanceHistory = repo
+            .findByCarIdAndOwnerId(carId, ownerId);
+        
+        Collections.reverse(maintenanceHistory); // Start from most recent
+        BrakeTireRatingDTO dto = new BrakeTireRatingDTO();
+
+        int fieldsFilled = 0;
+        int tireScore = 40;
+        int brakeScore = 60;
+        
+        // For each field, find the most recent non-null value
+        for (Maintenance entry : maintenanceHistory) {
+            if (dto.getTreadFrontLeft() == null && entry.getTireCheck().getTreadFrontLeft() != null) {
+                dto.setTreadFrontLeft(entry.getTireCheck().getTreadFrontLeft());
+                tireScore -= treadPenalty(dto.getTreadFrontLeft());
+                if (tireScore < 0) tireScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getTreadFrontRight() == null && entry.getTireCheck().getTreadFrontRight() != null) {
+                dto.setTreadFrontRight(entry.getTireCheck().getTreadFrontRight());
+                tireScore -= treadPenalty(dto.getTreadFrontRight());
+                if (tireScore < 0) tireScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getTreadRearLeft() == null && entry.getTireCheck().getTreadRearLeft() != null) {
+                dto.setTreadRearLeft(entry.getTireCheck().getTreadRearLeft());
+                tireScore -= treadPenalty(dto.getTreadRearLeft());
+                if (tireScore < 0) tireScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getTreadRearRight() == null && entry.getTireCheck().getTreadRearRight() != null) {
+                dto.setTreadRearRight(entry.getTireCheck().getTreadRearRight());
+                tireScore -= treadPenalty(dto.getTreadRearRight());
+                if (tireScore < 0) tireScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getfPadThickness() == null && entry.getBrakeCheck().getfPadThickness() != null) {
+                dto.setfPadThickness(entry.getBrakeCheck().getfPadThickness());
+                if (dto.getfPadThickness() >= 4) {
+                    brakeScore -= 0;
+                } else if (dto.getfPadThickness() >= 3) {
+                    brakeScore -= 4;
+                } else if (dto.getfPadThickness() >= 2) {
+                    brakeScore -= 8;
+                } else if (dto.getfPadThickness() < 2) {
+                    brakeScore -= 12;
+                }
+                if (brakeScore < 0) brakeScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getrPadThickness() == null && entry.getBrakeCheck().getrPadThickness() != null) {
+                dto.setrPadThickness(entry.getBrakeCheck().getrPadThickness());
+                if (dto.getrPadThickness() >= 4) {
+                    brakeScore -= 0;
+                } else if (dto.getrPadThickness() >= 3) {
+                    brakeScore -= 2;
+                } else if (dto.getrPadThickness() >= 2) {
+                    brakeScore -= 5;
+                } else if (dto.getrPadThickness() < 2) {
+                    brakeScore -= 8;
+                }
+                if (brakeScore < 0) brakeScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getFrontRotorsCon() == null && entry.getBrakeCheck().getFrontRotorsCon() != null) {
+                dto.setFrontRotorsCon(entry.getBrakeCheck().getFrontRotorsCon());
+                brakeScore -= conditionPenalty(dto.getFrontRotorsCon());
+                if (brakeScore < 0) brakeScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getRearRotorsCon() == null && entry.getBrakeCheck().getRearRotorsCon() != null) {
+                dto.setRearRotorsCon(entry.getBrakeCheck().getRearRotorsCon());
+                brakeScore -= conditionPenalty(dto.getRearRotorsCon());
+                if (brakeScore < 0) brakeScore = 0;
+                fieldsFilled++;
+            }
+            if (dto.getBrakeLines() == null && entry.getBrakeCheck().getBrakeLines() != null) {
+                dto.setBrakeLines(entry.getBrakeCheck().getBrakeLines());
+                brakeScore -= conditionPenalty(dto.getBrakeLines());
+                if (brakeScore < 0) brakeScore = 0;
+                fieldsFilled++;
+            }
+            // Early exit if all fields are populated
+            if (fieldsFilled == 9) break;
+        }
+        
+        return Optional.of(brakeScore + tireScore);
+    }
+
+    public Optional<Integer> getDrivetrainScore(Integer carId, Integer ownerId) {
+        // Implementation similar to getBrakesAndTiresScore
+        
+        return Optional.empty();
+    }
+
+    public Optional<Integer> getChasisScore(Integer carId, Integer ownerId) {
+        // Implementation similar to getBrakesAndTiresScore
+        return Optional.empty();
+    }
+
+    public Optional<Integer> getBodyWorkScore(Integer carId, Integer ownerId) {
+        // Implementation similar to getBrakesAndTiresScore
+        return Optional.empty();
+    }
 }

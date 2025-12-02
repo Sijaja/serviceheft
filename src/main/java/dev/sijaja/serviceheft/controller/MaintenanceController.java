@@ -25,10 +25,12 @@ import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.dto.addMaintenance.MaintenanceDTO;
 import dev.sijaja.serviceheft.model.Cars;
 import dev.sijaja.serviceheft.model.Maintenance;
+import dev.sijaja.serviceheft.model.Owner;
 import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.service.CarService;
 import dev.sijaja.serviceheft.service.MaintenanceService;
+import dev.sijaja.serviceheft.service.OwnerService;
 import dev.sijaja.serviceheft.service.UserService;
 import dev.sijaja.serviceheft.service.WorkshopService;
 
@@ -41,13 +43,15 @@ public class MaintenanceController {
     private final UserService userService;
     private final WorkshopService workshopService;
     private final CarService carService;
+    private final OwnerService ownerService;
 
 
-    public MaintenanceController(MaintenanceService service, UserService userService, WorkshopService workshopService, CarService carService) {
+    public MaintenanceController(MaintenanceService service, UserService userService, WorkshopService workshopService, CarService carService, OwnerService ownerService) {
         this.service = service;
         this.userService = userService;
         this.workshopService = workshopService;
         this.carService = carService;
+        this.ownerService = ownerService;
     }
 
     @GetMapping
@@ -136,4 +140,12 @@ public class MaintenanceController {
         return service.getMaintenanceTableForWorkshop(workshopId, principal.getName());
     }
 
+    @GetMapping("/brakesAndTires/{carId}")
+    public ResponseEntity<Integer> getBrakesAndTiresScore(@PathVariable Integer carId, Principal principal) {
+        User user = userService.loadUserByEmail(principal.getName());
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        return service.getBrakesAndTiresScore(carId, owner.getOwnerId())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
 }

@@ -26,12 +26,13 @@ async function carHealthChart(carId) {
 }
 async function totalHealthChart(carId) {
   const yearlyApexChartId = document.getElementById("total_health_chart");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/brakesAndTires/${carId}`);
+  console.log(resp);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
+  console.log(data);
   if (yearlyApexChartId) {
     var options = {
-      series: [76, 67, 61, 90],
+      series: [data, 67, 61, 90],
       chart: {
         height: 390,
         type: "radialBar",
