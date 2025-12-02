@@ -27,7 +27,6 @@ async function getCar(carId) {
     console.error("Error fetching car:", error);
   }
 }
-
 // getOwner - only name right now
 async function getOwner(ownerId) {
   try {
@@ -46,14 +45,12 @@ async function getOwner(ownerId) {
     console.error("Error fetching owner:", error);
   }
 }
-
 // Chart functions
 function showChart() {
   const carId = parseInt(document.getElementById("carSelect").value, 10);
   const year = parseInt(document.getElementById("yearSelect").value, 10);
   loadMaintenanceChart(carId, year);
 }
-
 async function loadYearlyApexChart(carId) {
   const yearlyApexChartId = document.getElementById("yearly_apex_chart");
   const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
@@ -169,7 +166,6 @@ async function loadYearlyApexChart(carId) {
     chart.render();
   }
 }
-
 async function loadTotalCost(carId) {
   try {
     const response = await fetch(`http://localhost:8080/api/maintenance/totals/${carId}`);
@@ -183,7 +179,6 @@ async function loadTotalCost(carId) {
     console.error("Error fetching total costs:", error);
   }
 }
-
 async function loadMaintenanceTable(carId) {
   try {
     const response = await fetch(`http://localhost:8080/api/maintenance/table/${carId}`);
@@ -207,7 +202,6 @@ async function loadMaintenanceTable(carId) {
     console.error("Error loading maintenance table:", error);
   }
 }
-
 // Initial load for car and owner with dynamic ID
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -228,11 +222,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     tireDetails(defaultCarId);
     oilDetails(defaultCarId);
     batteryDetails(defaultCarId);
+    comparesionChart(defaultCarId);
+    totalHealthChart(defaultCarId);
+    carHealthChart(defaultCarId);
   } catch (error) {
     console.error("Error loading default car:", error);
   }
 });
-
 // 3 Details for the dashboard cards: Tires, Oil, Battery
 async function tireDetails(carId) {
   try {
@@ -304,7 +300,6 @@ async function batteryDetails(carId) {
     document.getElementById("batteryCurrent").innerText = "---";
   }
 }
-
 async function editCar(carId, year) {
   try {
     const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {

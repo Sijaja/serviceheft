@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,7 +71,7 @@ public class CarController {
         if (car.getOwner().getOwnerId() != owner.getOwnerId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You don't have permission to delete this car");
         }
-        
+
         service.delete(id);
     }
 
@@ -91,4 +92,11 @@ public class CarController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
     }
+
+    @PutMapping("/{carId}/transfer/{newOwnerId}")
+    public ResponseEntity<?> transferCarOwnership(@PathVariable int carId, @PathVariable int newOwnerId, Principal principal) {
+        service.transferCarOwnership(carId, newOwnerId, principal.getName());
+        return ResponseEntity.ok(Map.of("message", "Car ownership transferred successfully"));
+    }
+
 }

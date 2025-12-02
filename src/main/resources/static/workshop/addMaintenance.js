@@ -189,11 +189,17 @@ async function submitMaintenance() {
   });
 
   if (res.ok) {
-    Swal.fire({
+    const aprroved = await Swal.fire({
       title: "Geschaft!",
       text: "Wartung erfolgreich hinzugefügt!",
       icon: "success",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "OK",
     });
+
+    if (aprroved.isConfirmed) {
+      window.location.href = "./wsdashboard.html";
+    }
   } else {
     Swal.fire({
       title: "Fehler!",

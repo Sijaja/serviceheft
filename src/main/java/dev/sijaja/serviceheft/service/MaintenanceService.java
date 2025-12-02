@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
+import dev.sijaja.serviceheft.dto.BrakeTireRatingDTO;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
@@ -360,4 +361,57 @@ public class MaintenanceService {
         check.setShockAbsorbers(dto.getShockAbsorbers());
         return check;
     }
+
+    public BrakeTireRatingDTO getBrakesAndTiresScore(Integer carId, Integer ownerId) {
+    List<Maintenance> maintenanceHistory = repo
+        .findByCarIdAndOwnerId(carId, ownerId);
+    
+    BrakeTireRatingDTO dto = new BrakeTireRatingDTO();
+
+    int fieldsFilled = 0;
+    
+    // For each field, find the most recent non-null value
+    for (Maintenance entry : maintenanceHistory) {
+        if (dto.getTreadFrontLeft() == null && entry.getTireCheck().getTreadFrontLeft() != null) {
+            dto.setTreadFrontLeft(entry.getTireCheck().getTreadFrontLeft());
+            fieldsFilled++;
+        }
+        if (dto.getTreadFrontRight() == null && entry.getTireCheck().getTreadFrontRight() != null) {
+            dto.setTreadFrontRight(entry.getTireCheck().getTreadFrontRight());
+            fieldsFilled++;
+        }
+        if (dto.getTreadRearLeft() == null && entry.getTireCheck().getTreadRearLeft() != null) {
+            dto.setTreadRearLeft(entry.getTireCheck().getTreadRearLeft());
+            fieldsFilled++;
+        }
+        if (dto.getTreadRearRight() == null && entry.getTireCheck().getTreadRearRight() != null) {
+            dto.setTreadRearRight(entry.getTireCheck().getTreadRearRight());
+            fieldsFilled++;
+        }
+        if (dto.getfPadThickness() == null && entry.getBrakeCheck().getfPadThickness() != null) {
+            dto.setfPadThickness(entry.getBrakeCheck().getfPadThickness());
+            fieldsFilled++;
+        }
+        if (dto.getrPadThickness() == null && entry.getBrakeCheck().getrPadThickness() != null) {
+            dto.setrPadThickness(entry.getBrakeCheck().getrPadThickness());
+            fieldsFilled++;
+        }
+        if (dto.getFrontRotorsCon() == null && entry.getBrakeCheck().getFrontRotorsCon() != null) {
+            dto.setFrontRotorsCon(entry.getBrakeCheck().getFrontRotorsCon());
+            fieldsFilled++;
+        }
+        if (dto.getRearRotorsCon() == null && entry.getBrakeCheck().getRearRotorsCon() != null) {
+            dto.setRearRotorsCon(entry.getBrakeCheck().getRearRotorsCon());
+            fieldsFilled++;
+        }
+        if (dto.getBrakeLines() == null && entry.getBrakeCheck().getBrakeLines() != null) {
+            dto.setBrakeLines(entry.getBrakeCheck().getBrakeLines());
+            fieldsFilled++;
+        }
+        // Early exit if all fields are populated
+        if (fieldsFilled == 9) break;
+    }
+    
+    return dto;
+}
 }

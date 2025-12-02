@@ -591,7 +591,7 @@ async function handleCarClick(carId) {
 }
 
 async function deleteCard(carId) {
-  // Show confirmation dialog using SweetAlert2 (already included in your HTML)
+  const newOwnerId = 0; // 0 means it will be assigned to the administrator account (so deleted from user view)
   const result = await Swal.fire({
     title: "Fahrzeug löschen?",
     text: "Diese Aktion kann nicht rückgängig gemacht werden!",
@@ -605,8 +605,8 @@ async function deleteCard(carId) {
 
   if (result.isConfirmed) {
     try {
-      const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {
-        method: "DELETE",
+      const response = await fetch(`http://localhost:8080/api/cars/${carId}/transfer/${newOwnerId}`, {
+        method: "PUT",
         credentials: "include", // Important for authentication
       });
 

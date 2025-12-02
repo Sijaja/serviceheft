@@ -32,7 +32,17 @@ async function addCar(event) {
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const result = await response.json();
     document.querySelector("form").reset();
-    Swal.fire("Geschaft!", "Das Fahrzeug wurde erfolgreich hinzugefügt!", "success");
+    const aprroved = await Swal.fire({
+      title: "Geschaft!",
+      text: "Das Fahrzeug wurde erfolgreich hinzugefügt!",
+      icon: "success",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "OK",
+    });
+
+    if (aprroved.isConfirmed) {
+      window.location.href = "/car-selection.html";
+    }
     console.log("Server response:", result);
   } catch (error) {
     Swal.fire("Fehler!", "Fehler beim Hinzufügen des Fahrzeugs!", "success");
