@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.BrakeTireRatingDTO;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
+import dev.sijaja.serviceheft.dto.HealthScoreDTO;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
@@ -48,6 +49,8 @@ import dev.sijaja.serviceheft.model.TireCheck;
 import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.model.enums.Condition;
+import dev.sijaja.serviceheft.model.enums.Level;
+import dev.sijaja.serviceheft.model.enums.Part;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.UserRepository;
@@ -363,59 +366,115 @@ public class MaintenanceService {
         return check;
     }
 
-    // Calculate tread score based on depth
+    // Calculate tread penalty based on depth, this will be subtracted from tire score
     public int treadPenalty(Double treadDepth) {
-        if (treadDepth == null) return 40;
-        if (treadDepth >= 6) return 0;
-        if (treadDepth >= 4) return 5;
-        if (treadDepth >= 3) return 15;
-        if (treadDepth >= 1.6) return 25;
-        if (treadDepth < 1.6) return 40;
+        if (treadDepth == null) {
+            return 40;
+        }
+        if (treadDepth >= 6) {
+            return 0;
+        }
+        if (treadDepth >= 4) {
+            return 5;
+        }
+        if (treadDepth >= 3) {
+            return 15;
+        }
+        if (treadDepth >= 1.6) {
+            return 25;
+        }
+        if (treadDepth < 1.6) {
+            return 40;
+        }
         return 40;
     }
 
-    public int conditionPenalty(Condition condition) {
-        if (condition.equals(Condition.REPLACED) || condition.equals(Condition.OPTIMAL)) return 0;
-        if (condition.equals(Condition.FAIR)) return 6;
-        if (condition.equals(Condition.POOR)) return 12;
+    // Calculate penalty based on condition enum, this will be subtracted from the score
+    public int conditionPenalty(Condition condition, int optimal, int fair, int poor) {
+        if (condition.equals(Condition.REPLACED) || condition.equals(Condition.OPTIMAL)) {
+            return optimal;
+        }
+        if (condition.equals(Condition.FAIR)) {
+            return fair;
+        }
+        if (condition.equals(Condition.POOR)) {
+            return poor;
+        }
         return 0;
     }
 
-    public Optional<Integer> getBrakesAndTiresScore(Integer carId, Integer ownerId) {
-        List<Maintenance> maintenanceHistory = repo
-            .findByCarIdAndOwnerId(carId, ownerId);
-        
-        Collections.reverse(maintenanceHistory); // Start from most recent
+    // Calculate penalty based on Level enum, this will be subtracted from the score
+    public int levelPenalty(Level level, int optimal, int high, int low) {
+        if (level.equals(Level.NOT_CHECKED) || level.equals(Level.OPTIMAL)) {
+            return optimal;
+        }
+        if (level.equals(Level.HIGH)) {
+            return high;
+        }
+        if (level.equals(Level.LOW)) {
+            return low;
+        }
+        return 0;
+    }
+
+    public int partPenalty(Part part, int good, int okay, int toReplace, int replaced, int notChecked) {
+        if (part.equals(Part.GOOD)) {
+            return good;
+        }
+        if (part.equals(Part.OKAY)) {
+            return okay;
+        }
+        if (part.equals(Part.TOREPLACE)) {
+            return toReplace;
+        }
+        if (part.equals(Part.REPLACED)) {
+            return replaced;
+        }
+        if (part.equals(Part.NOT_CHECKED)) {
+            return notChecked;
+        }
+        return 0;
+    }
+    // Main method to calculate brakes and tires score
+    public Optional<Integer> getBrakesAndTiresScore(Integer carId, Integer ownerId, List<Maintenance> maintenanceHistory) {
         BrakeTireRatingDTO dto = new BrakeTireRatingDTO();
 
         int fieldsFilled = 0;
         int tireScore = 40;
         int brakeScore = 60;
-        
+
         // For each field, find the most recent non-null value
         for (Maintenance entry : maintenanceHistory) {
             if (dto.getTreadFrontLeft() == null && entry.getTireCheck().getTreadFrontLeft() != null) {
                 dto.setTreadFrontLeft(entry.getTireCheck().getTreadFrontLeft());
                 tireScore -= treadPenalty(dto.getTreadFrontLeft());
-                if (tireScore < 0) tireScore = 0;
+                if (tireScore < 0) {
+                    tireScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getTreadFrontRight() == null && entry.getTireCheck().getTreadFrontRight() != null) {
                 dto.setTreadFrontRight(entry.getTireCheck().getTreadFrontRight());
                 tireScore -= treadPenalty(dto.getTreadFrontRight());
-                if (tireScore < 0) tireScore = 0;
+                if (tireScore < 0) {
+                    tireScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getTreadRearLeft() == null && entry.getTireCheck().getTreadRearLeft() != null) {
                 dto.setTreadRearLeft(entry.getTireCheck().getTreadRearLeft());
                 tireScore -= treadPenalty(dto.getTreadRearLeft());
-                if (tireScore < 0) tireScore = 0;
+                if (tireScore < 0) {
+                    tireScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getTreadRearRight() == null && entry.getTireCheck().getTreadRearRight() != null) {
                 dto.setTreadRearRight(entry.getTireCheck().getTreadRearRight());
                 tireScore -= treadPenalty(dto.getTreadRearRight());
-                if (tireScore < 0) tireScore = 0;
+                if (tireScore < 0) {
+                    tireScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getfPadThickness() == null && entry.getBrakeCheck().getfPadThickness() != null) {
@@ -429,7 +488,9 @@ public class MaintenanceService {
                 } else if (dto.getfPadThickness() < 2) {
                     brakeScore -= 12;
                 }
-                if (brakeScore < 0) brakeScore = 0;
+                if (brakeScore < 0) {
+                    brakeScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getrPadThickness() == null && entry.getBrakeCheck().getrPadThickness() != null) {
@@ -443,47 +504,351 @@ public class MaintenanceService {
                 } else if (dto.getrPadThickness() < 2) {
                     brakeScore -= 8;
                 }
-                if (brakeScore < 0) brakeScore = 0;
+                if (brakeScore < 0) {
+                    brakeScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getFrontRotorsCon() == null && entry.getBrakeCheck().getFrontRotorsCon() != null) {
                 dto.setFrontRotorsCon(entry.getBrakeCheck().getFrontRotorsCon());
-                brakeScore -= conditionPenalty(dto.getFrontRotorsCon());
-                if (brakeScore < 0) brakeScore = 0;
+                brakeScore -= conditionPenalty(dto.getFrontRotorsCon(), 0, 6, 12);
+                if (brakeScore < 0) {
+                    brakeScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getRearRotorsCon() == null && entry.getBrakeCheck().getRearRotorsCon() != null) {
                 dto.setRearRotorsCon(entry.getBrakeCheck().getRearRotorsCon());
-                brakeScore -= conditionPenalty(dto.getRearRotorsCon());
-                if (brakeScore < 0) brakeScore = 0;
+                brakeScore -= conditionPenalty(dto.getRearRotorsCon(), 0, 6, 12);
+                if (brakeScore < 0) {
+                    brakeScore = 0;
+                }
                 fieldsFilled++;
             }
             if (dto.getBrakeLines() == null && entry.getBrakeCheck().getBrakeLines() != null) {
                 dto.setBrakeLines(entry.getBrakeCheck().getBrakeLines());
-                brakeScore -= conditionPenalty(dto.getBrakeLines());
-                if (brakeScore < 0) brakeScore = 0;
+                brakeScore -= conditionPenalty(dto.getBrakeLines(), 0, 6, 12);
+                if (brakeScore < 0) {
+                    brakeScore = 0;
+                }
                 fieldsFilled++;
             }
             // Early exit if all fields are populated
-            if (fieldsFilled == 9) break;
+            if (fieldsFilled == 9) {
+                break;
+            }
         }
-        
+
         return Optional.of(brakeScore + tireScore);
     }
 
-    public Optional<Integer> getDrivetrainScore(Integer carId, Integer ownerId) {
+    public Optional<Integer> getDrivetrainScore(Integer carId, Integer ownerId, List<Maintenance> maintenanceHistory) {
         // Implementation similar to getBrakesAndTiresScore
-        
-        return Optional.empty();
+
+        EngineCheck engineCheck = new EngineCheck();
+        Maintenance m = new Maintenance();
+        m.setEngineCheck(engineCheck);
+
+        int fieldsFilled = 0;
+        int critical = 60;
+        int important = 30;
+        int minor = 10;
+        boolean oilReplaced = false;
+
+        for (Maintenance entry : maintenanceHistory) {
+            //Critical Issues
+            if (m.getEngineCheck().getEngineStatus() == null && entry.getEngineCheck().getEngineStatus() != null) {
+                m.getEngineCheck().setEngineStatus(entry.getEngineCheck().getEngineStatus());
+                critical -= conditionPenalty(m.getEngineCheck().getEngineStatus(), 0, 15, 25);
+                if (critical < 0) {
+                    critical = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getOilLevel() == null && entry.getEngineCheck().getOilLevel() != null) {
+                m.getEngineCheck().setOilLevel(entry.getEngineCheck().getOilLevel());
+                critical -= levelPenalty(m.getEngineCheck().getOilLevel(), 0, 5, 10);
+                if (critical < 0) {
+                    critical = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getOilCondition() == null && entry.getEngineCheck().getOilCondition() != null) {
+                m.getEngineCheck().setOilCondition(entry.getEngineCheck().getOilCondition());
+                critical -= conditionPenalty(m.getEngineCheck().getOilCondition(), 0, 5, 10);
+                if (critical < 0) {
+                    critical = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getCoolantLevel() == null && entry.getEngineCheck().getCoolantLevel() != null) {
+                m.getEngineCheck().setCoolantLevel(entry.getEngineCheck().getCoolantLevel());
+                critical -= levelPenalty(m.getEngineCheck().getCoolantLevel(), 0, 3, 8);
+                if (critical < 0) {
+                    critical = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getBrakeFluidLevel() == null && entry.getEngineCheck().getBrakeFluidLevel() != null) {
+                m.getEngineCheck().setBrakeFluidLevel(entry.getEngineCheck().getBrakeFluidLevel());
+                critical -= levelPenalty(m.getEngineCheck().getBrakeFluidLevel(), 0, 2, 7);
+                if (critical < 0) {
+                    critical = 0;
+                }
+                fieldsFilled++;
+            }
+            //Important Issues
+            if (oilReplaced == false && entry.getEngineCheck().isOilReplaced() == true) {
+                m.getEngineCheck().setOilReplaced(true);
+                oilReplaced = true;
+                if (entry.getEngineCheck().isOilFilter() == false) {
+                    important -= 8;
+                }
+                if (important < 0) {
+                    important = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getCoolantCondition() == null && entry.getEngineCheck().getCoolantCondition() != null) {
+                m.getEngineCheck().setCoolantCondition(entry.getEngineCheck().getCoolantCondition());
+                important -= conditionPenalty(m.getEngineCheck().getCoolantCondition(), 0, 3, 6);
+                if (important < 0) {
+                    important = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getGearFluid() == null && entry.getEngineCheck().getGearFluid() != null) {
+                m.getEngineCheck().setGearFluid(entry.getEngineCheck().getGearFluid());
+                important -= levelPenalty(m.getEngineCheck().getGearFluid(), 0, 2, 7);
+                if (important < 0) {
+                    important = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getSteeringFluid() == null && entry.getEngineCheck().getSteeringFluid() != null) {
+                m.getEngineCheck().setSteeringFluid(entry.getEngineCheck().getSteeringFluid());
+                important -= levelPenalty(m.getEngineCheck().getSteeringFluid(), 0, 1, 4);
+                if (important < 0) {
+                    important = 0;
+                }
+                fieldsFilled++;
+            }
+            //Minor Issues
+            if (m.getEngineCheck().getBrakeFluidColor() == null && entry.getEngineCheck().getBrakeFluidColor() != null) {
+                m.getEngineCheck().setBrakeFluidColor(entry.getEngineCheck().getBrakeFluidColor());
+                minor -= conditionPenalty(m.getEngineCheck().getBrakeFluidColor(), 0, 3, 5);
+                if (minor < 0) {
+                    minor = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getEngineCheck().getWashFluid() == null && entry.getEngineCheck().getWashFluid() != null) {
+                m.getEngineCheck().setWashFluid(entry.getEngineCheck().getWashFluid());
+                minor -= levelPenalty(m.getEngineCheck().getWashFluid(), 0, 1, 5);
+                if (minor < 0) {
+                    minor = 0;
+                }
+                fieldsFilled++;
+            }
+            // Early exit if all relevant fields are populated
+            if (fieldsFilled == 11) {
+                break; // total drivetrain fields
+
+            }
+        }
+
+        return Optional.of(critical + important + minor);
     }
 
-    public Optional<Integer> getChasisScore(Integer carId, Integer ownerId) {
-        // Implementation similar to getBrakesAndTiresScore
-        return Optional.empty();
+    public Optional<Integer> getChasisScore(Integer carId, Integer ownerId, List<Maintenance> maintenanceHistory) {
+        RustCheck rustCheck = new RustCheck();
+        Maintenance m = new Maintenance();
+        m.setRustCheck(rustCheck);
+
+        int fieldsFilled = 0;
+        int score = 100;
+
+        for (Maintenance entry : maintenanceHistory) {
+            if (m.getRustCheck().getWheelArches() == null && entry.getRustCheck().getWheelArches() != null) {
+                m.getRustCheck().setWheelArches(entry.getRustCheck().getWheelArches());
+                score -= partPenalty(m.getRustCheck().getWheelArches(), 0, 5, 10, 0, 3);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getUnderbody() == null && entry.getRustCheck().getUnderbody() != null) {
+                m.getRustCheck().setUnderbody(entry.getRustCheck().getUnderbody());
+                score -= partPenalty(m.getRustCheck().getUnderbody(), 0, 8, 15, 0, 10);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getSuspension() == null && entry.getRustCheck().getSuspension() != null) {
+                m.getRustCheck().setSuspension(entry.getRustCheck().getSuspension());
+                score -= partPenalty(m.getRustCheck().getSuspension(), 0, 8, 15, 0, 8);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getTrunkFloor() == null && entry.getRustCheck().getTrunkFloor() != null) {
+                m.getRustCheck().setTrunkFloor(entry.getRustCheck().getTrunkFloor());
+                score -= partPenalty(m.getRustCheck().getTrunkFloor(), 0, 5, 10, 0, 3);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getFenders() == null && entry.getRustCheck().getFenders() != null) {
+                m.getRustCheck().setFenders(entry.getRustCheck().getFenders());
+                score -= partPenalty(m.getRustCheck().getFenders(), 0, 5, 10, 0, 2);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getDoorBottom() == null && entry.getRustCheck().getDoorBottom() != null) {
+                m.getRustCheck().setDoorBottom(entry.getRustCheck().getDoorBottom());
+                score -= partPenalty(m.getRustCheck().getDoorBottom(), 0, 4, 8, 0, 2);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getRoofEdges() == null && entry.getRustCheck().getRoofEdges() != null) {
+                m.getRustCheck().setRoofEdges(entry.getRustCheck().getRoofEdges());
+                score -= partPenalty(m.getRustCheck().getRoofEdges(), 0, 4, 7, 0, 2);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getWindowSeals() == null && entry.getRustCheck().getWindowSeals() != null) {
+                m.getRustCheck().setWindowSeals(entry.getRustCheck().getWindowSeals());
+                score -= partPenalty(m.getRustCheck().getWindowSeals(), 0, 3, 5, 0, 2);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getHoodEdges() == null && entry.getRustCheck().getHoodEdges() != null) {
+                m.getRustCheck().setHoodEdges(entry.getRustCheck().getHoodEdges());
+                score -= partPenalty(m.getRustCheck().getHoodEdges(), 0, 3, 5, 0, 1);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getSideSkirts() == null && entry.getRustCheck().getSideSkirts() != null) {
+                m.getRustCheck().setSideSkirts(entry.getRustCheck().getSideSkirts());
+                score -= partPenalty(m.getRustCheck().getSideSkirts(), 0, 3, 5, 0, 1);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getRustCheck().getExhaustArea() == null && entry.getRustCheck().getExhaustArea() != null) {
+                m.getRustCheck().setExhaustArea(entry.getRustCheck().getExhaustArea());
+                score -= partPenalty(m.getRustCheck().getExhaustArea(), 0, 3, 5, 0, 1);
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            // Early exit if all relevant fields are populated
+            if (fieldsFilled == 11) {
+                break;
+
+            }
+        }
+
+        return Optional.of(score);
     }
 
-    public Optional<Integer> getBodyWorkScore(Integer carId, Integer ownerId) {
-        // Implementation similar to getBrakesAndTiresScore
-        return Optional.empty();
+    public Optional<Integer> getBeltScore(Integer carId, Integer ownerId, List<Maintenance> maintenanceHistory) {
+        BeltHoseCheck beltCheck = new BeltHoseCheck();
+        Maintenance m = new Maintenance();
+        m.setBeltHoseCheck(beltCheck);
+
+        int fieldsFilled = 0;
+        int score = 100;
+        for (Maintenance entry : maintenanceHistory) {
+            if (m.getBeltHoseCheck().getSerpentineBelt() == null && entry.getBeltHoseCheck().getSerpentineBelt() != null) {
+                m.getBeltHoseCheck().setSerpentineBelt(entry.getBeltHoseCheck().getSerpentineBelt());
+                score -= conditionPenalty(m.getBeltHoseCheck().getSerpentineBelt(), 0, 15, 30);
+                if (m.getBeltHoseCheck().getSerpentineBelt().equals(Condition.NOT_CHECKED)) {
+                    score -= 10;
+                }
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getBeltHoseCheck().getTimingBelt() == null && entry.getBeltHoseCheck().getTimingBelt() != null) {
+                m.getBeltHoseCheck().setTimingBelt(entry.getBeltHoseCheck().getTimingBelt());
+                score -= conditionPenalty(m.getBeltHoseCheck().getTimingBelt(), 0, 25, 40);
+                if (m.getBeltHoseCheck().getTimingBelt().equals(Condition.NOT_CHECKED)) {
+                    score -= 20;
+                }
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getBeltHoseCheck().getRadiatorHoses() == null && entry.getBeltHoseCheck().getRadiatorHoses() != null) {
+                m.getBeltHoseCheck().setRadiatorHoses(entry.getBeltHoseCheck().getRadiatorHoses());
+                score -= conditionPenalty(m.getBeltHoseCheck().getRadiatorHoses(), 0, 10, 20);
+                if (m.getBeltHoseCheck().getRadiatorHoses().equals(Condition.NOT_CHECKED)) {
+                    score -= 5;
+                }
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            if (m.getBeltHoseCheck().getHeaterHoses() == null && entry.getBeltHoseCheck().getHeaterHoses() != null) {
+                m.getBeltHoseCheck().setHeaterHoses(entry.getBeltHoseCheck().getHeaterHoses());
+                score -= conditionPenalty(m.getBeltHoseCheck().getHeaterHoses(), 0, 5, 10);
+                if (m.getBeltHoseCheck().getHeaterHoses().equals(Condition.NOT_CHECKED)) {
+                    score -= 2;
+                }
+                if (score < 0) {
+                    score = 0;
+                }
+                fieldsFilled++;
+            }
+            // Early exit if all relevant fields are populated
+            if (fieldsFilled == 4) {
+                break;
+
+            }
+        }
+        return Optional.of(score);
     }
+
+    public Optional<HealthScoreDTO> getHealthScore(Integer carId, Integer ownerId) {
+        List<Maintenance> maintenanceHistory = repo
+                .findByCarIdAndOwnerId(carId, ownerId);
+        Collections.reverse(maintenanceHistory);
+        Optional<Integer> brakesAndTiresOpt = getBrakesAndTiresScore(carId, ownerId, maintenanceHistory);
+        Optional<Integer> drivetrainOpt = getDrivetrainScore(carId, ownerId, maintenanceHistory);
+        Optional<Integer> getBeltOpt = getBeltScore(carId, ownerId, maintenanceHistory);
+        Optional<Integer> chasisOpt = getChasisScore(carId, ownerId, maintenanceHistory);
+
+        if (brakesAndTiresOpt.isPresent() && drivetrainOpt.isPresent() && getBeltOpt.isPresent() && chasisOpt.isPresent()) {
+            int brakesAndTires = brakesAndTiresOpt.get();
+            int drivetrain = drivetrainOpt.get();
+            int belt = getBeltOpt.get();
+            int chasis = chasisOpt.get();
+            HealthScoreDTO healthScore = new HealthScoreDTO(brakesAndTires, drivetrain, belt, chasis);
+            return Optional.of(healthScore);
+        } else {
+            return Optional.empty();
+        }
+    }
+
 }
+// Main method to calculate overall health score
+

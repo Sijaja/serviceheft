@@ -1,38 +1,12 @@
-async function carHealthChart(carId) {
-  const yearlyApexChartId = document.getElementById("car_health_chart");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
-  const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
-  if (yearlyApexChartId) {
-    var options = {
-      series: [90],
-      chart: {
-        height: 400,
-        type: "radialBar",
-      },
-      plotOptions: {
-        radialBar: {
-          hollow: {
-            size: "60%",
-          },
-        },
-      },
-      labels: ["Car health"],
-    };
-
-    var chart = new ApexCharts(document.querySelector("#car_health_chart"), options);
-    chart.render();
-  }
-}
 async function totalHealthChart(carId) {
   const yearlyApexChartId = document.getElementById("total_health_chart");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/brakesAndTires/${carId}`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/carHealth/${carId}`);
   console.log(resp);
   const data = await resp.json();
   console.log(data);
   if (yearlyApexChartId) {
     var options = {
-      series: [data, 67, 61, 90],
+      series: [data.brakesAndTires, data.drivetrain, data.belt, data.chasis],
       chart: {
         height: 390,
         type: "radialBar",
@@ -68,7 +42,7 @@ async function totalHealthChart(carId) {
         },
       },
       colors: ["#1ab7ea", "#0084ff", "#39539E", "#0077B5"],
-      labels: ["Bremsen & Reifen", "Antrieb", "Fahrwerk", "Karosserie"],
+      labels: ["Bremsen & Reifen", "Motor & Getriebe", "Riemen & Schläuche", "Karosserie"],
       responsive: [
         {
           breakpoint: 480,
@@ -83,6 +57,27 @@ async function totalHealthChart(carId) {
 
     var chart = new ApexCharts(document.querySelector("#total_health_chart"), options);
     chart.render();
+  }
+  const carHealth = document.getElementById("car_health_chart");
+  if (carHealth) {
+    var options = {
+      series: [data.totalScore],
+      chart: {
+        height: 250,
+        type: "radialBar",
+      },
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            size: "50%",
+          },
+        },
+      },
+      labels: ["Car health"],
+    };
+
+    var chart2 = new ApexCharts(document.querySelector("#car_health_chart"), options);
+    chart2.render();
   }
 }
 

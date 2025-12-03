@@ -10,7 +10,7 @@ function nextTab() {
     nextLi.querySelector(".nav-link").click();
   }
 }
-
+//Previous button functionality
 function prevTab() {
   const activeTab = document.querySelector(".nav-tabs .nav-link.active");
   const prevLi = activeTab.closest("li").previousElementSibling;

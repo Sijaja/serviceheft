@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
+import dev.sijaja.serviceheft.dto.HealthScoreDTO;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
@@ -140,11 +141,11 @@ public class MaintenanceController {
         return service.getMaintenanceTableForWorkshop(workshopId, principal.getName());
     }
 
-    @GetMapping("/brakesAndTires/{carId}")
-    public ResponseEntity<Integer> getBrakesAndTiresScore(@PathVariable Integer carId, Principal principal) {
+    @GetMapping("/carHealth/{carId}")
+    public ResponseEntity<HealthScoreDTO> getBrakesAndTiresScore(@PathVariable Integer carId, Principal principal) {
         User user = userService.loadUserByEmail(principal.getName());
         Owner owner = ownerService.findByUserId(user.getUserId());
-        return service.getBrakesAndTiresScore(carId, owner.getOwnerId())
+        return service.getHealthScore(carId, owner.getOwnerId())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
     }

@@ -222,9 +222,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     tireDetails(defaultCarId);
     oilDetails(defaultCarId);
     batteryDetails(defaultCarId);
-    comparesionChart(defaultCarId);
     totalHealthChart(defaultCarId);
-    carHealthChart(defaultCarId);
+    comparesionChart(defaultCarId);
   } catch (error) {
     console.error("Error loading default car:", error);
   }
