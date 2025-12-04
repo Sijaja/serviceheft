@@ -46,7 +46,6 @@ public class MaintenanceController {
     private final CarService carService;
     private final OwnerService ownerService;
 
-
     public MaintenanceController(MaintenanceService service, UserService userService, WorkshopService workshopService, CarService carService, OwnerService ownerService) {
         this.service = service;
         this.userService = userService;
@@ -90,7 +89,7 @@ public class MaintenanceController {
         Maintenance savedMtnc = service.save(maintenance);
         return ResponseEntity.ok(savedMtnc);
     }
-   
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         service.delete(id);
@@ -148,5 +147,17 @@ public class MaintenanceController {
         return service.getHealthScore(carId, owner.getOwnerId())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
+
+    @GetMapping("/similarMtnc/{carId}")
+    public Map<Integer, List<Maintenance>> getSimilarCarsMaintenance(@PathVariable Integer carId, Principal principal) {
+        Cars car = carService.findCarForOwner(carId, principal.getName())
+                .orElseThrow(() -> new RuntimeException("You can only view your own cars' data"));
+        if (car == null) {
+            throw new RuntimeException("Car not found but it is there");
+        } else if (car.getOwner().getUser().getEmail() == null || !car.getOwner().getUser().getEmail().equals(principal.getName())) {
+            throw new RuntimeException("Unauthorized access to car data through similar maintenance endpoint");
+        }
+        return service.getSimilarCarsMaintenance(carId);
     }
 }

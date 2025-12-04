@@ -51,6 +51,7 @@ import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Level;
 import dev.sijaja.serviceheft.model.enums.Part;
+import dev.sijaja.serviceheft.repository.CarRepository;
 import dev.sijaja.serviceheft.repository.MaintenanceRepository;
 import dev.sijaja.serviceheft.repository.OwnerRepository;
 import dev.sijaja.serviceheft.repository.UserRepository;
@@ -63,12 +64,14 @@ public class MaintenanceService {
     private final OwnerRepository ownerRepo;
     private final UserRepository userRepo;
     private final WorkshopRepository workshopRepo;
+    private final CarRepository carRepo;
 
-    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, UserRepository userRepo, WorkshopRepository workshopRepo) {
+    public MaintenanceService(MaintenanceRepository repo, OwnerRepository ownerRepo, UserRepository userRepo, WorkshopRepository workshopRepo, CarRepository carRepo) {
         this.repo = repo;
         this.ownerRepo = ownerRepo;
         this.userRepo = userRepo;
         this.workshopRepo = workshopRepo;
+        this.carRepo = carRepo;
     }
 
     public List<Maintenance> getAll() {
@@ -849,6 +852,23 @@ public class MaintenanceService {
         }
     }
 
+    //method to find similar cars
+    public Map<Integer, List<Maintenance>> getSimilarCarsMaintenance(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+        List<Integer> similarCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+        Map<Integer, List<Maintenance>> similarCarsMaintenance = new HashMap<>();
+        for (Integer similarCarId : similarCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(similarCarId);
+            similarCarsMaintenance.put(similarCarId, maintenances);
+        }
+        return similarCarsMaintenance;
+    }
 }
-// Main method to calculate overall health score
 

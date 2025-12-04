@@ -91,15 +91,15 @@ async function comparesionChart(carId) {
       series: [
         {
           name: "Mein Auto",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+          data: [44, 55, 57, 56, 61, 58, 63],
         },
         {
           name: "ähnliche Autos",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+          data: [76, 85, 101, 98, 87, 105, 91],
         },
         {
           name: "Alle Autos",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+          data: [35, 41, 36, 26, 45, 48, 52],
         },
       ],
       chart: {
@@ -123,12 +123,7 @@ async function comparesionChart(carId) {
         colors: ["transparent"],
       },
       xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
-      },
-      yaxis: {
-        title: {
-          text: "$ (thousands)",
-        },
+        categories: ["Motor", "Getriebe", "Karosserie", "Reimen", "Schläuche", "Bremsen", "Reifen"],
       },
       fill: {
         opacity: 1,
@@ -146,3 +141,4 @@ async function comparesionChart(carId) {
     chart.render();
   }
 }
+

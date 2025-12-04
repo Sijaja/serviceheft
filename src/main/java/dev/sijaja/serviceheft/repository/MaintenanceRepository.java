@@ -137,4 +137,6 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
         + "FROM Maintenance m JOIN Workshop w ON m.workshop.workshopId = w.workshopId "
         + "WHERE m.workshop.id = :workshopId ORDER BY m.mtncDate DESC")
     List<MaintenanceTableDto> findAllByWorkshopId(@Param("workshopId") int workshopId);
+
+
 }
