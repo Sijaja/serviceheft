@@ -456,4 +456,3 @@ async function MiniComparesionChartCostPerK(carId) {
     chart.render();
   }
 }
-// getCar stays the same
