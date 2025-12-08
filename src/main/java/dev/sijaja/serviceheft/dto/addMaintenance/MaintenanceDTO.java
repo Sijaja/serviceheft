@@ -26,12 +26,13 @@ public class MaintenanceDTO {
     private HvacCheckDTO hvacCheck;
     private RustCheckDTO rustCheck;
     private TireCheckDTO tireCheck;
+    private CostsDTO costs;
 
     public MaintenanceDTO(int carId, Condition carCondition, LocalDate mtncDate, LocalDate nextDate,
             Integer currentMileage, Integer nextMileage, double cost, Type mtncType, String inspectionNotes,
             BeltHoseCheckDTO beltHoseCheck, BodyCheckDTO bodyCheck, BrakeCheckDTO brakeCheck,
             ElectricCheckDTO electricCheck, EmmisionCheckDTO emmisionCheck, EngineCheckDTO engineCheck,
-            FilterCheckDTO filterCheck, HvacCheckDTO hvacCheck, RustCheckDTO rustCheck, TireCheckDTO tireCheck) {
+            FilterCheckDTO filterCheck, HvacCheckDTO hvacCheck, RustCheckDTO rustCheck, TireCheckDTO tireCheck, CostsDTO costs) {
         this.carId = carId;
         this.carCondition = carCondition;
         this.mtncDate = mtncDate;
@@ -51,6 +52,7 @@ public class MaintenanceDTO {
         this.hvacCheck = hvacCheck;
         this.rustCheck = rustCheck;
         this.tireCheck = tireCheck;
+        this.costs = costs;
     }
 
     public MaintenanceDTO() {
@@ -206,6 +208,14 @@ public class MaintenanceDTO {
 
     public void setTireCheck(TireCheckDTO tireCheck) {
         this.tireCheck = tireCheck;
+    }
+
+    public CostsDTO getCosts() {
+        return costs;
+    }
+
+    public void setCosts(CostsDTO costs) {
+        this.costs = costs;
     }
     
 

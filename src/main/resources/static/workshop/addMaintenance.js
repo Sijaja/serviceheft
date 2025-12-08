@@ -47,6 +47,7 @@ async function validateVin() {
       document.getElementById("Klima-tab").removeAttribute("disabled");
       document.getElementById("Rostkontrolle-tab").removeAttribute("disabled");
       document.getElementById("Reifenkontrolle-tab").removeAttribute("disabled");
+      document.getElementById("costs-tab").removeAttribute("disabled");
       document.getElementById("wartung-tab").removeAttribute("disabled");
     }
   } catch (error) {
@@ -175,6 +176,19 @@ function gatherMaintenanceData() {
       wearPattern: val("wearPattern-input"),
       shockAbsorbers: val("shockAbsorbers-input"),
     },
+
+    costs: {
+      beltsHosesCost: val("beltCost-input"),
+      bodyPartsCost: val("bodyPartsCost-input"),
+      brakesCost: val("brakeCost-input"),
+      electricCost: val("electricCost-input"),
+      engineCost: val("motorCost-input"),
+      exhaustCost: val("abgasCost-input"),
+      filtersCost: val("filterCost-input"),
+      hvacCost: val("hvacCost-input"),
+      rostCost: val("rostCost-input"),
+      tiresCost: val("tireCost-input"),
+    },
   };
 }
 
@@ -206,5 +220,42 @@ async function submitMaintenance() {
       text: "beim Hinzufügen der Wartung",
       icon: "error",
     });
+  }
+}
+
+function calculateTotal() {
+  const beltCost = parseFloat(document.getElementById('beltCost-input').value) || 0;
+  const bodyPartsCost = parseFloat(document.getElementById('bodyPartsCost-input').value) || 0;
+  const brakeCost = parseFloat(document.getElementById('brakeCost-input').value) || 0;
+  const electricCost = parseFloat(document.getElementById('electricCost-input').value) || 0;
+  const motorCost = parseFloat(document.getElementById('motorCost-input').value) || 0;
+  const abgasCost = parseFloat(document.getElementById('abgasCost-input').value) || 0;
+  const filterCost = parseFloat(document.getElementById('filterCost-input').value) || 0;
+  const hvacCost = parseFloat(document.getElementById('hvacCost-input').value) || 0;
+  const rostCost = parseFloat(document.getElementById('rostCost-input').value) || 0;
+  const tireCost = parseFloat(document.getElementById('tireCost-input').value) || 0;
+  
+  const total = beltCost + bodyPartsCost + brakeCost + electricCost + motorCost + abgasCost + filterCost + hvacCost + rostCost + tireCost;
+  
+  document.getElementById('cost-input').value = total.toFixed(2);
+}
+
+
+function calculateNextService() {
+  const currentDate = document.getElementById('mtncDate-input').value;
+  
+  const currentMileage = parseFloat(document.getElementById('currentMileage-input').value) || 0;
+  
+  if (currentDate) {
+    const nextDate = new Date(currentDate);
+    nextDate.setMonth(nextDate.getMonth() + 12);
+    
+    const formattedDate = nextDate.toISOString().split('T')[0];
+    document.getElementById('nextDate-input').value = formattedDate;
+  }
+  
+  if (currentMileage > 0) {
+    const nextMileage = currentMileage + 15000;
+    document.getElementById('nextMileage-input').value = nextMileage;
   }
 }

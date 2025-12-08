@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Default car ID:", defaultCarId);
     console.log("Owner ID:", loggedUser.id);
     console.log(defaultCarId);
-    getCar(defaultCarId);
     getOwner(loggedUser.id);
+    getCar(defaultCarId);
     totalHealthChart(defaultCarId);
     comparesionChart(defaultCarId);
     MiniComparesionChartCost(defaultCarId);
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// Function to get car details
 async function getCar(carId) {
   try {
     const response = await fetch(`http://localhost:8080/api/cars/${carId}`, {
@@ -31,26 +32,18 @@ async function getCar(carId) {
     });
 
     if (!response.ok) throw new Error("HTTP error " + response.status);
+
     const car = await response.json();
+
+    loadNextMtncDate(carId);
+    loadTotalCost(carId);
+    loadMaintenanceTable(carId);
     document.getElementById("myImage").src = "assets/images/" + car.carType + ".png" || "assets/images/other.png";
-    document.getElementById("makeYear").innerText = car.makeYear || "----";
-    document.getElementById("kilometer").innerText = car.mileage || "----";
-    document.getElementById("inspection").innerText = car.inspectionExp || "----";
-    document.getElementById("carInfos").innerText =
-      "Dein " +
-        car.manufacturer +
-        car.model +
-        " (Baujahr" +
-        car.makeYear +
-        ") ist aktuell bei " +
-        car.mileage +
-        "km. Farbe: " +
-        car.carColor +
-        "." || "ERROR LOADING CAR INFO";
   } catch (error) {
     console.error("Error fetching car:", error);
   }
 }
+
 // getOwner - only name right now
 async function getOwner(ownerId) {
   try {
@@ -155,23 +148,32 @@ async function totalHealthChart(carId) {
 
 async function comparesionChart(carId) {
   const yearlyApexChartId = document.getElementById("cost_compare_chart");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/costComparesion/${carId}`);
   const data = await resp.json();
   const roundedValues = Object.values(data).map((v) => Math.round(v));
+
+  const resp2 = await fetch(`http://localhost:8080/api/maintenance/averageCostSimilar/${carId}`);
+  const data2 = await resp2.json();
+  const roundedValues2 = Object.values(data2).map((v) => Math.round(v));
+
+  const resp3 = await fetch(`http://localhost:8080/api/maintenance/averageCostAll/${carId}`);
+  const data3 = await resp3.json();
+  const roundedValues3 = Object.values(data3).map((v) => Math.round(v));
+
   if (yearlyApexChartId) {
     var options = {
       series: [
         {
           name: "Mein Auto",
-          data: [44, 55, 57, 56, 61, 58, 63],
+          data: roundedValues,
         },
         {
           name: "ähnliche Autos",
-          data: [76, 85, 101, 98, 87, 105, 91],
+          data: roundedValues2,
         },
         {
           name: "Alle Autos",
-          data: [35, 41, 36, 26, 45, 48, 52],
+          data: roundedValues3,
         },
       ],
       chart: {
@@ -195,7 +197,7 @@ async function comparesionChart(carId) {
         colors: ["transparent"],
       },
       xaxis: {
-        categories: ["Motor", "Getriebe", "Karosserie", "Reimen", "Schläuche", "Bremsen", "Reifen"],
+        categories: ["Motor", "Riemen und Schläuche", "Bremsen", "Electrik", "Karosserie"],
       },
       fill: {
         opacity: 1,
@@ -203,7 +205,7 @@ async function comparesionChart(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands";
+            return val + " €";
           },
         },
       },
@@ -264,7 +266,7 @@ async function MiniComparesionChartCost(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands";
+            return val + " €";
           },
         },
       },
@@ -324,7 +326,7 @@ async function MiniComparesionChartNoM(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands";
+            return val + " €";
           },
         },
       },
@@ -384,7 +386,7 @@ async function MiniComparesionChartMileage(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands";
+            return val + " €";
           },
         },
       },
@@ -444,7 +446,7 @@ async function MiniComparesionChartCostPerK(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands";
+            return val + " €";
           },
         },
       },
@@ -454,3 +456,4 @@ async function MiniComparesionChartCostPerK(carId) {
     chart.render();
   }
 }
+// getCar stays the same

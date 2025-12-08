@@ -62,11 +62,13 @@ public class Maintenance {
     private RustCheck rustCheck;
     @Embedded
     private TireCheck tireCheck;
+    @Embedded
+    private Costs costs;
 
     public Maintenance() {
     }
 
-    public Maintenance(BeltHoseCheck beltHoseCheck, BodyCheck bodyCheck, BrakeCheck brakeCheck, Cars car, Condition carCondition, Double cost, Integer currentMileage, ElectricCheck electricCheck, EmmisionCheck emmisionCheck, EngineCheck engineCheck, FilterCheck filterCheck, HvacCheck hvacCheck, String inspectionNotes, LocalDate mtncDate, int mtncId, Type mtncType, LocalDate nextDate, Integer nextMileage, RustCheck rustCheck, LocalDate startDate, Status status, TireCheck tireCheck, Workshop workshop) {
+    public Maintenance(BeltHoseCheck beltHoseCheck, BodyCheck bodyCheck, BrakeCheck brakeCheck, Cars car, Condition carCondition, Double cost, Integer currentMileage, ElectricCheck electricCheck, EmmisionCheck emmisionCheck, EngineCheck engineCheck, FilterCheck filterCheck, HvacCheck hvacCheck, String inspectionNotes, LocalDate mtncDate, int mtncId, Type mtncType, LocalDate nextDate, Integer nextMileage, RustCheck rustCheck, LocalDate startDate, Status status, TireCheck tireCheck, Workshop workshop, Costs costs) {
         this.beltHoseCheck = beltHoseCheck;
         this.bodyCheck = bodyCheck;
         this.brakeCheck = brakeCheck;
@@ -90,6 +92,7 @@ public class Maintenance {
         this.status = status;
         this.tireCheck = tireCheck;
         this.workshop = workshop;
+        this.costs = costs;
     }
 
     public int getMtncId() {
@@ -274,6 +277,14 @@ public class Maintenance {
 
     public void setEmmisionCheck(EmmisionCheck emmisionCheck) {
         this.emmisionCheck = emmisionCheck;
+    }
+
+    public Costs getCosts() {
+        return costs;
+    }
+
+    public void setCosts(Costs costs) {
+        this.costs = costs;
     }
 
 }

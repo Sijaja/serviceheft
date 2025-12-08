@@ -25,6 +25,7 @@ import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.dto.addMaintenance.BeltHoseCheckDTO;
 import dev.sijaja.serviceheft.dto.addMaintenance.BodyCheckDTO;
 import dev.sijaja.serviceheft.dto.addMaintenance.BrakeCheckDTO;
+import dev.sijaja.serviceheft.dto.addMaintenance.CostsDTO;
 import dev.sijaja.serviceheft.dto.addMaintenance.ElectricCheckDTO;
 import dev.sijaja.serviceheft.dto.addMaintenance.EmmisionCheckDTO;
 import dev.sijaja.serviceheft.dto.addMaintenance.EngineCheckDTO;
@@ -37,6 +38,7 @@ import dev.sijaja.serviceheft.model.BeltHoseCheck;
 import dev.sijaja.serviceheft.model.BodyCheck;
 import dev.sijaja.serviceheft.model.BrakeCheck;
 import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.model.Costs;
 import dev.sijaja.serviceheft.model.ElectricCheck;
 import dev.sijaja.serviceheft.model.EmmisionCheck;
 import dev.sijaja.serviceheft.model.EngineCheck;
@@ -243,6 +245,7 @@ public class MaintenanceService {
         mtnc.setHvacCheck(toHvacCheck(dto.getHvacCheck()));
         mtnc.setRustCheck(toRustCheck(dto.getRustCheck()));
         mtnc.setTireCheck(toTireCheck(dto.getTireCheck()));
+        mtnc.setCosts(toCosts(dto.getCosts()));
         return mtnc;
     }
 
@@ -366,6 +369,21 @@ public class MaintenanceService {
         check.setPressureRR(dto.getPressureRR());
         check.setWearPattern(dto.getWearPattern());
         check.setShockAbsorbers(dto.getShockAbsorbers());
+        return check;
+    }
+
+    private Costs toCosts(CostsDTO dto) {
+        Costs check = new Costs();
+        check.setBeltsHosesCost(dto.getBeltsHosesCost());
+        check.setBodyPartsCost(dto.getBodyPartsCost());
+        check.setBrakesCost(dto.getBrakesCost());
+        check.setElectricCost(dto.getElectricCost());
+        check.setEngineCost(dto.getEngineCost());
+        check.setExhaustCost(dto.getExhaustCost());
+        check.setFiltersCost(dto.getFiltersCost());
+        check.setHvacCost(dto.getHvacCost());
+        check.setRostCost(dto.getRostCost());
+        check.setTiresCost(dto.getTiresCost());
         return check;
     }
 
@@ -870,5 +888,89 @@ public class MaintenanceService {
         }
         return similarCarsMaintenance;
     }
+
+    public Optional<List<Double>> CostComparesion(Integer carId, Integer ownerId) {
+
+        List<Maintenance> maintenanceHistory
+                = repo.findByCarIdAndOwnerId(carId, ownerId);
+
+        Double motorCost = 0.0;
+        Double beltCost = 0.0;
+        Double brakeCost = 0.0;
+        Double bodyCost = 0.0;
+        Double electricCost = 0.0;
+
+        for (Maintenance entry : maintenanceHistory) {
+            motorCost += entry.getCosts().getEngineCost();
+            beltCost += entry.getCosts().getBeltsHosesCost();
+            brakeCost += entry.getCosts().getBrakesCost();
+            bodyCost += entry.getCosts().getBodyPartsCost();
+            electricCost += entry.getCosts().getElectricCost();
+        }
+        List<Double> score = Arrays.asList(motorCost, beltCost, brakeCost, bodyCost, electricCost);
+        return Optional.of(score);
+    }
+
+
+    public Optional<List<Double>> getAverageCostForSimilarCars(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+        List<Integer> similarCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+        Double totalMotorCost = 0.0;
+        Double totalBeltCost = 0.0;
+        Double totalBrakeCost = 0.0;
+        Double totalBodyCost = 0.0;
+        Double totalElectricCost = 0.0;
+        int count = 0;
+        for (Integer similarCarId : similarCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(similarCarId);
+            if (!maintenances.isEmpty()) {
+                count++;
+                for (Maintenance entry : maintenances) {
+                    if (entry.getCosts() == null) {
+                        continue;
+                    }
+                    totalMotorCost += entry.getCosts().getEngineCost();
+                    totalBeltCost += entry.getCosts().getBeltsHosesCost();
+                    totalBrakeCost += entry.getCosts().getBrakesCost();
+                    totalBodyCost += entry.getCosts().getBodyPartsCost();
+                    totalElectricCost += entry.getCosts().getElectricCost();
+                }
+            }
+        }
+        List<Double> score = Arrays.asList(totalMotorCost/count, totalBeltCost/count, totalBrakeCost/count, totalBodyCost/count, totalElectricCost/count);
+        return Optional.of(score);
+    }
+
+    public Optional<List<Double>> getAverageCostForAllCars(int carId) {
+        List<Maintenance> allMaintenances = repo.findAll();
+        Double totalMotorCost = 0.0;
+        Double totalBeltCost = 0.0;
+        Double totalBrakeCost = 0.0;
+        Double totalBodyCost = 0.0;
+        Double totalElectricCost = 0.0;
+        int count = 0;
+        for (Maintenance entry : allMaintenances) {
+            if (entry.getCosts() == null) {
+                continue;
+            }
+            count++;
+            totalMotorCost += entry.getCosts().getEngineCost();
+            totalBeltCost += entry.getCosts().getBeltsHosesCost();
+            totalBrakeCost += entry.getCosts().getBrakesCost();
+            totalBodyCost += entry.getCosts().getBodyPartsCost();
+            totalElectricCost += entry.getCosts().getElectricCost();
+        }
+        List<Double> score = Arrays.asList(totalMotorCost/count, totalBeltCost/count, totalBrakeCost/count, totalBodyCost/count, totalElectricCost/count);
+        return Optional.of(score);
+    }
+
 }
 
+    

@@ -160,4 +160,27 @@ public class MaintenanceController {
         }
         return service.getSimilarCarsMaintenance(carId);
     }
+
+    @GetMapping("/costComparesion/{carId}")
+    public ResponseEntity<Optional<List<Double>>> CostComparesion(@PathVariable Integer carId, Principal principal) {
+        User user = userService.loadUserByEmail(principal.getName());
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        Optional<List<Double>> costs = service.CostComparesion(carId, owner.getOwnerId());
+        return ResponseEntity.ok(costs);
+    }
+
+    
+    @GetMapping("/averageCostSimilar/{carId}")
+    public ResponseEntity<Optional<List<Double>>> getAverageCostForSimilarCars(@PathVariable Integer carId, Principal principal) {
+        User user = userService.loadUserByEmail(principal.getName());
+        Optional<List<Double>> costs = service.getAverageCostForSimilarCars(carId);
+        return ResponseEntity.ok(costs);
+    }
+
+    @GetMapping("/averageCostAll/{carId}")
+    public ResponseEntity<Optional<List<Double>>> getAverageCostForAllCars(@PathVariable Integer carId, Principal principal) {
+        User user = userService.loadUserByEmail(principal.getName());
+        Optional<List<Double>> costs = service.getAverageCostForAllCars(carId);
+        return ResponseEntity.ok(costs);
+    }
 }
