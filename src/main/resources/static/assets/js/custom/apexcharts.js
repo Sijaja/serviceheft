@@ -10238,7 +10238,7 @@
     var options = {
       series: [
         {
-          name: "Fila",
+          name: "AutoMate",
           data: [80, 50, 30, 40, 100, 20],
         },
       ],
