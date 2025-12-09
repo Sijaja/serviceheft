@@ -35,10 +35,29 @@ async function getCar(carId) {
 
     const car = await response.json();
 
+    // Update car name and info
+    const carNameElement = document.getElementById("carName");
+    if (carNameElement) {
+      carNameElement.innerText = `${car.manufacturer || ""} ${car.model || ""}`.trim() || "Ihr Fahrzeug";
+    }
+
+    const carInfoElement = document.getElementById("carInfos");
+    if (carInfoElement) {
+      carInfoElement.innerText = `${car.manufacturer || ""} ${car.model || ""} (${car.makeYear || "N/A"}) - ${car.mileage ? car.mileage.toLocaleString() + " km" : "N/A"}`;
+    }
+
+    // Update car image
+    const imageElement = document.getElementById("myImage");
+    if (imageElement && car.carType) {
+      imageElement.src = `assets/images/${car.carType}.png`;
+      imageElement.onerror = function() {
+        this.src = "assets/images/other.png";
+      };
+    }
+
     loadNextMtncDate(carId);
     loadTotalCost(carId);
     loadMaintenanceTable(carId);
-    document.getElementById("myImage").src = "assets/images/" + car.carType + ".png" || "assets/images/other.png";
   } catch (error) {
     console.error("Error fetching car:", error);
   }
@@ -199,6 +218,7 @@ async function comparesionChart(carId) {
       xaxis: {
         categories: ["Motor", "Riemen und Schläuche", "Bremsen", "Electrik", "Karosserie"],
       },
+      colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {
         opacity: 1,
       },
@@ -260,6 +280,7 @@ async function MiniComparesionChartCost(carId) {
       xaxis: {
         categories: ["GesamtKosten"],
       },
+      colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {
         opacity: 1,
       },
@@ -320,6 +341,7 @@ async function MiniComparesionChartNoM(carId) {
       xaxis: {
         categories: ["Wartungsanzahl"],
       },
+      colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {
         opacity: 1,
       },
@@ -380,6 +402,7 @@ async function MiniComparesionChartMileage(carId) {
       xaxis: {
         categories: ["Kilometerstand"],
       },
+      colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {
         opacity: 1,
       },
@@ -440,6 +463,7 @@ async function MiniComparesionChartCostPerK(carId) {
       xaxis: {
         categories: ["Kosten pro 1000Km"],
       },
+      colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {
         opacity: 1,
       },

@@ -252,7 +252,7 @@ function createDetailedChecks(maintenance) {
     html += `
       <div class="col-12">
         <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.15);">
-          <h6 class="text-white mb-2"><i class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle;">brake_tap</i> Bremsenprüfung</h6>
+          <h6 class="text-white mb-2"><i class="ri-alert-line" style="font-size: 18px; vertical-align: middle;"></i> Bremsenprüfung</h6>
           <div class="row g-2">
             ${maintenance.brakeCheck.fPadThickness ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Vorne Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.fPadThickness} mm</p></div>` : ''}
             ${maintenance.brakeCheck.rPadThickness ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Hinten Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.rPadThickness} mm</p></div>` : ''}

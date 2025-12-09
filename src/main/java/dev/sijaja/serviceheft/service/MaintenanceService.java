@@ -926,6 +926,10 @@ public class MaintenanceService {
                 car.getModel(),
                 car.getMakeYear()
         );
+
+        // Exclude the current car from comparison
+        similarCarIds.remove(Integer.valueOf(carId));
+
         Double totalMotorCost = 0.0;
         Double totalBeltCost = 0.0;
         Double totalBrakeCost = 0.0;
@@ -948,6 +952,11 @@ public class MaintenanceService {
                 }
             }
         }
+
+        if (count == 0) {
+            return Optional.of(Arrays.asList(0.0, 0.0, 0.0, 0.0, 0.0));
+        }
+
         List<Double> score = Arrays.asList(totalMotorCost/count, totalBeltCost/count, totalBrakeCost/count, totalBodyCost/count, totalElectricCost/count);
         return Optional.of(score);
     }
