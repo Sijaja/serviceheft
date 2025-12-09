@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
+import dev.sijaja.serviceheft.dto.CostPerKmComparisonDto;
 import dev.sijaja.serviceheft.dto.HealthScoreDTO;
+import dev.sijaja.serviceheft.dto.MaintenanceCountComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
+import dev.sijaja.serviceheft.dto.MileageComparisonDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
+import dev.sijaja.serviceheft.dto.TotalCostComparisonDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.dto.addMaintenance.MaintenanceDTO;
@@ -182,5 +186,32 @@ public class MaintenanceController {
         User user = userService.loadUserByEmail(principal.getName());
         Optional<List<Double>> costs = service.getAverageCostForAllCars(carId);
         return ResponseEntity.ok(costs);
+    }
+
+    @GetMapping("/averageCostSameYear/{carId}")
+    public ResponseEntity<Optional<List<Double>>> getAverageCostForSameYearCars(@PathVariable Integer carId, Principal principal) {
+        User user = userService.loadUserByEmail(principal.getName());
+        Optional<List<Double>> costs = service.getAverageCostForSameYearCars(carId);
+        return ResponseEntity.ok(costs);
+    }
+
+    @GetMapping("/totalCostComparison/{carId}")
+    public TotalCostComparisonDto getTotalCostComparison(@PathVariable int carId) {
+        return service.compareTotalMaintenanceCosts(carId);
+    }
+
+    @GetMapping("/maintenanceCountComparison/{carId}")
+    public MaintenanceCountComparisonDto getMaintenanceCountComparison(@PathVariable int carId) {
+        return service.compareMaintenanceCounts(carId);
+    }
+
+    @GetMapping("/mileageComparison/{carId}")
+    public MileageComparisonDto getMileageComparison(@PathVariable int carId) {
+        return service.compareMileage(carId);
+    }
+
+    @GetMapping("/costPerKmComparison/{carId}")
+    public CostPerKmComparisonDto getCostPerKmComparison(@PathVariable int carId) {
+        return service.compareCostPerThousandKm(carId);
     }
 }

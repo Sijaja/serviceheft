@@ -127,9 +127,9 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     @Query("SELECT m FROM Maintenance m WHERE m.car.owner.ownerId = :ownerId")
     List<Maintenance> findAllByOwnerId(@Param("ownerId") int ownerId);
 
-    // Helper method to find maintenances by carId and ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.car.carId = :carId AND m.car.owner.ownerId = :ownerId")
-    Optional<Maintenance> findByMtncIdAndOwnerId(@Param("carId") int mtncId, @Param("ownerId") int ownerId);
+    // Helper method to find maintenances by mtncId and ownerId
+    @Query("SELECT m FROM Maintenance m WHERE m.mtncId = :mtncId AND m.car.owner.ownerId = :ownerId")
+    Optional<Maintenance> findByMtncIdAndOwnerId(@Param("mtncId") int mtncId, @Param("ownerId") int ownerId);
 
     // Helper method to find maintenances by workshopId
     @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("

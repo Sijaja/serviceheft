@@ -156,7 +156,7 @@ async function comparesionChart(carId) {
   const data2 = await resp2.json();
   const roundedValues2 = Object.values(data2).map((v) => Math.round(v));
 
-  const resp3 = await fetch(`http://localhost:8080/api/maintenance/averageCostAll/${carId}`);
+  const resp3 = await fetch(`http://localhost:8080/api/maintenance/averageCostSameYear/${carId}`);
   const data3 = await resp3.json();
   const roundedValues3 = Object.values(data3).map((v) => Math.round(v));
 
@@ -172,7 +172,7 @@ async function comparesionChart(carId) {
           data: roundedValues2,
         },
         {
-          name: "Alle Autos",
+          name: "Gleiches Baujahr",
           data: roundedValues3,
         },
       ],
@@ -218,23 +218,23 @@ async function comparesionChart(carId) {
 
 async function MiniComparesionChartCost(carId) {
   const yearlyApexChartId = document.getElementById("cost_compare_chart_mini");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/totalCostComparison/${carId}`);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
+
   if (yearlyApexChartId) {
     var options = {
       series: [
         {
           name: "Mein Auto",
-          data: [44],
+          data: [Math.round(data.myCarTotalCost)],
         },
         {
-          name: "ähnliche Autos",
-          data: [76],
+          name: `ähnliche Autos (${data.sameModelAndYearCount})`,
+          data: [Math.round(data.sameModelAndYearAverage)],
         },
         {
-          name: "Alle Autos",
-          data: [35],
+          name: `Gleiches Baujahr (${data.sameYearCount})`,
+          data: [Math.round(data.sameYearAverage)],
         },
       ],
       chart: {
@@ -278,23 +278,23 @@ async function MiniComparesionChartCost(carId) {
 }
 async function MiniComparesionChartNoM(carId) {
   const yearlyApexChartId = document.getElementById("cost_compare_chart_count");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/maintenanceCountComparison/${carId}`);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
+
   if (yearlyApexChartId) {
     var options = {
       series: [
         {
           name: "Mein Auto",
-          data: [44],
+          data: [data.myCarMaintenanceCount],
         },
         {
-          name: "ähnliche Autos",
-          data: [76],
+          name: `ähnliche Autos (${data.sameModelAndYearCount})`,
+          data: [Math.round(data.sameModelAndYearAverage)],
         },
         {
-          name: "Alle Autos",
-          data: [35],
+          name: `Gleiches Baujahr (${data.sameYearCount})`,
+          data: [Math.round(data.sameYearAverage)],
         },
       ],
       chart: {
@@ -326,7 +326,7 @@ async function MiniComparesionChartNoM(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return val + " €";
+            return val + " Wartungen";
           },
         },
       },
@@ -338,23 +338,23 @@ async function MiniComparesionChartNoM(carId) {
 }
 async function MiniComparesionChartMileage(carId) {
   const yearlyApexChartId = document.getElementById("cost_compare_chart_mileage");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/mileageComparison/${carId}`);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
+
   if (yearlyApexChartId) {
     var options = {
       series: [
         {
           name: "Mein Auto",
-          data: [44],
+          data: [data.myCarMileage],
         },
         {
-          name: "ähnliche Autos",
-          data: [76],
+          name: `ähnliche Autos (${data.sameModelAndYearCount})`,
+          data: [Math.round(data.sameModelAndYearAverage)],
         },
         {
-          name: "Alle Autos",
-          data: [35],
+          name: `Gleiches Baujahr (${data.sameYearCount})`,
+          data: [Math.round(data.sameYearAverage)],
         },
       ],
       chart: {
@@ -386,7 +386,7 @@ async function MiniComparesionChartMileage(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return val + " €";
+            return val.toLocaleString() + " km";
           },
         },
       },
@@ -398,23 +398,23 @@ async function MiniComparesionChartMileage(carId) {
 }
 async function MiniComparesionChartCostPerK(carId) {
   const yearlyApexChartId = document.getElementById("cost_compare_chart_per_k");
-  const resp = await fetch(`http://localhost:8080/api/maintenance/${carId}/years`);
+  const resp = await fetch(`http://localhost:8080/api/maintenance/costPerKmComparison/${carId}`);
   const data = await resp.json();
-  const roundedValues = Object.values(data).map((v) => Math.round(v));
+
   if (yearlyApexChartId) {
     var options = {
       series: [
         {
           name: "Mein Auto",
-          data: [44],
+          data: [Math.round(data.myCarCostPerThousandKm * 100) / 100],
         },
         {
-          name: "ähnliche Autos",
-          data: [76],
+          name: `ähnliche Autos (${data.sameModelAndYearCount})`,
+          data: [Math.round(data.sameModelAndYearAverage * 100) / 100],
         },
         {
-          name: "Alle Autos",
-          data: [35],
+          name: `Gleiches Baujahr (${data.sameYearCount})`,
+          data: [Math.round(data.sameYearAverage * 100) / 100],
         },
       ],
       chart: {
@@ -446,7 +446,7 @@ async function MiniComparesionChartCostPerK(carId) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return val + " €";
+            return val.toFixed(2) + " €/1000km";
           },
         },
       },

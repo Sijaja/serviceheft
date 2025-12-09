@@ -17,9 +17,13 @@ import org.springframework.web.server.ResponseStatusException;
 import dev.sijaja.serviceheft.dto.AverageCostComparisonDto;
 import dev.sijaja.serviceheft.dto.BrakeTireRatingDTO;
 import dev.sijaja.serviceheft.dto.CostComparisonDto;
+import dev.sijaja.serviceheft.dto.CostPerKmComparisonDto;
 import dev.sijaja.serviceheft.dto.HealthScoreDTO;
+import dev.sijaja.serviceheft.dto.MaintenanceCountComparisonDto;
 import dev.sijaja.serviceheft.dto.MaintenanceTableDto;
+import dev.sijaja.serviceheft.dto.MileageComparisonDto;
 import dev.sijaja.serviceheft.dto.NextMaintenanceDto;
+import dev.sijaja.serviceheft.dto.TotalCostComparisonDto;
 import dev.sijaja.serviceheft.dto.TotalCostDto;
 import dev.sijaja.serviceheft.dto.YearlyMaintenanceCostsDto;
 import dev.sijaja.serviceheft.dto.addMaintenance.BeltHoseCheckDTO;
@@ -969,6 +973,341 @@ public class MaintenanceService {
         }
         List<Double> score = Arrays.asList(totalMotorCost/count, totalBeltCost/count, totalBrakeCost/count, totalBodyCost/count, totalElectricCost/count);
         return Optional.of(score);
+    }
+
+    public Optional<List<Double>> getAverageCostForSameYearCars(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+        List<Integer> sameYearCarIds = carRepo.findCarIdsByMakeYear(car.getMakeYear());
+
+        // Exclude the current car from comparison
+        sameYearCarIds.remove(Integer.valueOf(carId));
+
+        Double totalMotorCost = 0.0;
+        Double totalBeltCost = 0.0;
+        Double totalBrakeCost = 0.0;
+        Double totalBodyCost = 0.0;
+        Double totalElectricCost = 0.0;
+        int count = 0;
+
+        for (Integer yearCarId : sameYearCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(yearCarId);
+            if (!maintenances.isEmpty()) {
+                count++;
+                for (Maintenance entry : maintenances) {
+                    if (entry.getCosts() == null) {
+                        continue;
+                    }
+                    totalMotorCost += entry.getCosts().getEngineCost();
+                    totalBeltCost += entry.getCosts().getBeltsHosesCost();
+                    totalBrakeCost += entry.getCosts().getBrakesCost();
+                    totalBodyCost += entry.getCosts().getBodyPartsCost();
+                    totalElectricCost += entry.getCosts().getElectricCost();
+                }
+            }
+        }
+
+        if (count == 0) {
+            return Optional.of(Arrays.asList(0.0, 0.0, 0.0, 0.0, 0.0));
+        }
+
+        List<Double> score = Arrays.asList(
+            totalMotorCost/count,
+            totalBeltCost/count,
+            totalBrakeCost/count,
+            totalBodyCost/count,
+            totalElectricCost/count
+        );
+        return Optional.of(score);
+    }
+
+    public TotalCostComparisonDto compareTotalMaintenanceCosts(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+        // Get total cost for the current car
+        List<Maintenance> myCarMaintenances = repo.findByCarId(carId);
+        double myCarTotalCost = myCarMaintenances.stream()
+                .mapToDouble(Maintenance::getCost)
+                .sum();
+
+        // Compare to cars with same model and make year
+        List<Integer> sameModelAndYearCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+
+        // Exclude the current car from comparison
+        sameModelAndYearCarIds.remove(Integer.valueOf(carId));
+
+        double sameModelAndYearTotal = 0.0;
+        int sameModelAndYearCount = 0;
+
+        for (Integer similarCarId : sameModelAndYearCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(similarCarId);
+            if (!maintenances.isEmpty()) {
+                double carTotal = maintenances.stream()
+                        .mapToDouble(Maintenance::getCost)
+                        .sum();
+                sameModelAndYearTotal += carTotal;
+                sameModelAndYearCount++;
+            }
+        }
+
+        double sameModelAndYearAverage = sameModelAndYearCount > 0
+                ? sameModelAndYearTotal / sameModelAndYearCount
+                : 0.0;
+
+        // Compare to cars with same make year only
+        List<Integer> sameYearCarIds = carRepo.findCarIdsByMakeYear(car.getMakeYear());
+
+        // Exclude the current car from comparison
+        sameYearCarIds.remove(Integer.valueOf(carId));
+
+        double sameYearTotal = 0.0;
+        int sameYearCount = 0;
+
+        for (Integer yearCarId : sameYearCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(yearCarId);
+            if (!maintenances.isEmpty()) {
+                double carTotal = maintenances.stream()
+                        .mapToDouble(Maintenance::getCost)
+                        .sum();
+                sameYearTotal += carTotal;
+                sameYearCount++;
+            }
+        }
+
+        double sameYearAverage = sameYearCount > 0
+                ? sameYearTotal / sameYearCount
+                : 0.0;
+
+        return new TotalCostComparisonDto(
+                myCarTotalCost,
+                sameModelAndYearAverage,
+                sameYearAverage,
+                sameModelAndYearCount,
+                sameYearCount
+        );
+    }
+
+    public MaintenanceCountComparisonDto compareMaintenanceCounts(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+        // Get maintenance count for the current car
+        List<Maintenance> myCarMaintenances = repo.findByCarId(carId);
+        int myCarMaintenanceCount = myCarMaintenances.size();
+
+        // Compare to cars with same model and make year
+        List<Integer> sameModelAndYearCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+
+        // Exclude the current car from comparison
+        sameModelAndYearCarIds.remove(Integer.valueOf(carId));
+
+        int sameModelAndYearTotalCount = 0;
+        int sameModelAndYearCarCount = 0;
+
+        for (Integer similarCarId : sameModelAndYearCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(similarCarId);
+            if (!maintenances.isEmpty()) {
+                sameModelAndYearTotalCount += maintenances.size();
+                sameModelAndYearCarCount++;
+            }
+        }
+
+        double sameModelAndYearAverage = sameModelAndYearCarCount > 0
+                ? (double) sameModelAndYearTotalCount / sameModelAndYearCarCount
+                : 0.0;
+
+        // Compare to cars with same make year only
+        List<Integer> sameYearCarIds = carRepo.findCarIdsByMakeYear(car.getMakeYear());
+
+        // Exclude the current car from comparison
+        sameYearCarIds.remove(Integer.valueOf(carId));
+
+        int sameYearTotalCount = 0;
+        int sameYearCarCount = 0;
+
+        for (Integer yearCarId : sameYearCarIds) {
+            List<Maintenance> maintenances = repo.findByCarId(yearCarId);
+            if (!maintenances.isEmpty()) {
+                sameYearTotalCount += maintenances.size();
+                sameYearCarCount++;
+            }
+        }
+
+        double sameYearAverage = sameYearCarCount > 0
+                ? (double) sameYearTotalCount / sameYearCarCount
+                : 0.0;
+
+        return new MaintenanceCountComparisonDto(
+                myCarMaintenanceCount,
+                sameModelAndYearAverage,
+                sameYearAverage,
+                sameModelAndYearCarCount,
+                sameYearCarCount
+        );
+    }
+
+    public MileageComparisonDto compareMileage(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+        // Get mileage for the current car
+        int myCarMileage = car.getMileage() != null ? car.getMileage() : 0;
+
+        // Compare to cars with same model and make year
+        List<Integer> sameModelAndYearCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+
+        // Exclude the current car from comparison
+        sameModelAndYearCarIds.remove(Integer.valueOf(carId));
+
+        int sameModelAndYearTotalMileage = 0;
+        int sameModelAndYearCarCount = 0;
+
+        for (Integer similarCarId : sameModelAndYearCarIds) {
+            Cars similarCar = carRepo.findById(similarCarId).orElse(null);
+            if (similarCar != null && similarCar.getMileage() != null) {
+                sameModelAndYearTotalMileage += similarCar.getMileage();
+                sameModelAndYearCarCount++;
+            }
+        }
+
+        double sameModelAndYearAverage = sameModelAndYearCarCount > 0
+                ? (double) sameModelAndYearTotalMileage / sameModelAndYearCarCount
+                : 0.0;
+
+        // Compare to cars with same make year only
+        List<Integer> sameYearCarIds = carRepo.findCarIdsByMakeYear(car.getMakeYear());
+
+        // Exclude the current car from comparison
+        sameYearCarIds.remove(Integer.valueOf(carId));
+
+        int sameYearTotalMileage = 0;
+        int sameYearCarCount = 0;
+
+        for (Integer yearCarId : sameYearCarIds) {
+            Cars yearCar = carRepo.findById(yearCarId).orElse(null);
+            if (yearCar != null && yearCar.getMileage() != null) {
+                sameYearTotalMileage += yearCar.getMileage();
+                sameYearCarCount++;
+            }
+        }
+
+        double sameYearAverage = sameYearCarCount > 0
+                ? (double) sameYearTotalMileage / sameYearCarCount
+                : 0.0;
+
+        return new MileageComparisonDto(
+                myCarMileage,
+                sameModelAndYearAverage,
+                sameYearAverage,
+                sameModelAndYearCarCount,
+                sameYearCarCount
+        );
+    }
+
+    public CostPerKmComparisonDto compareCostPerThousandKm(int carId) {
+        Cars car = carRepo.findById(carId).orElse(null);
+        if (car == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found");
+        }
+
+        // Calculate cost per 1000 km for the current car
+        List<Maintenance> myCarMaintenances = repo.findByCarId(carId);
+        double myCarTotalCost = myCarMaintenances.stream()
+                .mapToDouble(Maintenance::getCost)
+                .sum();
+        int myCarMileage = car.getMileage() != null ? car.getMileage() : 0;
+        double myCarCostPerThousandKm = myCarMileage > 0
+                ? (myCarTotalCost / myCarMileage) * 1000
+                : 0.0;
+
+        // Compare to cars with same model and make year
+        List<Integer> sameModelAndYearCarIds = carRepo.findSimilarCarIds(
+                car.getManufacturer(),
+                car.getModel(),
+                car.getMakeYear()
+        );
+
+        // Exclude the current car from comparison
+        sameModelAndYearCarIds.remove(Integer.valueOf(carId));
+
+        double sameModelAndYearTotalCostPerKm = 0.0;
+        int sameModelAndYearCarCount = 0;
+
+        for (Integer similarCarId : sameModelAndYearCarIds) {
+            Cars similarCar = carRepo.findById(similarCarId).orElse(null);
+            if (similarCar != null && similarCar.getMileage() != null && similarCar.getMileage() > 0) {
+                List<Maintenance> maintenances = repo.findByCarId(similarCarId);
+                if (!maintenances.isEmpty()) {
+                    double totalCost = maintenances.stream()
+                            .mapToDouble(Maintenance::getCost)
+                            .sum();
+                    double costPerThousandKm = (totalCost / similarCar.getMileage()) * 1000;
+                    sameModelAndYearTotalCostPerKm += costPerThousandKm;
+                    sameModelAndYearCarCount++;
+                }
+            }
+        }
+
+        double sameModelAndYearAverage = sameModelAndYearCarCount > 0
+                ? sameModelAndYearTotalCostPerKm / sameModelAndYearCarCount
+                : 0.0;
+
+        // Compare to cars with same make year only
+        List<Integer> sameYearCarIds = carRepo.findCarIdsByMakeYear(car.getMakeYear());
+
+        // Exclude the current car from comparison
+        sameYearCarIds.remove(Integer.valueOf(carId));
+
+        double sameYearTotalCostPerKm = 0.0;
+        int sameYearCarCount = 0;
+
+        for (Integer yearCarId : sameYearCarIds) {
+            Cars yearCar = carRepo.findById(yearCarId).orElse(null);
+            if (yearCar != null && yearCar.getMileage() != null && yearCar.getMileage() > 0) {
+                List<Maintenance> maintenances = repo.findByCarId(yearCarId);
+                if (!maintenances.isEmpty()) {
+                    double totalCost = maintenances.stream()
+                            .mapToDouble(Maintenance::getCost)
+                            .sum();
+                    double costPerThousandKm = (totalCost / yearCar.getMileage()) * 1000;
+                    sameYearTotalCostPerKm += costPerThousandKm;
+                    sameYearCarCount++;
+                }
+            }
+        }
+
+        double sameYearAverage = sameYearCarCount > 0
+                ? sameYearTotalCostPerKm / sameYearCarCount
+                : 0.0;
+
+        return new CostPerKmComparisonDto(
+                myCarCostPerThousandKm,
+                sameModelAndYearAverage,
+                sameYearAverage,
+                sameModelAndYearCarCount,
+                sameYearCarCount
+        );
     }
 
 }

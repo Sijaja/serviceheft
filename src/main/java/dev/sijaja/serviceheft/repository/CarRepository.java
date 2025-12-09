@@ -20,4 +20,8 @@ public interface CarRepository extends JpaRepository<Cars, Integer> {
     // A method to find the ID's of all similar cars based on make, model, and year
     @Query("SELECT c.carId FROM Cars c WHERE c.manufacturer = :manufacturer AND c.model = :model AND c.makeYear = :makeYear")
     List<Integer> findSimilarCarIds(@Param("manufacturer") String manufacturer, @Param("model") String model, @Param("makeYear") int makeYear);
+
+    // A method to find the ID's of all cars with the same make year only
+    @Query("SELECT c.carId FROM Cars c WHERE c.makeYear = :makeYear")
+    List<Integer> findCarIdsByMakeYear(@Param("makeYear") int makeYear);
 }
