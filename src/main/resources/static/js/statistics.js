@@ -43,14 +43,16 @@ async function getCar(carId) {
 
     const carInfoElement = document.getElementById("carInfos");
     if (carInfoElement) {
-      carInfoElement.innerText = `${car.manufacturer || ""} ${car.model || ""} (${car.makeYear || "N/A"}) - ${car.mileage ? car.mileage.toLocaleString() + " km" : "N/A"}`;
+      carInfoElement.innerText = `${car.manufacturer || ""} ${car.model || ""} (${car.makeYear || "N/A"}) - ${
+        car.mileage ? car.mileage.toLocaleString() + " km" : "N/A"
+      }`;
     }
 
     // Update car image
     const imageElement = document.getElementById("myImage");
     if (imageElement && car.carType) {
       imageElement.src = `assets/images/${car.carType}.png`;
-      imageElement.onerror = function() {
+      imageElement.onerror = function () {
         this.src = "assets/images/other.png";
       };
     }
@@ -216,7 +218,7 @@ async function comparesionChart(carId) {
         colors: ["transparent"],
       },
       xaxis: {
-        categories: ["Motor", "Riemen und Schläuche", "Bremsen", "Electrik", "Karosserie"],
+        categories: ["Motor", "Riemen und Schläuche", "Bremsen", "Elektrik", "Karosserie"],
       },
       colors: ["#0066CC", "#3399FF", "#66B2FF"],
       fill: {

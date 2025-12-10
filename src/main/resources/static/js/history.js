@@ -105,24 +105,24 @@ function createMaintenanceCard(maintenance) {
   // Determine card color based on maintenance type
   let cardColor = "#1d546c";
   switch (maintenance.mtncType) {
-    case "INSPECTION":
+    case "ROUTINE":
       cardColor = "#1d546c";
       break;
-    case "REPAIR":
-      cardColor = "#c45850";
+    case "PROBLEM":
+      cardColor = "#A65E2E";
       break;
-    case "SERVICE":
-      cardColor = "#4CAF50";
-      break;
-    case "OILCHANGE":
-      cardColor = "#FF9800";
+    case "ACCIDENT":
+      cardColor = "#8E1B1B";
       break;
     default:
       cardColor = "#1d546c";
   }
 
   col.innerHTML = `
-    <div class="card rounded-10 border-0 mb-4" style="background: linear-gradient(101deg, ${cardColor} 55.73%, ${adjustColor(cardColor, -20)} 99.52%);">
+    <div class="card rounded-10 border-0 mb-4" style="background: linear-gradient(101deg, ${cardColor} 55.73%, ${adjustColor(
+    cardColor,
+    -20
+  )} 99.52%);">
       <div class="card-body p-4">
         <div class="d-flex justify-content-between align-items-start mb-3">
           <div>
@@ -163,12 +163,16 @@ function createMaintenanceCard(maintenance) {
           </div>
         </div>
 
-        ${maintenance.inspectionNotes ? `
+        ${
+          maintenance.inspectionNotes
+            ? `
         <div class="mb-3 p-2 rounded" style="background: rgba(255, 255, 255, 0.1);">
           <p class="mb-1" style="color: #cbc7ff; font-size: 12px;">Notizen</p>
           <p class="mb-0 text-white">${maintenance.inspectionNotes}</p>
         </div>
-        ` : ''}
+        `
+            : ""
+        }
 
         ${createCostBreakdown(maintenance.costs)}
 
@@ -189,37 +193,41 @@ function createMaintenanceCard(maintenance) {
 }
 
 function createCostBreakdown(costs) {
-  if (!costs) return '';
+  if (!costs) return "";
 
   const costItems = [
-    { label: 'Motor', value: costs.engineCost },
-    { label: 'Riemen & Schläuche', value: costs.beltsHosesCost },
-    { label: 'Bremsen', value: costs.brakesCost },
-    { label: 'Reifen', value: costs.tiresCost },
-    { label: 'Elektrik', value: costs.electricCost },
-    { label: 'Karosserie', value: costs.bodyPartsCost },
-    { label: 'Filter', value: costs.filtersCost },
-    { label: 'Abgas', value: costs.exhaustCost },
-    { label: 'HVAC', value: costs.hvacCost },
-    { label: 'Rost', value: costs.rostCost },
+    { label: "Motor", value: costs.engineCost },
+    { label: "Riemen & Schläuche", value: costs.beltsHosesCost },
+    { label: "Bremsen", value: costs.brakesCost },
+    { label: "Reifen", value: costs.tiresCost },
+    { label: "Elektrik", value: costs.electricCost },
+    { label: "Karosserie", value: costs.bodyPartsCost },
+    { label: "Filter", value: costs.filtersCost },
+    { label: "Abgas", value: costs.exhaustCost },
+    { label: "HVAC", value: costs.hvacCost },
+    { label: "Rost", value: costs.rostCost },
   ];
 
-  const nonZeroCosts = costItems.filter(item => item.value > 0);
+  const nonZeroCosts = costItems.filter((item) => item.value > 0);
 
-  if (nonZeroCosts.length === 0) return '';
+  if (nonZeroCosts.length === 0) return "";
 
   return `
     <div class="mt-3">
       <p class="mb-2 text-white fw-medium">Kostenaufschlüsselung</p>
       <div class="row g-2">
-        ${nonZeroCosts.map(item => `
+        ${nonZeroCosts
+          .map(
+            (item) => `
           <div class="col-6">
             <div class="p-2 rounded" style="background: rgba(255, 255, 255, 0.1);">
               <p class="mb-0" style="color: #cbc7ff; font-size: 11px;">${item.label}</p>
               <p class="mb-0 text-white fw-medium">${item.value.toFixed(2)} €</p>
             </div>
           </div>
-        `).join('')}
+        `
+          )
+          .join("")}
       </div>
     </div>
   `;
@@ -235,12 +243,16 @@ function createDetailedChecks(maintenance) {
         <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.15);">
           <h6 class="text-white mb-2"><i class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle;">settings</i> Motorprüfung</h6>
           <div class="row g-2">
-            ${createCheckItem('Motorstatus', maintenance.engineCheck.engineStatus)}
-            ${createCheckItem('Ölstand', maintenance.engineCheck.oilLevel)}
-            ${createCheckItem('Ölzustand', maintenance.engineCheck.oilCondition)}
-            ${maintenance.engineCheck.oilReplaced ? '<div class="col-6"><p class="mb-0 text-white">✓ Öl gewechselt</p></div>' : ''}
-            ${createCheckItem('Kühlmittelstand', maintenance.engineCheck.coolantLevel)}
-            ${createCheckItem('Bremsflüssigkeit', maintenance.engineCheck.brakeFluidLevel)}
+            ${createCheckItem("Motorstatus", maintenance.engineCheck.engineStatus)}
+            ${createCheckItem("Ölstand", maintenance.engineCheck.oilLevel)}
+            ${createCheckItem("Ölzustand", maintenance.engineCheck.oilCondition)}
+            ${
+              maintenance.engineCheck.oilReplaced
+                ? '<div class="col-6"><p class="mb-0 text-white">✓ Öl gewechselt</p></div>'
+                : ""
+            }
+            ${createCheckItem("Kühlmittelstand", maintenance.engineCheck.coolantLevel)}
+            ${createCheckItem("Bremsflüssigkeit", maintenance.engineCheck.brakeFluidLevel)}
           </div>
         </div>
       </div>
@@ -254,11 +266,19 @@ function createDetailedChecks(maintenance) {
         <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.15);">
           <h6 class="text-white mb-2"><i class="ri-alert-line" style="font-size: 18px; vertical-align: middle;"></i> Bremsenprüfung</h6>
           <div class="row g-2">
-            ${maintenance.brakeCheck.fPadThickness ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Vorne Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.fPadThickness} mm</p></div>` : ''}
-            ${maintenance.brakeCheck.rPadThickness ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Hinten Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.rPadThickness} mm</p></div>` : ''}
-            ${createCheckItem('Vordere Scheiben', maintenance.brakeCheck.frontRotorsCon)}
-            ${createCheckItem('Hintere Scheiben', maintenance.brakeCheck.rearRotorsCon)}
-            ${createCheckItem('Bremsleitungen', maintenance.brakeCheck.brakeLines)}
+            ${
+              maintenance.brakeCheck.fPadThickness
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Vorne Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.fPadThickness} mm</p></div>`
+                : ""
+            }
+            ${
+              maintenance.brakeCheck.rPadThickness
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">Hinten Beläge</p><p class="mb-0 text-white">${maintenance.brakeCheck.rPadThickness} mm</p></div>`
+                : ""
+            }
+            ${createCheckItem("Vordere Scheiben", maintenance.brakeCheck.frontRotorsCon)}
+            ${createCheckItem("Hintere Scheiben", maintenance.brakeCheck.rearRotorsCon)}
+            ${createCheckItem("Bremsleitungen", maintenance.brakeCheck.brakeLines)}
           </div>
         </div>
       </div>
@@ -272,11 +292,27 @@ function createDetailedChecks(maintenance) {
         <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.15);">
           <h6 class="text-white mb-2"><i class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle;">tire_repair</i> Reifenprüfung</h6>
           <div class="row g-2">
-            ${maintenance.tireCheck.treadFrontLeft ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">VL Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadFrontLeft} mm</p></div>` : ''}
-            ${maintenance.tireCheck.treadFrontRight ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">VR Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadFrontRight} mm</p></div>` : ''}
-            ${maintenance.tireCheck.treadRearLeft ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">HL Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadRearLeft} mm</p></div>` : ''}
-            ${maintenance.tireCheck.treadRearRight ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">HR Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadRearRight} mm</p></div>` : ''}
-            ${createCheckItem('Stoßdämpfer', maintenance.tireCheck.shockAbsorbers)}
+            ${
+              maintenance.tireCheck.treadFrontLeft
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">VL Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadFrontLeft} mm</p></div>`
+                : ""
+            }
+            ${
+              maintenance.tireCheck.treadFrontRight
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">VR Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadFrontRight} mm</p></div>`
+                : ""
+            }
+            ${
+              maintenance.tireCheck.treadRearLeft
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">HL Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadRearLeft} mm</p></div>`
+                : ""
+            }
+            ${
+              maintenance.tireCheck.treadRearRight
+                ? `<div class="col-6"><p class="mb-0" style="color: #cbc7ff; font-size: 12px;">HR Profil</p><p class="mb-0 text-white">${maintenance.tireCheck.treadRearRight} mm</p></div>`
+                : ""
+            }
+            ${createCheckItem("Stoßdämpfer", maintenance.tireCheck.shockAbsorbers)}
           </div>
         </div>
       </div>
@@ -290,22 +326,22 @@ function createDetailedChecks(maintenance) {
         <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.15);">
           <h6 class="text-white mb-2"><i class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle;">category</i> Riemen & Schläuche</h6>
           <div class="row g-2">
-            ${createCheckItem('Keilriemen', maintenance.beltHoseCheck.serpentineBelt)}
-            ${createCheckItem('Zahnriemen', maintenance.beltHoseCheck.timingBelt)}
-            ${createCheckItem('Kühlerschläuche', maintenance.beltHoseCheck.radiatorHoses)}
-            ${createCheckItem('Heizungsschläuche', maintenance.beltHoseCheck.heaterHoses)}
+            ${createCheckItem("Keilriemen", maintenance.beltHoseCheck.serpentineBelt)}
+            ${createCheckItem("Zahnriemen", maintenance.beltHoseCheck.timingBelt)}
+            ${createCheckItem("Kühlerschläuche", maintenance.beltHoseCheck.radiatorHoses)}
+            ${createCheckItem("Heizungsschläuche", maintenance.beltHoseCheck.heaterHoses)}
           </div>
         </div>
       </div>
     `;
   }
 
-  html += '</div>';
+  html += "</div>";
   return html;
 }
 
 function createCheckItem(label, value) {
-  if (!value) return '';
+  if (!value) return "";
   return `
     <div class="col-6">
       <p class="mb-0" style="color: #cbc7ff; font-size: 12px;">${label}</p>
@@ -315,19 +351,19 @@ function createCheckItem(label, value) {
 }
 
 function formatCheckValue(value) {
-  if (typeof value === 'string') {
+  if (typeof value === "string") {
     // Convert enum values to readable German text
     const translations = {
-      'OPTIMAL': 'Optimal',
-      'FAIR': 'Ausreichend',
-      'POOR': 'Mangelhaft',
-      'REPLACED': 'Ersetzt',
-      'NOT_CHECKED': 'Nicht geprüft',
-      'HIGH': 'Hoch',
-      'LOW': 'Niedrig',
-      'GOOD': 'Gut',
-      'OKAY': 'OK',
-      'TOREPLACE': 'Zu ersetzen'
+      OPTIMAL: "Optimal",
+      FAIR: "Ausreichend",
+      POOR: "Mangelhaft",
+      REPLACED: "Ersetzt",
+      NOT_CHECKED: "Nicht geprüft",
+      HIGH: "Hoch",
+      LOW: "Niedrig",
+      GOOD: "Gut",
+      OKAY: "OK",
+      TOREPLACE: "Zu ersetzen",
     };
     return translations[value] || value;
   }
@@ -336,35 +372,45 @@ function formatCheckValue(value) {
 
 function getMaintenanceTypeText(type) {
   const types = {
-    'INSPECTION': 'Inspektion',
-    'REPAIR': 'Reparatur',
-    'SERVICE': 'Service',
-    'OILCHANGE': 'Ölwechsel',
+    INSPECTION: "Inspektion",
+    REPAIR: "Reparatur",
+    SERVICE: "Service",
+    OILCHANGE: "Ölwechsel",
   };
   return types[type] || type;
 }
 
 function adjustColor(color, percent) {
-  const num = parseInt(color.replace("#",""), 16);
+  const num = parseInt(color.replace("#", ""), 16);
   const amt = Math.round(2.55 * percent);
   const R = (num >> 16) + amt;
-  const G = (num >> 8 & 0x00FF) + amt;
-  const B = (num & 0x0000FF) + amt;
-  return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
+  const G = ((num >> 8) & 0x00ff) + amt;
+  const B = (num & 0x0000ff) + amt;
+  return (
+    "#" +
+    (
+      0x1000000 +
+      (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+      (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
+      (B < 255 ? (B < 1 ? 0 : B) : 255)
+    )
+      .toString(16)
+      .slice(1)
+  );
 }
 
 function toggleDetails(mtncId) {
   const detailsDiv = document.getElementById(`details-${mtncId}`);
-  const button = event.target.closest('button');
-  const icon = button.querySelector('.material-symbols-outlined');
+  const button = event.target.closest("button");
+  const icon = button.querySelector(".material-symbols-outlined");
 
-  if (detailsDiv.style.display === 'none') {
-    detailsDiv.style.display = 'block';
-    icon.textContent = 'expand_less';
+  if (detailsDiv.style.display === "none") {
+    detailsDiv.style.display = "block";
+    icon.textContent = "expand_less";
     button.innerHTML = `<i class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">expand_less</i> Details ausblenden`;
   } else {
-    detailsDiv.style.display = 'none';
-    icon.textContent = 'expand_more';
+    detailsDiv.style.display = "none";
+    icon.textContent = "expand_more";
     button.innerHTML = `<i class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">expand_more</i> Details anzeigen`;
   }
 }
