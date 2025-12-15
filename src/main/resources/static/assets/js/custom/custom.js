@@ -707,87 +707,12 @@
     });
   });
 
-  // Theme Settings
-  // Dark/Light Toggle
-  const getSwitchToggleId = document.getElementById("switch-toggle");
-  if (getSwitchToggleId) {
-    const switchtoggle = document.querySelector(".switch-toggle");
-    const savedTheme = localStorage.getItem("fila_theme");
-    if (savedTheme) {
-      document.body.setAttribute("data-theme", savedTheme);
-    }
-    switchtoggle.addEventListener("click", function () {
-      if (document.body.getAttribute("data-theme") === "dark") {
-        document.body.setAttribute("data-theme", "light");
-        localStorage.setItem("fila_theme", "light");
-      } else {
-        document.body.setAttribute("data-theme", "dark");
-        localStorage.setItem("fila_theme", "dark");
-      }
-    });
-  }
-
-  // Only Sidebar Light & Dark
-  const getSidebarToggleId = document.getElementById("sidebar-light-dark");
-  if (getSidebarToggleId) {
-    const switchtoggle = document.querySelector(".sidebar-light-dark");
-    const savedTheme = localStorage.getItem("fila_theme");
-    if (savedTheme) {
-      document.body.setAttribute("sidebar-dark-light-data-theme", savedTheme);
-    }
-    switchtoggle.addEventListener("click", function () {
-      if (
-        document.body.getAttribute("sidebar-dark-light-data-theme") ===
-        "sidebar-dark"
-      ) {
-        document.body.setAttribute(
-          "sidebar-dark-light-data-theme",
-          "sidebar-light"
-        );
-        localStorage.setItem("fila_theme", "sidebar-light");
-      } else {
-        document.body.setAttribute(
-          "sidebar-dark-light-data-theme",
-          "sidebar-dark"
-        );
-        localStorage.setItem("fila_theme", "sidebar-dark");
-      }
-    });
-  }
-
-  // Only Header Light & Dark
-  const getHeaderToggleId = document.getElementById("header-light-dark");
-  if (getHeaderToggleId) {
-    const switchtoggle = document.querySelector(".header-light-dark");
-    const savedTheme = localStorage.getItem("fila_theme");
-    if (savedTheme) {
-      document.body.setAttribute("header-dark-light-data-theme", savedTheme);
-    }
-    switchtoggle.addEventListener("click", function () {
-      if (
-        document.body.getAttribute("header-dark-light-data-theme") ===
-        "header-dark"
-      ) {
-        document.body.setAttribute(
-          "header-dark-light-data-theme",
-          "header-light"
-        );
-        localStorage.setItem("fila_theme", "header-light");
-      } else {
-        document.body.setAttribute(
-          "header-dark-light-data-theme",
-          "header-dark"
-        );
-        localStorage.setItem("fila_theme", "header-dark");
-      }
-    });
-  }
 
   // Icon Sidebar
   const getIconSidebarToggleId = document.getElementById("icon-sidebar");
   if (getIconSidebarToggleId) {
     const switchtoggle = document.querySelector(".icon-sidebar");
-    const savedTheme = localStorage.getItem("fila_theme");
+    const savedTheme = localStorage.getItem("automate_theme");
     if (savedTheme) {
       document.body.setAttribute("icon-sidebar-none-data-theme", savedTheme);
     }
@@ -800,13 +725,13 @@
           "icon-sidebar-none-data-theme",
           "icon-sidebar-block-switch"
         );
-        localStorage.setItem("fila_theme", "icon-sidebar-block-switch");
+        localStorage.setItem("automate_theme", "icon-sidebar-block-switch");
       } else {
         document.body.setAttribute(
           "icon-sidebar-none-data-theme",
           "icon-sidebar-none-switch"
         );
-        localStorage.setItem("fila_theme", "icon-sidebar-none-switch");
+        localStorage.setItem("automate_theme", "icon-sidebar-none-switch");
       }
     });
   }
@@ -815,7 +740,7 @@
   const getRightSidebarId = document.getElementById("right-sidebar");
   if (getRightSidebarId) {
     const switchtoggle = document.querySelector(".right-sidebar");
-    const savedTheme = localStorage.getItem("fila_theme");
+    const savedTheme = localStorage.getItem("automate_theme");
     if (savedTheme) {
       document.body.setAttribute("right-sidebar-data-theme", savedTheme);
     }
@@ -828,13 +753,13 @@
           "right-sidebar-data-theme",
           "right-sidebar-right"
         );
-        localStorage.setItem("fila_theme", "right-sidebar-right");
+        localStorage.setItem("automate_theme", "right-sidebar-right");
       } else {
         document.body.setAttribute(
           "right-sidebar-data-theme",
           "right-sidebar-normal"
         );
-        localStorage.setItem("fila_theme", "right-sidebar-normal");
+        localStorage.setItem("automate_theme", "right-sidebar-normal");
       }
     });
   }
@@ -844,7 +769,7 @@
     document.getElementById("card-radius-square");
   if (getRadiusSquaresToggleId) {
     const switchtoggle = document.querySelector(".card-radius-square");
-    const savedTheme = localStorage.getItem("fila_theme");
+    const savedTheme = localStorage.getItem("automate_theme");
     if (savedTheme) {
       document.body.setAttribute("card-radius-square-data-theme", savedTheme);
     }
@@ -857,13 +782,13 @@
           "card-radius-square-data-theme",
           "card-radius"
         );
-        localStorage.setItem("fila_theme", "card-radius");
+        localStorage.setItem("automate_theme", "card-radius");
       } else {
         document.body.setAttribute(
           "card-radius-square-data-theme",
           "card-square"
         );
-        localStorage.setItem("fila_theme", "card-square");
+        localStorage.setItem("automate_theme", "card-square");
       }
     });
   }
@@ -872,7 +797,7 @@
   const getCardBorderToggleId = document.getElementById("card-border");
   if (getCardBorderToggleId) {
     const switchtoggle = document.querySelector(".card-border");
-    const savedTheme = localStorage.getItem("fila_theme");
+    const savedTheme = localStorage.getItem("automate_theme");
     if (savedTheme) {
       document.body.setAttribute("card-border-data-theme", savedTheme);
     }
@@ -885,13 +810,13 @@
           "card-border-data-theme",
           "card-border-gray"
         );
-        localStorage.setItem("fila_theme", "card-border-gray");
+        localStorage.setItem("automate_theme", "card-border-gray");
       } else {
         document.body.setAttribute(
           "card-border-data-theme",
           "card-border-normal"
         );
-        localStorage.setItem("fila_theme", "card-border-normal");
+        localStorage.setItem("automate_theme", "card-border-normal");
       }
     });
   }
@@ -959,12 +884,12 @@
 try {
   // function to set a given theme/color-scheme
   function setTheme(themeName) {
-    localStorage.setItem("fila_rtl", themeName);
+    localStorage.setItem("automate_rtl", themeName);
     document.documentElement.className = themeName;
   }
   // function to toggle between light and dark theme
   function toggleTheme() {
-    if (localStorage.getItem("fila_rtl") === "rtl") {
+    if (localStorage.getItem("automate_rtl") === "rtl") {
       setTheme("ltr");
     } else {
       setTheme("rtl");
@@ -973,7 +898,7 @@ try {
 
   // Immediately invoked function to set the theme on initial load
   (function () {
-    if (localStorage.getItem("fila_rtl") === "rtl") {
+    if (localStorage.getItem("automate_rtl") === "rtl") {
       setTheme("rtl");
       document.getElementById("slider").checked = false;
     } else {

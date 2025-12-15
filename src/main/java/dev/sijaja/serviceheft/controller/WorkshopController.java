@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.sijaja.serviceheft.dto.WorkshopSignupDto;
 import dev.sijaja.serviceheft.model.Workshop;
 import dev.sijaja.serviceheft.service.WorkshopService;
 
@@ -25,7 +26,7 @@ public class WorkshopController {
     public List<Workshop> getAll() { return service.getAll(); }
 
     @PostMapping
-    public Workshop create(@RequestBody Workshop ws) { return service.save(ws); }
+    public Workshop create(@RequestBody WorkshopSignupDto dto) { return service.registerWorkshop(dto); }
 
     @GetMapping("/{id}")
     public Workshop get(@PathVariable Integer id) { return service.get(id).orElseThrow(); }

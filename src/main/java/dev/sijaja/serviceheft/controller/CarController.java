@@ -11,12 +11,18 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import dev.sijaja.serviceheft.model.Cars;
+import dev.sijaja.serviceheft.model.Owner;
+import dev.sijaja.serviceheft.model.User;
 import dev.sijaja.serviceheft.service.CarService;
+import dev.sijaja.serviceheft.service.OwnerService;
+import dev.sijaja.serviceheft.service.UserService;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -24,9 +30,13 @@ import dev.sijaja.serviceheft.service.CarService;
 public class CarController {
 
     private final CarService service;
+    private final UserService userService;
+    private final OwnerService ownerService;
 
-    public CarController(CarService service) {
+    public CarController(CarService service, UserService userAccountRepo, OwnerService ownerRepo) {
         this.service = service;
+        this.userService = userAccountRepo;
+        this.ownerService = ownerRepo;
     }
 
     @GetMapping
@@ -35,8 +45,13 @@ public class CarController {
     }
 
     @PostMapping
-    public Cars create(@RequestBody Cars c) {
-        return service.save(c);
+    public ResponseEntity<?> create(@RequestBody Cars c, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        c.setOwner(owner);
+        Cars saved = service.save(c);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")
@@ -47,7 +62,16 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable int id, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Owner owner = ownerService.findByUserId(user.getUserId());
+        Cars car = service.get(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found"));
+
+        if (car.getOwner().getOwnerId() != owner.getOwnerId()) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You don't have permission to delete this car");
+        }
+
         service.delete(id);
     }
 
@@ -61,4 +85,18 @@ public class CarController {
         service.setDefaultCar(principal.getName(), carId);
         return ResponseEntity.ok(Map.of("message", "Default car updated successfully"));
     }
+
+    @GetMapping("/vin/{vin}")
+    public ResponseEntity<Cars> getCarById(@PathVariable String vin) {
+        return service.findCarIdByVinNumber(vin)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
+
+    @PutMapping("/{carId}/transfer/{newOwnerId}")
+    public ResponseEntity<?> transferCarOwnership(@PathVariable int carId, @PathVariable int newOwnerId, Principal principal) {
+        service.transferCarOwnership(carId, newOwnerId, principal.getName());
+        return ResponseEntity.ok(Map.of("message", "Car ownership transferred successfully"));
+    }
+
 }

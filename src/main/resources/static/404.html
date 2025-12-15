@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Links Of CSS File -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
+
+    <!-- Title -->
+    <title>404 - Seite nicht gefunden | AutoMate</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1d546c 0%, #0c2b4e 100%);
+        font-family: "Outfit", sans-serif;
+      }
+
+      .error-container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 600px;
+      }
+
+      .error-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 2rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .error-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .error-message {
+        font-size: 1.2rem;
+        color: #cbc7ff;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .btn-home {
+        display: inline-block;
+        padding: 12px 32px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .btn-home:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @media (max-width: 768px) {
+        .error-title {
+          font-size: 2rem;
+        }
+
+        .error-message {
+          font-size: 1rem;
+        }
+
+        .error-container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <img src="assets/images/404.png" alt="404 Error" class="error-image" />
+      <h1 class="error-title">Seite nicht gefunden</h1>
+      <p class="error-message">
+        Die gesuchte Seite existiert leider nicht. Möglicherweise wurde sie verschoben oder gelöscht.
+      </p>
+      <a href="/mydashboard.html" class="btn-home">Zurück zum Dashboard</a>
+    </div>
+  </body>
+</html>

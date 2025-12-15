@@ -2,25 +2,12 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Level;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class EngineCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int engineCheckId;
-
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
-
     @Enumerated(EnumType.STRING)
     private Level oilLevel;
     @Enumerated(EnumType.STRING)
@@ -47,8 +34,7 @@ public class EngineCheck {
     public EngineCheck() {
     }
 
-    public EngineCheck(int engineCheckId, Level brakeFluidLevel, Condition brakeFluidColor, Level coolantLevel, Condition coolantCondition, Level gearFluid, Condition oilCondition, Level oilLevel, boolean oilFilter, boolean oilReplaced, Condition engineStatus, Level steeringFluid, Level washFluid, Maintenance maintenance) {
-        this.engineCheckId = engineCheckId;
+    public EngineCheck(Level brakeFluidLevel, Condition brakeFluidColor, Level coolantLevel, Condition coolantCondition, Level gearFluid, Condition oilCondition, Level oilLevel, boolean oilFilter, boolean oilReplaced, Condition engineStatus, Level steeringFluid, Level washFluid) {
         this.brakeFluidLevel = brakeFluidLevel;
         this.brakeFluidColor = brakeFluidColor;
         this.coolantLevel = coolantLevel;
@@ -61,15 +47,6 @@ public class EngineCheck {
         this.engineStatus = engineStatus;
         this.steeringFluid = steeringFluid;
         this.washFluid = washFluid;
-        this.maintenance = maintenance;
-    }
-
-    public int getEngineCheckId() {
-        return engineCheckId;
-    }
-
-    public void setEngineCheckId(int engineCheckId) {
-        this.engineCheckId = engineCheckId;
     }
 
     public Level getOilLevel() {
@@ -168,13 +145,4 @@ public class EngineCheck {
         this.engineStatus = engineStatus;
     }
 
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
-    
 }

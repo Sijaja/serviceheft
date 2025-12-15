@@ -10,6 +10,7 @@ async function addOwner() {
         password: document.getElementById("password").value,
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
+        photoId: 0,
         dateOfBirth: document.getElementById("dateOfBirth").value,
         street: document.getElementById("street").value,
         houseNumber: document.getElementById("houseNumber").value,

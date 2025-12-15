@@ -1,0 +1,963 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2025-12-03 15:19:24
+count workspace : c:\Users\Mohamad\ibis acam Bildungs GmbH\Serviceheft\serviceheft
+total files : 582
+total code lines : 199492
+total comment lines : 3493
+total blank lines : 7862
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |    .properties|             17|              3|              4| 0.0085|
+   |           .xml|             95|              0|              5|  0.048|
+   |               |            102|             18|             17|  0.051|
+   |           .cmd|            165|              1|             24|  0.083|
+   |          .html|          11058|            652|            340|    5.5|
+   |            .js|          94784|           1598|           1506|     48|
+   |          .java|           4473|             55|            874|    2.2|
+   |           .css|          53364|            586|           4344|     27|
+   |          .scss|          15668|            572|            710|    7.9|
+   |           .svg|          19246|              8|              4|    9.6|
+   |           .map|            202|              0|              2|   0.10|
+   |           .txt|            119|              0|              6|  0.060|
+   |          .json|              1|              0|              0|0.00050|
+   |            .md|            123|              0|             26|  0.062|
+   |           .csv|             75|              0|              0|  0.038|
+   -------------------------------------------------------------------------
+.gitattributes, code is 2, comment is 0, blank is 0.
+.gitignore, code is 29, comment is 0, blank is 4.
+.mvn\wrapper\maven-wrapper.properties, code is 3, comment is 1, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\details.md, code is 80, comment is 0, blank is 6.
+.VSCodeCounter\2025-10-03_09-14-33\diff-details.md, code is 9, comment is 0, blank is 6.
+.VSCodeCounter\2025-10-03_09-14-33\diff.csv, code is 2, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\diff.md, code is 12, comment is 0, blank is 7.
+.VSCodeCounter\2025-10-03_09-14-33\diff.txt, code is 19, comment is 0, blank is 3.
+.VSCodeCounter\2025-10-03_09-14-33\results.csv, code is 73, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\results.json, code is 1, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\results.md, code is 22, comment is 0, blank is 7.
+.VSCodeCounter\2025-10-03_09-14-33\results.txt, code is 100, comment is 0, blank is 3.
+Dockerfile, code is 25, comment is 7, blank is 9.
+mvnw, code is 46, comment is 11, blank is 4.
+mvnw.cmd, code is 165, comment is 1, blank is 24.
+pom.xml, code is 95, comment is 0, blank is 5.
+src\main\java\dev\sijaja\serviceheft\config\SecurityConfig.java, code is 45, comment is 1, blank is 5.
+src\main\java\dev\sijaja\serviceheft\controller\AuthViewController.java, code is 29, comment is 0, blank is 8.
+src\main\java\dev\sijaja\serviceheft\controller\CarController.java, code is 85, comment is 0, blank is 17.
+src\main\java\dev\sijaja\serviceheft\controller\MaintenanceController.java, code is 130, comment is 0, blank is 22.
+src\main\java\dev\sijaja\serviceheft\controller\OwnerController.java, code is 38, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\controller\UserController.java, code is 48, comment is 1, blank is 9.
+src\main\java\dev\sijaja\serviceheft\controller\WorkshopController.java, code is 28, comment is 0, blank is 8.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BeltHoseCheckDTO.java, code is 41, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BodyCheckDTO.java, code is 192, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BrakeCheckDTO.java, code is 48, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\ElectricCheckDTO.java, code is 66, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\EmmisionCheckDTO.java, code is 32, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\EngineCheckDTO.java, code is 107, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\FilterCheckDTO.java, code is 32, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\HvacCheckDTO.java, code is 32, comment is 0, blank is 13.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\MaintenanceDTO.java, code is 166, comment is 0, blank is 46.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\RustCheckDTO.java, code is 97, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\TireCheckDTO.java, code is 91, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\dto\AverageCostComparisonDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\BrakeTireRatingDTO.java, code is 82, comment is 0, blank is 23.
+src\main\java\dev\sijaja\serviceheft\dto\CostComparisonDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\CriticalIssuesDto.java, code is 21, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\dto\HealthScoreDTO.java, code is 47, comment is 0, blank is 15.
+src\main\java\dev\sijaja\serviceheft\dto\LoginRequestDto.java, code is 23, comment is 0, blank is 7.
+src\main\java\dev\sijaja\serviceheft\dto\MaintenanceTableDto.java, code is 36, comment is 0, blank is 10.
+src\main\java\dev\sijaja\serviceheft\dto\NextMaintenanceDto.java, code is 12, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\dto\OwnerSignupDto.java, code is 89, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\dto\RepairTypesDto.java, code is 3, comment is 0, blank is 2.
+src\main\java\dev\sijaja\serviceheft\dto\ToBeReplacedDto.java, code is 8, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\TotalCostDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\WorkshopMaintenanceDto.java, code is 58, comment is 0, blank is 19.
+src\main\java\dev\sijaja\serviceheft\dto\WorkshopSignupDto.java, code is 80, comment is 0, blank is 25.
+src\main\java\dev\sijaja\serviceheft\dto\YearlyMaintenanceCostsDto.java, code is 16, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\model\BeltHoseCheck.java, code is 49, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\model\BodyCheck.java, code is 219, comment is 0, blank is 51.
+src\main\java\dev\sijaja\serviceheft\model\BrakeCheck.java, code is 55, comment is 0, blank is 16.
+src\main\java\dev\sijaja\serviceheft\model\Cars.java, code is 114, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\ElectricCheck.java, code is 75, comment is 0, blank is 20.
+src\main\java\dev\sijaja\serviceheft\model\EmmisionCheck.java, code is 39, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\model\EngineCheck.java, code is 119, comment is 0, blank is 29.
+src\main\java\dev\sijaja\serviceheft\model\enums\Age.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\CarType.java, code is 11, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Check.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Condition.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Level.java, code is 7, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Part.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Pattern.java, code is 7, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Status.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Type.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\UserRole.java, code is 5, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\FilterCheck.java, code is 39, comment is 0, blank is 12.
+src\main\java\dev\sijaja\serviceheft\model\HvacCheck.java, code is 39, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\model\Maintenance.java, code is 226, comment is 0, blank is 53.
+src\main\java\dev\sijaja\serviceheft\model\Owner.java, code is 111, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\RustCheck.java, code is 111, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\TireCheck.java, code is 95, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\model\User.java, code is 62, comment is 0, blank is 15.
+src\main\java\dev\sijaja\serviceheft\model\Workshop.java, code is 85, comment is 0, blank is 22.
+src\main\java\dev\sijaja\serviceheft\repository\CarRepository.java, code is 10, comment is 0, blank is 7.
+src\main\java\dev\sijaja\serviceheft\repository\MaintenanceRepository.java, code is 80, comment is 28, blank is 26.
+src\main\java\dev\sijaja\serviceheft\repository\OwnerRepository.java, code is 11, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\repository\UserRepository.java, code is 7, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\repository\WorkshopRepository.java, code is 7, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\service\CarService.java, code is 107, comment is 6, blank is 16.
+src\main\java\dev\sijaja\serviceheft\service\MaintenanceService.java, code is 774, comment is 19, blank is 64.
+src\main\java\dev\sijaja\serviceheft\service\OwnerService.java, code is 56, comment is 0, blank is 16.
+src\main\java\dev\sijaja\serviceheft\service\UserService.java, code is 31, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\service\WorkshopService.java, code is 47, comment is 0, blank is 9.
+src\main\java\dev\sijaja\serviceheft\ServiceheftApplication.java, code is 9, comment is 0, blank is 4.
+src\main\resources\application.properties, code is 7, comment is 1, blank is 2.
+src\main\resources\static\add-car.html, code is 508, comment is 31, blank is 16.
+src\main\resources\static\assets\css\jsvectormap.min.css, code is 119, comment is 0, blank is 20.
+src\main\resources\static\assets\css\prism.css, code is 116, comment is 2, blank is 19.
+src\main\resources\static\assets\css\quill.snow.css, code is 1036, comment is 7, blank is 244.
+src\main\resources\static\assets\css\remixicon.css, code is 3090, comment is 0, blank is 3.
+src\main\resources\static\assets\css\sidebar-menu.css, code is 465, comment is 0, blank is 95.
+src\main\resources\static\assets\css\simplebar.css, code is 173, comment is 0, blank is 0.
+src\main\resources\static\assets\css\style.css, code is 20540, comment is 273, blank is 1574.
+src\main\resources\static\assets\css\style.css.map, code is 101, comment is 0, blank is 1.
+src\main\resources\static\assets\css\swiper-bundle.min.css, code is 648, comment is 11, blank is 130.
+src\main\resources\static\assets\fonts\remixicon.eot, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.svg, code is 9194, comment is 2, blank is 2.
+src\main\resources\static\assets\fonts\remixicon.ttf, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.woff, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.woff2, it is a binary file.
+src\main\resources\static\assets\images\active-learning.svg, code is 18, comment is 0, blank is 0.
+src\main\resources\static\assets\images\active-projects.svg, code is 10, comment is 0, blank is 0.
+src\main\resources\static\assets\images\admin.png, it is a binary file.
+src\main\resources\static\assets\images\asana.png, it is a binary file.
+src\main\resources\static\assets\images\bank.png, it is a binary file.
+src\main\resources\static\assets\images\battery.png, it is a binary file.
+src\main\resources\static\assets\images\behance.png, it is a binary file.
+src\main\resources\static\assets\images\blue-man.jpg, it is a binary file.
+src\main\resources\static\assets\images\burn.png, it is a binary file.
+src\main\resources\static\assets\images\CABRIO_ROADSTER.png, it is a binary file.
+src\main\resources\static\assets\images\calendar-3d.png, it is a binary file.
+src\main\resources\static\assets\images\canada.png, it is a binary file.
+src\main\resources\static\assets\images\carph.png, it is a binary file.
+src\main\resources\static\assets\images\check.png, it is a binary file.
+src\main\resources\static\assets\images\coming-soon.png, it is a binary file.
+src\main\resources\static\assets\images\COMPACT_CAR.png, it is a binary file.
+src\main\resources\static\assets\images\completed-projects.svg, code is 10, comment is 0, blank is 0.
+src\main\resources\static\assets\images\consultation.png, it is a binary file.
+src\main\resources\static\assets\images\COUPE.png, it is a binary file.
+src\main\resources\static\assets\images\doc.png, it is a binary file.
+src\main\resources\static\assets\images\dribbble.png, it is a binary file.
+src\main\resources\static\assets\images\email.png, it is a binary file.
+src\main\resources\static\assets\images\error.png, it is a binary file.
+src\main\resources\static\assets\images\event-details.jpg, it is a binary file.
+src\main\resources\static\assets\images\facebook.png, it is a binary file.
+src\main\resources\static\assets\images\favicon.png, it is a binary file.
+src\main\resources\static\assets\images\france.png, it is a binary file.
+src\main\resources\static\assets\images\github.png, it is a binary file.
+src\main\resources\static\assets\images\google-chrome.png, it is a binary file.
+src\main\resources\static\assets\images\google.png, it is a binary file.
+src\main\resources\static\assets\images\instagram.png, it is a binary file.
+src\main\resources\static\assets\images\instructor.svg, code is 18, comment is 0, blank is 0.
+src\main\resources\static\assets\images\internal-error.png, it is a binary file.
+src\main\resources\static\assets\images\join-white.svg, code is 36, comment is 0, blank is 0.
+src\main\resources\static\assets\images\join.svg, code is 36, comment is 0, blank is 0.
+src\main\resources\static\assets\images\jpg.png, it is a binary file.
+src\main\resources\static\assets\images\logo-icon.png, it is a binary file.
+src\main\resources\static\assets\images\logo.svg, code is 12, comment is 0, blank is 0.
+src\main\resources\static\assets\images\mailchimp.png, it is a binary file.
+src\main\resources\static\assets\images\man.png, it is a binary file.
+src\main\resources\static\assets\images\maps.png, it is a binary file.
+src\main\resources\static\assets\images\master-card.png, it is a binary file.
+src\main\resources\static\assets\images\medibox.png, it is a binary file.
+src\main\resources\static\assets\images\microsoft-edge.png, it is a binary file.
+src\main\resources\static\assets\images\mozilla-firefox.png, it is a binary file.
+src\main\resources\static\assets\images\new-students.svg, code is 45, comment is 0, blank is 0.
+src\main\resources\static\assets\images\oil.png, it is a binary file.
+src\main\resources\static\assets\images\opera-mini.png, it is a binary file.
+src\main\resources\static\assets\images\OTHER.png, it is a binary file.
+src\main\resources\static\assets\images\others.png, it is a binary file.
+src\main\resources\static\assets\images\patient.png, it is a binary file.
+src\main\resources\static\assets\images\paypal.png, it is a binary file.
+src\main\resources\static\assets\images\pdf.png, it is a binary file.
+src\main\resources\static\assets\images\person.png, it is a binary file.
+src\main\resources\static\assets\images\phone.png, it is a binary file.
+src\main\resources\static\assets\images\plus.png, it is a binary file.
+src\main\resources\static\assets\images\png.png, it is a binary file.
+src\main\resources\static\assets\images\product-details1.jpg, it is a binary file.
+src\main\resources\static\assets\images\product-details2.jpg, it is a binary file.
+src\main\resources\static\assets\images\product-details3.jpg, it is a binary file.
+src\main\resources\static\assets\images\product-details4.jpg, it is a binary file.
+src\main\resources\static\assets\images\product1.jpg, it is a binary file.
+src\main\resources\static\assets\images\product14.png, it is a binary file.
+src\main\resources\static\assets\images\profile-big-cover.jpg, it is a binary file.
+src\main\resources\static\assets\images\profile-cover.jpg, it is a binary file.
+src\main\resources\static\assets\images\profile.jpg, it is a binary file.
+src\main\resources\static\assets\images\project1.svg, code is 11, comment is 0, blank is 0.
+src\main\resources\static\assets\images\project2.svg, code is 12, comment is 0, blank is 0.
+src\main\resources\static\assets\images\qr-code.png, it is a binary file.
+src\main\resources\static\assets\images\radio-white.svg, code is 1, comment is 0, blank is 0.
+src\main\resources\static\assets\images\radio.svg, code is 1, comment is 0, blank is 0.
+src\main\resources\static\assets\images\safari.png, it is a binary file.
+src\main\resources\static\assets\images\school.png, it is a binary file.
+src\main\resources\static\assets\images\school.svg, code is 45, comment is 0, blank is 0.
+src\main\resources\static\assets\images\SEDAN_LIMOUSINE.png, it is a binary file.
+src\main\resources\static\assets\images\seller1.png, it is a binary file.
+src\main\resources\static\assets\images\seller10.png, it is a binary file.
+src\main\resources\static\assets\images\seller11.png, it is a binary file.
+src\main\resources\static\assets\images\seller12.png, it is a binary file.
+src\main\resources\static\assets\images\seller2.png, it is a binary file.
+src\main\resources\static\assets\images\seller3.png, it is a binary file.
+src\main\resources\static\assets\images\seller4.png, it is a binary file.
+src\main\resources\static\assets\images\seller5.png, it is a binary file.
+src\main\resources\static\assets\images\seller6.png, it is a binary file.
+src\main\resources\static\assets\images\seller7.png, it is a binary file.
+src\main\resources\static\assets\images\seller8.png, it is a binary file.
+src\main\resources\static\assets\images\seller9.png, it is a binary file.
+src\main\resources\static\assets\images\shape1.png, it is a binary file.
+src\main\resources\static\assets\images\shape2.png, it is a binary file.
+src\main\resources\static\assets\images\shape3.png, it is a binary file.
+src\main\resources\static\assets\images\shape4.png, it is a binary file.
+src\main\resources\static\assets\images\shape5.png, it is a binary file.
+src\main\resources\static\assets\images\shape6.png, it is a binary file.
+src\main\resources\static\assets\images\shape7.png, it is a binary file.
+src\main\resources\static\assets\images\skril.png, it is a binary file.
+src\main\resources\static\assets\images\slack.png, it is a binary file.
+src\main\resources\static\assets\images\spain.png, it is a binary file.
+src\main\resources\static\assets\images\staffs.svg, code is 51, comment is 0, blank is 0.
+src\main\resources\static\assets\images\starter.png, it is a binary file.
+src\main\resources\static\assets\images\STATION_WAGON.png, it is a binary file.
+src\main\resources\static\assets\images\SUV_OFF_ROADER.png, it is a binary file.
+src\main\resources\static\assets\images\tires.png, it is a binary file.
+src\main\resources\static\assets\images\total-projects.svg, code is 10, comment is 0, blank is 0.
+src\main\resources\static\assets\images\total-students.svg, code is 29, comment is 0, blank is 0.
+src\main\resources\static\assets\images\total-teachers.svg, code is 33, comment is 0, blank is 0.
+src\main\resources\static\assets\images\twitter.png, it is a binary file.
+src\main\resources\static\assets\images\txt.png, it is a binary file.
+src\main\resources\static\assets\images\upgrade.png, it is a binary file.
+src\main\resources\static\assets\images\upgrade2.png, it is a binary file.
+src\main\resources\static\assets\images\usa.png, it is a binary file.
+src\main\resources\static\assets\images\user1.jpg, it is a binary file.
+src\main\resources\static\assets\images\VAN_MINIBUS.png, it is a binary file.
+src\main\resources\static\assets\images\video-content.svg, code is 51, comment is 2, blank is 0.
+src\main\resources\static\assets\images\welcome-bg.png, it is a binary file.
+src\main\resources\static\assets\images\welcome.png, it is a binary file.
+src\main\resources\static\assets\images\welcome2.png, it is a binary file.
+src\main\resources\static\assets\images\wise.png, it is a binary file.
+src\main\resources\static\assets\images\workshop.png, it is a binary file.
+src\main\resources\static\assets\images\xl4.png, it is a binary file.
+src\main\resources\static\assets\js\apexcharts.min.js, code is 24056, comment is 12, blank is 140.
+src\main\resources\static\assets\js\bootstrap.bundle.min.js, code is 1, comment is 5, blank is 0.
+src\main\resources\static\assets\js\clipboard.min.js, code is 1, comment is 6, blank is 0.
+src\main\resources\static\assets\js\custom\apexcharts.js, code is 15129, comment is 252, blank is 224.
+src\main\resources\static\assets\js\custom\custom.js, code is 801, comment is 91, blank is 103.
+src\main\resources\static\assets\js\custom\echarts.js, code is 694, comment is 32, blank is 55.
+src\main\resources\static\assets\js\custom\maps.js, code is 142, comment is 6, blank is 10.
+src\main\resources\static\assets\js\data-table.js, code is 519, comment is 51, blank is 1.
+src\main\resources\static\assets\js\echarts.min.js, code is 972, comment is 32, blank is 2.
+src\main\resources\static\assets\js\fullcalendar.main.js, code is 1, comment is 5, blank is 0.
+src\main\resources\static\assets\js\jsvectormap.min.js, code is 1, comment is 0, blank is 0.
+src\main\resources\static\assets\js\prism.js, code is 565, comment is 2, blank is 5.
+src\main\resources\static\assets\js\quill.min.js, code is 1, comment is 1, blank is 0.
+src\main\resources\static\assets\js\sidebar-menu.js, code is 138, comment is 180, blank is 19.
+src\main\resources\static\assets\js\simplebar.min.js, code is 2446, comment is 8, blank is 8.
+src\main\resources\static\assets\js\swiper-bundle.min.js, code is 1, comment is 11, blank is 1.
+src\main\resources\static\assets\js\world-merc.js, code is 1, comment is 0, blank is 0.
+src\main\resources\static\assets\scss\_variables.scss, code is 63, comment is 10, blank is 3.
+src\main\resources\static\assets\scss\components\_active-project.scss, code is 25, comment is 2, blank is 0.
+src\main\resources\static\assets\scss\components\_blank.scss, code is 12, comment is 7, blank is 12.
+src\main\resources\static\assets\scss\components\_calendar.scss, code is 643, comment is 7, blank is 18.
+src\main\resources\static\assets\scss\components\_chat.scss, code is 172, comment is 9, blank is 7.
+src\main\resources\static\assets\scss\components\_default-table.scss, code is 1346, comment is 27, blank is 66.
+src\main\resources\static\assets\scss\components\_footer-area.scss, code is 23, comment is 6, blank is 6.
+src\main\resources\static\assets\scss\components\_global.scss, code is 2150, comment is 94, blank is 79.
+src\main\resources\static\assets\scss\components\_header-area.scss, code is 770, comment is 13, blank is 37.
+src\main\resources\static\assets\scss\components\_main-content.scss, code is 42, comment is 7, blank is 12.
+src\main\resources\static\assets\scss\components\_navbar.scss, code is 456, comment is 12, blank is 10.
+src\main\resources\static\assets\scss\components\_pagination.scss, code is 97, comment is 8, blank is 6.
+src\main\resources\static\assets\scss\components\_range-slide.scss, code is 85, comment is 5, blank is 1.
+src\main\resources\static\assets\scss\components\_sidebar-menu.scss, code is 880, comment is 14, blank is 25.
+src\main\resources\static\assets\scss\components\_social-profile.scss, code is 106, comment is 5, blank is 3.
+src\main\resources\static\assets\scss\components\_stats-card.scss, code is 97, comment is 9, blank is 12.
+src\main\resources\static\assets\scss\components\_theme-switch.scss, code is 368, comment is 15, blank is 29.
+src\main\resources\static\assets\scss\components\_timeline.scss, code is 171, comment is 3, blank is 3.
+src\main\resources\static\assets\scss\components\_welcome.scss, code is 56, comment is 5, blank is 5.
+src\main\resources\static\assets\scss\components\apexchart-custom.scss, code is 167, comment is 6, blank is 7.
+src\main\resources\static\assets\scss\style.scss, code is 105, comment is 22, blank is 14.
+src\main\resources\static\car-selection.html, code is 228, comment is 19, blank is 15.
+src\main\resources\static\carRegister.html, code is 50, comment is 1, blank is 2.
+src\main\resources\static\css\styles.css, code is 59, comment is 0, blank is 14.
+src\main\resources\static\dashboard.html, code is 268, comment is 13, blank is 23.
+src\main\resources\static\dashboard\dashboard.html, code is 291, comment is 0, blank is 7.
+src\main\resources\static\dashboard\script.js, code is 280, comment is 19, blank is 40.
+src\main\resources\static\dashboard\styles.css, code is 379, comment is 0, blank is 60.
+src\main\resources\static\edit-car.html, code is 513, comment is 31, blank is 16.
+src\main\resources\static\home.html, code is 171, comment is 10, blank is 3.
+src\main\resources\static\img\car.png, it is a binary file.
+src\main\resources\static\img\Cars\2002.jpg, it is a binary file.
+src\main\resources\static\img\coffee.jpg, it is a binary file.
+src\main\resources\static\img\marketplace.png, it is a binary file.
+src\main\resources\static\img\person.png, it is a binary file.
+src\main\resources\static\img\profilePic.jpg, it is a binary file.
+src\main\resources\static\img\workshop.png, it is a binary file.
+src\main\resources\static\index.html, code is 45, comment is 1, blank is 0.
+src\main\resources\static\js\addCar.js, code is 47, comment is 0, blank is 3.
+src\main\resources\static\js\addMaintenance.js, code is 0, comment is 0, blank is 0.
+src\main\resources\static\js\carSelection.js, code is 177, comment is 15, blank is 17.
+src\main\resources\static\js\dashboard.js, code is 300, comment is 12, blank is 12.
+src\main\resources\static\js\script.js, code is 407, comment is 26, blank is 37.
+src\main\resources\static\js\sign.js, code is 52, comment is 1, blank is 3.
+src\main\resources\static\js\statistics.js, code is 144, comment is 2, blank is 4.
+src\main\resources\static\mydashboard.html, code is 436, comment is 36, blank is 17.
+src\main\resources\static\presignup.html, code is 88, comment is 3, blank is 7.
+src\main\resources\static\statistics.html, code is 293, comment is 25, blank is 12.
+src\main\resources\static\ui\dashboard.html, code is 26, comment is 1, blank is 1.
+src\main\resources\static\ui\script.js, code is 280, comment is 19, blank is 40.
+src\main\resources\static\ui\styles.css, code is 57, comment is 0, blank is 13.
+src\main\resources\static\uSignUp.html, code is 56, comment is 1, blank is 2.
+src\main\resources\static\workshop\add-maintenance.html, code is 1721, comment is 121, blank is 15.
+src\main\resources\static\workshop\addMaintenance.js, code is 182, comment is 7, blank is 21.
+src\main\resources\static\workshop\wsdashboard.html, code is 372, comment is 23, blank is 14.
+src\main\resources\static\workshop\wsdashboard.js, code is 54, comment is 4, blank is 8.
+src\main\resources\static\ws-signup.html, code is 2, comment is 0, blank is 0.
+src\main\resources\templates\login.html, code is 123, comment is 5, blank is 6.
+src\main\resources\templates\login_alt.html, code is 45, comment is 1, blank is 4.
+src\main\resources\templates\signup.html, code is 237, comment is 3, blank is 8.
+src\main\resources\templates\signup_alt.html, code is 56, comment is 1, blank is 2.
+src\test\java\dev\sijaja\serviceheft\ServiceheftApplicationTests.java, code is 9, comment is 0, blank is 4.
+target\classes\application.properties, code is 7, comment is 1, blank is 2.
+target\classes\dev\sijaja\serviceheft\config\SecurityConfig.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\AuthViewController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\CarController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\MaintenanceController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\OwnerController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\UserController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\WorkshopController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BeltHoseCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BodyCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BrakeCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\ElectricCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\EmmisionCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\EngineCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\FilterCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\HvacCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\MaintenanceDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\RustCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\TireCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\AverageCostComparisonDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\BrakeTireRatingDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\CostComparisonDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\CriticalIssuesDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\HealthScoreDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\LoginRequestDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\MaintenanceTableDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\NextMaintenanceDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\OwnerSignupDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\RepairTypesDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\ToBeReplacedDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\TotalCostDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\WorkshopMaintenanceDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\WorkshopSignupDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\YearlyMaintenanceCostsDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BeltHoseCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BodyCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BrakeCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Cars.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\ElectricCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\EmmisionCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\EngineCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Age.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\CarType.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Check.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Condition.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Level.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Part.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Pattern.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Status.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Type.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\UserRole.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\FilterCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\HvacCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Maintenance.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Owner.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\RustCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\TireCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\User.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Workshop.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\CarRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\MaintenanceRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\OwnerRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\UserRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\WorkshopRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\CarService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\MaintenanceService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\OwnerService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\UserService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\WorkshopService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\ServiceheftApplication.class, it is a binary file.
+target\classes\static\add-car.html, code is 508, comment is 31, blank is 16.
+target\classes\static\assets\css\jsvectormap.min.css, code is 119, comment is 0, blank is 20.
+target\classes\static\assets\css\prism.css, code is 116, comment is 2, blank is 19.
+target\classes\static\assets\css\quill.snow.css, code is 1036, comment is 7, blank is 244.
+target\classes\static\assets\css\remixicon.css, code is 3090, comment is 0, blank is 3.
+target\classes\static\assets\css\sidebar-menu.css, code is 465, comment is 0, blank is 95.
+target\classes\static\assets\css\simplebar.css, code is 173, comment is 0, blank is 0.
+target\classes\static\assets\css\style.css, code is 20540, comment is 273, blank is 1574.
+target\classes\static\assets\css\style.css.map, code is 101, comment is 0, blank is 1.
+target\classes\static\assets\css\swiper-bundle.min.css, code is 648, comment is 11, blank is 130.
+target\classes\static\assets\fonts\remixicon.eot, it is a binary file.
+target\classes\static\assets\fonts\remixicon.svg, code is 9194, comment is 2, blank is 2.
+target\classes\static\assets\fonts\remixicon.ttf, it is a binary file.
+target\classes\static\assets\fonts\remixicon.woff, it is a binary file.
+target\classes\static\assets\fonts\remixicon.woff2, it is a binary file.
+target\classes\static\assets\images\active-learning.svg, code is 18, comment is 0, blank is 0.
+target\classes\static\assets\images\active-projects.svg, code is 10, comment is 0, blank is 0.
+target\classes\static\assets\images\admin.png, it is a binary file.
+target\classes\static\assets\images\asana.png, it is a binary file.
+target\classes\static\assets\images\bank.png, it is a binary file.
+target\classes\static\assets\images\battery.png, it is a binary file.
+target\classes\static\assets\images\behance.png, it is a binary file.
+target\classes\static\assets\images\blue-man.jpg, it is a binary file.
+target\classes\static\assets\images\burn.png, it is a binary file.
+target\classes\static\assets\images\CABRIO_ROADSTER.png, it is a binary file.
+target\classes\static\assets\images\calendar-3d.png, it is a binary file.
+target\classes\static\assets\images\canada.png, it is a binary file.
+target\classes\static\assets\images\carph.png, it is a binary file.
+target\classes\static\assets\images\check.png, it is a binary file.
+target\classes\static\assets\images\coming-soon.png, it is a binary file.
+target\classes\static\assets\images\COMPACT_CAR.png, it is a binary file.
+target\classes\static\assets\images\completed-projects.svg, code is 10, comment is 0, blank is 0.
+target\classes\static\assets\images\consultation.png, it is a binary file.
+target\classes\static\assets\images\COUPE.png, it is a binary file.
+target\classes\static\assets\images\doc.png, it is a binary file.
+target\classes\static\assets\images\dribbble.png, it is a binary file.
+target\classes\static\assets\images\email.png, it is a binary file.
+target\classes\static\assets\images\error.png, it is a binary file.
+target\classes\static\assets\images\event-details.jpg, it is a binary file.
+target\classes\static\assets\images\facebook.png, it is a binary file.
+target\classes\static\assets\images\favicon.png, it is a binary file.
+target\classes\static\assets\images\france.png, it is a binary file.
+target\classes\static\assets\images\github.png, it is a binary file.
+target\classes\static\assets\images\google-chrome.png, it is a binary file.
+target\classes\static\assets\images\google.png, it is a binary file.
+target\classes\static\assets\images\instagram.png, it is a binary file.
+target\classes\static\assets\images\instructor.svg, code is 18, comment is 0, blank is 0.
+target\classes\static\assets\images\internal-error.png, it is a binary file.
+target\classes\static\assets\images\join-white.svg, code is 36, comment is 0, blank is 0.
+target\classes\static\assets\images\join.svg, code is 36, comment is 0, blank is 0.
+target\classes\static\assets\images\jpg.png, it is a binary file.
+target\classes\static\assets\images\logo-icon.png, it is a binary file.
+target\classes\static\assets\images\logo.svg, code is 12, comment is 0, blank is 0.
+target\classes\static\assets\images\mailchimp.png, it is a binary file.
+target\classes\static\assets\images\man.png, it is a binary file.
+target\classes\static\assets\images\maps.png, it is a binary file.
+target\classes\static\assets\images\master-card.png, it is a binary file.
+target\classes\static\assets\images\medibox.png, it is a binary file.
+target\classes\static\assets\images\microsoft-edge.png, it is a binary file.
+target\classes\static\assets\images\mozilla-firefox.png, it is a binary file.
+target\classes\static\assets\images\new-students.svg, code is 45, comment is 0, blank is 0.
+target\classes\static\assets\images\oil.png, it is a binary file.
+target\classes\static\assets\images\opera-mini.png, it is a binary file.
+target\classes\static\assets\images\OTHER.png, it is a binary file.
+target\classes\static\assets\images\others.png, it is a binary file.
+target\classes\static\assets\images\patient.png, it is a binary file.
+target\classes\static\assets\images\paypal.png, it is a binary file.
+target\classes\static\assets\images\pdf.png, it is a binary file.
+target\classes\static\assets\images\person.png, it is a binary file.
+target\classes\static\assets\images\phone.png, it is a binary file.
+target\classes\static\assets\images\plus.png, it is a binary file.
+target\classes\static\assets\images\png.png, it is a binary file.
+target\classes\static\assets\images\product-details1.jpg, it is a binary file.
+target\classes\static\assets\images\product-details2.jpg, it is a binary file.
+target\classes\static\assets\images\product-details3.jpg, it is a binary file.
+target\classes\static\assets\images\product-details4.jpg, it is a binary file.
+target\classes\static\assets\images\product1.jpg, it is a binary file.
+target\classes\static\assets\images\product14.png, it is a binary file.
+target\classes\static\assets\images\profile-big-cover.jpg, it is a binary file.
+target\classes\static\assets\images\profile-cover.jpg, it is a binary file.
+target\classes\static\assets\images\profile.jpg, it is a binary file.
+target\classes\static\assets\images\project1.svg, code is 11, comment is 0, blank is 0.
+target\classes\static\assets\images\project2.svg, code is 12, comment is 0, blank is 0.
+target\classes\static\assets\images\qr-code.png, it is a binary file.
+target\classes\static\assets\images\radio-white.svg, code is 1, comment is 0, blank is 0.
+target\classes\static\assets\images\radio.svg, code is 1, comment is 0, blank is 0.
+target\classes\static\assets\images\safari.png, it is a binary file.
+target\classes\static\assets\images\school.png, it is a binary file.
+target\classes\static\assets\images\school.svg, code is 45, comment is 0, blank is 0.
+target\classes\static\assets\images\SEDAN_LIMOUSINE.png, it is a binary file.
+target\classes\static\assets\images\seller1.png, it is a binary file.
+target\classes\static\assets\images\seller10.png, it is a binary file.
+target\classes\static\assets\images\seller11.png, it is a binary file.
+target\classes\static\assets\images\seller12.png, it is a binary file.
+target\classes\static\assets\images\seller2.png, it is a binary file.
+target\classes\static\assets\images\seller3.png, it is a binary file.
+target\classes\static\assets\images\seller4.png, it is a binary file.
+target\classes\static\assets\images\seller5.png, it is a binary file.
+target\classes\static\assets\images\seller6.png, it is a binary file.
+target\classes\static\assets\images\seller7.png, it is a binary file.
+target\classes\static\assets\images\seller8.png, it is a binary file.
+target\classes\static\assets\images\seller9.png, it is a binary file.
+target\classes\static\assets\images\shape1.png, it is a binary file.
+target\classes\static\assets\images\shape2.png, it is a binary file.
+target\classes\static\assets\images\shape3.png, it is a binary file.
+target\classes\static\assets\images\shape4.png, it is a binary file.
+target\classes\static\assets\images\shape5.png, it is a binary file.
+target\classes\static\assets\images\shape6.png, it is a binary file.
+target\classes\static\assets\images\shape7.png, it is a binary file.
+target\classes\static\assets\images\skril.png, it is a binary file.
+target\classes\static\assets\images\slack.png, it is a binary file.
+target\classes\static\assets\images\spain.png, it is a binary file.
+target\classes\static\assets\images\staffs.svg, code is 51, comment is 0, blank is 0.
+target\classes\static\assets\images\starter.png, it is a binary file.
+target\classes\static\assets\images\STATION_WAGON.png, it is a binary file.
+target\classes\static\assets\images\SUV_OFF_ROADER.png, it is a binary file.
+target\classes\static\assets\images\tires.png, it is a binary file.
+target\classes\static\assets\images\total-projects.svg, code is 10, comment is 0, blank is 0.
+target\classes\static\assets\images\total-students.svg, code is 29, comment is 0, blank is 0.
+target\classes\static\assets\images\total-teachers.svg, code is 33, comment is 0, blank is 0.
+target\classes\static\assets\images\twitter.png, it is a binary file.
+target\classes\static\assets\images\txt.png, it is a binary file.
+target\classes\static\assets\images\upgrade.png, it is a binary file.
+target\classes\static\assets\images\upgrade2.png, it is a binary file.
+target\classes\static\assets\images\usa.png, it is a binary file.
+target\classes\static\assets\images\user1.jpg, it is a binary file.
+target\classes\static\assets\images\VAN_MINIBUS.png, it is a binary file.
+target\classes\static\assets\images\video-content.svg, code is 51, comment is 2, blank is 0.
+target\classes\static\assets\images\welcome-bg.png, it is a binary file.
+target\classes\static\assets\images\welcome.png, it is a binary file.
+target\classes\static\assets\images\welcome2.png, it is a binary file.
+target\classes\static\assets\images\wise.png, it is a binary file.
+target\classes\static\assets\images\workshop.png, it is a binary file.
+target\classes\static\assets\images\xl4.png, it is a binary file.
+target\classes\static\assets\js\apexcharts.min.js, code is 24056, comment is 12, blank is 140.
+target\classes\static\assets\js\bootstrap.bundle.min.js, code is 1, comment is 5, blank is 0.
+target\classes\static\assets\js\clipboard.min.js, code is 1, comment is 6, blank is 0.
+target\classes\static\assets\js\custom\apexcharts.js, code is 15129, comment is 252, blank is 224.
+target\classes\static\assets\js\custom\custom.js, code is 801, comment is 91, blank is 103.
+target\classes\static\assets\js\custom\echarts.js, code is 694, comment is 32, blank is 55.
+target\classes\static\assets\js\custom\maps.js, code is 142, comment is 6, blank is 10.
+target\classes\static\assets\js\data-table.js, code is 519, comment is 51, blank is 1.
+target\classes\static\assets\js\echarts.min.js, code is 972, comment is 32, blank is 2.
+target\classes\static\assets\js\fullcalendar.main.js, code is 1, comment is 5, blank is 0.
+target\classes\static\assets\js\jsvectormap.min.js, code is 1, comment is 0, blank is 0.
+target\classes\static\assets\js\prism.js, code is 565, comment is 2, blank is 5.
+target\classes\static\assets\js\quill.min.js, code is 1, comment is 1, blank is 0.
+target\classes\static\assets\js\sidebar-menu.js, code is 138, comment is 180, blank is 19.
+target\classes\static\assets\js\simplebar.min.js, code is 2446, comment is 8, blank is 8.
+target\classes\static\assets\js\swiper-bundle.min.js, code is 1, comment is 11, blank is 1.
+target\classes\static\assets\js\world-merc.js, code is 1, comment is 0, blank is 0.
+target\classes\static\assets\scss\_variables.scss, code is 63, comment is 10, blank is 3.
+target\classes\static\assets\scss\components\_active-project.scss, code is 25, comment is 2, blank is 0.
+target\classes\static\assets\scss\components\_blank.scss, code is 12, comment is 7, blank is 12.
+target\classes\static\assets\scss\components\_calendar.scss, code is 643, comment is 7, blank is 18.
+target\classes\static\assets\scss\components\_chat.scss, code is 172, comment is 9, blank is 7.
+target\classes\static\assets\scss\components\_default-table.scss, code is 1346, comment is 27, blank is 66.
+target\classes\static\assets\scss\components\_footer-area.scss, code is 23, comment is 6, blank is 6.
+target\classes\static\assets\scss\components\_global.scss, code is 2150, comment is 94, blank is 79.
+target\classes\static\assets\scss\components\_header-area.scss, code is 770, comment is 13, blank is 37.
+target\classes\static\assets\scss\components\_main-content.scss, code is 42, comment is 7, blank is 12.
+target\classes\static\assets\scss\components\_navbar.scss, code is 456, comment is 12, blank is 10.
+target\classes\static\assets\scss\components\_pagination.scss, code is 97, comment is 8, blank is 6.
+target\classes\static\assets\scss\components\_range-slide.scss, code is 85, comment is 5, blank is 1.
+target\classes\static\assets\scss\components\_sidebar-menu.scss, code is 880, comment is 14, blank is 25.
+target\classes\static\assets\scss\components\_social-profile.scss, code is 106, comment is 5, blank is 3.
+target\classes\static\assets\scss\components\_stats-card.scss, code is 97, comment is 9, blank is 12.
+target\classes\static\assets\scss\components\_theme-switch.scss, code is 368, comment is 15, blank is 29.
+target\classes\static\assets\scss\components\_timeline.scss, code is 171, comment is 3, blank is 3.
+target\classes\static\assets\scss\components\_welcome.scss, code is 56, comment is 5, blank is 5.
+target\classes\static\assets\scss\components\apexchart-custom.scss, code is 167, comment is 6, blank is 7.
+target\classes\static\assets\scss\style.scss, code is 105, comment is 22, blank is 14.
+target\classes\static\car-selection.html, code is 228, comment is 19, blank is 15.
+target\classes\static\carRegister.html, code is 50, comment is 1, blank is 2.
+target\classes\static\css\styles.css, code is 59, comment is 0, blank is 14.
+target\classes\static\dashboard.html, code is 268, comment is 13, blank is 23.
+target\classes\static\dashboard\dashboard.html, code is 291, comment is 0, blank is 7.
+target\classes\static\dashboard\script.js, code is 280, comment is 19, blank is 40.
+target\classes\static\dashboard\styles.css, code is 379, comment is 0, blank is 60.
+target\classes\static\edit-car.html, code is 513, comment is 31, blank is 16.
+target\classes\static\home.html, code is 171, comment is 10, blank is 3.
+target\classes\static\img\car.png, it is a binary file.
+target\classes\static\img\Cars\2002.jpg, it is a binary file.
+target\classes\static\img\coffee.jpg, it is a binary file.
+target\classes\static\img\marketplace.png, it is a binary file.
+target\classes\static\img\person.png, it is a binary file.
+target\classes\static\img\profilePic.jpg, it is a binary file.
+target\classes\static\img\workshop.png, it is a binary file.
+target\classes\static\index.html, code is 45, comment is 1, blank is 0.
+target\classes\static\js\addCar.js, code is 47, comment is 0, blank is 3.
+target\classes\static\js\addMaintenance.js, code is 0, comment is 0, blank is 0.
+target\classes\static\js\carSelection.js, code is 177, comment is 15, blank is 17.
+target\classes\static\js\dashboard.js, code is 300, comment is 12, blank is 12.
+target\classes\static\js\script.js, code is 407, comment is 26, blank is 37.
+target\classes\static\js\sign.js, code is 52, comment is 1, blank is 3.
+target\classes\static\js\statistics.js, code is 144, comment is 2, blank is 4.
+target\classes\static\mydashboard.html, code is 436, comment is 36, blank is 17.
+target\classes\static\presignup.html, code is 88, comment is 3, blank is 7.
+target\classes\static\statistics.html, code is 293, comment is 25, blank is 12.
+target\classes\static\ui\dashboard.html, code is 26, comment is 1, blank is 1.
+target\classes\static\ui\script.js, code is 280, comment is 19, blank is 40.
+target\classes\static\ui\styles.css, code is 57, comment is 0, blank is 13.
+target\classes\static\uSignUp.html, code is 56, comment is 1, blank is 2.
+target\classes\static\workshop\add-maintenance.html, code is 1721, comment is 121, blank is 15.
+target\classes\static\workshop\addMaintenance.js, code is 182, comment is 7, blank is 21.
+target\classes\static\workshop\wsdashboard.html, code is 372, comment is 23, blank is 14.
+target\classes\static\workshop\wsdashboard.js, code is 54, comment is 4, blank is 8.
+target\classes\static\ws-signup.html, code is 2, comment is 0, blank is 0.
+target\classes\templates\login.html, code is 123, comment is 5, blank is 6.
+target\classes\templates\login_alt.html, code is 45, comment is 1, blank is 4.
+target\classes\templates\signup.html, code is 237, comment is 3, blank is 8.
+target\classes\templates\signup_alt.html, code is 56, comment is 1, blank is 2.
+target\test-classes\dev\sijaja\serviceheft\ServiceheftApplicationTests.class, it is a binary file.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2025-12-09 00:20:32
+count workspace : c:\Users\Mohamad\OneDrive\Documents\Serviceheft\serviceheft
+total files : 320
+total code lines : 178062
+total comment lines : 2616
+total blank lines : 6861
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |            102|             18|             17|  0.057|
+   |           .cmd|            165|              1|             24|  0.093|
+   |           .xml|             95|              0|              5|  0.053|
+   |    .properties|             17|              3|              4| 0.0095|
+   |          .html|          10378|            654|            284|    5.8|
+   |            .js|          90096|           1294|           1246|     51|
+   |           .css|          53364|            586|           4344|     30|
+   |           .map|            202|              0|              2|   0.11|
+   |          .java|           4824|             56|            899|    2.7|
+   |           .txt|            119|              0|              6|  0.067|
+   |            .md|            123|              0|             26|  0.069|
+   |          .json|              1|              0|              0|0.00056|
+   |           .csv|             75|              0|              0|  0.042|
+   |           .svg|          18501|              4|              4|     10|
+   -------------------------------------------------------------------------
+.gitattributes, code is 2, comment is 0, blank is 0.
+.gitignore, code is 29, comment is 0, blank is 4.
+.mvn\wrapper\maven-wrapper.properties, code is 3, comment is 1, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\details.md, code is 80, comment is 0, blank is 6.
+.VSCodeCounter\2025-10-03_09-14-33\diff-details.md, code is 9, comment is 0, blank is 6.
+.VSCodeCounter\2025-10-03_09-14-33\diff.csv, code is 2, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\diff.md, code is 12, comment is 0, blank is 7.
+.VSCodeCounter\2025-10-03_09-14-33\diff.txt, code is 19, comment is 0, blank is 3.
+.VSCodeCounter\2025-10-03_09-14-33\results.csv, code is 73, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\results.json, code is 1, comment is 0, blank is 0.
+.VSCodeCounter\2025-10-03_09-14-33\results.md, code is 22, comment is 0, blank is 7.
+.VSCodeCounter\2025-10-03_09-14-33\results.txt, code is 100, comment is 0, blank is 3.
+Dockerfile, code is 25, comment is 7, blank is 9.
+mvnw, code is 46, comment is 11, blank is 4.
+mvnw.cmd, code is 165, comment is 1, blank is 24.
+pom.xml, code is 95, comment is 0, blank is 5.
+src\main\java\dev\sijaja\serviceheft\config\SecurityConfig.java, code is 45, comment is 1, blank is 5.
+src\main\java\dev\sijaja\serviceheft\controller\AuthViewController.java, code is 29, comment is 0, blank is 8.
+src\main\java\dev\sijaja\serviceheft\controller\CarController.java, code is 85, comment is 0, blank is 17.
+src\main\java\dev\sijaja\serviceheft\controller\MaintenanceController.java, code is 160, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\controller\OwnerController.java, code is 38, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\controller\UserController.java, code is 48, comment is 1, blank is 9.
+src\main\java\dev\sijaja\serviceheft\controller\WorkshopController.java, code is 28, comment is 0, blank is 8.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BeltHoseCheckDTO.java, code is 41, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BodyCheckDTO.java, code is 192, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\BrakeCheckDTO.java, code is 48, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\CostsDTO.java, code is 88, comment is 0, blank is 2.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\ElectricCheckDTO.java, code is 66, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\EmmisionCheckDTO.java, code is 32, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\EngineCheckDTO.java, code is 107, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\FilterCheckDTO.java, code is 32, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\HvacCheckDTO.java, code is 32, comment is 0, blank is 13.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\MaintenanceDTO.java, code is 174, comment is 0, blank is 48.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\RustCheckDTO.java, code is 97, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\addMaintenance\TireCheckDTO.java, code is 91, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\dto\AverageCostComparisonDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\BrakeTireRatingDTO.java, code is 82, comment is 0, blank is 23.
+src\main\java\dev\sijaja\serviceheft\dto\CostComparisonDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\CriticalIssuesDto.java, code is 21, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\dto\HealthScoreDTO.java, code is 47, comment is 0, blank is 15.
+src\main\java\dev\sijaja\serviceheft\dto\LoginRequestDto.java, code is 23, comment is 0, blank is 7.
+src\main\java\dev\sijaja\serviceheft\dto\MaintenanceTableDto.java, code is 36, comment is 0, blank is 10.
+src\main\java\dev\sijaja\serviceheft\dto\NextMaintenanceDto.java, code is 12, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\dto\OwnerSignupDto.java, code is 89, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\dto\RepairTypesDto.java, code is 3, comment is 0, blank is 2.
+src\main\java\dev\sijaja\serviceheft\dto\ToBeReplacedDto.java, code is 8, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\TotalCostDto.java, code is 11, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\dto\WorkshopMaintenanceDto.java, code is 58, comment is 0, blank is 19.
+src\main\java\dev\sijaja\serviceheft\dto\WorkshopSignupDto.java, code is 80, comment is 0, blank is 25.
+src\main\java\dev\sijaja\serviceheft\dto\YearlyMaintenanceCostsDto.java, code is 16, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\model\BeltHoseCheck.java, code is 49, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\model\BodyCheck.java, code is 219, comment is 0, blank is 51.
+src\main\java\dev\sijaja\serviceheft\model\BrakeCheck.java, code is 55, comment is 0, blank is 16.
+src\main\java\dev\sijaja\serviceheft\model\Cars.java, code is 114, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\Costs.java, code is 100, comment is 0, blank is 3.
+src\main\java\dev\sijaja\serviceheft\model\ElectricCheck.java, code is 75, comment is 0, blank is 20.
+src\main\java\dev\sijaja\serviceheft\model\EmmisionCheck.java, code is 39, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\model\EngineCheck.java, code is 119, comment is 0, blank is 29.
+src\main\java\dev\sijaja\serviceheft\model\enums\Age.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\CarType.java, code is 11, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Check.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Condition.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Level.java, code is 7, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Part.java, code is 8, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Pattern.java, code is 7, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Status.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\Type.java, code is 6, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\enums\UserRole.java, code is 5, comment is 0, blank is 1.
+src\main\java\dev\sijaja\serviceheft\model\FilterCheck.java, code is 39, comment is 0, blank is 12.
+src\main\java\dev\sijaja\serviceheft\model\HvacCheck.java, code is 39, comment is 0, blank is 11.
+src\main\java\dev\sijaja\serviceheft\model\Maintenance.java, code is 235, comment is 0, blank is 55.
+src\main\java\dev\sijaja\serviceheft\model\Owner.java, code is 111, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\RustCheck.java, code is 111, comment is 0, blank is 28.
+src\main\java\dev\sijaja\serviceheft\model\TireCheck.java, code is 95, comment is 0, blank is 26.
+src\main\java\dev\sijaja\serviceheft\model\User.java, code is 62, comment is 0, blank is 15.
+src\main\java\dev\sijaja\serviceheft\model\Workshop.java, code is 85, comment is 0, blank is 22.
+src\main\java\dev\sijaja\serviceheft\repository\CarRepository.java, code is 14, comment is 1, blank is 8.
+src\main\java\dev\sijaja\serviceheft\repository\MaintenanceRepository.java, code is 80, comment is 28, blank is 28.
+src\main\java\dev\sijaja\serviceheft\repository\OwnerRepository.java, code is 11, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\repository\UserRepository.java, code is 7, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\repository\WorkshopRepository.java, code is 7, comment is 0, blank is 4.
+src\main\java\dev\sijaja\serviceheft\service\CarService.java, code is 107, comment is 6, blank is 16.
+src\main\java\dev\sijaja\serviceheft\service\MaintenanceService.java, code is 886, comment is 19, blank is 73.
+src\main\java\dev\sijaja\serviceheft\service\OwnerService.java, code is 56, comment is 0, blank is 16.
+src\main\java\dev\sijaja\serviceheft\service\UserService.java, code is 31, comment is 0, blank is 6.
+src\main\java\dev\sijaja\serviceheft\service\WorkshopService.java, code is 47, comment is 0, blank is 9.
+src\main\java\dev\sijaja\serviceheft\ServiceheftApplication.java, code is 9, comment is 0, blank is 4.
+src\main\resources\application.properties, code is 7, comment is 1, blank is 2.
+src\main\resources\static\add-car.html, code is 504, comment is 31, blank is 16.
+src\main\resources\static\assets\css\jsvectormap.min.css, code is 119, comment is 0, blank is 20.
+src\main\resources\static\assets\css\prism.css, code is 116, comment is 2, blank is 19.
+src\main\resources\static\assets\css\quill.snow.css, code is 1036, comment is 7, blank is 244.
+src\main\resources\static\assets\css\remixicon.css, code is 3090, comment is 0, blank is 3.
+src\main\resources\static\assets\css\sidebar-menu.css, code is 465, comment is 0, blank is 95.
+src\main\resources\static\assets\css\simplebar.css, code is 173, comment is 0, blank is 0.
+src\main\resources\static\assets\css\style.css, code is 20540, comment is 273, blank is 1574.
+src\main\resources\static\assets\css\style.css.map, code is 101, comment is 0, blank is 1.
+src\main\resources\static\assets\css\swiper-bundle.min.css, code is 648, comment is 11, blank is 130.
+src\main\resources\static\assets\fonts\remixicon.eot, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.svg, code is 9194, comment is 2, blank is 2.
+src\main\resources\static\assets\fonts\remixicon.ttf, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.woff, it is a binary file.
+src\main\resources\static\assets\fonts\remixicon.woff2, it is a binary file.
+src\main\resources\static\assets\images\admin.png, it is a binary file.
+src\main\resources\static\assets\images\battery.png, it is a binary file.
+src\main\resources\static\assets\images\CABRIO_ROADSTER.png, it is a binary file.
+src\main\resources\static\assets\images\check.png, it is a binary file.
+src\main\resources\static\assets\images\COMPACT_CAR.png, it is a binary file.
+src\main\resources\static\assets\images\coupe.png, it is a binary file.
+src\main\resources\static\assets\images\logo-icon.png, it is a binary file.
+src\main\resources\static\assets\images\oil.png, it is a binary file.
+src\main\resources\static\assets\images\OTHER.png, it is a binary file.
+src\main\resources\static\assets\images\person.png, it is a binary file.
+src\main\resources\static\assets\images\plus.png, it is a binary file.
+src\main\resources\static\assets\images\SEDAN_LIMOUSINE.png, it is a binary file.
+src\main\resources\static\assets\images\STATION_WAGON.png, it is a binary file.
+src\main\resources\static\assets\images\SUV_OFF_ROADER.png, it is a binary file.
+src\main\resources\static\assets\images\tires.png, it is a binary file.
+src\main\resources\static\assets\images\VAN_MINIBUS.png, it is a binary file.
+src\main\resources\static\assets\images\workshop.png, it is a binary file.
+src\main\resources\static\assets\js\apexcharts.min.js, code is 24056, comment is 12, blank is 140.
+src\main\resources\static\assets\js\bootstrap.bundle.min.js, code is 1, comment is 5, blank is 0.
+src\main\resources\static\assets\js\carSelection.js, code is 177, comment is 15, blank is 17.
+src\main\resources\static\assets\js\custom\apexcharts.js, code is 15129, comment is 252, blank is 224.
+src\main\resources\static\assets\js\custom\custom.js, code is 738, comment is 87, blank is 95.
+src\main\resources\static\assets\js\echarts.min.js, code is 972, comment is 32, blank is 2.
+src\main\resources\static\assets\js\sidebar-menu.js, code is 138, comment is 180, blank is 19.
+src\main\resources\static\assets\js\simplebar.min.js, code is 2446, comment is 8, blank is 8.
+src\main\resources\static\car-selection.html, code is 224, comment is 19, blank is 15.
+src\main\resources\static\css\styles.css, code is 59, comment is 0, blank is 14.
+src\main\resources\static\dashboard\dashboard.html, code is 289, comment is 0, blank is 7.
+src\main\resources\static\dashboard\script.js, code is 280, comment is 19, blank is 40.
+src\main\resources\static\dashboard\styles.css, code is 379, comment is 0, blank is 60.
+src\main\resources\static\edit-car.html, code is 507, comment is 31, blank is 16.
+src\main\resources\static\img\Cars\2002.jpg, it is a binary file.
+src\main\resources\static\img\person.png, it is a binary file.
+src\main\resources\static\img\workshop.png, it is a binary file.
+src\main\resources\static\js\addCar.js, code is 47, comment is 0, blank is 3.
+src\main\resources\static\js\addMaintenance.js, code is 0, comment is 0, blank is 0.
+src\main\resources\static\js\dashboard.js, code is 300, comment is 12, blank is 12.
+src\main\resources\static\js\sign.js, code is 52, comment is 1, blank is 3.
+src\main\resources\static\js\statistics.js, code is 435, comment is 13, blank is 21.
+src\main\resources\static\mydashboard.html, code is 421, comment is 36, blank is 17.
+src\main\resources\static\presignup.html, code is 88, comment is 3, blank is 7.
+src\main\resources\static\statistics.html, code is 324, comment is 29, blank is 12.
+src\main\resources\static\ui\dashboard.html, code is 15, comment is 1, blank is 1.
+src\main\resources\static\ui\styles.css, code is 57, comment is 0, blank is 13.
+src\main\resources\static\uSignUp.html, code is 53, comment is 1, blank is 1.
+src\main\resources\static\workshop\add-maintenance.html, code is 1820, comment is 135, blank is 15.
+src\main\resources\static\workshop\addMaintenance.js, code is 223, comment is 7, blank is 31.
+src\main\resources\static\workshop\wsdashboard.html, code is 353, comment is 23, blank is 14.
+src\main\resources\static\workshop\wsdashboard.js, code is 54, comment is 4, blank is 8.
+src\main\resources\static\ws-signup.html, code is 231, comment is 10, blank is 7.
+src\main\resources\templates\login.html, code is 123, comment is 5, blank is 6.
+src\main\resources\templates\signup.html, code is 237, comment is 3, blank is 8.
+src\test\java\dev\sijaja\serviceheft\ServiceheftApplicationTests.java, code is 9, comment is 0, blank is 4.
+target\classes\application.properties, code is 7, comment is 1, blank is 2.
+target\classes\dev\sijaja\serviceheft\config\SecurityConfig.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\AuthViewController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\CarController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\MaintenanceController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\OwnerController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\UserController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\controller\WorkshopController.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BeltHoseCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BodyCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\BrakeCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\CostsDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\ElectricCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\EmmisionCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\EngineCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\FilterCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\HvacCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\MaintenanceDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\RustCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\addMaintenance\TireCheckDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\AverageCostComparisonDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\BrakeTireRatingDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\CostComparisonDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\CriticalIssuesDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\HealthScoreDTO.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\LoginRequestDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\MaintenanceTableDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\NextMaintenanceDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\OwnerSignupDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\RepairTypesDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\ToBeReplacedDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\TotalCostDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\WorkshopMaintenanceDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\WorkshopSignupDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\dto\YearlyMaintenanceCostsDto.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BeltHoseCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BodyCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\BrakeCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Cars.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Costs.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\ElectricCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\EmmisionCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\EngineCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Age.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\CarType.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Check.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Condition.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Level.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Part.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Pattern.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Status.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\Type.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\enums\UserRole.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\FilterCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\HvacCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Maintenance.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Owner.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\RustCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\TireCheck.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\User.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\model\Workshop.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\CarRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\MaintenanceRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\OwnerRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\UserRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\repository\WorkshopRepository.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\CarService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\MaintenanceService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\OwnerService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\UserService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\service\WorkshopService.class, it is a binary file.
+target\classes\dev\sijaja\serviceheft\ServiceheftApplication.class, it is a binary file.
+target\classes\static\add-car.html, code is 504, comment is 31, blank is 16.
+target\classes\static\assets\css\jsvectormap.min.css, code is 119, comment is 0, blank is 20.
+target\classes\static\assets\css\prism.css, code is 116, comment is 2, blank is 19.
+target\classes\static\assets\css\quill.snow.css, code is 1036, comment is 7, blank is 244.
+target\classes\static\assets\css\remixicon.css, code is 3090, comment is 0, blank is 3.
+target\classes\static\assets\css\sidebar-menu.css, code is 465, comment is 0, blank is 95.
+target\classes\static\assets\css\simplebar.css, code is 173, comment is 0, blank is 0.
+target\classes\static\assets\css\style.css, code is 20540, comment is 273, blank is 1574.
+target\classes\static\assets\css\style.css.map, code is 101, comment is 0, blank is 1.
+target\classes\static\assets\css\swiper-bundle.min.css, code is 648, comment is 11, blank is 130.
+target\classes\static\assets\fonts\remixicon.eot, it is a binary file.
+target\classes\static\assets\fonts\remixicon.svg, code is 9194, comment is 2, blank is 2.
+target\classes\static\assets\fonts\remixicon.ttf, it is a binary file.
+target\classes\static\assets\fonts\remixicon.woff, it is a binary file.
+target\classes\static\assets\fonts\remixicon.woff2, it is a binary file.
+target\classes\static\assets\images\admin.png, it is a binary file.
+target\classes\static\assets\images\battery.png, it is a binary file.
+target\classes\static\assets\images\CABRIO_ROADSTER.png, it is a binary file.
+target\classes\static\assets\images\check.png, it is a binary file.
+target\classes\static\assets\images\COMPACT_CAR.png, it is a binary file.
+target\classes\static\assets\images\consultation.png, it is a binary file.
+target\classes\static\assets\images\coupe.png, it is a binary file.
+target\classes\static\assets\images\doc.png, it is a binary file.
+target\classes\static\assets\images\dribbble.png, it is a binary file.
+target\classes\static\assets\images\email.png, it is a binary file.
+target\classes\static\assets\images\error.png, it is a binary file.
+target\classes\static\assets\images\event-details.jpg, it is a binary file.
+target\classes\static\assets\images\logo-icon.png, it is a binary file.
+target\classes\static\assets\images\oil.png, it is a binary file.
+target\classes\static\assets\images\OTHER.png, it is a binary file.
+target\classes\static\assets\images\person.png, it is a binary file.
+target\classes\static\assets\images\plus.png, it is a binary file.
+target\classes\static\assets\images\product-details4.jpg, it is a binary file.
+target\classes\static\assets\images\product1.jpg, it is a binary file.
+target\classes\static\assets\images\product14.png, it is a binary file.
+target\classes\static\assets\images\profile-big-cover.jpg, it is a binary file.
+target\classes\static\assets\images\profile-cover.jpg, it is a binary file.
+target\classes\static\assets\images\profile.jpg, it is a binary file.
+target\classes\static\assets\images\project1.svg, code is 11, comment is 0, blank is 0.
+target\classes\static\assets\images\project2.svg, code is 12, comment is 0, blank is 0.
+target\classes\static\assets\images\SEDAN_LIMOUSINE.png, it is a binary file.
+target\classes\static\assets\images\shape6.png, it is a binary file.
+target\classes\static\assets\images\shape7.png, it is a binary file.
+target\classes\static\assets\images\skril.png, it is a binary file.
+target\classes\static\assets\images\slack.png, it is a binary file.
+target\classes\static\assets\images\spain.png, it is a binary file.
+target\classes\static\assets\images\staffs.svg, code is 51, comment is 0, blank is 0.
+target\classes\static\assets\images\starter.png, it is a binary file.
+target\classes\static\assets\images\STATION_WAGON.png, it is a binary file.
+target\classes\static\assets\images\SUV_OFF_ROADER.png, it is a binary file.
+target\classes\static\assets\images\tires.png, it is a binary file.
+target\classes\static\assets\images\total-projects.svg, code is 10, comment is 0, blank is 0.
+target\classes\static\assets\images\total-students.svg, code is 29, comment is 0, blank is 0.
+target\classes\static\assets\images\VAN_MINIBUS.png, it is a binary file.
+target\classes\static\assets\images\workshop.png, it is a binary file.
+target\classes\static\assets\js\apexcharts.min.js, code is 24056, comment is 12, blank is 140.
+target\classes\static\assets\js\bootstrap.bundle.min.js, code is 1, comment is 5, blank is 0.
+target\classes\static\assets\js\carSelection.js, code is 177, comment is 15, blank is 17.
+target\classes\static\assets\js\custom\apexcharts.js, code is 15129, comment is 252, blank is 224.
+target\classes\static\assets\js\custom\custom.js, code is 738, comment is 87, blank is 95.
+target\classes\static\assets\js\echarts.min.js, code is 972, comment is 32, blank is 2.
+target\classes\static\assets\js\sidebar-menu.js, code is 138, comment is 180, blank is 19.
+target\classes\static\assets\js\simplebar.min.js, code is 2446, comment is 8, blank is 8.
+target\classes\static\car-selection.html, code is 224, comment is 19, blank is 15.
+target\classes\static\css\styles.css, code is 59, comment is 0, blank is 14.
+target\classes\static\dashboard\dashboard.html, code is 289, comment is 0, blank is 7.
+target\classes\static\dashboard\script.js, code is 280, comment is 19, blank is 40.
+target\classes\static\dashboard\styles.css, code is 379, comment is 0, blank is 60.
+target\classes\static\edit-car.html, code is 507, comment is 31, blank is 16.
+target\classes\static\img\Cars\2002.jpg, it is a binary file.
+target\classes\static\img\person.png, it is a binary file.
+target\classes\static\img\workshop.png, it is a binary file.
+target\classes\static\js\addCar.js, code is 47, comment is 0, blank is 3.
+target\classes\static\js\addMaintenance.js, code is 0, comment is 0, blank is 0.
+target\classes\static\js\car-selection.js, code is 0, comment is 0, blank is 0.
+target\classes\static\js\dashboard.js, code is 300, comment is 12, blank is 12.
+target\classes\static\js\sign.js, code is 52, comment is 1, blank is 3.
+target\classes\static\js\statistics.js, code is 435, comment is 13, blank is 21.
+target\classes\static\mydashboard.html, code is 421, comment is 36, blank is 17.
+target\classes\static\presignup.html, code is 88, comment is 3, blank is 7.
+target\classes\static\statistics.html, code is 324, comment is 29, blank is 12.
+target\classes\static\ui\dashboard.html, code is 15, comment is 1, blank is 1.
+target\classes\static\ui\styles.css, code is 57, comment is 0, blank is 13.
+target\classes\static\uSignUp.html, code is 53, comment is 1, blank is 1.
+target\classes\static\workshop\add-maintenance.html, code is 1820, comment is 135, blank is 15.
+target\classes\static\workshop\addMaintenance.js, code is 223, comment is 7, blank is 31.
+target\classes\static\workshop\wsdashboard.html, code is 353, comment is 23, blank is 14.
+target\classes\static\workshop\wsdashboard.js, code is 54, comment is 4, blank is 8.
+target\classes\static\ws-signup.html, code is 231, comment is 10, blank is 7.
+target\classes\templates\login.html, code is 123, comment is 5, blank is 6.
+target\classes\templates\signup.html, code is 237, comment is 3, blank is 8.
+target\test-classes\dev\sijaja\serviceheft\ServiceheftApplicationTests.class, it is a binary file.
+===============================================================================

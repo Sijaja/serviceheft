@@ -10,18 +10,14 @@
         <!-- Links Of CSS File -->
         <link rel="stylesheet" href="assets/css/sidebar-menu.css" />
         <link rel="stylesheet" href="assets/css/simplebar.css" />
-        <link rel="stylesheet" href="assets/css/prism.css" />
-        <link rel="stylesheet" href="assets/css/quill.snow.css" />
         <link rel="stylesheet" href="assets/css/remixicon.css" />
-        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="assets/css/jsvectormap.min.css" />
         <link rel="stylesheet" href="assets/css/style.css" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+        <link rel="icon" type="image/png" href="assets/images/logo-icon.png" />
 
         <!-- Title -->
-        <title>AutoMate | Mein Autos</title>
+        <title>AutoMate | Auto hinzufügen</title>
     </head>
 
     <body class="bg-body-bg">
@@ -264,8 +260,9 @@
                             <div
                                 class="card bg-white p-20 rounded-10 border border-white mb-4">
                                 <h3 class="mb-20">Fahrzeugdaten</h3>
-                                <form>
+                                <form onsubmit="addCar(event)">
                                     <div class="row">
+                                        <!-- Hersteller -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -273,13 +270,15 @@
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput1"
-                                                        placeholder="Hersteller">
+                                                        id="manufacturer"
+                                                        placeholder="Hersteller"
+                                                        required>
                                                     <label
-                                                        for="floatingInput1">Hersteller</label>
+                                                        for="manufacturer">Hersteller</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Model -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -287,27 +286,65 @@
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput2"
-                                                        placeholder="Model">
+                                                        id="model"
+                                                        placeholder="Model"
+                                                        required>
                                                     <label
-                                                        for="floatingInput2">Model</label>
+                                                        for="model">Model</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Farbe -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Farbe</label>
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="color"
+                                                        placeholder="Farbe"
+                                                        required>
+                                                    <label
+                                                        for="color">Farbe</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Pickerl bis -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Pickerl bis</label>
+                                                <div class="form-floating">
+                                                    <input type="date"
+                                                        class="form-control"
+                                                        id="inspection"
+                                                        placeholder="Pickerl bis"
+                                                        required>
+                                                    <label
+                                                        for="inspection">Pickerl bis</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Erstzulassung -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
                                                     class="label fs-16 mb-2">Erstzulassung</label>
                                                 <div class="form-floating">
-                                                    <input type="date"
+                                                    <input type="number"
+                                                        min="1950" max="2026"
+                                                        step="1" value=""
                                                         class="form-control"
-                                                        id="floatingInput3"
-                                                        placeholder="Erstzulassung">
+                                                        id="makeYear"
+                                                        placeholder="Erstzulassung"
+                                                        required/>
                                                     <label
-                                                        for="floatingInput3">Erstzulassung</label>
+                                                        for="makeYear">Erstzulassung*</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Fahrzeugtyp -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -315,10 +352,11 @@
                                                 <div class="form-floating">
                                                     <select
                                                         class="form-select form-control"
-                                                        id="floatingSelect6"
-                                                        aria-label="Floating label select example">
+                                                        id="carType"
+                                                        aria-label="Floating label select example"
+                                                        required>
                                                         <option
-                                                            selected>Fahrzeugtyp</option>
+                                                            value="" selected>Fahrzeugtyp</option>
                                                         <option
                                                             value="SEDAN_LIMOUSINE">Sedan/Limousine</option>
                                                         <option
@@ -337,24 +375,27 @@
                                                             value="OTHER">anderes</option>
                                                     </select>
                                                     <label
-                                                        for="floatingSelect6">Select</label>
+                                                        for="carType">Select</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Kilometerstand -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
                                                     class="label fs-16 mb-2">Kilometerstand</label>
                                                 <div class="form-floating">
-                                                    <input type="email"
+                                                    <input type="number"
                                                         class="form-control"
-                                                        id="floatingInput4"
-                                                        placeholder="Enter instructor name">
+                                                        id="mileage"
+                                                        placeholder="Enter instructor name"
+                                                        required>
                                                     <label
-                                                        for="floatingInput4">Kilometerstand</label>
+                                                        for="mileage">Kilometerstand*</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Antrieb -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -370,12 +411,15 @@
                                                             value="1">Hinterradantrieb</option>
                                                         <option
                                                             value="2">Vorderradantrieb</option>
+                                                        <option
+                                                            value="3">Allrad</option>
                                                     </select>
                                                     <label
                                                         for="floatingSelect7">Select</label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Treibstoff -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -401,6 +445,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Leistung -->
                                         <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
@@ -417,30 +462,53 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-12">
+                                        <!-- VIN -->
+                                        <div class="col-lg-6">
                                             <div class="mb-20">
                                                 <label
                                                     class="label fs-16 mb-2">VIN</label>
                                                 <div class="form-floating">
                                                     <input type="text"
                                                         class="form-control"
-                                                        id="floatingInput5"
-                                                        placeholder="Fahrzeug-Identifizierungsnummer">
+                                                        id="vinNumber"
+                                                        placeholder="Fahrzeug-Identifizierungsnummer"
+                                                        required>
                                                     <label
-                                                        for="floatingInput5">Fahrzeug-Identifizierungsnummer</label>
+                                                        for="vinNumber">Fahrzeug-Identifizierungsnummer*</label>
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- Getriebeart -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-20">
+                                                <label
+                                                    class="label fs-16 mb-2">Getriebeart</label>
+                                                <div class="form-floating">
+                                                    <select
+                                                        class="form-select form-control"
+                                                        id="floatingSelect7"
+                                                        aria-label="Floating label select example">
+                                                        <option
+                                                            selected>Getriebeart</option>
+                                                        <option
+                                                            value="1">Schaltgetriebe</option>
+                                                        <option
+                                                            value="2">Automatik</option>
+                                                    </select>
+                                                    <label
+                                                        for="floatingSelect7">Select</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons -->
                                         <div class="col-lg-12">
                                             <div class="d-flex gap-2">
                                                 <button type="button"
-                                                    class="btn btn-primary fw-normal text-white">+
-                                                    Auto hinzufügen</button>
-                                                <button type="button"
                                                     class="btn btn-danger fw-normal text-white"
                                                     data-bs-dismiss="modal">Abbrechen</button>
+                                                <button type="submit"
+                                                    class="btn btn-primary fw-normal text-white ms-auto">+
+                                                    Auto hinzufügen</button>
                                             </div>
                                         </div>
                                     </div>
@@ -475,23 +543,9 @@
         <!-- Link Of JS File -->
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/sidebar-menu.js"></script>
-        <script src="assets/js/quill.min.js"></script>
-        <script src="assets/js/data-table.js"></script>
-        <script src="assets/js/prism.js"></script>
-        <script src="assets/js/clipboard.min.js"></script>
         <script src="assets/js/simplebar.min.js"></script>
-        <script src="assets/js/apexcharts.min.js"></script>
-        <script src="assets/js/echarts.min.js"></script>
-        <script src="assets/js/swiper-bundle.min.js"></script>
-        <script src="assets/js/fullcalendar.main.js"></script>
-        <script src="assets/js/jsvectormap.min.js"></script>
-        <script src="assets/js/world-merc.js"></script>
-        <script src="assets/js/custom/apexcharts.js"></script>
-        <script src="assets/js/custom/echarts.js"></script>
-        <script src="assets/js/custom/maps.js"></script>
         <script src="assets/js/custom/custom.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script src="/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/js/addCar.js"></script>
     </body>
 </html>

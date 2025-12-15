@@ -3,31 +3,19 @@ package dev.sijaja.serviceheft.model;
 import dev.sijaja.serviceheft.model.enums.Age;
 import dev.sijaja.serviceheft.model.enums.Check;
 import dev.sijaja.serviceheft.model.enums.Condition;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class ElectricCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int electricCheckId;
 
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
-
-    private double voltage;
+    private Double voltage;
     @Enumerated(EnumType.STRING)
     private Condition terminals;
     @Enumerated(EnumType.STRING)
     private Age age;
-    private double alternatorOutput;
+    private Double alternatorOutput;
     @Enumerated(EnumType.STRING)
     private Check headLights;
     @Enumerated(EnumType.STRING)
@@ -38,31 +26,21 @@ public class ElectricCheck {
     public ElectricCheck() {
     }
 
-    public ElectricCheck(int electricCheckId, Age age, Check headLights, Condition terminals, double alternatorOutput, Maintenance maintenance, double voltage, Check tailLight, Check turnSignals) {
-        this.electricCheckId = electricCheckId;
+    public ElectricCheck(Age age, Check headLights, Condition terminals, Double alternatorOutput, Double voltage, Check tailLight, Check turnSignals) {
         this.age = age;
         this.headLights = headLights;
         this.terminals = terminals;
         this.alternatorOutput = alternatorOutput;
-        this.maintenance = maintenance;
         this.voltage = voltage;
         this.tailLight = tailLight;
         this.turnSignals = turnSignals;
     }
-    
-    public int getElectricCheckId() {
-        return electricCheckId;
-    }
 
-    public void setElectricCheckId(int electricCheckId) {
-        this.electricCheckId = electricCheckId;
-    }
-
-    public double getVoltage() {
+    public Double getVoltage() {
         return voltage;
     }
 
-    public void setVoltage(double voltage) {
+    public void setVoltage(Double voltage) {
         this.voltage = voltage;
     }
 
@@ -82,11 +60,11 @@ public class ElectricCheck {
         this.age = age;
     }
 
-    public double getAlternatorOutput() {
+    public Double getAlternatorOutput() {
         return alternatorOutput;
     }
 
-    public void setAlternatorOutput(double alternatorOutput) {
+    public void setAlternatorOutput(Double alternatorOutput) {
         this.alternatorOutput = alternatorOutput;
     }
 
@@ -113,14 +91,5 @@ public class ElectricCheck {
     public void setTurnSignals(Check turnSignals) {
         this.turnSignals = turnSignals;
     }
-
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
 
 }

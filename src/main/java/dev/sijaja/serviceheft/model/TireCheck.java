@@ -2,33 +2,21 @@ package dev.sijaja.serviceheft.model;
 
 import dev.sijaja.serviceheft.model.enums.Condition;
 import dev.sijaja.serviceheft.model.enums.Pattern;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity
+@Embeddable
 public class TireCheck {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int tireCheckId;
 
-    @OneToOne
-    @JoinColumn(name = "mtnc_id")
-    private Maintenance maintenance;
-
-    private double treadFrontLeft;
-    private double treadFrontRight;
-    private double treadRearLeft;
-    private double treadRearRight;
-    private double pressureFL;
-    private double pressureFR;
-    private double pressureRL;
-    private double pressureRR;
+    private Double treadFrontLeft;
+    private Double treadFrontRight;
+    private Double treadRearLeft;
+    private Double treadRearRight;
+    private Double pressureFL;
+    private Double pressureFR;
+    private Double pressureRL;
+    private Double pressureRR;
     @Enumerated(EnumType.STRING)
     private Pattern wearPattern;
     @Enumerated(EnumType.STRING)
@@ -37,14 +25,12 @@ public class TireCheck {
     public TireCheck() {
     }
 
-    public TireCheck(int tireCheckId, Condition shockAbsorbers, double pressureFL, double pressureFR, double pressureRL, double pressureRR, Maintenance maintenance, Pattern wearPattern, double treadFrontLeft, double treadFrontRight, double treadRearLeft, double treadRearRight) {
-        this.tireCheckId = tireCheckId;
+    public TireCheck(Condition shockAbsorbers, Double pressureFL, Double pressureFR, Double pressureRL, Double pressureRR, Pattern wearPattern, Double treadFrontLeft, Double treadFrontRight, Double treadRearLeft, Double treadRearRight) {
         this.shockAbsorbers = shockAbsorbers;
         this.pressureFL = pressureFL;
         this.pressureFR = pressureFR;
         this.pressureRL = pressureRL;
         this.pressureRR = pressureRR;
-        this.maintenance = maintenance;
         this.wearPattern = wearPattern;
         this.treadFrontLeft = treadFrontLeft;
         this.treadFrontRight = treadFrontRight;
@@ -52,75 +38,67 @@ public class TireCheck {
         this.treadRearRight = treadRearRight;
     }
 
-    public int getTireCheckId() {
-        return tireCheckId;
-    }
-
-    public void setTireCheckId(int tireCheckId) {
-        this.tireCheckId = tireCheckId;
-    }
-
-    public double getTreadFrontLeft() {
+    public Double getTreadFrontLeft() {
         return treadFrontLeft;
     }
 
-    public void setTreadFrontLeft(double treadFrontLeft) {
+    public void setTreadFrontLeft(Double treadFrontLeft) {
         this.treadFrontLeft = treadFrontLeft;
     }
 
-    public double getTreadFrontRight() {
+    public Double getTreadFrontRight() {
         return treadFrontRight;
     }
 
-    public void setTreadFrontRight(double treadFrontRight) {
+    public void setTreadFrontRight(Double treadFrontRight) {
         this.treadFrontRight = treadFrontRight;
     }
 
-    public double getTreadRearLeft() {
+    public Double getTreadRearLeft() {
         return treadRearLeft;
     }
 
-    public void setTreadRearLeft(double treadRearLeft) {
+    public void setTreadRearLeft(Double treadRearLeft) {
         this.treadRearLeft = treadRearLeft;
     }
 
-    public double getTreadRearRight() {
+    public Double getTreadRearRight() {
         return treadRearRight;
     }
 
-    public void setTreadRearRight(double treadRearRight) {
+    public void setTreadRearRight(Double treadRearRight) {
         this.treadRearRight = treadRearRight;
     }
 
-    public double getPressureFL() {
+    public Double getPressureFL() {
         return pressureFL;
     }
 
-    public void setPressureFL(double pressureFL) {
+    public void setPressureFL(Double pressureFL) {
         this.pressureFL = pressureFL;
     }
 
-    public double getPressureFR() {
+    public Double getPressureFR() {
         return pressureFR;
     }
 
-    public void setPressureFR(double pressureFR) {
+    public void setPressureFR(Double pressureFR) {
         this.pressureFR = pressureFR;
     }
 
-    public double getPressureRL() {
+    public Double getPressureRL() {
         return pressureRL;
     }
 
-    public void setPressureRL(double pressureRL) {
+    public void setPressureRL(Double pressureRL) {
         this.pressureRL = pressureRL;
     }
 
-    public double getPressureRR() {
+    public Double getPressureRR() {
         return pressureRR;
     }
 
-    public void setPressureRR(double pressureRR) {
+    public void setPressureRR(Double pressureRR) {
         this.pressureRR = pressureRR;
     }
 
@@ -139,14 +117,5 @@ public class TireCheck {
     public void setShockAbsorbers(Condition shockAbsorbers) {
         this.shockAbsorbers = shockAbsorbers;
     }
-
-    public Maintenance getMaintenance() {
-        return maintenance;
-    }
-
-    public void setMaintenance(Maintenance maintenance) {
-        this.maintenance = maintenance;
-    }
-
 
 }

@@ -71,7 +71,7 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     // 12. Maintenance history table
     @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("
             + "m.mtncId, m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
-            + "FROM Maintenance m JOIN Workshop w ON m.workshopId = w.workshopId "
+            + "FROM Maintenance m JOIN Workshop w ON m.workshop.workshopId = w.workshopId "
             + "WHERE m.car.id = :carId ORDER BY m.mtncDate DESC")
     List<MaintenanceTableDto> getMaintenanceTable(@Param("carId") Integer carId);
 
@@ -111,17 +111,32 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
        )
        """)
     List<Maintenance> findCriticalByCarId(@Param("carId") Integer carId);
-
+        /* 
+    @Query("""
+       SELECT tread_front_left, tread_front_right, FROM Maintenance e 
+       WHERE e.car.id = :carId
+       """)
+    Integer brakeAndTireRatingByCarId(@Param("carId") Integer carId);
+       */
     // Helper method to find maintenances by carId and ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND m.owner.ownerId = :ownerId")
+    @Query("SELECT m FROM Maintenance m WHERE m.car.carId = :carId AND m.car.owner.ownerId = :ownerId")
     List<Maintenance> findByCarIdAndOwnerId(@Param("carId") int carId, @Param("ownerId") int ownerId);
 
+
     // Helper method to find maintenances by ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.owner.id = :ownerId")
+    @Query("SELECT m FROM Maintenance m WHERE m.car.owner.ownerId = :ownerId")
     List<Maintenance> findAllByOwnerId(@Param("ownerId") int ownerId);
 
-    // Helper method to find maintenances by carId and ownerId
-    @Query("SELECT m FROM Maintenance m WHERE m.car.id = :carId AND m.owner.ownerId = :ownerId")
+    // Helper method to find maintenances by mtncId and ownerId
+    @Query("SELECT m FROM Maintenance m WHERE m.mtncId = :mtncId AND m.car.owner.ownerId = :ownerId")
     Optional<Maintenance> findByMtncIdAndOwnerId(@Param("mtncId") int mtncId, @Param("ownerId") int ownerId);
+
+    // Helper method to find maintenances by workshopId
+    @Query("SELECT new dev.sijaja.serviceheft.dto.MaintenanceTableDto("
+        + "m.mtncId, m.mtncDate, m.inspectionNotes, m.cost, m.currentMileage, w.workshopName) "
+        + "FROM Maintenance m JOIN Workshop w ON m.workshop.workshopId = w.workshopId "
+        + "WHERE m.workshop.id = :workshopId ORDER BY m.mtncDate DESC")
+    List<MaintenanceTableDto> findAllByWorkshopId(@Param("workshopId") int workshopId);
+
 
 }

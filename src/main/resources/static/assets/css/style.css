@@ -22370,4 +22370,17 @@ Dark Mode SCSS
   background-color: #0c1427;
 }
 
+.bs-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-right: -0.75rem !important;
+    margin-left: -0.75rem !important;
+}
+.bs-col-6 {
+    flex: 0 0 auto !important;
+    width: 50% !important;
+    padding-right: 0.75rem !important;
+    padding-left: 0.75rem !important;
+}
+
 /*# sourceMappingURL=style.css.map */
